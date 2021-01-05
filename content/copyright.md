@@ -64,7 +64,7 @@ In order to protect contributors and developers who want to stay away from such 
 
 ## Non-reverse-engineering development
 
-If you are merely looking at existing Asahi Linux code and improving it (without taking or referencing code from anywhere else), you are not reverse engineering anything, and you do not need to worry about anything else. Just make sure to follow the [Copyright policy](#copyright).
+If you are merely looking at existing Asahi Linux code and improving it (without taking or referencing code from anywhere else), you are not reverse engineering anything, and you do not need to worry about anything else. Just make sure to follow the [Copyright policy](#copyright-policy).
 
 ## Referencing other open source code
 
