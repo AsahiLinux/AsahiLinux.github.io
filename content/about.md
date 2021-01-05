@@ -12,6 +12,16 @@ Our goal is not just to make Linux run on these machines, but to polish it to th
 
 Asahi Linux was founded by Hector Martin "marcan" after the launch of the first M1 devices.
 
+## The name
+
+Asahi means "rising sun" in Japanese, and it is also the name of an apple cultivar. 旭りんご (*asahi ringo*) is what we know as the McIntosh Apple, the apple variety that gave the Mac its name.
+
+## The logo
+
+<img src="/img/AsahiLinux_logomark.svg" alt="Asahi Linux logo" width="100">
+
+The Asahi Linux logo and website were designed by [soundflora*](https://soundflora.tokyo). You can find the logo artwork [here](https://github.com/AsahiLinux/artwork/tree/main/logos).
+
 # FAQ
 
 ## What devices will be supported?

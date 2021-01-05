@@ -1,3 +1,6 @@
 baseURL = "https://asahilinux.org/"
 languageCode = "en-us"
 title = "Asahi Linux"
+
+[markup.goldmark.renderer]
+unsafe= true
