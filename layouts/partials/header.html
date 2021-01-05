@@ -13,13 +13,14 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@AsahiLinux" />
     <meta name="twitter:creator" content="@AsahiLinux" />
-    <meta name="twitter:title" content="{{.Title}}" />
+    <meta name="twitter:title" content="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux" />
+    <meta name="twitter:description" content="Porting Linux to Apple Silicon" />
     <meta name="twitter:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png" />
     <meta name="twitter:image:width" content="256">
     <meta name="twitter:image:height" content="256">
 
     <meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
-    <meta property="og:title" content="{{.Title}}">
+    <meta property="og:title" content="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux">
 </head>
 <body{{ if .IsHome }} class="landing"{{ end }}>
     <header id="header">
