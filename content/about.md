@@ -8,7 +8,7 @@ draft: false
 
 Asahi Linux is a project and community with the goal of porting Linux to Apple Silicon Macs, starting with the 2020 M1 Mac Mini, MacBook Air, and MacBook Pro.
 
-Our goal is not just to make Linux run on these machines, but to polish it to the point where it can be used as a daily OS. Doing this requires a huge amount of work to be done, as Apple Silicon is a completely undocumented platform. In particular, we will be reverse engineering the Apple GPU architecture and developing an open source driver for it.
+Our goal is not just to make Linux run on these machines but to polish it to the point where it can be used as a daily OS. Doing this requires a tremendous amount of work, as Apple Silicon is an entirely undocumented platform. In particular, we will be reverse engineering the Apple GPU architecture and developing an open-source driver for it.
 
 Asahi Linux was founded by Hector Martin "marcan" after the launch of the first M1 devices.
 
@@ -30,9 +30,9 @@ All Apple M1 macs are in scope, as well as future generations as development tim
 
 ## Is this a Linux distribution?
 
-Asahi Linux is an overall project to develop support for these Macs. We will eventually release a remix of [Arch Linux ARM](https://archlinuxarm.org/), packaged for installation by end users, as a distribution of the same name. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. The distribution will simply be a convenient package for easy installation by end users, as well as give them access to bleeding-edge versions of the software we develop.
+Asahi Linux is an overall project to develop support for these Macs. We will eventually release a remix of [Arch Linux ARM](https://archlinuxarm.org/), packaged for installation by end-users, as a distribution of the same name. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. The distribution will be a convenient package for easy installation by end-users and give them access to bleeding-edge versions of the software we develop.
 
-We expect that support will eventually trickle up and back down to other distributions, and advanced users will always be free to use the distribution of their choice and add the necessary patches/software themselves before this happens.
+We expect that support will eventually trickle up and back down to other distributions. Advanced users will always be free to use the distribution of their choice and add the necessary patches/software themselves before this happens.
 
 ## Does Apple allow this? Don't you need a jailbreak?
 
@@ -40,19 +40,19 @@ Apple allows booting unsigned/custom kernels on Apple Silicon macs without a jai
 
 ## Is this legal?
 
-As long as no code is taken from macOS in order to build the Linux support, the end result is completely legal to distribute and for end users to use, as it would not be a derivative work of macOS. Please see our [Copyright & Reverse Engineering Policy](/copyright) for more information.
+As long as no code is taken from macOS to build the Linux support, the result is completely legal to distribute and for end-users to use, as it would not be a derivative work of macOS. Please see our [Copyright & Reverse Engineering Policy](/copyright) for more information.
 
 ## How will this be released?
 
-All development takes place on our [GitHub](https://github.com/AsahiLinux). All contributions will be written with the intent to upstream them into the respective upstream projects (starting with the Linux kernel), and upstreamed as early as is practical. Code will be dual-licensed as the upstream license (e.g. GPL) and a permissive license (e.g. MIT), to ensure that the work can be reused in other OSes where possible.
+All development takes place on our [GitHub](https://github.com/AsahiLinux). All contributions will be written with the intent to upstream them into the respective upstream projects (starting with the Linux kernel) and upstreamed as early as is practical. Code will be dual-licensed as the upstream license (e.g. GPL) and a permissive license (e.g. MIT), to ensure that the work can be reused in other OSes where possible.
 
 ## Will this make Apple Silicon Macs a fully open platform?
 
-No, Apple still controls the boot process and, for example, the firmware that runs on the Secure Enclave Processor. However, no modern device is "fully open" - no usable computer exists today that has completely open software and hardware (as much as some companies want to market themselves as such). What ends up changing is where you draw the line between closed parts and open parts. The line on Apple Silicon Macs is when the alternate kernel image is booted, while SEP firmware remains closed - which is quite similar to the line on standard PCs, where the UEFI firmware boots the OS loader, while the ME/PSP firmware firmware remains closed. In fact, mainstream x86 platforms are arguably more intrusive, as the proprietary UEFI firmware is allowed to steal the main CPU from the OS at any time via SMM interrupts, which is not the case on Apple Silicon Macs. This has real performance/stability implications, it's not just a philosophical issue.
+No, Apple still controls the boot process and, for example, the firmware that runs on the Secure Enclave Processor. However, no modern device is "fully open" - no usable computer exists today with completely open software and hardware (as much as some companies want to market themselves as such). What ends up changing is where you draw the line between closed parts and open parts. The line on Apple Silicon Macs is when the alternate kernel image is booted, while SEP firmware remains closed - which is quite similar to the line on standard PCs, where the UEFI firmware boots the OS loader, while the ME/PSP firmware remains closed. In fact, mainstream x86 platforms are arguably more intrusive because the proprietary UEFI firmware is allowed to steal the main CPU from the OS at any time via SMM interrupts, which is not the case on Apple Silicon Macs. This has real performance/stability implications; it's not just a philosophical issue.
 
 ## Who is working on Asahi Linux?
 
-Asahi Linux is a community and anyone is invited to contribute. marcan currently leads the project but many other contributors also participate. If you are interested in contributing, check out our [contribute page](/contribute)!
+Asahi Linux is a community, and everyone is invited to contribute. marcan currently leads the project, but many other contributors also participate. If you are interested in contributing, check out our [contribute page](/contribute)!
 
 ## Who is this marcan guy?
 
