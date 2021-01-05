@@ -827,6 +827,7 @@ body.landing #documentation {
 
 .post p, .code-box, .post li, blockquote {
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .post a {
