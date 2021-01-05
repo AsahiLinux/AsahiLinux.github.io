@@ -1,0 +1,59 @@
+{{ partial "header.html" . }}
+<section id="eye-catch">
+    <div>
+        <div>
+            <h1>Linux on Apple Silicon</h1>
+            <p>Asahi Linux aims to bring you a polished Linux experience on Apple Silicon Macs.</p>
+            <a href="/about" class="more">Learn more<i class="fas fa-angle-right more"></i></a>
+        </div>
+        <div>
+            <img src="/img/asahilinux_laptop.svg?{{ slicestr (readFile "static/img/asahilinux_laptop.svg" | md5) 0 8 }}" alt="Asahi Linux on a laptop">
+        </div>
+    </div>
+</section>
+<section id="community" class="white-text">
+    <div class="center-title">
+        <h1>Community</h1>
+    </div>
+    <div class="community-links">
+        <div class="community-twitter">
+            <div class="community-card">
+                <i class="big-icon fab fa-twitter"></i>
+                <p>Follow us on Twitter to get announcements and other information.</p>
+            </div>
+            <div class="community-button twitter-button">
+                <a href="https://twitter.com/AsahiLinux" class="rounded-button"><i class="fab fa-twitter"></i> @AsahiLinux</a>
+            </div>
+        </div>
+        <div class="community-chat">
+            <div class="community-card">
+                <i class="big-icon fas fa-hashtag"></i>
+                <p>Our primary communications platform is IRC on Freenode.</p>
+            </div>
+            <div class="community-button chat-button">
+                <a href="/community" class="rounded-button"><i class="fas fa-hashtag"></i> Channel list</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contribute">
+    <div class="center-title">
+        <h1>Contribute</h1>
+    </div>
+    <div class="contribute-card center-card">
+        <i class="big-icon fab fa-github"></i>
+        <p>Asahi Linux and the open source projects it depends on are made possible by communities of volunteers. All contributors are welcome, of any skill level!</p>
+        <a href="/contribute" class="more">How to contribute<i class="fas fa-angle-right more"></i></a>
+    </div>
+</section>
+<section id="documentation">
+    <div class="center-title">
+        <h1>Documentation</h1>
+    </div>
+    <div class="documentation-card center-card">
+        <i class="big-icon fas fa-book-open"></i>
+        <p>We are documenting the Apple Silicon platform on our GitHub wiki.</p>
+        <a href="https://github.com/AsahiLinux/docs/wiki" class="more">Visit the Wiki<i class="fas fa-angle-right more"></i></a>
+    </div>
+</section>
+{{ partial "footer.html" . }}
