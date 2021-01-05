@@ -14,14 +14,14 @@ Please rememeber that all community members are expected to abide by our [Code o
 
 Most development and project discussion takes place on IRC. We have several channels on the Freenode IRC network:
 
-* #asahi [[logs](https://freenode.irclog.whitequark.org/asahi)] - General project discussion
-* #asahi-dev [[logs](https://freenode.irclog.whitequark.org/asahi-dev)] - Development discussion
-* #asahi-re [[logs](https://freenode.irclog.whitequark.org/asahi-re)] - Reverse engineering (hardware/firmware interfaces/etc)
-* #asahi-gpu [[logs](https://freenode.irclog.whitequark.org/asahi-gpu)] - GPU reverse engineering and development
+* #asahi [[logs](https://freenode.irclog.whitequark.org/asahi)][[matrix](https://matrix.to/#freenode_#asahi:matrix.org)] - General project discussion
+* #asahi-dev [[logs](https://freenode.irclog.whitequark.org/asahi-dev)][[matrix](https://matrix.to/#freenode_#asahi-dev:matrix.org)] - Development discussion
+* #asahi-re [[logs](https://freenode.irclog.whitequark.org/asahi-re)][[matrix](https://matrix.to/#freenode_#asahi-re:matrix.org)] - Reverse engineering (hardware/firmware interfaces/etc)
+* #asahi-gpu [[logs](https://freenode.irclog.whitequark.org/asahi-gpu)][[matrix](https://matrix.to/#freenode_#asahi-gpu:matrix.org)] - GPU reverse engineering and development
 
 Even if you don't plan to speak, feel free to join and idle in the above channels if you'd like to follow the discussion.
 
-There is also a [Matrix to Freenode bridge](https://matrix.org/blog/2015/06/22/the-matrix-org-irc-bridge-now-bridges-all-of-freenode) that you can us to join the above channels from Matrix.
+There is also a [Matrix to Freenode bridge](https://matrix.org/blog/2015/06/22/the-matrix-org-irc-bridge-now-bridges-all-of-freenode) that you can use to join the above channels from Matrix. You can click the links labelled 'matrix' to join the respective rooms.
 
 ## Wiki
 
