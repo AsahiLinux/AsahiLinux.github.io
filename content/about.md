@@ -56,7 +56,7 @@ Asahi Linux is a community and anyone is invited to contribute. marcan currently
 
 ## Who is this marcan guy?
 
-Asahi Linux is led by Hector Martin "marcan", a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. This is his most ambitious project yet, and he is funding the effort via [community donations and sponsorship](/donate).
+Asahi Linux is led by Hector Martin "marcan", a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. This is his most ambitious project yet, and he is funding the effort via [community donations and sponsorship](/support).
 
 Previous projects include:
 
