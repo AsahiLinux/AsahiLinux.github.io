@@ -12,7 +12,7 @@ It is based on [Hugo](https://gohugo.io) and is currently hosted on Github pages
 
 In order to contribute, you first need to recursively clone this repository as it contains a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
-```
+```bash
 git clone --recursive https://github.com/AsahiLinux/AsahiLinux.github.io
 ```
 
@@ -20,7 +20,7 @@ Next, make sure you have Hugo installed. The best way to do that will depend on 
 
 Once everything is installed, move to the directory where this repository is cloned and run the following commands to start a development server
 
-```
+```bash
 cd AsahiLinux.github.io
 hugo server
 ```
