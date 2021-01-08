@@ -705,7 +705,7 @@ div.community-button {
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 div.community-button > * {
@@ -713,7 +713,6 @@ div.community-button > * {
     text-align: center;
     font-family: 'Varela Round', sans-serif;
     padding: 15px;
-    margin: 0px 15px;
     max-width: 200px;
     border-radius: 100px;
 }
@@ -930,6 +929,10 @@ ul.footer-services > li > a > i {
         padding-bottom: 40px;
     }
     
+    div.community-button {
+        justify-content: center;
+    }
+
     div.community-more {
         display: flex;
     }
