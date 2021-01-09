@@ -114,3 +114,6 @@ Contributors doing binary reverse engineering are responsible for any legal cons
 
 **Important**: In order to ensure the legal safety of project members that don't want to involve themselves in this reverse engineering approach, *all* such discussion is allowed **only** in the #asahi-re or #asahi-gpu IRC channels. This will be strictly enforced, and work involving binary RE on other #asahi-* channels will lead to a kick or a ban. Additionally, do not paste any decompiled/disassembled code into the IRC channels. These channels are publicly logged.
 
+## Usage of unreleased materials
+
+Asahi Linux absolutely forbids the usage of any copyrighted materials not available to the public during reverse engineering. This includes any leaked software (in source or binary form), unreleased documentation, non-public releases (such as restricted betas), etc. Project contributors are expected to refrain from acquiring or using any such content. Only materials that are explicitly made available to the public at large may be used. This applies to materials from both Apple and any other third parties.
