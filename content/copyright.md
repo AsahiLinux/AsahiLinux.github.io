@@ -110,9 +110,11 @@ Since the Asahi Linux project leads (currently marcan) are ultimately responsibl
 
 All other contributors are required to follow the textbook "clean-room" approach: If you would like to disassemble/decompile components in order to contribute to the project, you must make that decision for a specific component/area with care, and once you do, you are expected to only contribute to that area by writing clean documentation of the hardware, and let other project members implement it.
 
+Especial caution must be applied for the graphics stack: contributors **must not disassemble or decompile userspace graphics driver binaries**, including the proprietary LLVM-based shader compiler and Metal itself, even to produce documentation for clean room Mesa development. The reason for this is two-fold. One, black box data tracing is a highly effective technique that can be relied on for reverse-engineering in isolation, causing disassembly to be needless risk. Two, userspace code tends to be more algorithmic and original in nature, compared to kernel code, rendering these techniques especially risky. Remember, the goal is to reverse-engineer the GPU hardware, not to reverse-engineer the proprietary driver software.
+
 Contributors doing binary reverse engineering are responsible for any legal consequences of their work, including any consequences of the license associated with said code.
 
-**Important**: In order to ensure the legal safety of project members that don't want to involve themselves in this reverse engineering approach, *all* such discussion is allowed **only** in the #asahi-re or #asahi-gpu IRC channels. This will be strictly enforced, and work involving binary RE on other #asahi-* channels will lead to a kick or a ban. Additionally, do not paste any decompiled/disassembled code into the IRC channels. These channels are publicly logged.
+**Important**: In order to ensure the legal safety of project members that don't want to involve themselves in this reverse engineering approach, *all* such discussion is allowed **only** in the #asahi-re IRC channel. This will be strictly enforced, and work involving binary RE on other #asahi-* channels will lead to a kick or a ban. Additionally, do not paste any decompiled/disassembled code into the IRC channels. These channels are publicly logged.
 
 ## Usage of unreleased materials
 
