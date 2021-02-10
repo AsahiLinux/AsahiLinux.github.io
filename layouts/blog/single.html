@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+<section id="post-section">
+    <div class="post-wrapper">
+        <div class="post">
+            {{ partial "breadcrumbs.html" . }}
+            <div class="blog-header">
+                <h1 class="entry-title">{{.Title}}</h1>
+                
+                <ul class="blog-nav">
+                    {{ with .PrevInSection }}
+                    <li>
+                        <a href="{{ .Permalink }}"><i class="fas fa-arrow-left"></i>Previous</a>
+                    </li>
+                    {{ end }}
+                    <li class="nav-spacer"></li>
+                    {{ with .NextInSection }}
+                    <li>
+                        <a class="next" href="{{ .Permalink }}">Next<i class="fas fa-arrow-right"></i></a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ .Content }}
+            {{ $dateFormat := $.Site.Params.dateFormat | default "2006-01-02" }}
+            <div class="post-bottom"><span class="publishdate">{{ .PublishDate.Format $dateFormat }}</span></div>
+        </div>
+    </div>
+</section>
+{{ partial "footer.html" . }}
