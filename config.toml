@@ -4,3 +4,6 @@ title = "Asahi Linux"
 
 [markup.goldmark.renderer]
 unsafe= true
+
+[minify.tdewolff.html]
+keepWhitespace=true
