@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+
+{{ if .Content }}
+{{ partial "single.html" . }}
+{{ else }}
+<div id="post-section">
+    <div class="post-wrapper">
+        <div class="post">
+            <h1>{{ .Title }}</h1>
+            {{ if isset .Params "subtitle" }}<h2>{{ .Params.subtitle }}</h2>{{end}}
+
+            <div class="post-list">
+                <div>
+                    <ul id="list" class="postindex">
+                    {{ range .Data.Pages.ByDate.Reverse }}
+                    <li>
+                    <a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a>
+                    <summary>{{ .Summary }}{{ if .Truncated }} <a href="{{ .Permalink }}" title="Read more">... </a>{{ end }}</summary>
+                    <div class="meta">{{ .Date.Format "2006-01-02" }}</div>
+                    </li>
+                    {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ partial "footer.html" . }}

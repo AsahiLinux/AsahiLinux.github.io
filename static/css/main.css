@@ -775,6 +775,7 @@ body.landing #documentation {
 
 #post-section {
     background-color: #EFEFEF;
+    min-height: 70vh;
 }
 
 .post {
@@ -839,6 +840,77 @@ blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
     padding: 15px;
+}
+
+/* Blog */
+
+.blog-header {
+    border-bottom: 1px solid #999999;
+    text-align: center;
+}
+
+.blog-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-nav li {
+    list-style: none;
+    margin: 0px;
+    padding: 5px 15px;
+    background-color: #dedede;
+}
+
+.blog-nav li.nav-spacer {
+    background: none;
+}
+
+.blog-nav > li > a > .fa-arrow-left {
+    margin-right: 10px;
+}
+
+.blog-nav > li > a > .fa-arrow-right {
+    margin-left: 10px;
+}
+
+h1:nth-child(1).entry-title {
+    border: none;
+    margin: 25px 0px;
+    padding: 0px;
+    font-size: 250%;
+}
+
+div#breadcrumbs, div.post-bottom {
+    padding: 10px;
+    background-color: #dedede;
+}
+
+div.post-bottom {
+    margin-top: 42px;
+    text-align: right;
+}
+
+.publishdate {
+    margin-right: 15px;
+}
+
+/* Post list */
+.post-list li {
+    background-color: #e0e0e0;
+    list-style: none;
+    margin-left: 0px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.post-list summary {
+    margin: 5px 0px;
+    font-size: 95%;
+}
+
+.post-title, .meta  {
+    font-weight: 400;
+    font-size: 110%;
 }
 
 /* Footer */
@@ -955,6 +1027,7 @@ ul.footer-services i {
 
     .post-wrapper {
         width: 85%;
+        margin: 30px auto;
     }
 
     .footer-menu {
