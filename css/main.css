@@ -508,8 +508,7 @@ p, i {
 }
 
 b, strong {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .white-text {
@@ -573,6 +572,7 @@ div.header-menu {
 
 .menu-container li {
     font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
     margin: 0px 20px;
 }
 
@@ -700,6 +700,7 @@ div.community-button a {
     flex: 1;
     text-align: center;
     font-family: 'Varela Round', sans-serif;
+    font-weight: normal;
     padding: 15px;
     max-width: 200px;
     border-radius: 100px;
@@ -775,6 +776,7 @@ body.landing #documentation {
 
 #post-section {
     background-color: #EFEFEF;
+    min-height: 70vh;
 }
 
 .post {
@@ -791,7 +793,7 @@ body.landing #documentation {
 }
 
 .post-wrapper li {
-    list-style: circle;
+    list-style: disc;
     font-weight: 300;
     margin-left: 2em;
     line-height: 1.4em;
@@ -808,10 +810,15 @@ body.landing #documentation {
     margin-top: 30px;
 }
 
-.post p, .code-box, .post li, blockquote {
+.post p, .code-box, .post ul, blockquote {
     margin-bottom: 15px;
     margin-top: 15px;
     letter-spacing: 0.02em
+}
+
+.post li {
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .post a {
@@ -819,10 +826,11 @@ body.landing #documentation {
 }
 
 code {
-    color: white;
-    padding: .2em .4em;
+    color: #0D4F1A;
+    padding: 0 .4em;
+    font-weight: normal;
     font-size: 85%;
-    background: #25292f;
+    background-color: rgba(6, 102, 238, 0.05);
     border-radius: 6px;
 }
 
@@ -831,14 +839,94 @@ pre {
     padding: 1em;
     border-radius: 6px;
     background: #25292f;
+    background-color: rgba(6, 102, 238, 0.05);
     color: #fff;
     overflow-x: auto;
+}
+
+pre code {
+    background: none;
 }
 
 blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
     padding: 15px;
+}
+
+p img {
+    max-width: 100%;
+}
+
+/* Blog */
+
+.blog-header {
+    border-bottom: 1px solid #999999;
+    text-align: center;
+}
+
+.blog-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-nav li {
+    list-style: none;
+    margin: 0px;
+    padding: 5px 15px;
+    background-color: #dedede;
+}
+
+.blog-nav li.nav-spacer {
+    background: none;
+}
+
+.blog-nav > li > a > .fa-arrow-left {
+    margin-right: 10px;
+}
+
+.blog-nav > li > a > .fa-arrow-right {
+    margin-left: 10px;
+}
+
+.blog-header h1.entry-title {
+    border: none;
+    margin: 25px 0px;
+    padding: 0px;
+    font-size: 200%;
+}
+
+div#breadcrumbs, div.post-bottom {
+    padding: 10px;
+    background-color: #dedede;
+}
+
+div.post-bottom {
+    margin-top: 42px;
+    text-align: right;
+}
+
+.publishdate {
+    margin-right: 15px;
+}
+
+/* Post list */
+.post-list li {
+    background-color: #e0e0e0;
+    list-style: none;
+    margin-left: 0px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.post-list summary {
+    margin: 5px 0px;
+    font-size: 95%;
+}
+
+.post-title, .meta  {
+    font-weight: 400;
+    font-size: 110%;
 }
 
 /* Footer */
@@ -890,14 +978,6 @@ ul.footer-services i {
     font-family: 'Noto Sans', sans-serif;
     font-size: 80%;
     margin-left: 20px;
-}
-
-.footer-bottom {
-    text-align: center;
-    font-family: "Source Han Mono";
-    font-size: 80%;
-    background-color: #EFEFEF;
-    padding: 10px 0px;
 }
 
 .license, .disclaimer {
@@ -955,6 +1035,7 @@ ul.footer-services i {
 
     .post-wrapper {
         width: 85%;
+        margin: 30px auto;
     }
 
     .footer-menu {
