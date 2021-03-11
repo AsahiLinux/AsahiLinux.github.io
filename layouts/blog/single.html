@@ -23,7 +23,7 @@
             </div>
             {{ .Content }}
             {{ $dateFormat := $.Site.Params.dateFormat | default "2006-01-02" }}
-            <div class="post-bottom"><span class="publishdate">{{ .PublishDate.Format $dateFormat }}</span></div>
+            <div class="post-bottom">{{ .Params.Author }} · <span class="publishdate">{{ .PublishDate.Format $dateFormat }}</span></div>
         </div>
     </div>
 </section>
