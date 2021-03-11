@@ -823,6 +823,7 @@ body.landing #documentation {
 
 .post a {
     color: #E20052;
+    text-decoration: underline;
 }
 
 code {
@@ -900,6 +901,10 @@ div#breadcrumbs, div.post-bottom {
     padding: 10px;
     background-color: #dedede;
 }
+div#breadcrumbs a {
+    text-decoration: none;
+}
+
 
 div.post-bottom {
     margin-top: 42px;
