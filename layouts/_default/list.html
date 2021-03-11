@@ -22,6 +22,11 @@
                     </ul>
                 </div>
             </div>
+            {{ if .RSSLink }}
+            <p>
+                <a href="{{ .RSSLink }}">RSS feed</a>
+            </p>
+            {{ end }}
         </div>
     </div>
 </div>

@@ -5,10 +5,17 @@ title = "Asahi Linux"
 pluralizelisttitles = false
 
 [markup.goldmark.renderer]
-unsafe= true
+unsafe = true
 
 [minify.tdewolff.html]
-keepWhitespace=true
+keepWhitespace = true
 
 [permalinks]
 blog = "/:year/:month/:slug/"
+
+[outputs]
+page = ["HTML"]
+home = ["HTML"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
+term = ["HTML", "RSS"]
