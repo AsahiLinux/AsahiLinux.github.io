@@ -11,4 +11,4 @@ unsafe= true
 keepWhitespace=true
 
 [permalinks]
-blog = "/:year/:month/:title/"
+blog = "/:year/:month/:slug/"
