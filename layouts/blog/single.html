@@ -5,7 +5,7 @@
             {{ partial "breadcrumbs.html" . }}
             <div class="blog-header">
                 <h1 class="entry-title">{{.Title}}</h1>
-                
+                {{ if or .PrevInSection .NextInSection }}
                 <ul class="blog-nav">
                     {{ with .PrevInSection }}
                     <li>
@@ -19,6 +19,7 @@
                     </li>
                     {{ end }}
                 </ul>
+                {{ end }}
             </div>
             {{ .Content }}
             {{ $dateFormat := $.Site.Params.dateFormat | default "2006-01-02" }}
