@@ -26,7 +26,7 @@ The Asahi Linux logo and website were designed by [soundflora*](https://soundflo
 
 ## What devices will be supported?
 
-All Apple M1 macs are in scope, as well as future generations as development time permits. The first target will be the M1 Mac Mini.
+All Apple M1 Macs are in scope, as well as future generations as development time permits. The first target will be the M1 Mac Mini.
 
 ## Is this a Linux distribution?
 
@@ -36,7 +36,7 @@ We expect that support will eventually trickle up and back down to other distrib
 
 ## Does Apple allow this? Don't you need a jailbreak?
 
-Apple allows booting unsigned/custom kernels on Apple Silicon macs without a jailbreak! This isn't a hack or an omission, but an actual feature that Apple built into these devices. That means that, unlike iOS devices, Apple does not intend to lock down what OS you can use on Macs (though they probably won't help with the development).
+Apple allows booting unsigned/custom kernels on Apple Silicon Macs without a jailbreak! This isn't a hack or an omission, but an actual feature that Apple built into these devices. That means that, unlike iOS devices, Apple does not intend to lock down what OS you can use on Macs (though they probably won't help with the development).
 
 ## Is this legal?
 
