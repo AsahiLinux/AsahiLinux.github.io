@@ -8,7 +8,7 @@ draft: false
 
 If you're interested in the project, you're welcome to drop by!  Check out [ways in which you can contribute](/contribute).
 
-Please rememeber that all community members are expected to abide by our [Code of Conduct](/code-of-conduct).
+Please remember that all community members are expected to abide by our [Code of Conduct](/code-of-conduct).
 
 ## IRC
 
