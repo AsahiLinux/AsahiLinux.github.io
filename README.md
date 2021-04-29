@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://asahilinux.org/img/AsahiLinux_logo.svg" alt="AsahiLinux Logo" width="250" />
+  <img src="https://asahilinux.org/img/AsahiLinux_logo.svg" alt="Asahi Linux Logo" width="250" />
 </p>
 
 # Homepage
 
-This is the repository for AsahiLinux homepage.
+This is the repository for the Asahi Linux homepage.
 
-It is based on [Hugo](https://gohugo.io) and is currently hosted on Github pages available at https://asahilinux.org.
+It is based on [Hugo](https://gohugo.io) and is currently hosted on GitHub pages available at https://asahilinux.org.
 
 ## Getting Started
 
