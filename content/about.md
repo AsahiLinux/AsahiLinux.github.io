@@ -10,7 +10,7 @@ Asahi Linux is a project and community with the goal of porting Linux to Apple S
 
 Our goal is not just to make Linux run on these machines but to polish it to the point where it can be used as a daily OS. Doing this requires a tremendous amount of work, as Apple Silicon is an entirely undocumented platform. In particular, we will be reverse engineering the Apple GPU architecture and developing an open-source driver for it.
 
-Asahi Linux was founded by Hector Martin "marcan" after the launch of the first M1 devices.
+Asahi Linux is developed by a thriving community of free and open source software developers.
 
 ## The name
 
