@@ -32,6 +32,8 @@ Since the hypervisor is built on m1n1, it works together with Python code runnin
 
 The hypervisor also includes standard debugging tools (like stopping execution, single-stepping, and getting a backtrace). This makes it not just useful for reverse engineering, but also as a low-level debugging tool for m1n1 itself and Linux, since they can also run on the hypervisor. Yes, you can now run m1n1 on m1n1!
 
+If you're intererested in the inner workings of the hypervisor, I did a [3-hour code recap stream](https://www.youtube.com/watch?v=igYgGH6PnOw) covering most of the implementation, as well as the general topics of ARMv8-A virtualization, M1-specific details and oddities, and more.
+
 On top of the hypervisor, we've built a flexible hardware I/O tracing framework that allows us to seamlessly load and upload tracers that understand how a particular piece of hardware works. For example, the [tracer](https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/m1n1/trace/gpio.py) for the GPIO (General Purpose I/O) hardware can tell us when macOS toggles the state or configuration of each GPIO pin. This allows us to build up our understanding of the hardware, from raw register reads and writes to higher level functions. This was invaluable for the next bit of hardware we tackled: the DCP.
 
 ## Reverse Engineering DCP
