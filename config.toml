@@ -19,3 +19,6 @@ home = ["HTML"]
 section = ["HTML", "RSS"]
 taxonomy = ["HTML", "RSS"]
 term = ["HTML", "RSS"]
+
+[privacy.twitter]
+enableDNT = true
