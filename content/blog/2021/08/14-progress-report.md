@@ -140,7 +140,7 @@ What we need is a way to create a "macOS" installation from scratch, containing 
 * m1n1 installed as a custom kernel, overriding the macOS XNU kernel
 * Files related to user authentication for recovery operations
 
-To do this, we built a prototype installer that can replicate this part of the macOS installation process, and guide the user through the process of installing m1n1. It uses Apple's [official restore images](https://mrmacintosh.com/apple-silicon-m1-full-macos-restore-ipsw-firmware-files-database/), which they make available for every macOS release on Apple silicon. Instead of downloading the 13+GB full OS image, it streams only the necessary components (the largest one being the 1GB recovery image) on demand.
+To do this, we built a prototype installer that can replicate this part of the macOS installation process, and guide the user through the process of installing m1n1. It uses Apple's [official restore images](https://mrmacintosh.com/apple-silicon-m1-full-macos-restore-ipsw-firmware-files-database/), which they make available for every macOS release on Apple Silicon. Instead of downloading the 13+GB full OS image, it streams only the necessary components (the largest one being the 1GB recovery image) on demand.
 
 To launch the installer, the user just runs a shell script (`curl | sh` style) from either macOS or Recovery mode and follows the prompts:
 
