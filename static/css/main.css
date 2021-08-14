@@ -855,8 +855,20 @@ blockquote {
     padding: 15px;
 }
 
-p img {
+p img, figure img {
     max-width: 100%;
+}
+
+.twitter-tweet {
+    margin: 0 auto;
+}
+
+.post figure figcaption p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 80%;
 }
 
 /* Blog */
