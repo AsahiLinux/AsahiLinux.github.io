@@ -799,7 +799,7 @@ body.landing #documentation {
     line-height: 1.4em;
 }
 
-.post h1:nth-child(1), .post h2:nth-child(1), .post h3:nth-child(1)  {
+.post h1:nth-child(1), .post h2:nth-child(1), .post h3:nth-child(1), blockquote p:nth-child(1)  {
     margin-top: 0px;
 }
 
