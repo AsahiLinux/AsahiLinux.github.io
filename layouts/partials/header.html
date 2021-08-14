@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link id="favicon" rel="icon" href="/img/AsahiLinux_logomark_32px.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel="stylesheet">
-    {{ if .RSSLink }}
-    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux" />
-    <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux" />
+    {{ if .OutputFormats.Get "RSS" }}
+    <link href="{{ (.OutputFormats.Get "RSS").RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux" />
+    <link href="{{ (.OutputFormats.Get "RSS").RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux" />
     {{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 

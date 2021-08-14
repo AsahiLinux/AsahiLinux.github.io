@@ -22,9 +22,9 @@
                     </ul>
                 </div>
             </div>
-            {{ if .RSSLink }}
+            {{ if .OutputFormats.Get "RSS" }}
             <p>
-                <a href="{{ .RSSLink }}">RSS feed</a>
+                <a href="{{ (.OutputFormats.Get "RSS").RelPermalink }}">RSS feed</a>
             </p>
             {{ end }}
         </div>
