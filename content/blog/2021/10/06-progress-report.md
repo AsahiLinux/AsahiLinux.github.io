@@ -1,0 +1,91 @@
++++
+date = "2021-10-06T01:00:00+09:00"
+draft = false
+title = "Progress Report: September 2021"
+slug = "progress-report-september-2021"
+author = "marcan"
++++
+
+It's been a busy month! We've had a lot of movement in kernel land, as well as some tooling improvements and reverse engineering sessions. At this point, Asahi Linux is usable as a basic Linux desktop (without GPU acceleration)! The ground had been shifting until now, but we're seeing drivers settle down. Let's take a look at what's been going on.
+
+## Linux drivers galore
+
+Earlier this year we saw the absolute lowest level drivers being merged into the kernel. Those are important for bring-up, but to get a usable system we need many more. Over September we've seen a lot of action on this front, with many important drivers now in review or even already merged for Linux 5.16. The goal of the Asahi Linux project is to upstream everything into the Linux kernel, so all our drivers are eventually headed for upstream review.
+
+* **PCIe bindings (<span style="color: #080">merged</span>)**: Mark Kettenis has been working on porting U-Boot and OpenBSD to the M1, and he contributed the Device Tree bindings for the PCI Express hardware in the M1. These bindings are effectively the standard that allows multiple open OSes to agree on how the hardware is described, so they can boot from the same bootloader.
+
+* **PCIe driver (`pcie-apple`, <span style="color: #080">merged</span>)**: Marc Zyngier polished up the PCIe driver and all the little dependencies and changes that came along with it. The job of this driver is to set up the physical PCIe ports, handle MSI interrupt mapping to the M1's AIC interrupt controller, and work together with the DART IOMMU driver to put devices in the right IOMMU groups. With this ready, the USB-A and Ethernet ports on the Mac Mini now work, as those are standard PCIe chips that Linux already has drivers for.
+
+* **USB-C PD driver (`tps6598x`, <span style="color: #080">merged</span>)**: M1 machines use Texas Instruments USB-C controller chips, which handle things like USB-PD negotiation and alternate modes. Linux already has a basic driver for the TPS6598X versions, but the chips in M1 machines are special Apple variants (CD3217/CD3218) which are slightly different. [Sven Peter](https://twitter.com/svenpeter42) has been hard at work adapting the existing driver to support them. This makes charging and USB2 hotplugging work - although an extra patch is needed for the latter, due to a handshake that needs to happen on M1 machines between the USB-C controller and the USB hardware in the M1, to configure the [eUSB2](https://e2e.ti.com/blogs_/b/analogwire/posts/understanding-embedded-usb2-eusb2) repeater between them. Bet you hadn't heard of that USB standard before!
+
+* **Pinctrl driver (`apple-gpio-pinctrl`, <span style="color: #808">in review</span>)**: [Joey Gouly](https://twitter.com/captainjey) has been busy cleaning up and rewriting the GPIO/pinctrl driver. This driver handles the general purpose I/O pins of the M1, which are used for things like controlling reset lines for external peripherals. It's a requirement to make PCIe work properly, as this is how peripheral resets are controlled. Joey and I (marcan) spent some time, multimeter and oscilloscope in hand, working out exactly what all the bits in the GPIO controller do, so now we have a firm understanding of what features are supported by the hardware and how they work. The driver is looking good and is likely to be ready to merge in the next patchset version.
+
+* **I²C driver (`i2c-pasemi`<span style="color: #808">in review</span>)**: The M1 borrows its I²C hardware from... none other than the PA Semi PWRficient PA6T-1682M, used in the AmigaOne X1000! Turns out there is some clear PA Semi legacy in these chips! Linux already has a driver for this hardware, but on the PowerPC chips it is a PCI device, while on the M1 it is a platform device. Sven has submitted a patch series to decouple the existing driver from the PCI part and add platform device support. It's currently being tested by the folks with AmigaOne hardware to make sure nothing broke along the way, and should be ready to merge after that. This hardware is used to talk to things like the audio amplifier chips and the USB-C port controllers.
+
+* **ASC mailbox driver (`apple-mailbox`, <span style="color: #808">in review</span>)**: Apple SoCs have tons of different side cores to handle auxiliary tasks, and these cores need to communicate with the main CPU. These are known as "ASC"s, and they all share the same low-level "mailbox" hardware. Sven has also contributed this driver, which handles the lowest level of communication (sending/receiving 96-bit messages).
+
+* **IOMMU 4K patches (<span style="color: #808">in review</span>)**: The M1 is peculiar in that, although it supports OSes that use either 16K or 4K pages, it really is designed for 16K systems. Its DART IOMMU hardware only supports 16K pages. These chips have 4K support chiefly to make Rosetta work on macOS, but macOS itself always runs with 16K pages – only Rosetta apps end up in 4K mode. Linux can't really mix page sizes like that and likely never will be able to, so we're left with a conundrum: running a 16K kernel makes compatibility with older userspace difficult (chiefly Android and x86 emulation), plus distros don't usually ship 16K kernels; while running a 4K kernel runs into a major mismatch with the DART. This initially seemed like a problem too intractable to solve, but Sven took on the challenge and now has a patch series that makes Linux's IOMMU support layer play nicely with hardware that has an IOMMU page size larger than the kernel page size! It's not perfect, as it can't support a select few corner case drivers (that do things that are fundamentally impossible to support in this situation), but it works well and will support everything we need to make 4K kernels viable.
+
+* **Device Power Management (`apple-pmgr-pwrstate`, <span style="color: #808">in review</span>)**: A fundamental part of any modern power-efficient SoC is the ability to turn parts of itself on and off, to various extents, to save power. On many SoCs this is handled as discrete hardware that can do things like control power to different blocks, turn clocks on and off, etc, requiring complex sequences of operations. Apple SoCs instead have a much higher level interface that automates most of the hard work. This was actually confusing at first, as we thought the hardware was doing fewer things than it really was! We ended up rewriting this driver multiple times, using different kernel abstractions, as we understood the hardware better. I wrote the latest iteration, which represents the hardware as Linux Generic Power Domains. This allows it to integrate smoothly with the Linux device framework, and works even for hardware that doesn't have power management support in its driver yet (the device is always on in that case). I also added power management support to the UART driver, as a proof of concept. As a bonus, the driver also handles resetting hardware blocks (as a reset provider), which we can use to allow re-loading drivers for other hardware without running into problems.
+
+* **CPU frequency scaling (`apple-cluster-clk`, <span style="color: #108">final cleanup before RFC</span>)**: Continuing the power management theme, Linux needs a driver for CPU core frequency scaling. At boot, the 4 "Icestorm" efficiency cores are at max performance, but the 4 "Firestorm" performance cores are at the lowest performance state. Similar to device PM, the M1 has a very high level interface for this, but with a twist: in higher CPU performance states, it is also desirable to adjust the memory controller configuration to increase system performance. I wrote two drivers to do this: one to control the performance state of a CPU cluster, and one to control the memory controller configuration. The current approach piggybacks off of the existing `cpufreq-dt` driver to do the heavy lifting, but needs to go through a round of comments before I can confidently settle on this approach. As part of this work, I also benchmarked the CPU frequency switching latencies, which we can provide to the cpufreq framework to help it make the correct decisions.
+
+* **RTKit layer (`apple-rtkit`, <span style="color: #178">in development/functional</span>)**: The ASC mailbox driver only provides low-level communications, but almost all of the ASC coprocessors run the RTKit embedded operating system and provide a similar higher-level communications interface on top. Sven developed this library module to allow downstream device drivers to share this common handling code. It currently works well and is used by the NVMe "ANS" driver, but needs some more work before heading upstream.
+
+* **NVMe + SART (`apple-ans-nvme`/`apple-sart`, <span style="color: #178">in development/functional</span>)**: The NVMe hardware in the M1 is quite peculiar: it breaks the spec in multiple ways, requiring patches to the core NVMe support in Linux, and it also is exposed as a platform device instead of PCIe. In addition, it is managed by an ASC, the "ANS", which needs to be brought up before NVMe can work, and that also relies on a companion "SART" driver, which is like a minimal IOMMU. Sven spent a lot of time putting all of the pieces for this together, and NVMe now works well in our downstream kernel branches. This still needs significant clean-up before heading upstream.
+
+* **DCP (`apple-dcp`, <span style="color: #178">in development/functional</span>)**: We've talked about the M1's display controller hardware in the [previous Progress Report](/2021/08/progress-report-august-2021/), so we'll spare the recap here: head back if you want all the gory details. [Alyssa Rosenzweig](https://twitter.com/alyssarzg) took on the challenge of writing a Linux driver for it, and it already works well! This allows things like resolution switching (including 4K HDMI monitor support) and proper tear-free page flipping to work. This builds on Sven's RTKit and mailbox layers, as the DCP is also an RTKit ASC.
+
+## Apple SoCs aren't like others
+
+Throughout this Linux driver writing saga, we have been doing something unusual in the world of embedded ARM systems. On typical SoCs, drivers have intimate knowledge of the underlying hardware, and they hard-code its precise layout: how many registers, how many pins, how things relate to each other, etc. This is effectively a requirement for most SoCs, because hardware tends to vary quite a bit from generation to generation, so drivers always require changes to support newer hardware.
+
+However, Apple is unique in putting emphasis in [keeping hardware interfaces compatible](https://twitter.com/stuntpants/status/1442276493669724160) across SoC generations – the UART hardware in the M1 dates back to the original iPhone! This means we are in a unique position to be able to try writing drivers that will not only work for the M1, but may work –unchanged– on future chips as well. This is a very exciting opportunity in the ARM64 world. We won't know until Apple releases the M1X/M2, but if we succeed in making enough drivers forwards-compatible to boot Linux on newer chips, that will make things like booting older distro installers possible on newer hardware. That is something people take for granted on x86, but it's usually impossible in the embedded world – and we hope we can change that on these machines.
+
+This does require thinking differently about things. Instead of hard-coding the precise layout of the hardware in the driver, we instead rely on the Device Tree to provide that information: the parts that are "parameters" that change from device to device, without fundamentally changing how they work. For example, on other SoCs, the device power management driver would drive a single device, and provide power management for all on-board devices as a hard-coded list. Our PMGR driver instead is actually instantiated for every device that has to be managed, and controls a single register; the device tree then can be used to represent the dependency relationships between these power domains dynamically. This means that, although the M1X/M2 will certainly have a different number and arrangement of power management registers, as long as each register works the same way, the existing driver will work. The same is true for the GPIO driver (number of pins), CPU frequency driver (number and type of clusters and what frequencies they support), and more.
+
+This approach is unfamiliar to most upstream subsystem maintainers, but we hope they recognize the benefits over time. Who knows, perhaps this will inspire other manufacturers to do it this way!
+
+## Road to the Desktop
+
+With these drivers, M1 Macs are actually usable as desktop Linux machines! While there is no GPU acceleration yet, the M1's CPUs are so powerful that a software-rendered desktop is actually *faster* on them than on e.g. Rockchip ARM64 machines *with* hardware acceleration. 
+
+While there are certainly many rough edges and missing drivers, getting to this point allows development to be self-hosted and developers to eat their own dogfood. Alyssa has been doing just that, using her M1 Mac running her own kernel merges as a daily driver. Follow her [Twitter](https://twitter.com/alyssarzg) for updates on her setup!
+
+{{< captioned caption="You can't wait to try Asahi Linux on M1 :-)" >}}
+    {{< tweet 1443349503113846785 >}}
+{{< /captioned >}}
+
+As the dust settles on these Linux drivers, we will start providing an official installer that those adventurous enough can use to try out Asahi Linux with a minimal amount of fuss in the near future. Remember, there are still many missing bits (USB3, TB, camera, GPU, audio, etc.) as well as patchsets a bit too problematic to bundle as-is at this time (WiFi, which needs significant rewrites), so don't expect this to be anywhere near the polished experience that is the goal of our project. That said, we hope this will allow those willing to be on the absolute bleeding edge to get a taste for what running Linux on these machines is like – and, for some, this might be enough for production usage.
+
+## Installer updates
+
+As more and more people are wanting to try all of this out, we have updated our alpha installer (which currently only installs m1n1 as a stub OS partition) to better support older macOS versions, handle different recovery versions, and support multiple macOS installs in the same APFS container. As always, if you're a developer and you're interested in trying this out, head to our IRC channel and we'll help you get everything set up. Check out our [previous Progress Report](/2021/08/progress-report-august-2021/) if you want to learn more about how the installer works.
+
+Once we have a stable kernel foundation, we will start publishing an "official" installer that we expect will see more wide usage among the adventurous. That version will guide you through resizing your macOS install to make space for Linux, install m1n1 + U-Boot, set up an EFI partition, and optionally install a pre-built distro + its bootloader (initially Arch Linux ARM). On that note, Mark Kettenis has just [submitted](https://lore.kernel.org/all/20211003183050.67925-1-kettenis@openbsd.org/) v2 of the series to add M1 support to upstream U-Boot a few days ago! Keep your eyes peeled for updates :-)
+
+## Even more reverse engineering
+
+### Hypervisor SMP
+
+As part of reverse engineering the CPU frequency hardware, I found myself needing to run macOS under the m1n1 hypervisor with full SMP support... so I made it happen! The hypervisor can now expose all 8 CPU cores to the guest, and virtualizes the CPU startup hardware. This is not only important for reverse engineering SMP-related features, it also means it now boots almost as fast as on bare metal!
+
+{{< captioned caption="The hypervisor, now with 8 times the cores" >}}
+    {{< tweet 1438152384165728257 >}}
+{{< /captioned >}}
+
+This also makes it even more practical to use for testing Linux; there is very little reason not to run under the hypervisor during most kernel development now. This makes things much easier for anyone without a serial debug cable, as the hypervisor provides a virtual UART over USB, as well as interactive debugging features.
+
+### Audio
+
+Martin Povišer spent some time reverse engineering the audio hardware in the M1 and wrote a [PoC m1n1 driver](https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/experiments/speaker_amp.py) for the DMA and speaker amp hardware that can play audio through the Mac Mini's embedded speaker. He has now started work on a Linux ASoC driver for this hardware. Audio was a big TODO on our list that none of us had looked at yet, so it is very exciting to see someone take on that challenge! Thank you, Martin!
+
+As a surprise, it turns out the macOS audio driver directly controls some of the M1's generic clock control registers. I'd spent some time working out how they work and mapping out some clock frequencies, so this was already somewhat familiar to me, although I was not expecting us to need a driver for this. It sounds like it may be necessary, so there will probably be an `apple-clocksel` coming up in the future.
+
+### Type-C / USB3 / DisplayPort / Thunderbolt
+
+Sven and I have started looking into what's needed to make the SuperSpeed-related Type C hardware work. This is a big area of research involving multiple drivers (DisplayPort multiplexing, Thunderbolt, Apple Type-C PHY, DWC3 host/gadget, and more) that interact in complex ways, including some which are novel to the Linux kernel and haven't been done on any other SoC yet, but we hope to start moving forward with Linux support for this in the near future. In the meantime, USB2 works fine, as do the Type-A USB3 ports on the Mac Mini.
+
+## Next steps
+
+Everyone knows what the next big step is: the GPU! We'll begin tackling the GPU kernel interface very soon, once a few loose kernel ends are tied and in review. As a reminder, Alyssa has already done a ton of work on the Mesa userspace side (shaders, draw commands, etc.), which works well under macOS with its kernel driver. How long will it take for us to port that work to Linux? Stay tuned!
