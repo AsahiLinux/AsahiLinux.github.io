@@ -42,7 +42,7 @@
 <h1 id=about-asahi-linux>About Asahi Linux</h1>
 <p>Asahi Linux is a project and community with the goal of porting Linux to Apple Silicon Macs, starting with the 2020 M1 Mac Mini, MacBook Air, and MacBook Pro.</p>
 <p>Our goal is not just to make Linux run on these machines but to polish it to the point where it can be used as a daily OS. Doing this requires a tremendous amount of work, as Apple Silicon is an entirely undocumented platform. In particular, we will be reverse engineering the Apple GPU architecture and developing an open-source driver for it.</p>
-<p>Asahi Linux was founded by Hector Martin &ldquo;marcan&rdquo; after the launch of the first M1 devices.</p>
+<p>Asahi Linux is developed by a thriving community of free and open source software developers.</p>
 <h2 id=the-name>The name</h2>
 <p>Asahi means &ldquo;rising sun&rdquo; in Japanese, and it is also the name of an apple cultivar. 旭りんご (<em>asahi ringo</em>) is what we know as the McIntosh Apple, the apple variety that gave the Mac its name.</p>
 <h2 id=the-logo>The logo</h2>
@@ -63,14 +63,23 @@
 <h2 id=will-this-make-apple-silicon-macs-a-fully-open-platform>Will this make Apple Silicon Macs a fully open platform?</h2>
 <p>No, Apple still controls the boot process and, for example, the firmware that runs on the Secure Enclave Processor. However, no modern device is &ldquo;fully open&rdquo; - no usable computer exists today with completely open software and hardware (as much as some companies want to market themselves as such). What ends up changing is where you draw the line between closed parts and open parts. The line on Apple Silicon Macs is when the alternate kernel image is booted, while SEP firmware remains closed - which is quite similar to the line on standard PCs, where the UEFI firmware boots the OS loader, while the ME/PSP firmware remains closed. In fact, mainstream x86 platforms are arguably more intrusive because the proprietary UEFI firmware is allowed to steal the main CPU from the OS at any time via SMM interrupts, which is not the case on Apple Silicon Macs. This has real performance/stability implications; it&rsquo;s not just a philosophical issue.</p>
 <h2 id=who-is-working-on-asahi-linux>Who is working on Asahi Linux?</h2>
-<p>Asahi Linux is a community, and everyone is invited to contribute. marcan currently leads the project, but many other contributors also participate. If you are interested in contributing, check out our <a href=/contribute>contribute page</a>!</p>
-<h2 id=who-is-this-marcan-guy>Who is this marcan guy?</h2>
-<p>Asahi Linux is led by Hector Martin &ldquo;marcan&rdquo;, a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. This is his most ambitious project yet, and he is funding the effort via <a href=/support>community donations and sponsorship</a>.</p>
-<p>Previous projects include:</p>
+<p>Asahi Linux is a community, and everyone is invited to contribute. If you are interested in contributing, check out our <a href=/contribute>contribute page</a>! Major contributors are:</p>
 <ul>
-<li><a href=https://github.com/fail0verflow/ps4-linux>PS4 Linux</a>, a Linux port to the proprietary hardware found on the PS4, capable of full 3D acceleration using OpenGL and Vulkan (radeon/amdgpu drivers).</li>
-<li><a href=https://github.com/marcan/asbestos>AsbestOS</a>, a PS3 Linux bootloader for GameOS mode, and associated kernel patches to make Linux work on the PS3 Slim.</li>
-<li>Numerous contributions to the <a href=https://wiibrew.org/>Wii Homebrew ecosystem</a>, including being part of the team that developed <a href=https://wiibrew.org/wiki/Homebrew_Channel>The Homebrew Channel</a> and <a href=https://wiibrew.org/wiki/BootMii>BootMii</a>, documenting much of the hardware, and contributing to open homebrew SDK tooling.</li>
+<li>
+<p>Hector Martin &ldquo;marcan&rdquo;, the Asahi project lead. marcan is a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. This is his most ambitious project yet, and he is funding the effort via <a href=/support>community donations and sponsorship</a>. His previous projects include <a href=https://github.com/fail0verflow/ps4-linux>PS4 Linux</a>, a Linux port to the proprietary hardware found on the PS4, capable of full 3D acceleration using OpenGL and Vulkan (radeon/amdgpu drivers; <a href=https://github.com/marcan/asbestos>AsbestOS</a>, a PS3 Linux bootloader for GameOS mode, and associated kernel patches to make Linux work on the PS3 Slim; and numerous contributions to the <a href=https://wiibrew.org/>Wii Homebrew ecosystem</a>, including being part of the team that developed <a href=https://wiibrew.org/wiki/Homebrew_Channel>The Homebrew Channel</a> and <a href=https://wiibrew.org/wiki/BootMii>BootMii</a>, documenting much of the hardware, and contributing to open homebrew SDK tooling.</p>
+</li>
+<li>
+<p>Alyssa Rosenzweig, the Asahi GPU lead. Alyssa is a Linux graphics hacker known for her work on reverse-engineering the Arm Mali GPUs to build the free Panfrost driver. She is an upstream Mesa3D developer, maintaining both the Panfrost and Asahi drivers.</p>
+</li>
+<li>
+<p>Dougall Johnson &ldquo;dougallj&rdquo;, instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1&rsquo;s CPU cores to infer microarchitectural details.</p>
+</li>
+<li>
+<p>Sven Peter. Sven has worked tirelessly on upstream Linux support for Apple&rsquo;s Device Address Resolution Table (DART) required for USB, PCIe, Ethernet, and Wi-Fi. He also added USB gadget support to m1n1.</p>
+</li>
+<li>
+<p>Mark Kettenis, OpenBSD developer. Mark has written m1n1 and U-Boot drivers for the Apple M1 core peripherals, including the bringup needed for PCIe and NVMe (ANS). Mark has also written OpenBSD drivers for the Apple M1 as a parallel effort to the Linux port.</p>
+</li>
 </ul>
 </div>
 </div>
