@@ -18,7 +18,7 @@ Most development and project discussion takes place on IRC. We have several chan
 * #asahi-dev [[logs](https://oftc.irclog.whitequark.org/asahi-dev) · [matrix](https://matrix.to/#/#_oftc_#asahi-dev:matrix.org)] - Development discussion
 * #asahi-re [[logs](https://oftc.irclog.whitequark.org/asahi-re) · [matrix](https://matrix.to/#/#_oftc_#asahi-re:matrix.org)] - Reverse engineering (hardware/firmware interfaces/etc)
 * #asahi-gpu [[logs](https://oftc.irclog.whitequark.org/asahi-gpu) · [matrix](https://matrix.to/#/#_oftc_#asahi-gpu:matrix.org)] - GPU reverse engineering and development
-* #asahi-stream - Chatroom for people to talk during the devs' video streams
+* #asahi-stream [[matrix](https://matrix.to/#/#_oftc_#asahi-stream:matrix.org)] - Chatroom for people to talk during the devs' video streams
 
 Even if you don't plan to speak, feel free to join and idle in the above channels if you'd like to follow the discussion.
 
