@@ -134,7 +134,7 @@ Legend:
   <td class="alx" colspan="2">5.17</td>
 </tr>
 <tr><th>CPU PMU</th>
-  <td class="rev" colspan="6">5.17</td>
+  <td class="rev" colspan="6">5.18</td>
 </tr>
 <tr><th>CPU Frequency</th>
   <td class="ehh" colspan="6">Rewrite soon</td>
