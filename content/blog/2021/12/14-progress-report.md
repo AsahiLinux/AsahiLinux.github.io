@@ -152,20 +152,20 @@ Legend:
   <td class="rev" colspan="6">5.17</td>
 </tr>
 <tr><th>PCIe</th>
-  <td class="nxt" colspan="6">5.16</td>
+  <td class="mrg" colspan="6">5.16</td>
 </tr>
 <tr><th>I²C</th>
-  <td class="nxt" colspan="6">5.16</td>
+  <td class="mrg" colspan="6">5.16</td>
 </tr>
 <tr><th>GPIO</th>
-  <td class="nxt" colspan="6">5.16</td>
+  <td class="mrg" colspan="6">5.16</td>
 </tr>
 <tr><th>USB-PD</th>
-  <td class="nxt" colspan="6">5.16</td>
+  <td class="mrg" colspan="6">5.16</td>
 </tr>
 <tr><th>MagSafe</th>
   <td colspan="4"></td>
-  <td class="nxt" colspan="2">5.16</td>
+  <td class="mrg" colspan="2">5.16</td>
 </tr>
 <tr><th>Device PM</th>
   <td class="nxt" colspan="6">5.17</td>
@@ -243,13 +243,13 @@ Legend:
   <td colspan="2"></td>
 </tr>
 <tr><th>USB2/3 (A ports)</th>
-  <td class="nxt">5.16</td>
+  <td class="mrg">5.16</td>
   <td colspan="5"></td>
 </tr>
 <tr><th>Ethernet (1G)</th>
-  <td class="nxt">5.16</td>
+  <td class="mrg">5.16</td>
   <td colspan="2"></td>
-  <td class="nxt">5.16</td>
+  <td class="mrg">5.16</td>
   <td colspan="2"></td>
 </tr>
 <tr><th>Ethernet (10G)</th>
