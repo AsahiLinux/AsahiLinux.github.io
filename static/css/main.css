@@ -849,6 +849,17 @@ pre code {
     background: none;
 }
 
+div.curlsh {
+    text-align: center;
+}
+div.curlsh pre {
+    color: #d3506f;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 120%;
+    font-weight: bold;
+}
+
 blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
