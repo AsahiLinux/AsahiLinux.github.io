@@ -723,6 +723,15 @@ div.chat-button a {
     justify-content: center;
 }
 
+/* Download */
+body.landing #download {
+    background-color: #4ecbaa;
+}
+
+.download-card {
+    background-color: #057f5f;
+}
+
 /* Contribute */
 body.landing #contribute {
     background-color: #FFF;

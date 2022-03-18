@@ -1,5 +1,5 @@
 +++
-date = "2021-12-18T23:00:00+00:00"
+date = "2022-03-18T23:50:00+00:00"
 draft = false
 title = "The first Asahi Linux Alpha Release is here!"
 slug = "asahi-linux-alpha-release"
