@@ -723,6 +723,15 @@ div.chat-button a {
     justify-content: center;
 }
 
+/* Download */
+body.landing #download {
+    background-color: #4ecbaa;
+}
+
+.download-card {
+    background-color: #057f5f;
+}
+
 /* Contribute */
 body.landing #contribute {
     background-color: #FFF;
@@ -847,6 +856,17 @@ pre {
 
 pre code {
     background: none;
+}
+
+div.curlsh {
+    text-align: center;
+}
+div.curlsh pre {
+    color: #d3506f;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 120%;
+    font-weight: bold;
 }
 
 blockquote {
