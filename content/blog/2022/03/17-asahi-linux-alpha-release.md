@@ -148,7 +148,7 @@ And if you're bored:
 
 ### I want to donate!
 
-Thank you! Asahi Linux is developed by a group of volunteers, and led by marcan as his primary job. You can support him directly via [Patreon](patreon.com/marcan) and [GitHub Sponsors](https://github.com/sponsors/marcan). None of this would have been possible without your support! Donations like these allow him to dedicate most of his time to the project and also purchase test hardware.
+Thank you! Asahi Linux is developed by a group of volunteers, and led by marcan as his primary job. You can support him directly via [Patreon](https://patreon.com/marcan) and [GitHub Sponsors](https://github.com/sponsors/marcan). None of this would have been possible without your support! Donations like these allow him to dedicate most of his time to the project and also purchase test hardware.
 
 Martin Povišer is working on audio support for Asahi Linux, and he also has a [GitHub Sponsors](https://github.com/sponsors/povik) page. Please support his efforts so that he can make Apple Silicon machines the best supported platforms for Linux audio!
 
