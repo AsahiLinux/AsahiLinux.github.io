@@ -22,6 +22,8 @@ Ready to give it a shot? Make sure to update your macOS to version 12.3 or later
 
 Pay close attention to the messages the installer prints, especially at the end!
 
+**Note: we've found that U-Boot is currently broken on machines with 4T and larger drives. If you have one of those, please hold off on installing for now, we're investigating!**
+
 ## System requirements
 
 * M1, M1 Pro, or M1 Max machine (Mac Studio excluded)
