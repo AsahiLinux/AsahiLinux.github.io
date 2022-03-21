@@ -27,7 +27,7 @@ Pay close attention to the messages the installer prints, especially at the end!
 * M1, M1 Pro, or M1 Max machine (Mac Studio excluded)
 * macOS 12.3 or later, logged in as an admin user
 * At least 53GB of free disk space (Desktop install)
-    * You need 15GB for Asahi Linux Desktop, but the installer reserves an additional 38GB of disk space in macOS to avoid breaking macOS updates. If you want to disable this check, enable expert mode when prompted.
+    * You need 15GB for Asahi Linux Desktop, but macOS itself needs a lot of free space for system updates to work, so the installer will expect you to have 38GB of extra slack by default to avoid shooting yourself in the foot. For example, if you have 60GB of free space, you will be able to shrink macOS by up to 22GB by default, freeing up 22GB for the new Linux install and leaving 38GB of remaining free space in the macOS partition. If you want to disable this check, enable expert mode when prompted.
 * A working internet connection
     * The installer will download 700MB ~ 4GB of data, depending on the OS you select.
 
