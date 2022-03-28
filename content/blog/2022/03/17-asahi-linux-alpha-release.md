@@ -118,7 +118,7 @@ The Asahi Linux kernel is compiled to use 16K pages. This both performs better, 
 
 * Chromium (needs volunteer to fix)
 * Emacs (fix committed, not released)
-* Anything using jemalloc (e.g. Rust in Arch Linux ARM)
+* Anything using jemalloc (e.g. Rust installed via the official Arch repositories)
 * Anything using libunwind (fix committed, not released)
 
 Hopefully this release will help motivate upstream projects to fix these issues and properly support all ARM64 page sizes (64K, 16K, and 4K). 16K provides a significant performance improvement of up to 20% or so under some workloads, so it's worth it.
