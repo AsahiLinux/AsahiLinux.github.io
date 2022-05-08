@@ -218,7 +218,7 @@ Pretty much! Most of our work is in the kernel and a few core support packages, 
 
 If you're curious, [these](https://github.com/AsahiLinux/asahi-alarm-builder/) are the scripts we use to build the Asahi Linux images starting with a vanilla Arch Linux ARM tarball. We also sponsor an ALARM mirror as part of our project (jp.mirror.archlinuxarm.org).
 
-As part of our project, are contributing fixes and improvements to a number of miscellaneous packages; for example, Apple GPU support for Mesa is already well on the way (it is being tested on macOS), and we also have a fork of xkeyboard-config where we will prototype keyboard layout adjustments to better support Macs before upstreaming.
+As part of our project, we are contributing fixes and improvements to a number of miscellaneous packages; for example, Apple GPU support for Mesa is already well on the way (it is being tested on macOS), and we also have a fork of xkeyboard-config where we will prototype keyboard layout adjustments to better support Macs before upstreaming.
 
 ### Can I install other distros?
 
