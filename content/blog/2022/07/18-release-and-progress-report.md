@@ -1,7 +1,7 @@
 +++
 date = "2022-07-18T10:00:00+02:00"
 draft = false
-title = "July 2022 Release & Progress Report"
+title = "M2 is here! July 2022 Release & Progress Report"
 slug = "july-2022-release"
 author = "marcan"
 +++
