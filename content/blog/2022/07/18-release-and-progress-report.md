@@ -60,7 +60,7 @@ Okay, not exactly. The BCM5976 and STM32 are still there, but both firmwares hav
 
 Why would Apple do this? There are a few reasons. First, by integrating the firmware into the M2, this gives them much more flexibility in updating it. This firmware can now be part of the per-OS bundle, which means they can introduce new features and make changes without risking backwards compatibility with older versions of macOS. It also means the firmware upgrade procedure is integrated with macOS upgrades automatically, and is much more robust. And of course, it probably lets them use a smaller STM32 variant and save some money.
 
-With the MTP, Apple handled communications with the main OS in an interesting way. While most coprocessors use the primary mailbox/RTKit interface and shared memory for this, it seems Apple wanted to keep the “bytes in, bytes out” model of the SPI interface, so instead they used… DockChannel. What on Earth is Dockchannel, you ask? It’s Apple’s own design for, essentially, a simple FIFO. M1 chips already implement a debug DockChannel that can be used as a virtual serial port, accessible with internal Apple debuggers that connect to a specific Type C port on these Macs (we don’t yet know how this protocol works on the USB side, though we’ve [poked around](https://github.com/asfdrwe/asahi-linux-translations/wiki/HW:Debug-USB) a bit). MTP reused the same FIFO module as a simple byte channel between it and the main OS, with a new HID transport protocol running over it.
+With the MTP, Apple handled communications with the main OS in an interesting way. While most coprocessors use the primary mailbox/RTKit interface and shared memory for this, it seems Apple wanted to keep the “bytes in, bytes out” model of the SPI interface, so instead they used… DockChannel. What on Earth is DockChannel, you ask? It’s Apple’s own design for, essentially, a simple FIFO. M1 chips already implement a debug DockChannel that can be used as a virtual serial port, accessible with internal Apple debuggers that connect to a specific Type C port on these Macs (we don’t yet know how this protocol works on the USB side, though we’ve [poked around](https://github.com/asfdrwe/asahi-linux-translations/wiki/HW:Debug-USB) a bit). MTP reused the same FIFO module as a simple byte channel between it and the main OS, with a new HID transport protocol running over it.
 
 The good news is that DockChannel itself is very simple, so bringing that up did not take long. The bad news is that Apple over-complicated the new HID transport (as they do), so that new driver ended up being [over 1000 lines of code](https://github.com/AsahiLinux/linux/blob/asahi/drivers/hid/dockchannel-hid/dockchannel-hid.c) and having to handle things such as firmware upload, GPIO proxying, and multiple complex nested data structures! We also haven’t figured out how to reset MTP and bring it back to a fresh startup state yet, so we cannot yet support handing off between the U-Boot driver and Linux, or removing/re-probing the device on Linux.
 
@@ -72,7 +72,7 @@ After the macOS 13.0 Ventura beta was released, we received reports that it brok
 
 While most firmware is OS-tied, there is a small subset of System Firmware that is shared by all OSes. This includes the NVMe firmware (for obvious reasons), but also the SMC firmware and some Thunderbolt-related stuff. To maintain compatibility with older versions of macOS, however, Apple essentially pledges to never break backwards compatibility with older firmware, so we should be safe.
 
-And we would’ve been… were it not for bugs! Indeed, m1n1’s NVMe driver had no issues with the updated firmware, and worked right out of the box. U-Boot’s, however, was not so lucky. That version had taken a Clever ShortcutTM, and it turned out that the new firmware wasn’t quite happy with our little trick. Meanwhile, the Linux SMC driver had an outright one-line bug that went unnoticed with the old firmware, but was causing the new SMC firmware to crash.
+And we would’ve been… were it not for bugs! Indeed, m1n1’s NVMe driver had no issues with the updated firmware, and worked right out of the box. U-Boot’s, however, was not so lucky. That version had taken a Clever Shortcut™, and it turned out that the new firmware wasn’t quite happy with our little trick. Meanwhile, the Linux SMC driver had an outright one-line bug that went unnoticed with the old firmware, but was causing the new SMC firmware to crash.
 
 We have now pushed updated linux-asahi, u-boot, and m1n1 packages, so if you want to try out the new betas, make sure you do a pacman upgrade first! If you’ve already upgraded to the beta and got stuck with an unbootable Asahi system, follow the steps [here](https://github.com/AsahiLinux/asahi-installer/issues/100#issuecomment-1162376171) to recover.
 
@@ -98,24 +98,15 @@ On the same subject, Jannau submitted a patchset to add support for the other DA
 
 ## U-Boot updates
 
-U-Boot support has been progressing nicely.  U-Boot 2022.07 was released with (almost) complete support for the M1 models (including
-M1 Pro/Max/Ultra) and (thanks to Janne Grunau) basic support for M2. The most important bit that's still missing is support for the PCIe
-USB3 controller behind the type-A ports on the Mac mini.
+U-Boot support has been progressing nicely too. U-Boot 2022.07 was just released with (almost) complete support for the M1 models (including M1 Pro/Max/Ultra) and (thanks to Janne Grunau) basic support for M2. The most important bit that's still missing is support for the PCIe USB3 controller behind the type-A ports on the Mac mini.
 
 ## More than Linux
 
-OpenBSD 7.1 was released on April 21, 2022, with support for the M1 and M1 Pro/Max/Ultra.  This includes support for NVMe, USB (USB 2.0
-speeds only on the type-C ports), WiFi, Ethernet (on the M1 mini and iMac) and Keyboard and touchpad (on the laptops).  X11 works on the
-initial framebuffer and audio support is being worked on.  OpenBSD does not support the new M2 models yet, but this is on the radar for
-OpenBSD 7.2 which is scheduled for release in November.
+OpenBSD 7.1 was released on April 21, 2022, with support for the M1 and M1 Pro/Max/Ultra. This includes support for NVMe, USB (USB 2.0 speeds only on the type-C ports), WiFi, Ethernet (on the M1 mini and iMac) and Keyboard and touchpad (on the laptops). X11 works on the initial framebuffer and audio support is being worked on. OpenBSD does not support the new M2 models yet, but this is on the radar for OpenBSD 7.2 which is scheduled for release in November.
 
-OpenBSD depends on the Asahi installer, which provides the option to just install m1n1 with U-Boot as a payload. That gives you a standard
-UEFI boot environment, just like on other hardware supported by OpenBSD/arm64.  At that point you can simply write minirootXX.img or
-installXX.img to a USB drive, plug it into your Mac and boot into the OpenBSD installer.
+OpenBSD depends on the Asahi installer, which provides the option to just install m1n1 with U-Boot as a payload. That gives you a standard UEFI boot environment, just like on other hardware supported by OpenBSD/arm64. At that point you can simply write minirootXX.img or installXX.img to a USB drive, plug it into your Mac and boot into the OpenBSD installer.
 
-The OpenBSD installer knows about the magic Apple partitions, so even if you choose the default (W)hole disk option in the installer the
-system partitions will survive and your macOS installation will be safe.  The OpenBSD installer also picks up the WiFi firmware
-automatically (from the EFI system partition, where the Asahi installer prepares it). This means that WiFi is available during installation.
+The OpenBSD installer knows about the magic Apple partitions, so even if you choose the default (W)hole disk option in the installer, the system partitions will survive and your macOS installation will be safe. The OpenBSD installer also picks up the WiFi firmware automatically (from the EFI system partition, where the Asahi installer prepares it), so WiFi is available during installation.
 
 ## One more thing…
 
