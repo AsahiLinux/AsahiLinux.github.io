@@ -90,9 +90,7 @@ July 2022 Release & Progress Report
 <p>If you decide to try this on your M2 machine, keep in mind these caveats:</p>
 <ul>
 <li>This is even more experimental than M1 support, so expect bugs. To get the option to install on M2, you need to enable expert mode in the Asahi Linux installer.</li>
-<li>The trackpad may not work on the first/some boots (we need to iron out some firmware loading race conditions). If you experience this, just shut down (the power button will work) and try again.</li>
 <li>The keyboard won’t work in U-Boot/GRUB. That driver has not been written yet, and we’ve yet to figure out how we want to do the hand-off between U-Boot and Linux. You can use an external USB keyboard if you need to poke around the bootloader shells.</li>
-<li>Bluetooth may be less stable than it should be on the M2 MacBook Pro (not confirmed).</li>
 <li>Only the M2 MacBook Pro 13” is tested. We’ve added completely untested M2 MacBook Air support (because we can), but none of us have one yet! If you do, only try it if you’re feeling very adventurous (and don’t blame us if things go wrong).</li>
 <li>The firmware/stub used for Linux is based on a “special release” macOS 12.4 version that Apple released just for these machines. We are not committing to long-term support for this version just yet, so you <em>may</em> have to go through macOS and the installer to upgrade your boot components (likely to 13.0) in order to get future features such as the GPU and external display output to work (i.e. no “seamless upgrade” with just pacman, but you also won’t have to do a full reinstall). We will decide how to proceed in the future, and add the necessary upgrade mode to the installer when the time comes, if necessary. It is possible we will support 12.4 after all, but no promises.</li>
 </ul>
