@@ -8,6 +8,8 @@ author = "marcan"
 
 Welcome to another long overdue progress report! As usual, things have been busier than expected… and we have some big news! We’ve just released a new Asahi Linux update with Mac Studio, Bluetooth, and *M2 support*!
 
+If you're new to Asahi Linux, check out our [previous release announcement](https://asahilinux.org/2022/03/asahi-linux-alpha-release/) for installation instructions and general information.
+
 ## Mac Studio joins the family
 
 When the Mac Studio was announced, we set to work making the new M1 Ultra work with Asahi Linux. This wasn’t hard, but it did need some changes to our bootloader and device trees in order to handle the idea of one SoC with multiple dies. This eventually got rolled in with other changes, so we ended up waiting a bit longer than we expected to release it, but it’s finally here!
