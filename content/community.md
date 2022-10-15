@@ -22,8 +22,6 @@ Most development and project discussion takes place on IRC. We have several chan
 
 Even if you don't plan to speak, feel free to join and idle in the above channels if you'd like to follow the discussion.
 
-There is also a [Matrix to OFTC bridge](https://medium.com/@RiotChat/new-irc-integrations-oftc-and-snoonet-b88883a58303) that you can use to join the above channels from Matrix. You can click the links labelled 'matrix' to join the respective rooms.
-
 **Note: Due to spambot attacks, we currently only allow users connecting with TLS to join the channels. Please make sure your IRC client is set to enable TLS and connect to irc.oftc.net on port 6697**.
 
 ## Wiki
