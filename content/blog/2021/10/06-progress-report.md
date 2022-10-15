@@ -52,10 +52,6 @@ With these drivers, M1 Macs are actually usable as desktop Linux machines! While
 
 While there are certainly many rough edges and missing drivers, getting to this point allows development to be self-hosted and developers to eat their own dogfood. Alyssa has been doing just that, using her M1 Mac running her own kernel merges as a daily driver. Follow her [Twitter](https://twitter.com/alyssarzg) for updates on her setup!
 
-{{< captioned caption="You can't wait to try Asahi Linux on M1 :-)" >}}
-    {{< tweet 1443349503113846785 >}}
-{{< /captioned >}}
-
 As the dust settles on these Linux drivers, we will start providing an official installer that those adventurous enough can use to try out Asahi Linux with a minimal amount of fuss in the near future. Remember, there are still many missing bits (USB3, TB, camera, GPU, audio, etc.) as well as patchsets a bit too problematic to bundle as-is at this time (WiFi, which needs significant rewrites), so don't expect this to be anywhere near the polished experience that is the goal of our project. That said, we hope this will allow those willing to be on the absolute bleeding edge to get a taste for what running Linux on these machines is like – and, for some, this might be enough for production usage.
 
 ## Installer updates
