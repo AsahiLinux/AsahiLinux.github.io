@@ -595,12 +595,18 @@ header {
 
 @media (prefers-color-scheme: dark) {
     header {
-        border-color: #007edb;
+        border-color: #003f6d;
     }
 }
 
 #eye-catch {
     background-color: #EFEFEF;
+}
+
+@media (prefers-color-scheme: dark) {
+    #eye-catch {
+        background-color: #101010;
+    }
 }
 
 #eye-catch > div {
@@ -622,6 +628,7 @@ header {
     animation-name: fadein;
     animation-duration: 2.5s;
 }
+
 @keyframes fadein {
 from {
     opacity: 0;
@@ -634,6 +641,12 @@ to {
 #eye-catch > div > div:nth-of-type(2) {
     padding: 50px 0px 50px 60px;
     border-left: solid 1px #6D6D6D;
+}
+
+@media (prefers-color-scheme: dark) {
+    #eye-catch > div > div:nth-of-type(2) {
+        border-color: #929292;
+    }
 }
 
 #eye-catch > div > div > img {
@@ -658,12 +671,24 @@ to {
     color: #A61200;
 }
 
+@media (prefers-color-scheme: dark) {
+    #eye-catch .more {
+        color: #ffb2a8;
+    }
+}
+
 .big-icon {
     font-size: 350%;
 }
 
 body.landing #community {
     background-color: #9D2D48;
+}
+
+@media (prefers-color-scheme: dark) {
+    body.landing #community {
+        background-color: #270b12;
+    }
 }
 
 div.center-title {
@@ -676,6 +701,12 @@ div.center-title h1, div.center-title h2 {
 
 .community-links {
     background-color: #7A162E;
+}
+
+@media (prefers-color-scheme: dark) {
+    .community-links {
+        background-color: #1e050b;
+    }
 }
 
 .community-links div {
@@ -747,8 +778,20 @@ body.landing #download {
     background-color: #4ecbaa;
 }
 
+@media (prefers-color-scheme: dark) {
+    body.landing #download {
+        background-color: #0f362c;
+    }
+}
+
 .download-card {
     background-color: #057f5f;
+}
+
+@media (prefers-color-scheme: dark) {
+    .download-card {
+        background-color: #011f17;
+    }
 }
 
 /* Contribute */
@@ -756,8 +799,20 @@ body.landing #contribute {
     background-color: #FFF;
 }
 
+@media (prefers-color-scheme: dark) {
+    body.landing #contribute {
+        background-color: #3f3f3f;
+    }
+}
+
 .contribute-card {
     background-color: #848484;
+}
+
+@media (prefers-color-scheme: dark) {
+    .contribute-card {
+        background-color: #212121;
+    }
 }
 
 /* Documentation */
@@ -766,8 +821,20 @@ body.landing #documentation {
     background-color: #D7EAFF;
 }
 
+@media (prefers-color-scheme: dark) {
+    body.landing #documentation {
+        background-color: #003775;
+    }
+}
+
 .documentation-card {
     background-color: #556E8A;
+}
+
+@media (prefers-color-scheme: dark) {
+    .documentation-card {
+        background-color: #001b3a;
+    }
 }
 
 /* Centered cards */
@@ -805,6 +872,12 @@ body.landing #documentation {
 #post-section {
     background-color: #EFEFEF;
     min-height: 70vh;
+}
+
+@media (prefers-color-scheme: dark) {
+    #post-section {
+        background-color: #101010;
+    }
 }
 
 .post {
@@ -854,6 +927,12 @@ body.landing #documentation {
     text-decoration: underline;
 }
 
+@media (prefers-color-scheme: dark) {
+    .post a {
+        color: #ff71a4;
+    }
+}
+
 code {
     color: #0D4F1A;
     padding: 0 .4em;
@@ -861,6 +940,12 @@ code {
     font-size: 85%;
     background-color: rgba(6, 102, 238, 0.05);
     border-radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+    code {
+        color: #4be169;
+    }
 }
 
 pre {
@@ -892,6 +977,12 @@ blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
     padding: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+    blockquote {
+        background-color: #181818;
+    }
 }
 
 p img, figure img {
@@ -929,6 +1020,12 @@ p img, figure img {
     background-color: #dedede;
 }
 
+@media (prefers-color-scheme: dark) {
+    .blog-nav li {
+        background-color: #181818;
+    }
+}
+
 .blog-nav li.nav-spacer {
     background: none;
 }
@@ -953,6 +1050,12 @@ div#breadcrumbs, div.post-bottom {
     background-color: #dedede;
 }
 
+@media (prefers-color-scheme: dark) {
+    div#breadcrumbs, div.post-bottom {
+        background-color: #181818;
+    }
+}
+
 div#breadcrumbs a {
     text-decoration: none;
 }
@@ -973,6 +1076,12 @@ div.post-bottom {
     margin-left: 0px;
     padding: 15px;
     border-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .post-list li {
+        background-color: #181818;
+    }
 }
 
 .post-list summary {
