@@ -531,6 +531,13 @@ body {
     color: #2C2C2C;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #d3d3d3;
+        background: #000;
+    }
+}
+
 body.landing h1 {
     font-size: 200%;
     margin-bottom: 5px;
@@ -570,6 +577,12 @@ div.header-menu {
     border-top: solid 1px #2C2C2C;
 }
 
+@media (prefers-color-scheme: dark) {
+    .menu-container {
+        border-color: #d3d3d3
+    }
+}
+
 .menu-container li {
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
@@ -578,6 +591,12 @@ div.header-menu {
 
 header {
     border-bottom: solid 1px #B8E1FF;
+}
+
+@media (prefers-color-scheme: dark) {
+    header {
+        border-color: #007edb;
+    }
 }
 
 #eye-catch {
