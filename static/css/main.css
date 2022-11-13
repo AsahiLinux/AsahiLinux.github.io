@@ -670,30 +670,43 @@ div.center-title h1, div.center-title h2 {
 div.community-card {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     padding: 40px 0px;
 }
 
-div.community-card i {
+div.community-card div.community-icons {
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    padding-right: 30px;
+    min-width: 80px;
+    justify-content: center;
 }
 
-div.community-card p {
+div.community-card div.community-icons i {
+    margin: 8px 0;
+}
+
+div.community-card div.community-text {
     flex: 9;
     border-left: solid 1px #FFF;
     font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.community-links p {
-    padding: 30px;
+div.community-card div.community-text p {
+    flex: 1;
+    flex-grow: 0;
 }
 
 div.community-button {
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
 }
 
 div.community-button a {
@@ -702,12 +715,22 @@ div.community-button a {
     font-family: 'Varela Round', sans-serif;
     font-weight: normal;
     padding: 15px;
-    max-width: 200px;
+    min-width: 320px;
     border-radius: 100px;
+    flex-grow: 0;
+    margin: 10px 0;
 }
 
-div.twitter-button a {
+div.twitter-buttons a.twitter-button {
     background-color: #00B9FF;
+}
+
+div.twitter-buttons a.mastodon-button {
+    background-color: #2887CE;
+}
+
+div.mastodon-button a {
+    background-color: #2887CE;
 }
 
 div.chat-button a {
@@ -716,6 +739,10 @@ div.chat-button a {
 
 .community-card i.fa-twitter {
     color: #00B9FF;
+}
+
+.community-card i.fa-mastodon {
+    color: #2887CE;
 }
 
 .community-more {
@@ -1024,7 +1051,7 @@ ul.footer-services i {
 }
 
 @media screen and (max-width: 1050px) {
-	.community-links > div {
+    .community-links > div {
         display: block;
     }
     
@@ -1033,7 +1060,7 @@ ul.footer-services i {
     }
     
     div.community-button {
-        justify-content: center;
+        align-items: center;
     }
 
     div.community-more {
@@ -1049,7 +1076,7 @@ ul.footer-services i {
         flex-wrap: wrap;
     }
     
-	.menu-container li {
+    .menu-container li {
         margin: 0px 15px;
         line-height: 2em;
     }
@@ -1093,7 +1120,7 @@ ul.footer-services i {
         border-left: none;
     }
     
-    .community-links p {
+    div.community-card div.community-text {
         padding: 30px 0px 30px 30px;
     }
     
