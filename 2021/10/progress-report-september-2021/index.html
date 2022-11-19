@@ -121,7 +121,7 @@ Progress Report: September 2021
 <h3 id=hypervisor-smp>Hypervisor SMP</h3>
 <p>As part of reverse engineering the CPU frequency hardware, I found myself needing to run macOS under the m1n1 hypervisor with full SMP support&mldr; so I made it happen! The hypervisor can now expose all 8 CPU cores to the guest, and virtualizes the CPU startup hardware. This is not only important for reverse engineering SMP-related features, it also means it now boots almost as fast as on bare metal!</p>
 <figure class=captioned>
-<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>The m1n1 hypervisor just gained full SMP support, with all 8 cores active! The boot time is now practically the same as on bare metal. <a href=https://t.co/dd0khoKiBK>pic.twitter.com/dd0khoKiBK</a></p>&mdash; Asahi Linux (@AsahiLinux) <a href="https://twitter.com/AsahiLinux/status/1438152384165728257?ref_src=twsrc%5Etfw">September 15, 2021</a></blockquote>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>The m1n1 hypervisor just gained full SMP support, with all 8 cores active! The boot time is now practically the same as on bare metal. <a href=https://t.co/dd0khoKiBK>pic.twitter.com/dd0khoKiBK</a></p>&mdash; Asahi Linux (@AsahiLinux@treehouse.systems) (@AsahiLinux) <a href="https://twitter.com/AsahiLinux/status/1438152384165728257?ref_src=twsrc%5Etfw">September 15, 2021</a></blockquote>
 <script async src=https://platform.twitter.com/widgets.js></script>
 <figcaption><p>The hypervisor, now with 8 times the cores</p></figcaption>
 </figure>
