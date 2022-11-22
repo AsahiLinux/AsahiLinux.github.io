@@ -859,7 +859,7 @@ body.landing #documentation {
     letter-spacing: 0.02em
 }
 
-.post li {
+.post ul li {
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -986,7 +986,7 @@ div.post-bottom {
 }
 
 /* Post list */
-.post-list li {
+.post-list ul li {
     background-color: #e0e0e0;
     list-style: none;
     margin-left: 0px;
