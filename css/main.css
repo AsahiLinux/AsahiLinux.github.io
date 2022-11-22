@@ -829,10 +829,17 @@ body.landing #documentation {
 }
 
 .post-wrapper li {
-    list-style: disc;
     font-weight: 300;
     margin-left: 2em;
     line-height: 1.4em;
+}
+
+.post-wrapper ul li {
+    list-style: disc;
+}
+
+.post-wrapper ol li {
+    list-style: decimal;
 }
 
 .post h1:nth-child(1), .post h2:nth-child(1), .post h3:nth-child(1), blockquote p:nth-child(1)  {
@@ -869,6 +876,10 @@ code {
     font-size: 85%;
     background-color: rgba(6, 102, 238, 0.05);
     border-radius: 6px;
+}
+
+pre code {
+    padding: 0;
 }
 
 pre {
