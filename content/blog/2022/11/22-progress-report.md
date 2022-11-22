@@ -67,7 +67,7 @@ While testing this and other audio changes, we ran into multiple PulseAudio bugs
 
 You've all been clamoring for it! Thanks to ChaosPrincess' work, we now have keyboard backlight support! This works seamlessly with KDE, so your Asahi Mac can now shine in the dark.
 
-This was ChaosPrincess's first driver and reverse engineering effort, and I'm very pleased with the result. While this is a very simple driver, they did a very good job mapping out the unknowns of the hardware in order to make it look and feel like a proper driver, and not a reverse-engineered hack. This is something we strive for when we work on figuring out how hardware works, and it's always a pleasure seeing new folks picking up on the approach. To quote their experience reverse engineering:
+This was ChaosPrincess' first driver and reverse engineering effort, and I'm very pleased with the result. While this is a very simple driver, they did a very good job mapping out the unknowns of the hardware in order to make it look and feel like a proper driver, and not a reverse-engineered hack. This is something we strive for when we work on figuring out how hardware works, and it's always a pleasure seeing new folks picking up on the approach. To quote their experience reverse engineering:
 
 > 1. run m1n1
 > 2. poke at macos
