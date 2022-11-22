@@ -936,27 +936,27 @@ p img, figure img {
     text-align: center;
 }
 
-.blog-nav {
+ul.blog-nav {
     display: flex;
     justify-content: space-between;
 }
 
-.blog-nav li {
+ul.blog-nav li {
     list-style: none;
     margin: 0px;
     padding: 5px 15px;
     background-color: #dedede;
 }
 
-.blog-nav li.nav-spacer {
+ul.blog-nav li.nav-spacer {
     background: none;
 }
 
-.blog-nav > li > a > .fa-arrow-left {
+ul.blog-nav > li > a > .fa-arrow-left {
     margin-right: 10px;
 }
 
-.blog-nav > li > a > .fa-arrow-right {
+ul.blog-nav > li > a > .fa-arrow-right {
     margin-left: 10px;
 }
 
