@@ -859,7 +859,7 @@ body.landing #documentation {
     letter-spacing: 0.02em
 }
 
-.post li {
+.post ul li {
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -936,27 +936,27 @@ p img, figure img {
     text-align: center;
 }
 
-.blog-nav {
+ul.blog-nav {
     display: flex;
     justify-content: space-between;
 }
 
-.blog-nav li {
+ul.blog-nav li {
     list-style: none;
     margin: 0px;
     padding: 5px 15px;
     background-color: #dedede;
 }
 
-.blog-nav li.nav-spacer {
+ul.blog-nav li.nav-spacer {
     background: none;
 }
 
-.blog-nav > li > a > .fa-arrow-left {
+ul.blog-nav > li > a > .fa-arrow-left {
     margin-right: 10px;
 }
 
-.blog-nav > li > a > .fa-arrow-right {
+ul.blog-nav > li > a > .fa-arrow-right {
     margin-left: 10px;
 }
 
@@ -986,7 +986,7 @@ div.post-bottom {
 }
 
 /* Post list */
-.post-list li {
+.post-list ul li {
     background-color: #e0e0e0;
     list-style: none;
     margin-left: 0px;
