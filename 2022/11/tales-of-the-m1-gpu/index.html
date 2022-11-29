@@ -1,0 +1,185 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Tales of the M1 GPU - Asahi Linux</title>
+<link rel=stylesheet href=/css/main.css?940d905e>
+<link href=https://use.fontawesome.com/releases/v5.6.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Tales of the M1 GPU - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Tales of the M1 GPU - Asahi Linux">
+</head>
+<body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div>
+<div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li>
+<li><a href=/community>Community</a></li>
+<li><a href=/contribute>Contribute</a></li>
+<li><a href=https://github.com/AsahiLinux>GitHub</a></li>
+<li><a href=https://github.com/AsahiLinux/docs/wiki>Wiki</a></li>
+<li><a href=/blog>Blog</a></li>
+<li><a href=/support>Donate</a></li>
+</ul>
+</div>
+</header>
+<section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2022/11/tales-of-the-m1-gpu/>
+Tales of the M1 GPU
+</a>
+</div>
+<div class=blog-header>
+<h1 class=entry-title>Tales of the M1 GPU</h1>
+<ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2022/11/november-2022-report/><i class="fas fa-arrow-left"></i>Previous</a>
+</li>
+<li class=nav-spacer></li>
+</ul>
+</div>
+<p>Hello everyone, Asahi Lina here!✨</p>
+<p>marcan asked me to write an article about the M1 GPU, so here we are~! It&rsquo;s been a long road over the past few months and there&rsquo;s a lot to cover, so I hope you enjoy it!</p>
+<h2 id=whats-a-gpu>What&rsquo;s a GPU?</h2>
+<p>You probably know what a GPU is, but do you know how they work under the hood? Let&rsquo;s take a look! Almost all modern GPUs have the same main components:</p>
+<ul>
+<li>A bunch of <em>shader cores</em>, which process triangles (vertex data) and pixels (fragment data) by running user-defined programs. These use different custom instruction sets for every GPU!</li>
+<li><em>Rasterization units</em>, <em>texture samplers</em>, <em>render output units</em>, and other bits which work together with the shaders to turn the triangles from the app into pixels on the screen. Exactly how this works varies from GPU to GPU!</li>
+<li>A <em>command processor</em> that takes drawing commands from the app and sets up the shader cores to process them. This includes data like what list of triangles to draw, what global attributes to use, what textures will be used, what shader programs to use, and where the final image goes in memory. It then sends this data over to the shader cores and other units, to program the GPU to actually do the rendering.</li>
+<li>A <em>memory management unit</em> (MMU), which is in charge of limiting access to memory areas belonging to a specific app using the GPU, so different apps can&rsquo;t crash or interfere with each other.</li>
+</ul>
+<p>(This is all very simplified and in reality there are a lot more parts that vary from GPU to GPU, but those are the most important bits!)</p>
+<p>In order to handle all these moving parts in a reasonably safest way, modern GPU drivers are split into two parts: a <em>user space driver</em> and a <em>kernel driver</em>. The user space part is in charge of compiling shader programs and translating API calls (like OpenGL or Vulkan) into the specific command lists that the command processor will use to render the scene. Meanwhile, the kernel part is in charge of managing the MMU and handling memory allocation/deallocation from different apps, as well as deciding how and when to send their commands to the command processor. All modern GPU drivers work this way, on all major OSes!</p>
+<p>Between the user space driver and the kernel driver, there is some kind of custom API that is customized for each GPU family. These APIs are usually different for every driver! In Linux we call that the UAPI, but every OS has something similar. This UAPI is what lets the user space part ask the kernel to allocate/deallocate memory and submit command lists to the GPU.</p>
+<p>That means that in order to make the M1 GPU work with Asahi Linux, we need two bits: a kernel driver and a user space driver! 🚀</p>
+<h2 id=alyssa-joins-the-project>Alyssa joins the project</h2>
+<p>All the way back in 2021 when Asahi Linux started, Alyssa Rosenzweig joined the project to start working on reverse engineering the M1 GPU. Together with <a href=https://mastodon.social/@dougall>Dougall Johnson</a> (who focused on documenting the GPU shader architecture), she started reverse engineering all the user space bits, including the shaders and all the command list structures needed to set up rendering. That&rsquo;s a ton of work, but less than one month in she was <a href=https://rosenzweig.io/blog/asahi-gpu-part-2.html>already drawing her first triangle</a>! She&rsquo;s amazing! If you haven&rsquo;t checked out her series on dissecting the M1 GPU you should visit her <a href=https://rosenzweig.io/>website</a> and take a look! ✨✨</p>
+<p>But wait, how can she work on the user space driver without a kernel driver to go with it? Easy, she did it on macOS! Alyssa reverse engineered the macOS GPU driver UAPI enough to allocate memory and submit her own commands to the GPU, and this way she could work on the user space part without having to worry about the kernel bit. That&rsquo;s super cool! She started writing an M1 GPU OpenGL driver for <a href=https://www.mesa3d.org/>Mesa</a>, the Linux userspace graphics stack, and just a few months later she was already <a href=https://rosenzweig.io/blog/asahi-gpu-part-4.html>passing 75% of the OpenGL ES 2 conformance tests</a>, all on macOS!</p>
+<p>Earlier this year, her work was so far ahead that she was running <a href=https://rosenzweig.io/blog/asahi-gpu-part-6.html>games</a> on a fully open source Mesa OpenGL stack, running on top of Apple&rsquo;s kernel driver on macOS! But there was still no Linux kernel driver&mldr; time to help out with that part! ✨</p>
+<h2 id=the-mysterious-gpu-firmware>The Mysterious GPU Firmware</h2>
+<p>In April this year, I decided to start trying to figure out how to write an M1 GPU kernel driver! <a href=https://github.com/phire>Scott Mansell</a> had already done a bit of reconnaisance work on that front when I got started&mldr; and it was already clear this was no ordinary GPU. Over the first couple of months, I worked on writing and improving a <a href=https://asahilinux.org/2021/08/progress-report-august-2021/#hardware-reverse-engineering-with-the-m1n1-hypervisor>m1n1 hypervisor</a> tracer for the GPU, and what I found was very, very unusual in the GPU world.</p>
+<p>Normally, the GPU driver is responsible for details such as scheduling and prioritizing work on the GPU, and preempting jobs when they take too long to run to allow apps to use the GPU fairly. Sometimes the driver takes care of power management, and sometimes that is done by dedicated firmware running on a power management coprocessor. And sometimes there is other firmware taking care of some details of command processing, but it&rsquo;s mostly invisible to the kernel driver. In the end, especially for simpler &ldquo;mobile-style&rdquo; GPUs like ARM Mali, the actual hardware interface for getting the GPU to render something is usually pretty simple: There&rsquo;s the MMU, which works like a standard CPU MMU or IOMMU, and then the command processor usually takes pointers userspace command buffers directly, in some kind of registers or ring buffer. So the kernel driver doesn&rsquo;t really need to do much other than manage the memory and schedule work on the GPU, and the Linux kernel DRM (Direct Rendering Manager) subsystem already provides a ton of helpers to make writing drivers easy! There are some tricky bits like preemption, but those are not critical to get the GPU working in a brand new driver. But the M1 GPU is different&mldr;</p>
+<p>Just like other parts of the M1 chip, the GPU has a coprocessor called an &ldquo;ASC&rdquo; that runs Apple firmware and manages the GPU. This coprocessor is a full ARM64 CPU running an Apple-proprietary real-time OS called RTKit&mldr; and it is in charge of everything! It handles power management, command scheduling and preemption, fault recovery, and even performance counters, statistics, and things like temperature measurement! In fact, the macOS kernel driver doesn&rsquo;t communicate with the GPU hardware at all. All communication with the GPU happens via the firmware, using data structures in shared memory to tell it what to do. And there are a lot of those structures&mldr;</p>
+<ul>
+<li><strong>Initialization data</strong>, used to configure power management settings in the firmware and other GPU global configuration data, including colour space conversion tables for some reason?! These data structures have almost 1000 fields, and we haven&rsquo;t even figured them all out yet!</li>
+<li><strong>Submission pipes</strong>, which are ring buffers used to queue work on the GPU.</li>
+<li><strong>Device control messages</strong>, which are used to control global GPU operations.</li>
+<li><strong>Event messages</strong>, which the firmware sends back to the driver when something happens (like a command completing or failing).</li>
+<li><strong>Statistics</strong>, <strong>firmware logs</strong>, and <strong>tracing messages</strong> used for GPU status information and debugging.</li>
+<li><strong>Command queues</strong>, which represent a single app&rsquo;s list of pending GPU work</li>
+<li><strong>Buffer information</strong>, <strong>statistics</strong>, and <strong>page list structures</strong>, used to manage the <a href=https://rosenzweig.io/blog/asahi-gpu-part-5.html>Tiled Vertex Buffers</a>.</li>
+<li><strong>Context structures</strong> and other bits that let the GPU firmware keep track of what is going on.</li>
+<li><strong>Vertex rendering commands</strong>, which tell the vertex processing and tiling part of the GPU how to process commands and shaders from userspace to run the vertex part of a whole render pass.</li>
+<li><strong>Fragment rendering commands</strong>, which tell the rasterization and fragment processing part of the GPU how to render the tiled vertex data from the vertex processing into an actual framebuffer.</li>
+</ul>
+<p>It gets even more complicated than that! The vertex and fragment rendering commands are actually very complicated structures with many nested structures within, and then each command actually has a pointer to a &ldquo;microsequence&rdquo; of smaller commands that are interpreted by the GPU firmware, like a custom virtual CPU! Normally those commands set up the rendering pass, wait for it to complete, and clean up&mldr; but it also supports things like timestamping commands, and even loops and arithmetic! It&rsquo;s crazy! And all of these structures need to be filled in with intimate details about what is going to be rendered, like pointers to the depth and stencil buffers are, the framebuffer size, whether MSAA (multisampled antialiasing) is enabled and how it is configured, pointers to specific helper shader programs, and much more!</p>
+<p>In fact, the GPU firmware has a strange relationship with the GPU MMU. It uses the same page tables! The firmware literally takes the same page table base pointer used by the GPU MMU, and configures it as its ARM64 page table. So GPU memory <em>is</em> firmware memory! That&rsquo;s crazy! There&rsquo;s a shared &ldquo;kernel&rdquo; address space (similar to the kernel address space in Linux) which is what the firmware uses for itself and for most of its communication with the driver, and then some buffers are shared with the GPU hardware itself and have &ldquo;user space&rdquo; addresses which are in a separate address space for each app using the GPU.</p>
+<p>So can we move all this complexity to user space, and have it set up all those vertex/fragment rendering commands? Nope! Since all these structures are in the shared kernel address space together with the firmware itself, and they have tons of have pointers to each other, they are not isolated between different processes using the GPU! So we can&rsquo;t give apps direct access to them because they could break each other&rsquo;s rendering&mldr; so this is why Alyssa found all those rendering details in the macOS UAPI&mldr;</p>
+<h2 id=gpu-drivers-in-python>GPU drivers in Python?!</h2>
+<p>Since getting all these structures right is critical for the GPU to work and the firmware to not crash, I needed a way of quickly experimenting with them while I reverse engineered things. Thankfully, the Asahi Linux project already has a tool for this: The m1n1 Python framework! Since I was already writing a GPU tracer for the m1n1 hypervisor and filling out structure definitions in Python, I decided to just flip it on its head and start writing a Python GPU kernel driver, using the same structure definitions. Python is great for this, since it is very easy to iterate with! Even better, it can already talk the basic RTKit protocols and parse crash logs, and I improved the tools for that so I could see exactly what the firmware was doing when it crashes. This is all done by running scripts on a development machine which connects to the M1 machine via USB, so you can easily reboot it every time you want to test something and the test cycle is very fast!</p>
+<p>At first most of the driver was really just <a href=https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/experiments/agx_1tri.py>a bunch of hardcoded structures</a>, but eventually I managed to get them right and render a triangle!</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=und dir=ltr>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺<br>🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺 <a href=https://t.co/dz68hvalLv>pic.twitter.com/dz68hvalLv</a></p>&mdash; Asahi Linya / 朝日りにゃ〜 // @lina@vt.social (@LinaAsahi) <a href="https://twitter.com/LinaAsahi/status/1532028228189458432?ref_src=twsrc%5Etfw">June 1, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>This was just a hacked up together demo, though&mldr; before starting on the Linux kernel driver, I wanted to make sure I really understood everything enough to properly design the driver properly. Just rendering one frame is easy enough, but I wanted to be able to render multiple frames, and also test things like concurrency and preemption. So I really needed a true &ldquo;kernel driver&rdquo;&mldr; but that&rsquo;s impossible to do in Python, right?!</p>
+<p>It turns out that Mesa has something called <a href=https://gitlab.freedesktop.org/mesa/mesa/-/tree/main/src/drm-shim>drm-shim</a>, which is a library which mocks the Linux DRM kernel interface and replaces it with some dummy handling in userspace. Normally that is used for things like shader CI, but it can also be used to do crazier things&mldr; so&mldr; what if I stuck a Python interpreter inside drm_shim, and called my entire Python driver prototype from it?</p>
+<p>Could I run <a href=https://inochi2d.com/>Inochi2D</a> on top of Mesa, with Alyssa&rsquo;s Mesa M1 GPU driver, on top of drm-shim, running an embedded Python interpreter, sending commands to my Python prototype driver on top of the m1n1 development framework, communicating over USB with the real M1 machine and sending all the data back and forth, in order to drive the GPU firmware and render myself? How ridiculous would that be?</p>
+<p>It&rsquo;s so ridiculous that it worked! ✨</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>🔺🐇🧊👩🔺🐇🧊👩<br>✨✨IT WORKS!!!! ✨✨<br>🔺🐇🧊👩🔺🐇🧊👩<br><br>I rendered myself on the M1 GPU using an open source driver, running as an eGPU over USB!!!!!!!!<br><br>Using <a href="https://twitter.com/AsahiLinux?ref_src=twsrc%5Etfw">@AsahiLinux</a>'s m1n1 by <a href="https://twitter.com/marcan42?ref_src=twsrc%5Etfw">@marcan42</a> & co. with <a href="https://twitter.com/alyssarzg?ref_src=twsrc%5Etfw">@alyssarzg</a>'s mesa driver and my Python kernel driver, running <a href="https://twitter.com/Inochi2D?ref_src=twsrc%5Etfw">@Inochi2D</a>!! 🚀 <a href=https://t.co/xQdfLch64U>pic.twitter.com/xQdfLch64U</a></p>&mdash; Asahi Linya / 朝日りにゃ〜 // @lina@vt.social (@LinaAsahi) <a href="https://twitter.com/LinaAsahi/status/1537828477352615936?ref_src=twsrc%5Etfw">June 17, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<h2 id=a-new-language-for-the-linux-kernel>A new language for the Linux kernel</h2>
+<p>With the eldritch horror Mesa+Python driver stack working, I started to have a better idea of how the eventual kernel driver had to work and what it had to do. And it had to do a lot! There&rsquo;s no way around having to juggle the more than 100 data structures involved&mldr; and if anything goes wrong, everything can break! The firmware doesn&rsquo;t sanity check anything (probably for performance), and if it runs into any bad pointers or data, it just crashes or blindly overwrites data! Even worse, if the firmware crashes, the only way to recover is to fully reboot the machine! 😱</p>
+<p>Linux kernel DRM drivers are written in C, and C is not the nicest language to write complicated data structure management in. I&rsquo;d have to manually track the lifetime of every GPU object, and if I got anything wrong, it could cause random crashes or even security vulnerabilities. How was I going to pull this off? There are too many things to get wrong, and C doesn&rsquo;t help you out at all!</p>
+<p>On top of that, I also had to support multiple firmware versions, and Apple doesn&rsquo;t keep the firmware structure definitions stable from version to version! I had already added support for a second version as an experiment, and I ended up having to make over 100 changes to the data structures. On the Python demo, I could do that with some fancy metaprogramming to make structure fields conditional on a version number&mldr; but C doesn&rsquo;t have anything like that. You have to use hacks like compiling the entire driver multiple times with different <code>#define</code>s!</p>
+<p>But there was a new language on the horizon&mldr;</p>
+<p>At around the same time, rumours of Rust soon being adopted officially by the Linux kernel were beginning to come up. The <a href=https://github.com/Rust-for-Linux>Rust for Linux</a> project had been working on officially adding support for several years, and it looked like their work might be merged soon. Could I&mldr; could I write the GPU driver in Rust?</p>
+<p>I didn&rsquo;t have much experience with Rust, but from what I&rsquo;d read, it looked like a much better language to write the GPU driver in! There are two things that I was particularly interested in: whether it could help me model GPU firmware structure lifetimes (even though those structures are linked with GPU pointers, which aren&rsquo;t real pointers from the CPU&rsquo;s perspective), and whether Rust macros could take care of the multi-versioning problem. So before jumping straight into kernel development, I asked for help from Rust experts and made a <a href=https://github.com/asahilina/gpu-rust-playground>toy prototype</a> of the GPU object model, in simple userspace Rust. The Rust community was super friendly and several people helped walk me through everything! I couldn&rsquo;t have done it without your help! ❤</p>
+<p>And it looked like it would work! But Rust still wasn&rsquo;t accepted into mainline Linux&mldr; and I&rsquo;d be in uncharted territory since nobody had ever done anything like this. It would be a gamble&mldr; but the more I thought about it, the more my heart told me Rust was the way to go. I had a chat with the Linux DRM maintainers and other folks about this, and they seemed enthusiastic or at least receptive to the idea, so&mldr;</p>
+<p>I decided to go for it!</p>
+<h2 id=rust-beginnings>Rust beginnings</h2>
+<p>Since this was going to be the first Linux Rust GPU kernel driver, I had a lot of work ahead! Not only did I have to write the driver itself, but I also had to write the Rust abstractions for the Linux DRM graphics subsystem. While Rust can directly call into C functions, doing that doesn&rsquo;t have any of Rust&rsquo;s safety guarantees. So in order to use C code safely from Rust, first you have to write wrappers that give you a safe Rust-like API. I ended up writing almost 1500 lines of code just for the abstractions, and coming up with a good and safe design took a lot of thinking and rewriting!</p>
+<p>On August 18th, I started writing the <a href=https://github.com/AsahiLinux/linux/commit/16080191f08876c358692f34bafc5afae6b75e00>Rust driver</a>. Initially it relied on C code for the MMU handling (partially copied from the Panfrost driver), though later I decided to <a href=https://github.com/AsahiLinux/linux/commit/bc43e9a4fd5e5b3b91243f0f729beed4af2b010d>rewrite</a> all of that in Rust. Over the next few weeks, I added the Rust GPU object system I had prototyped before, and then reimplemented all the other parts of the Python demo driver in Rust.</p>
+<p>The more I worked with Rust, the more I fell in love with it! It feels like Rust&rsquo;s design guides you towards good abstractions and software designs. The compiler is very picky, but once code compiles it gives you the confidence that it will work reliably. Sometimes I had trouble making the compiler happy with the design I was trying to use, and then I realized the design had fundamental issues!</p>
+<p>The driver slowly came together, and on September 24th I finally got kmscube to render the first cube, with my brand new Rust driver!</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>🧊🧊🧊🧊🧊🧊🧊🧊<br>🧊🧊🧊🧊🧊🧊🧊🧊<br>🧊　C　U　B　E　🧊<br>🧊🧊🧊🧊🧊🧊🧊🧊<br>🧊🧊🧊🧊🧊🧊🧊🧊<br><br>It works!!!!<br><br>It doesn't display on HDMI because something is wrong with kmsro but it works!!!! It renders!!! A spinning cube!!! From my Rust driver on Linux!!!!!!!!!<br><br>🦀✨✨✨✨✨✨✨✨✨✨🦀 <a href=https://t.co/8duIAvnG4a>pic.twitter.com/8duIAvnG4a</a></p>&mdash; Asahi Linya / 朝日りにゃ〜 // @lina@vt.social (@LinaAsahi) <a href="https://twitter.com/LinaAsahi/status/1573488347250536449?ref_src=twsrc%5Etfw">September 24, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>And then, something magical happened.</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>🦀🐧🍎🔻🧊🇼👩🔥🦊⚙️<br><br>Neverball, Firefox + YouTube, and <a href="https://twitter.com/Inochi2D?ref_src=twsrc%5Etfw">@Inochi2D</a>, in a GNOME Wayland session!!!<br><br>All running at the same time, on an Apple M1 Mac Mini with my Rust Linux kernel driver and <a href="https://twitter.com/alyssarzg?ref_src=twsrc%5Etfw">@alyssarzg</a>'s Mesa driver for the M1 GPU!!!<br><br>🦀🐧🍎🔻🧊🇼👩🔥🦊⚙️<br>▶️<a href=https://t.co/g0R1JZI6Pe>https://t.co/g0R1JZI6Pe</a> <a href=https://t.co/ek879MVc2D>pic.twitter.com/ek879MVc2D</a></p>&mdash; Asahi Linya / 朝日りにゃ〜 // @lina@vt.social (@LinaAsahi) <a href="https://twitter.com/LinaAsahi/status/1575345368018997248?ref_src=twsrc%5Etfw">September 29, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>Just a few days later, I could run a full GNOME desktop session!</p>
+<h2 id=rust-is-magical>Rust is magical!</h2>
+<p>Normally, when you write a brand new kernel driver as complicated as this one, trying to go from simple demo apps to a full desktop with multiple apps using the GPU concurrently ends up triggering all sorts of race conditions, memory leaks, use-after-free issues, and all kinds of badness.</p>
+<p>But all that just&mldr; didn&rsquo;t happen! I only had to fix a few logic bugs and one issue in the core of the memory management code, and then everything else just worked stably! Rust is truly magical! Its safety features mean that the design of the driver is guaranteed to be thread-safe and memory-safe as long as there are no issues in the few unsafe sections. It really guides you towards not just safe but good design.</p>
+<p>Of course, there are always unsafe sections of code, but since Rust makes you think in terms of safe abstractions, it&rsquo;s very easy to keep the surface area of possible bugs very low. There were still some safety issues! For example, I had a bug in my DRM memory management abstraction that could end up wtih an allocator being freed before all of its allocations were freed. But since those kinds of bugs are specific to one given piece of code, they tend to be major things that are obvious (and can be audited or caught in code review), instead of hard-to-catch race conditions or error cases that span the entire driver. You end up reducing the amount of possible bugs to worry about to a tiny number, by only having to think about specific code modules and safety-relevant sections individually, instead of their interactions with everything else. It&rsquo;s hard to describe unless you&rsquo;ve tried Rust, but it makes a huge difference!</p>
+<p>Oh, and there&rsquo;s also error and cleanup handling! All the error-prone <code>goto cleanup</code> style error handling to clean up resources in C just&mldr; vanishes with Rust. Even just that is worth it on its own. Plus you get real iterators and reference counting is automatic! ❤</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>I love how all the odd and error-prone C kernel coding patterns just become beautiful Rust code. ♥<br><br>Look, no `of_node_put()` anywhere!<br>No weird iterator macros!<br>No `goto err_put_foo`!<br>Error handling is one character!<br><br>🦀 <a href=https://t.co/59X0jThkfZ>pic.twitter.com/59X0jThkfZ</a></p>&mdash; Asahi Linya / 朝日りにゃ〜 // @lina@vt.social (@LinaAsahi) <a href="https://twitter.com/LinaAsahi/status/1583498896847667216?ref_src=twsrc%5Etfw">October 21, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<h2 id=joining-forces>Joining forces</h2>
+<p>With the kernel driver on the right track, it was time to join forces with Alyssa and start working together! No longer bound by the confines of testing only on macOS, she started making major improvements to the Mesa driver! I even helped a little bit ^^</p>
+<p>We gave a <a href="https://www.youtube.com/watch?v=SDJCzJ1ETsM">joint talk</a> at XDC 2022, and at the time we ran the entire talk on an M1 using our drivers! Since then we&rsquo;ve been working on adding new features, bug fixes, and performance improvements to both sides. I added support for the M1 Pro/Max/Ultra family and the M2 to the kernel side, as well as more and better debugging tools and memory allocation performance improvements. She&rsquo;s been steadily improving GL comformace, with OpenGL ES 2.0 conformance practically complete and 3.0 conformance at over 96%! She also added many new features and performance improvements, and today you can play games like Xonotic and Quake at 4K!</p>
+<div style=text-align:center>
+<iframe src=https://social.treehouse.systems/@alyssa/109311591472543702/embed class=mastodon-embed style=max-width:100%;border:0 width=400 allowfullscreen></iframe><script src=https://social.treehouse.systems/embed.js async></script>
+<iframe src=https://vt.social/@lina/109405566112910885/embed class=mastodon-embed style=max-width:100%;border:0 width=400 allowfullscreen></iframe><script src=https://vt.social/embed.js async></script>
+</div>
+<p>And since the GPU power management is handled by the firmware, all that just works. I tested Xonotic at 1080p inside a GNOME session, and the estimated battery runtime was over 8 hours! 🚀</p>
+<p>What about Vulkan support? Don&rsquo;t worry&mldr; <a href=https://tech.lgbt/@ella>Ella</a> is working on that! ✨✨</p>
+<blockquote class=twitter-tweet data-dnt=true><p lang=en dir=ltr>VKCUBE ON <a href="https://twitter.com/AsahiLinux?ref_src=twsrc%5Etfw">@AsahiLinux</a> !!! <a href=https://t.co/a7pMcLurpT>pic.twitter.com/a7pMcLurpT</a></p>&mdash; @ella@tech.lgbt (@EllaStanforth) <a href="https://twitter.com/EllaStanforth/status/1584316751591878656?ref_src=twsrc%5Etfw">October 23, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<h2 id=whats-next>What&rsquo;s next?</h2>
+<p>There is still a long road ahead! The UAPI that we are using right now is still a prototype, and there are a lot of new features that need to be added or redesigned in order to support a full Vulkan driver in the future. Since Linux mandates that the UAPI needs to remain stable and backwards compatible across versions (unlike macOS), that means that the kernel driver will not be heading upstream for many months, until we have a more complete understanding of the GPU rendering parameters and have implemented all the new design features needed by Vulkan. The current UAPI also has performance limitations&mldr; it can&rsquo;t even run GPU rendering concurrently with CPU processing yet!</p>
+<p>And of course there is still a lot of work to do on the userspace side, improving conformance and performance and adding support for more GL extensions and features! Some features like tesselation and geometry shaders are very tricky to implement (since they need to be partially or fully emulated), so don&rsquo;t expect full OpenGL 3.2+ for quite a long time.</p>
+<p>But even with those limitations, the drivers can run stable desktops today and performance is improving every week! Wayland runs beautifully smoothly on these machines now, just like the native macOS desktop! Xorg also works well with some improvements I made to the display driver a few days ago, although you can expect tearing and vsync issues due to Xorg design limitations. Wayland is really the future on new platforms! 💫</p>
+<p>So where do you get it? We&rsquo;re not quite there yet! Right now the driver stack is complicated to build and install (you need custom m1n1, kernel, and mesa builds), so please wait a little bit longer! We have a few loose ends to tie still&mldr; but we hope we can bring it to Asahi Linux as an opt-in testing build before the end of the year! ✨✨</p>
+<p>If you&rsquo;re interested in following my work on the GPU, you can follow me at <a href=https://vt.social/@lina>@lina@vt.social</a> or subscribe to my <a href=https://youtube.com/AsahiLina>YouTube channel</a>! Tomorrorow I&rsquo;m going to be working on figuring out the power consumption calculations for the M1 Pro/Max/Ultra and M2, and I hope to see you there! ✨</p>
+<p>If you want to support my work, you can donate to marcan&rsquo;s Asahi Linux support funds on <a href=http://github.com/marcan/sponsors>GitHub Sponsors</a> or <a href=https://patreon.com/marcan>Patreon</a>, which helps me out too! And if you&rsquo;re looking forward to a Vulkan driver, check out Ella&rsquo;s <a href=https://github.com/sponsors/Ella-0>GitHub Sponsors</a> page! Alyssa doesn&rsquo;t take donations herself, but she&rsquo;d love it if you donate to a charity like the <a href=https://sfconservancy.org/>Software Freedom Conservancy</a> instead. (Although maybe one day I&rsquo;ll convince her to let me buy her an M2&mldr; ^^;;)</p>
+<div class=post-bottom>Asahi Lina · <span class=publishdate>2022-11-29</span></div>
+</div>
+</div>
+</section>
+<footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.</span>
+</div>
+<div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://twitter.com/AsahiLinux><i class="fab fa-twitter"></i></a></li>
+<li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li>
+<li><a href=https://www.patreon.com/marcan><i class="fab fa-patreon"></i></a></li>
+</ul>
+<ul class=footer-menu-container>
+<li><a href=/about>About</a></li>
+<li><a href=/code-of-conduct>Code of Conduct</a></li>
+<li><a href=/copyright>Copyright policy</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body>
+</html>
