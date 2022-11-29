@@ -10,6 +10,8 @@ Hello everyone, Asahi Lina here!✨
 
 marcan asked me to write an article about the M1 GPU, so here we are~! It's been a long road over the past few months and there's a lot to cover, so I hope you enjoy it!
 
+![Xonotic running on an Apple M2](/img/blog/2022/11/m2gpu.png)
+
 ## What's a GPU?
 
 You probably know what a GPU is, but do you know how they work under the hood? Let's take a look! Almost all modern GPUs have the same main components:
