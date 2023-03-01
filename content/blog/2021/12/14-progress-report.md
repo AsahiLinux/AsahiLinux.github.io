@@ -12,10 +12,6 @@ Whoops, things got so busy we ended up skipping a month! A lot has been going on
 
 At the end of October, Apple launched the next generation of Apple Silicon: M1 Pro and M1 Max. We got right to work on supporting these new machines, and after just a [few days of work](https://www.youtube.com/playlist?list=PL68XxS4_ek4bo7umPx1AuhGHAUh-lVUGs) we were able to bring up Asahi Linux on them up to feature parity with the M1 machines! Going forward, we'll be supporting these machines as well as the previous generation.
 
-{{< captioned caption="glxgears has no right to run at >60FPS with software rendering, but it does." >}}
-    {{< tweet 1458473546225577987 >}}
-{{< /captioned >}}
-
 It's interesting to take a peek at what Apple have done with the new chips. The original M1 (codename "Tonga", SoC name T8103) would have more properly been called the A14X following Apple's existing naming convention; it is, in fact, the tablet version of the A14 iPhone SoC (T8101). In order to build a Mac-worthy chip, Apple added some critical features (like Thunderbolt support), but otherwise left the old iPhone-centric architecture largely intact.
 
 While this worked well for the machine classes the M1 shipped in, the A14 class was running into limitations scaling up to larger SoCs. This isn't due to a lack of foresight by Apple, but rather because they strive to keep backwards compatibility with older SoCs as much as possible. This means certain design elements of the A14 date back to much older iPhone chips, from an era where 16GB of RAM or more than 16 cores seemed completely ludicrous for mobile devices.
