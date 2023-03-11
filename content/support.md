@@ -14,5 +14,5 @@ Excess funds will be used to support the project in other ways, and to fund othe
 
 Some other contributors also have their own fundraising platforms:
 
-* Martin Povišer "povik", our lead kernel audio deloper, is on [GitHub Sponsors](https://github.com/sponsors/povik).
+* Martin Povišer "povik", our lead kernel audio developer, is on [GitHub Sponsors](https://github.com/sponsors/povik).
 * Ella Stanforth, who is working on Vulkan userspace drivers for Apple Silicon GPUs, is on [GitHub Sponsors](https://github.com/sponsors/Ella-0).
