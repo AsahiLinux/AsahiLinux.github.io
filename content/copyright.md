@@ -49,8 +49,7 @@ Signed-off-by: Random J Developer <random@developer.example.org>
 
 This can be automated by simply using `git commit -s`.
 
-Real names are not required for authorship or sign-off info, although we encourage those contributors who are comfortable using their real name to do so, as some upstream projects are pickier about this. "Real name" is defined as the name you would use or expect to use for official business and in-person interactions, not whatever name any particular government agency thinks you should be using at the present point in time.
-
+Real names are not required for authorship or sign-off info. We encourage people to use a name they are commonly known by (e.g. a name you commonly use to interact in similar spaces), as that helps establish trust.
 
 # Reverse engineering policy
 
