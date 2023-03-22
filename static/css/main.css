@@ -1119,9 +1119,9 @@ ul.footer-services i {
         width: 85%;
         margin: 30px auto;
     }
-
-    .footer-menu {
-        width: 85%;
+    
+    .footer-container {
+        width: 100%;
     }
     
     #eye-catch > div > div:nth-of-type(1) {
@@ -1150,29 +1150,4 @@ ul.footer-services i {
         width: 60%;
         min-width: 200px;
     }
-    
-    .footer-menu {
-        flex-direction: column;
-        margin: 20px auto;
-    }
-    
-    .footer-services {
-        justify-content: center;
-    }
-    
-    ul.footer-services i {
-        margin: 0px 10px;
-    }
-    
-    .footer-links ul {
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    
-    .footer-logo {
-        justify-content: center;
-        order: 2;
-        text-align: center;
-    }
-
 }
