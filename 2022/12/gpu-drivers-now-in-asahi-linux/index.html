@@ -1,68 +1,193 @@
-<!doctype html><html lang=en>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=utf-8>
-<title>Apple GPU drivers now in Asahi Linux - Asahi Linux</title><link rel=stylesheet href=/css/main.css?940d905e>
-<link href=https://use.fontawesome.com/releases/v5.6.1/css/all.css rel=stylesheet>
-<link rel=preconnect href=https://fonts.gstatic.com>
-<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
-<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="@AsahiLinux">
-<meta name=twitter:creator content="@AsahiLinux">
-<meta name=twitter:title content="Apple GPU drivers now in Asahi Linux - Asahi Linux">
-<meta name=twitter:description content="Porting Linux to Apple Silicon">
-<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
-<meta name=twitter:image:width content="256">
-<meta name=twitter:image:height content="256">
-<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
-<meta property="og:title" content="Apple GPU drivers now in Asahi Linux - Asahi Linux">
-</head><body>
-<header id=header>
-<div class=header-logo>
-<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
-</div><div class=header-menu>
-<ul class="menu-container flex-container">
-<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=https://github.com/AsahiLinux/docs/wiki>Wiki</a></li><li><a href=/blog>Blog</a></li><li><a href=/support>Donate</a></li></ul></div></header><script>document.referer.startsWith("https://news.ycombinator.com")&&(document.location="https://google.com")</script>
-<section id=post-section>
-<div class=post-wrapper>
-<div class=post>
-<div id=breadcrumbs>
-<a href=https://asahilinux.org/>
-<i class="fas fa-home"></i>
+    <meta charset="UTF-8">
+    <title>Apple GPU drivers now in Asahi Linux - Asahi Linux</title>
+    <link rel="stylesheet" href="/css/main.css?940d905e">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link id="favicon" rel="icon" href="/img/AsahiLinux_logomark_32px.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel="stylesheet">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@AsahiLinux" />
+    <meta name="twitter:creator" content="@AsahiLinux" />
+    <meta name="twitter:title" content="Apple GPU drivers now in Asahi Linux - Asahi Linux" />
+    <meta name="twitter:description" content="Porting Linux to Apple Silicon" />
+    <meta name="twitter:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png" />
+    <meta name="twitter:image:width" content="256">
+    <meta name="twitter:image:height" content="256">
+
+    <meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+    <meta property="og:title" content="Apple GPU drivers now in Asahi Linux - Asahi Linux">
+</head>
+<body>
+    <header id="header">
+        <div class="header-logo">
+            <a href="/"><img src="/img/AsahiLinux_logo.svg?d619e737" class="logo" alt=""></a>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-container flex-container">
+                <li><a href="/about">About</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/contribute">Contribute</a></li>
+                <li><a href="https://github.com/AsahiLinux">GitHub</a></li>
+                <li><a href="https://github.com/AsahiLinux/docs/wiki">Wiki</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/support">Donate</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+<script>
+	if (document.referer.startsWith("https://news.ycombinator.com")) {
+		document.location = "https://google.com";
+	}
+</script>
+<section id="post-section">
+    <div class="post-wrapper">
+        <div class="post">
+            <div id="breadcrumbs">
+    
+
+
+
+
+
+
+<a href="https://asahilinux.org/">    
+    <i class="fas fa-home"></i>
 </a>
+
+
+
+
 /
-<a href=https://asahilinux.org/blog/>
-Blog
+<a href="https://asahilinux.org/blog/">    
+    Blog
 </a>
+
+
+
+
 /
-<a href=https://asahilinux.org/2022/12/gpu-drivers-now-in-asahi-linux/>
-Apple GPU drivers now in Asahi Linux
+<a href="https://asahilinux.org/2022/12/gpu-drivers-now-in-asahi-linux/">    
+    Apple GPU drivers now in Asahi Linux
 </a>
-</div><div class=blog-header>
-<h1 class=entry-title>Apple GPU drivers now in Asahi Linux</h1><ul class=blog-nav>
-<li>
-<a href=https://asahilinux.org/2022/11/tales-of-the-m1-gpu/><i class="fas fa-arrow-left"></i>Previous</a>
-</li><li class=nav-spacer></li><li>
-<a class=next href=https://asahilinux.org/2023/03/road-to-vulkan/>Next<i class="fas fa-arrow-right"></i></a>
-</li></ul></div><p>Hello everyone! We&rsquo;re excited to announce our first public Apple Silicon GPU driver release!</p><p>We&rsquo;ve been working hard over the past two years to bring this new driver to everyone, and we&rsquo;re really proud to finally be here. This is still an alpha driver, but it&rsquo;s already good enough to run a smooth desktop experience and some games.</p><p>Read on to find out more about the state of things today, how to install it (it&rsquo;s an opt-in package), and how to report bugs!</p><p><img src=/img/blog/2022/12/quake3.png alt="Quake 3 Arena running on an Apple M1"></p><h1 id=status>Status</h1><p>This release features work-in-progress OpenGL 2.1 and OpenGL ES 2.0 support for all current Apple M-series systems. That&rsquo;s enough for hardware acceleration with desktop environments, like GNOME and KDE. It&rsquo;s also enough for older 3D games, like Quake3 and Neverball. While there&rsquo;s always room for improvement, the driver is fast enough to run all of the above at 60 frames per second at 4K.</p><p>Please note: these drivers have not yet passed the OpenGL (ES) conformance tests. There will be bugs!</p><p>What&rsquo;s next? Supporting more applications. While OpenGL (ES) 2 suffices for some applications, newer ones (especially games) demand more OpenGL features. OpenGL (ES) 3 brings with it a slew of new features, like multiple render targets, multisampling, and transform feedback. Work on these features is well under way, but they will each take a great deal of additional development effort, and all are needed before OpenGL (ES) 3.0 is available.</p><p>What about Vulkan? We&rsquo;re working on it! Although we&rsquo;re only shipping OpenGL right now, we&rsquo;re designing with Vulkan in mind. Most of the work we&rsquo;re putting toward OpenGL will be reused for Vulkan. We estimated that we could ship working OpenGL 2 drivers much sooner than a working Vulkan 1.0 driver, and we wanted to get hardware accelerated desktops into your hands as soon as possible. For the most part, those desktops use OpenGL, so supporting OpenGL first made more sense to us than diving into the Vulkan deep end, only to use Zink to translate OpenGL 2 to Vulkan to run desktops. Plus, there is a large spectrum of OpenGL support, with OpenGL 2.1 containing a fraction of the features of OpenGL 4.6. The same is true for Vulkan: the baseline Vulkan 1.0 profile is roughly equivalent to OpenGL ES 3.1, but applications these days want Vulkan 1.3 with tons of extensions and &ldquo;optional&rdquo; features. Zink&rsquo;s &ldquo;layering&rdquo; of OpenGL on top of Vulkan isn&rsquo;t magic: it can only expose the OpenGL features that the underlying Vulkan driver has. A baseline Vulkan 1.0 driver isn&rsquo;t even enough to get OpenGL 2.1 on Zink! Zink itself advertises support for OpenGL 4.6, but of course that&rsquo;s only when paired with Vulkan drivers that support the equivalent of OpenGL 4.6&mldr; and that gets us back to a tremendous amount of time and effort.</p><p>When will OpenGL 3 support be ready? OpenGL 4? Vulkan 1.0? Vulkan 1.3? In community open source projects, it&rsquo;s said that every time somebody asks when a feature will be done, it delays that feature by a month. Well, a lot of people have been asking&mldr;</p><p>At any rate, for a sneak peek&mldr; here is SuperTuxKart&rsquo;s deferred renderer running at full speed, making liberal use of OpenGL ES 3 features like multiple render targets~</p><p><img src=/img/blog/2022/12/supertuxkart-dr.png alt="SuperTuxKart&amp;rsquo;s deferred renderer running on an Apple M1"></p><h1 id=anatomy-of-a-gpu-driver>Anatomy of a GPU driver</h1><p>Modern GPUs consist of many distinct &ldquo;layered&rdquo; parts. There is&mldr;</p><ul>
-<li>a memory management unit and an interface to submit memory-mapped work to the hardware</li><li>fixed-function 3D hardware to rasterize triangles, perform depth/stencil testing, and more</li><li>programmable &ldquo;shader cores&rdquo; (like little CPUs with bespoke instruction sets) with work dispatched by the fixed-function hardware</li></ul><p>This &ldquo;layered&rdquo; hardware demands a &ldquo;layered&rdquo; graphics driver stack. We need&mldr;</p><ul>
-<li>a kernel driver to map memory and submit memory-mapped work</li><li>a userspace driver to translate OpenGL and Vulkan calls into hardware-specific data structures in graphics memory</li><li>a compiler translating shading programming languages like GLSL to the hardware&rsquo;s instruction set</li></ul><p>That&rsquo;s a lot of work, calling for a team effort! Fortunately, that layering gives us natural boundaries to divide work among our small team.</p><ul>
-<li><a href=https://social.treehouse.systems/@alyssa>Alyssa Rosenzweig</a> is writing the OpenGL driver and compiler.</li><li><a href=https://vt.social/@lina>Asahi Lina</a> is writing the kernel driver and helping with OpenGL.</li><li><a href=https://mastodon.social/@dougall>Dougall Johnson</a> is reverse-engineering the instruction set with Alyssa.</li></ul><p>Meanwhile, <a href=https://tech.lgbt/@ella>Ella Stanforth</a> is working on a Vulkan driver, reusing the kernel driver, the compiler, and some code shared with the OpenGL driver.</p><p>Of course, we couldn&rsquo;t build an OpenGL driver in under two years just ourselves. Thanks to the power of free and open source software, we stand on the shoulders of FOSS giants. The compiler implements a &ldquo;NIR&rdquo; backend, where NIR is a powerful intermediate representation, including GLSL to NIR translation. The kernel driver users the &ldquo;Direct Rendering Manager&rdquo; (DRM) subsystem of the Linux kernel to minimize boilerplate. Finally, the OpenGL driver implements the &ldquo;Gallium3D&rdquo; API inside of <a href=https://mesa3d.org/>Mesa</a>, the home for open source OpenGL and Vulkan drivers. Through Mesa and Gallium3D, we benefit from thirty years of OpenGL driver development, with common code translating OpenGL into the much simpler Gallium3D. Thanks to the incredible engineering of NIR, Mesa, and Gallium3D, our ragtag team of reverse-engineers can focus on what&rsquo;s left: the Apple hardware.</p><h1 id=installation-instructions>Installation instructions</h1><p>To get the new drivers, you need to run the <code>linux-asahi-edge</code> kernel and also install the <code>mesa-asahi-edge</code> Mesa package.</p><pre tabindex=0><code>$ sudo pacman -Syu
+
+
+</div>
+
+            <div class="blog-header">
+                <h1 class="entry-title">Apple GPU drivers now in Asahi Linux</h1>
+                
+                <ul class="blog-nav">
+                    
+                    <li>
+                        <a href="https://asahilinux.org/2022/11/tales-of-the-m1-gpu/"><i class="fas fa-arrow-left"></i>Previous</a>
+                    </li>
+                    
+                    <li class="nav-spacer"></li>
+                    
+                    <li>
+                        <a class="next" href="https://asahilinux.org/2023/03/road-to-vulkan/">Next<i class="fas fa-arrow-right"></i></a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+            <p>Hello everyone! We&rsquo;re excited to announce our first public Apple Silicon GPU driver release!</p>
+<p>We&rsquo;ve been working hard over the past two years to bring this new driver to everyone, and we&rsquo;re really proud to finally be here. This is still an alpha driver, but it&rsquo;s already good enough to run a smooth desktop experience and some games.</p>
+<p>Read on to find out more about the state of things today, how to install it (it&rsquo;s an opt-in package), and how to report bugs!</p>
+<p><img src="/img/blog/2022/12/quake3.png" alt="Quake 3 Arena running on an Apple M1"></p>
+<h1 id="status">Status</h1>
+<p>This release features work-in-progress OpenGL 2.1 and OpenGL ES 2.0 support for all current Apple M-series systems. That&rsquo;s enough for hardware acceleration with desktop environments, like GNOME and KDE. It&rsquo;s also enough for older 3D games, like Quake3 and Neverball. While there&rsquo;s always room for improvement, the driver is fast enough to run all of the above at 60 frames per second at 4K.</p>
+<p>Please note: these drivers have not yet passed the OpenGL (ES) conformance tests. There will be bugs!</p>
+<p>What&rsquo;s next? Supporting more applications. While OpenGL (ES) 2 suffices for some applications, newer ones (especially games) demand more OpenGL features. OpenGL (ES) 3 brings with it a slew of new features, like multiple render targets, multisampling, and transform feedback. Work on these features is well under way, but they will each take a great deal of additional development effort, and all are needed before OpenGL (ES) 3.0 is available.</p>
+<p>What about Vulkan? We&rsquo;re working on it! Although we&rsquo;re only shipping OpenGL right now, we&rsquo;re designing with Vulkan in mind. Most of the work we&rsquo;re putting toward OpenGL will be reused for Vulkan. We estimated that we could ship working OpenGL 2 drivers much sooner than a working Vulkan 1.0 driver, and we wanted to get hardware accelerated desktops into your hands as soon as possible. For the most part, those desktops use OpenGL, so supporting OpenGL first made more sense to us than diving into the Vulkan deep end, only to use Zink to translate OpenGL 2 to Vulkan to run desktops. Plus, there is a large spectrum of OpenGL support, with OpenGL 2.1 containing a fraction of the features of OpenGL 4.6. The same is true for Vulkan: the baseline Vulkan 1.0 profile is roughly equivalent to OpenGL ES 3.1, but applications these days want Vulkan 1.3 with tons of extensions and &ldquo;optional&rdquo; features. Zink&rsquo;s &ldquo;layering&rdquo; of OpenGL on top of Vulkan isn&rsquo;t magic: it can only expose the OpenGL features that the underlying Vulkan driver has. A baseline Vulkan 1.0 driver isn&rsquo;t even enough to get OpenGL 2.1 on Zink! Zink itself advertises support for OpenGL 4.6, but of course that&rsquo;s only when paired with Vulkan drivers that support the equivalent of OpenGL 4.6&hellip; and that gets us back to a tremendous amount of time and effort.</p>
+<p>When will OpenGL 3 support be ready? OpenGL 4? Vulkan 1.0? Vulkan 1.3? In community open source projects, it&rsquo;s said that every time somebody asks when a feature will be done, it delays that feature by a month. Well, a lot of people have been asking&hellip;</p>
+<p>At any rate, for a sneak peek&hellip; here is SuperTuxKart&rsquo;s deferred renderer running at full speed, making liberal use of OpenGL ES 3 features like multiple render targets~</p>
+<p><img src="/img/blog/2022/12/supertuxkart-dr.png" alt="SuperTuxKart&amp;rsquo;s deferred renderer running on an Apple M1"></p>
+<h1 id="anatomy-of-a-gpu-driver">Anatomy of a GPU driver</h1>
+<p>Modern GPUs consist of many distinct &ldquo;layered&rdquo; parts. There is&hellip;</p>
+<ul>
+<li>a memory management unit and an interface to submit memory-mapped work to the hardware</li>
+<li>fixed-function 3D hardware to rasterize triangles, perform depth/stencil testing, and more</li>
+<li>programmable &ldquo;shader cores&rdquo; (like little CPUs with bespoke instruction sets) with work dispatched by the fixed-function hardware</li>
+</ul>
+<p>This &ldquo;layered&rdquo; hardware demands a &ldquo;layered&rdquo; graphics driver stack. We need&hellip;</p>
+<ul>
+<li>a kernel driver to map memory and submit memory-mapped work</li>
+<li>a userspace driver to translate OpenGL and Vulkan calls into hardware-specific data structures in graphics memory</li>
+<li>a compiler translating shading programming languages like GLSL to the hardware&rsquo;s instruction set</li>
+</ul>
+<p>That&rsquo;s a lot of work, calling for a team effort! Fortunately, that layering gives us natural boundaries to divide work among our small team.</p>
+<ul>
+<li><a href="https://social.treehouse.systems/@alyssa">Alyssa Rosenzweig</a> is writing the OpenGL driver and compiler.</li>
+<li><a href="https://vt.social/@lina">Asahi Lina</a> is writing the kernel driver and helping with OpenGL.</li>
+<li><a href="https://mastodon.social/@dougall">Dougall Johnson</a> is reverse-engineering the instruction set with Alyssa.</li>
+</ul>
+<p>Meanwhile, <a href="https://tech.lgbt/@ella">Ella Stanforth</a> is working on a Vulkan driver, reusing the kernel driver, the compiler, and some code shared with the OpenGL driver.</p>
+<p>Of course, we couldn&rsquo;t build an OpenGL driver in under two years just ourselves. Thanks to the power of free and open source software, we stand on the shoulders of FOSS giants. The compiler implements a &ldquo;NIR&rdquo; backend, where NIR is a powerful intermediate representation, including GLSL to NIR translation. The kernel driver users the &ldquo;Direct Rendering Manager&rdquo; (DRM) subsystem of the Linux kernel to minimize boilerplate. Finally, the OpenGL driver implements the &ldquo;Gallium3D&rdquo; API inside of <a href="https://mesa3d.org/">Mesa</a>, the home for open source OpenGL and Vulkan drivers. Through Mesa and Gallium3D, we benefit from thirty years of OpenGL driver development, with common code translating OpenGL into the much simpler Gallium3D. Thanks to the incredible engineering of NIR, Mesa, and Gallium3D, our ragtag team of reverse-engineers can focus on what&rsquo;s left: the Apple hardware.</p>
+<h1 id="installation-instructions">Installation instructions</h1>
+<p>To get the new drivers, you need to run the <code>linux-asahi-edge</code> kernel and also install the <code>mesa-asahi-edge</code> Mesa package.</p>
+<pre tabindex="0"><code>$ sudo pacman -Syu
 $ sudo pacman -S linux-asahi-edge mesa-asahi-edge
 $ sudo update-grub
-</code></pre><p>Since only one version of Mesa can be installed at a time, pacman will prompt you to replace <code>mesa</code> with <code>mesa-asahi-edge</code>. This is normal!</p><p>We also recommend running Wayland instead of Xorg at this point, so if you&rsquo;re using the KDE Plasma environment, make sure to install the Wayland session:</p><pre tabindex=0><code>$ sudo pacman -S plasma-wayland-session
-</code></pre><p>Then reboot, pick the Wayland session at the top of the login screen (SDDM), and enjoy! You might want to adjust the screen scale factor in <em>System Settings → Display and Monitor</em> (Plasma Wayland defaults to 100% or 200%, while 150% is often nicer). If you have &ldquo;Force font DPI&rdquo; enabled under <em>Appearance → Fonts</em>, you should disable that (it is saved separately for Wayland and Xorg, and shouldn&rsquo;t be necessary on Wayland sessions). Log out and back in for these changes to fully apply.</p><p>Xorg and Xorg-based desktop environments should work, but there are a few known issues:</p><ul>
-<li>Expect screen tearing (this might be fixed <a href=https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1006>soon</a>)</li><li>VSync does not work (some KDE animations will be too fast, and GL apps will not limit their FPS even with VSync enabled). This is a limitation of Xorg on the Apple DCP display controllers, which do not support VBlank interrupts.</li><li>There are still driver bugs triggered by Xorg/KWin. We&rsquo;re looking into this.</li></ul><p>The <code>linux-asahi-edge</code> kernel can be installed side-by-side with the standard <code>linux-asahi</code> package, but both versions should be kept in sync, so make sure to always update your packages together! You can always pick the <code>linux-asahi</code> kernel in the GRUB boot menu, which will disable GPU acceleration and the DCP display driver.</p><p>When the packages are updated in the future, it&rsquo;s possible that graphical apps will stop starting up after an update until you reboot, or they may fall back to software rendering. This is normal. Until the UAPI is stable, we&rsquo;ll have to break compatibility between Mesa and the kernel every now and then, so you will need to reboot to make things work after updates. In general, if apps <em>do</em> keep working with acceleration after any particular Mesa update, then it&rsquo;s probably safe not to reboot, but you should still do it to make sure you&rsquo;re running the latest kernel!</p><h1 id=reporting-bugs>Reporting bugs</h1><p>Since the driver is still in development, there are lots of known issues and we&rsquo;re still working hard on improving conformance test results. Please don&rsquo;t open new bugs for random apps not working! It&rsquo;s still the early days and we know there&rsquo;s a lot of work to do. Here&rsquo;s a quick guide of how to report bugs:</p><ul>
-<li>If you find an app that does not start up at all, please don&rsquo;t report it as a bug. Lots of apps won&rsquo;t work because they require a newer GL version than what we support. Please set the <code>LIBGL_ALWAYS_SOFTWARE=1</code> environment variable for those apps to fall back to software rendering. If it is a popular app that is part of the Arch Linux ARM repository, you can make a comment on <a href=https://github.com/AsahiLinux/linux/issues/73>this issue</a> instead, so we can add Mesa quirks to workaround.</li><li>If you run into issues caused by <code>linux-asahi-edge</code> unrelated to the GPU, please add a comment to <a href=https://github.com/AsahiLinux/linux/issues/70>this issue</a>. This includes display output issues! (Resolutions, backlight control, display power control, etc.)</li><li>If the GPU locks up and all GPU apps stop working, run <code>asahi-diagnose</code> (for example, from an SSH session), open a new bug on <a href=https://github.com/AsahiLinux/linux>AsahiLinux/linux</a>, attach the file generated by that command, and tell us what you were doing that caused the lockup.</li><li>For other GPU issues (rendering glitches, apps that crash after starting up correctly, and things like that), run <code>asahi-diagnose</code> and make a comment on <a href=https://github.com/AsahiLinux/linux/issues/72>this issue</a>, attaching the file generated by that command. Don&rsquo;t forget to tell us about your environment!</li><li>In the future, if a driver update causes a regression (rendering problems or crashes for apps that previously worked properly), you can open a bug <a href=https://gitlab.freedesktop.org/asahi/mesa/-/issues>directly in the Mesa tracker</a>.</li></ul><p>We hope you enjoy our driver! Remember, things are still moving quickly, so make sure to update your packages regularly to get updates and bug fixes!</p><div class=post-bottom>Alyssa Rosenzweig & Asahi Lina · <span class=publishdate>2022-12-07</span></div></div></div></section><footer id=footer>
-<div class=footer-menu>
-<div class=footer-logo>
-<a href=/>
-<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
-</a>
-<span class=license>Licensed under CC BY-SA 4.0</span>
-<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.</span>
-</div><div class=footer-links>
-<ul class=footer-services>
-<li><a href=https://twitter.com/AsahiLinux><i class="fab fa-twitter"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li><li><a href=https://www.patreon.com/marcan><i class="fab fa-patreon"></i></a></li></ul><ul class=footer-menu-container>
-<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
+</code></pre><p>Since only one version of Mesa can be installed at a time, pacman will prompt you to replace <code>mesa</code> with <code>mesa-asahi-edge</code>. This is normal!</p>
+<p>We also recommend running Wayland instead of Xorg at this point, so if you&rsquo;re using the KDE Plasma environment, make sure to install the Wayland session:</p>
+<pre tabindex="0"><code>$ sudo pacman -S plasma-wayland-session
+</code></pre><p>Then reboot, pick the Wayland session at the top of the login screen (SDDM), and enjoy! You might want to adjust the screen scale factor in <em>System Settings → Display and Monitor</em> (Plasma Wayland defaults to 100% or 200%, while 150% is often nicer). If you have &ldquo;Force font DPI&rdquo; enabled under <em>Appearance → Fonts</em>, you should disable that (it is saved separately for Wayland and Xorg, and shouldn&rsquo;t be necessary on Wayland sessions). Log out and back in for these changes to fully apply.</p>
+<p>Xorg and Xorg-based desktop environments should work, but there are a few known issues:</p>
+<ul>
+<li>Expect screen tearing (this might be fixed <a href="https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1006">soon</a>)</li>
+<li>VSync does not work (some KDE animations will be too fast, and GL apps will not limit their FPS even with VSync enabled). This is a limitation of Xorg on the Apple DCP display controllers, which do not support VBlank interrupts.</li>
+<li>There are still driver bugs triggered by Xorg/KWin. We&rsquo;re looking into this.</li>
+</ul>
+<p>The <code>linux-asahi-edge</code> kernel can be installed side-by-side with the standard <code>linux-asahi</code> package, but both versions should be kept in sync, so make sure to always update your packages together! You can always pick the <code>linux-asahi</code> kernel in the GRUB boot menu, which will disable GPU acceleration and the DCP display driver.</p>
+<p>When the packages are updated in the future, it&rsquo;s possible that graphical apps will stop starting up after an update until you reboot, or they may fall back to software rendering. This is normal. Until the UAPI is stable, we&rsquo;ll have to break compatibility between Mesa and the kernel every now and then, so you will need to reboot to make things work after updates. In general, if apps <em>do</em> keep working with acceleration after any particular Mesa update, then it&rsquo;s probably safe not to reboot, but you should still do it to make sure you&rsquo;re running the latest kernel!</p>
+<h1 id="reporting-bugs">Reporting bugs</h1>
+<p>Since the driver is still in development, there are lots of known issues and we&rsquo;re still working hard on improving conformance test results. Please don&rsquo;t open new bugs for random apps not working! It&rsquo;s still the early days and we know there&rsquo;s a lot of work to do. Here&rsquo;s a quick guide of how to report bugs:</p>
+<ul>
+<li>If you find an app that does not start up at all, please don&rsquo;t report it as a bug. Lots of apps won&rsquo;t work because they require a newer GL version than what we support. Please set the <code>LIBGL_ALWAYS_SOFTWARE=1</code> environment variable for those apps to fall back to software rendering. If it is a popular app that is part of the Arch Linux ARM repository, you can make a comment on <a href="https://github.com/AsahiLinux/linux/issues/73">this issue</a> instead, so we can add Mesa quirks to workaround.</li>
+<li>If you run into issues caused by <code>linux-asahi-edge</code> unrelated to the GPU, please add a comment to <a href="https://github.com/AsahiLinux/linux/issues/70">this issue</a>. This includes display output issues! (Resolutions, backlight control, display power control, etc.)</li>
+<li>If the GPU locks up and all GPU apps stop working, run <code>asahi-diagnose</code> (for example, from an SSH session), open a new bug on <a href="https://github.com/AsahiLinux/linux">AsahiLinux/linux</a>, attach the file generated by that command, and tell us what you were doing that caused the lockup.</li>
+<li>For other GPU issues (rendering glitches, apps that crash after starting up correctly, and things like that), run <code>asahi-diagnose</code> and make a comment on <a href="https://github.com/AsahiLinux/linux/issues/72">this issue</a>, attaching the file generated by that command. Don&rsquo;t forget to tell us about your environment!</li>
+<li>In the future, if a driver update causes a regression (rendering problems or crashes for apps that previously worked properly), you can open a bug <a href="https://gitlab.freedesktop.org/asahi/mesa/-/issues">directly in the Mesa tracker</a>.</li>
+</ul>
+<p>We hope you enjoy our driver! Remember, things are still moving quickly, so make sure to update your packages regularly to get updates and bug fixes!</p>
+
+            
+            <div class="post-bottom">Alyssa Rosenzweig &amp; Asahi Lina · <span class="publishdate">2022-12-07</span></div>
+        </div>
+    </div>
+</section>
+    <footer id="footer">
+        <div class="footer-menu">
+            <div class="footer-logo">
+                <a href="/">
+                    <img src="/img/AsahiLinux_logomark.svg" class="logo" alt="Asahi Linux logo">
+                </a>
+                <span class="license">Licensed under CC BY-SA 4.0</span>
+                <span class="disclaimer">Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.</span>
+            </div>
+            <div class="footer-links">
+                <ul class="footer-services">
+                    <li><a href="https://twitter.com/AsahiLinux"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/AsahiLinux"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.patreon.com/marcan"><i class="fab fa-patreon"></i></a></li>
+                </ul>
+                <ul class="footer-menu-container">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/code-of-conduct">Code of Conduct</a></li>
+                    <li><a href="/copyright">Copyright policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
