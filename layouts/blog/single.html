@@ -1,4 +1,10 @@
 {{ partial "header.html" . }}
+<script>
+	if (document.referrer.startsWith("https://news.ycombinator.com")) {
+		console.log("Hacker News is becoming worse than 4chan. Do better.");
+		document.location = "https://google.com";
+	}
+</script>
 <section id="post-section">
     <div class="post-wrapper">
         <div class="post">
