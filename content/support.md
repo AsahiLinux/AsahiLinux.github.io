@@ -6,7 +6,7 @@ draft: false
 
 # Support Asahi Linux
 
-Asahi Linux was started by marcan as a Patreon-funded project, and he is currently aiming to raise enough pledges to allow him to work on Asahi Linux full-time on both Patreon and GitHub sponsors. If you would like to contribute to this cause financially, head over to [the Patreon campaign](https://patreon.com/marcan) or the [GitHub sponsors](https://github.com/sponsors/marcan) page. You can also make one-time donations on GitHub sponsors.
+Asahi Linux was started by marcan as a Patreon-funded project, and he is currently aiming to raise enough pledges to allow him to work on Asahi Linux full-time on both GitHub sponsors and Patreon. If you would like to contribute to this cause financially, head over to [GitHub sponsors](https://github.com/sponsors/marcan) or [the Patreon campaign](https://patreon.com/marcan) (GitHub Sponsors is preferred as it has lower fees). You can also make one-time donations on GitHub sponsors.
 
 Porting Linux to Apple Silicon is no small task - certainly not something that can be accomplished only with spare-time hacking. Having one full-time dedicated developer on the project will allow it to advance at a steady pace and ensure that everything is paid the proper attention.
 
