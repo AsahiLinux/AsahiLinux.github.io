@@ -29,8 +29,6 @@ Even if you don't plan to speak, feel free to join and idle in the above channel
 
 Our working documentation is maintained in a [GitHub Wiki](https://github.com/AsahiLinux/docs/wiki/).
 
-## Twitter
+## Mastodon (Fediverse)
 
-You will also find official announcements and information on the [Asahi Linux Twitter account](https://twitter.com/AsahiLinux).
-
-In addition, marcan sometimes posts updates and community information on his [Patreon](https://patreon.com/marcan) page, which funds this project, and the comments on the posts may have additional information.
+You will also find official announcements and information on the [Asahi Linux Mastodon account](https://social.treehouse.systems/@AsahiLinux).
