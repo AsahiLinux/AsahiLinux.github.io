@@ -5,6 +5,25 @@
 		document.location = "https://google.com";
 	}
 </script>
+<style>
+a.hnsucks {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: white;
+    cursor: default;
+    z-index: -1000;
+}
+
+a.hnsucks:visited {
+    color: red;
+}
+
+a.hnsucks b {
+    font-weight: bold;
+}
+</style>
 <section id="post-section">
     <div class="post-wrapper">
         <div class="post">
@@ -33,4 +52,5 @@
         </div>
     </div>
 </section>
+<a aria-hidden="true" class="hnsucks" onclick="return false;" href="https://news.ycombinator.com/submit">Hi! It looks like you might be a contributor to Hacker News. Due to harassment in HN comment sections, we decided to redirect traffic from that site away from this blog, and sent an email to the HN admins explaining our frustrations. We received no reply. Instead, the HN admins specifically added a rel="noreferrer" tag <b>only to links to asahilinux.org</b>, to bypass our redirect. Seriously. We can't stop you from submitting our blog posts to HN, but we kindly ask you not to. They have no regard for the wellbeing of the projects and developers they feature, and would rather evade benign blocks than admit they have a comment moderation problem.</a>
 {{ partial "footer.html" . }}
