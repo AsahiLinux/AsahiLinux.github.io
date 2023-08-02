@@ -112,7 +112,7 @@ The OpenBSD installer knows about the magic Apple partitions, so even if you cho
 
 I know what you’re all thinking… what about the GPU?
 
-{{< tweet user="LinaAsahi" id="1537828477352615936" >}}
+<!--{< tweet user="LinaAsahi" id="1537828477352615936" >} -->
 
 Good news! A couple months ago, [Asahi Lina](https://twitter.com/LinaAsahi) joined our team and took on the challenge of reverse engineering the M1 GPU hardware interface and writing a driver for it. In this short time, she has already built a prototype driver good enough to run real graphics applications and benchmarks, building on top of the existing Mesa work. The proof of concept uses m1n1 via a USB connection and runs the driver remotely, so it is bottlenecked by USB bandwidth, but she has also demonstrated that the GPU proper renders the GLMark2 phong shaded bunny scene at over 1000FPS, at 1080p resolution. This fully open source stack passes [94%](https://twitter.com/LinaAsahi/status/1546301886147731457) of the dEQP-GLES2 test suite. Not bad!
 

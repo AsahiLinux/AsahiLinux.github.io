@@ -68,7 +68,7 @@ Since getting all these structures right is critical for the GPU to work and the
 
 At first most of the driver was really just [a bunch of hardcoded structures](https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/experiments/agx_1tri.py), but eventually I managed to get them right and render a triangle!
 
-{{< tweet user="LinaAsahi" id="1532028228189458432" >}}
+<!-- {< tweet user="LinaAsahi" id="1532028228189458432" >} -->
 
 This was just a hacked up together demo, though... before starting on the Linux kernel driver, I wanted to make sure I really understood everything well enough to design the driver properly. Just rendering one frame is easy enough, but I wanted to be able to render multiple frames, and also test things like concurrency and preemption. So I really needed a true "kernel driver"... but that's impossible to do in Python, right?!
 
@@ -78,7 +78,7 @@ Could I run [Inochi2D](https://inochi2d.com/) on top of Mesa, with Alyssa's Mesa
 
 It's so ridiculous that it worked! ✨
 
-{{< tweet user="LinaAsahi" id="1537828477352615936" >}}
+<!-- {< tweet user="LinaAsahi" id="1537828477352615936" >} -->
 
 ## A new language for the Linux kernel
 
@@ -108,11 +108,11 @@ The more I worked with Rust, the more I fell in love with it! It feels like Rust
 
 The driver slowly came together, and on September 24th I finally got kmscube to render the first cube, with my brand new Rust driver!
 
-{{< tweet user="LinaAsahi" id="1573488347250536449" >}}
+<!-- {< tweet user="LinaAsahi" id="1573488347250536449" >} -->
 
 And then, something magical happened.
 
-{{< tweet user="LinaAsahi" id="1575345368018997248" >}}
+<!-- {< tweet user="LinaAsahi" id="1575345368018997248" >} -->
 
 Just a few days later, I could run a full GNOME desktop session!
 
@@ -126,7 +126,7 @@ Of course, there are always unsafe sections of code, but since Rust makes you th
 
 Oh, and there's also error and cleanup handling! All the error-prone `goto cleanup` style error handling to clean up resources in C just... vanishes with Rust. Even just that is worth it on its own. Plus you get real iterators and reference counting is automatic! ❤
 
-{{< tweet user="LinaAsahi" id="1583498896847667216" >}}
+<!-- {< tweet user="LinaAsahi" id="1583498896847667216" >} -->
 
 ## Joining forces
 
@@ -143,7 +143,7 @@ And since the GPU power management is handled by the firmware, all that just wor
 
 What about Vulkan support? Don't worry... [Ella](https://tech.lgbt/@ella) is working on that! ✨✨
 
-{{< tweet user="EllaStanforth" id="1584316751591878656" >}}
+<!-- {< tweet user="EllaStanforth" id="1584316751591878656" >} -->
 
 ## What's next?
 

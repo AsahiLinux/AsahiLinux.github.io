@@ -66,9 +66,11 @@ Once we have a stable kernel foundation, we will start publishing an "official" 
 
 As part of reverse engineering the CPU frequency hardware, I found myself needing to run macOS under the m1n1 hypervisor with full SMP support... so I made it happen! The hypervisor can now expose all 8 CPU cores to the guest, and virtualizes the CPU startup hardware. This is not only important for reverse engineering SMP-related features, it also means it now boots almost as fast as on bare metal!
 
+<!--
 {{< captioned caption="The hypervisor, now with 8 times the cores" >}}
-    {{< tweet user="AsahiLinux" id="1438152384165728257" >}}
+    {< tweet user="AsahiLinux" id="1438152384165728257" >}
 {{< /captioned >}}
+-->
 
 This also makes it even more practical to use for testing Linux; there is very little reason not to run under the hypervisor during most kernel development now. This makes things much easier for anyone without a serial debug cable, as the hypervisor provides a virtual UART over USB, as well as interactive debugging features.
 

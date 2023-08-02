@@ -24,9 +24,11 @@ Instead, a much safer approach that has been used by projects such as [Nouveau](
 
 This is very different from a typical virtual machine, which is designed to run a guest OS on top of a host OS, with a full set of virtualized hardware. Our hypervisor, which is built on our [m1n1](https://asahilinux.org/2021/03/progress-report-january-february-2021/#playing-with-hardware) bootloader and hardware experimentation tool, is a completely bespoke implementation. It is designed to mostly stay out of the way of the guest OS, running it in an environment as close to bare metal as possible, while just transparently intercepting and logging hardware accesses. Thus, macOS "sees" the real M1 hardware, and interacts with it as normal - complete with a full accelerated desktop.
 
+<!--
 {{< captioned caption="This tweet was posted from Safari on macOS, running on the hypervisor" >}}
-    {{< tweet user="AsahiLinux" id="1397963184959418370" >}}
+    {< tweet user="AsahiLinux" id="1397963184959418370" >}
 {{< /captioned >}}
+-->
 
 Since the hypervisor is built on m1n1, it works together with Python code running on a separate host machine. Effectively, the Python host can "puppeteer" the M1 and its guest OS remotely. The hypervisor itself is partially written in Python! This allows us to have a very fast test cycle, and we can even update parts of the hypervisor itself live during guest execution, without a reboot.
 
