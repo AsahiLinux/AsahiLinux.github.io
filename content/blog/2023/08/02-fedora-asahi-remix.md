@@ -42,7 +42,7 @@ Collaborating with distro integration experts and using distro infra like this f
 
 Working directly with upstream means not only can we integrate more closely with the core distribution, but we can also get issues in other packages fixed quickly and smoothly. This is particularly important for platforms like desktop ARM64, where we still run into random app and package bugs quite often. ARM64 desktop Linux has been a niche platform (until now!), and with much less testing comes a higher propensity for bugs, so it's very important that we can address these issues quickly. Fedora already has a very solid, fully supported ARM64 port with a large userbase in the server/headless segment, so it is an excellent base to build upon and help improve the state of desktop Linux on ARM64 for everyone.
 
-We're very happy to have this level of collaboration with Fedora, and the Fedora folks have been an absolutely amazing team throughout this whole effort. We want to thank Davide Cavalca, Eric Curtin, Leif Liddy, Neal Gompa, and Michel Alexandre Salim for kicking off the Asahi SIG and making this all possible.
+We're very happy to have this level of collaboration with Fedora, and the Fedora folks have been an absolutely amazing team throughout this whole effort. We want to thank Davide Cavalca, Eric Curtin, Leif Liddy, Neal Gompa, and Michel Lind for kicking off the Asahi SIG and making this all possible.
 
 ## Racing to the Finish Line
 
