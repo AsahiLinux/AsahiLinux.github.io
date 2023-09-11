@@ -16,3 +16,4 @@ Some other contributors also have their own fundraising platforms:
 
 * Martin Povišer "povik", our lead kernel audio developer, is on [GitHub Sponsors](https://github.com/sponsors/povik).
 * Ella Stanforth, who is working on Vulkan userspace drivers for Apple Silicon GPUs, is on [GitHub Sponsors](https://github.com/sponsors/Ella-0).
+* Neal Gompa, who leads the [Fedora Asahi SIG](https://fedoraproject.org/wiki/SIGs/Asahi) and is the primary developer of the [Fedora Asahi Remix](https://fedora-asahi-remix.org/), is on [GitHub Sponsors](https://github.com/sponsors/Conan-Kudo)
