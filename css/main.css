@@ -721,6 +721,10 @@ div.community-button a {
     margin: 10px 0;
 }
 
+div.discourse-button a {
+    background-color: #CC4545;
+}
+
 div.twitter-buttons a.twitter-button {
     background-color: #00B9FF;
 }
