@@ -6,6 +6,8 @@ slug = "july-2022-release"
 author = "marcan"
 +++
 
+**UPDATE / NOTE: M2 machines have been fully supported and stable for a *long* time now. If you are reading this article today, this in no way represents the current state of support for M2 machines. Just install normally.**
+
 Welcome to another long overdue progress report! As usual, things have been busier than expected… and we have some big news! We’ve just released a new Asahi Linux update with Mac Studio, Bluetooth, and *M2 support*!
 
 If you're new to Asahi Linux, check out our [previous release announcement](https://asahilinux.org/2022/03/asahi-linux-alpha-release/) for installation instructions and general information.
@@ -44,7 +46,7 @@ Ever since Asahi Linux started, one of the most common questions we get asked is
 After just a [12-hour bring-up marathon](https://www.youtube.com/watch?v=SidIJkC5YN0), Linux was booting on the M2 with USB, NVMe, battery stats/control, CPUfreq, WiFi, and more! With a few more days of work, we were able to get the keyboard/trackpad working, bringing it to feature parity with existing systems. After some more integration work, we are proud to announce *experimental support for M2 machines in the Asahi Linux installer*!
 
 If you decide to try this on your M2 machine, keep in mind these caveats:
-* This is even more experimental than M1 support, so expect bugs. To get the option to install on M2, you need to enable expert mode in the Asahi Linux installer.
+* This is even more experimental than M1 support, so expect bugs. To get the option to install on M2, ~~you need to enable expert mode in the Asahi Linux installer~~.
 * The keyboard won’t work in U-Boot/GRUB. That driver has not been written yet, and we’ve yet to figure out how we want to do the hand-off between U-Boot and Linux. You can use an external USB keyboard if you need to poke around the bootloader shells.
 * Only the M2 MacBook Pro 13” is tested. We’ve added completely untested M2 MacBook Air support (because we can), but none of us have one yet! If you do, only try it if you’re feeling very adventurous (and don’t blame us if things go wrong).
 * The firmware/stub used for Linux is based on a “special release” macOS 12.4 version that Apple released just for these machines. We are not committing to long-term support for this version just yet, so you *may* have to go through macOS and the installer to upgrade your boot components (likely to 13.0) in order to get future features such as the GPU and external display output to work (i.e. no “seamless upgrade” with just pacman, but you also won’t have to do a full reinstall). We will decide how to proceed in the future, and add the necessary upgrade mode to the installer when the time comes, if necessary. It is possible we will support 12.4 after all, but no promises.
