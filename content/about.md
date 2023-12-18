@@ -26,13 +26,13 @@ The Asahi Linux logo and website were designed by [soundflora*](https://soundflo
 
 ## What devices will be supported?
 
-All Apple M1 Macs are in scope, as well as future generations as development time permits. The first target will be the M1 Mac Mini.
+All Apple Silicon Macs are in scope, as well as future generations as development time permits. We currently have support for most machines of the M1 and M2 generations.
 
 ## Is this a Linux distribution?
 
-Asahi Linux is an overall project to develop support for these Macs. We will eventually release a remix of [Arch Linux ARM](https://archlinuxarm.org/), packaged for installation by end-users, as a distribution of the same name. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. The distribution will be a convenient package for easy installation by end-users and give them access to bleeding-edge versions of the software we develop.
+Asahi Linux is an overall project to develop support for these Macs. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. Our current flagship distro is [Fedora Asahi Remix](/fedora), which is a collaboration between Asahi Linux and the Fedora Project, and serves as both a polished end-user distribution and a reference for other distributions who wish to incorporate our work.
 
-We expect that support will eventually trickle up and back down to other distributions. Advanced users will always be free to use the distribution of their choice and add the necessary patches/software themselves before this happens.
+Other distributions are already working on implementing support for these platforms, and we expect to have more options officially available in the future. Check out our [Alternative Distros](https://github.com/AsahiLinux/docs/wiki/SW:Alternative-Distros) page for a list of ongoing distro integration projects.
 
 ## Does Apple allow this? Don't you need a jailbreak?
 
