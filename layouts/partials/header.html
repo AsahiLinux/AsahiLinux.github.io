@@ -26,7 +26,7 @@
     <meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
     <meta property="og:title" content="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux">
 </head>
-<body{{ if .IsHome }} class="landing"{{ end }}>
+<body class="{{ .Scratch.Get "body_class" }}">
     <header id="header">
         <div class="header-logo">
             <a href="/"><img src="/img/AsahiLinux_logo.svg?{{ slicestr (readFile "static/img/AsahiLinux_logo.svg" | md5) 0 8 }}" class="logo" alt=""></a>

@@ -1,0 +1,4 @@
+{{ .Scratch.Set "body_class" .Params.body_class }}
+{{ partial "header.html" . }}
+    {{ .Content }}
+{{ partial "footer.html" . }}

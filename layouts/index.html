@@ -1,3 +1,4 @@
+{{ .Scratch.Set "body_class" "landing" }}
 {{ partial "header.html" . }}
 <section id="eye-catch">
     <div>
@@ -5,6 +6,9 @@
             <h1>Linux on Apple Silicon</h1>
             <p>Asahi Linux aims to bring you a polished Linux® experience on Apple Silicon Macs.</p>
             <a href="/about" class="more">Learn more<i class="fas fa-angle-right more"></i></a>
+            <h2>Install from macOS</h2>
+            <pre><code id="curl">curl https://alx.sh | sh</code> <a id="copy-button" href="#"><i class="fa fa-clipboard"></i></code></a></pre>
+            <h3><a class="more" href="/fedora/#device-support">Device support<i class="fas fa-angle-right more"></i></a></h3>
         </div>
         <div>
             <img src="/img/asahilinux_laptop.svg?{{ slicestr (readFile "static/img/asahilinux_laptop.svg" | md5) 0 8 }}" alt="Asahi Linux on a laptop">
@@ -13,13 +17,12 @@
 </section>
 <section id="download">
     <div class="center-title">
-        <h1>Download</h1>
+        <h1><a class="stealth" href="/fedora">Download</a></h1>
     </div>
     <div class="download-card center-card">
         <i class="big-icon fas fa-arrow-down"></i>
-        <p>Fedora Asahi Remix is coming soon!</p>
-        <a href="https://fedora-asahi-remix.org/" class="more">Check out the beta<i class="fas fa-angle-right more"></i></a>
-        <p style="font-style: italic">This is not an official release just yet, but we encourage adventurous users to give Fedora a spin!</p>
+        <p>Fedora Asahi Remix is now released!</p>
+        <a href="/fedora" class="more">Read the announcement<i class="fas fa-angle-right more"></i></a>
     </div>
 </section>
 <section id="community" class="white-text">
