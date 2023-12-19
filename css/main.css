@@ -524,6 +524,11 @@ a:hover {
     transition: opacity 0.5s;
 }
 
+a.stealth:hover {
+    opacity: 1.0;
+    cursor: default;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -621,6 +626,39 @@ to {
     position: relative;
     width: 100%;
 }
+#eye-catch h2 {
+    margin-top: 3em;
+    text-align: center;
+    font-family: inherit;
+}
+
+#eye-catch pre {
+    text-align: center;
+    background: none;
+    font-size: 130%;
+    margin: 0.3em 0.3em;
+    padding: 0 1em;
+    color: inherit;
+}
+
+#eye-catch code {
+    display: inline-block;
+    width: auto;
+    background-color: #43825c;
+    color: #fff;
+    margin: 0.5em 0.2em;
+    padding: 0.5em 1em;
+}
+
+#eye-catch pre a {
+    display: inline-block;
+    width: 1em;
+}
+
+#copy-button {
+    color: #43825c;
+    cursor: pointer;
+}
 
 .more {
     font-size: 135%;
@@ -635,8 +673,21 @@ to {
     left: 10px;
 }
 
+h3 .more i {
+    position: relative;
+    top: 1px;
+    left: 7px;
+}
+
 #eye-catch .more {
     color: #A61200;
+}
+
+#eye-catch h3 {
+    text-align: center;
+}
+#eye-catch h3 .more {
+    font-size: 100%;
 }
 
 .big-icon {
@@ -1008,6 +1059,178 @@ div.post-bottom {
     font-size: 110%;
 }
 
+/* Fedora announcement */
+
+section.topic p {
+    max-width: 962px;
+    margin: 1em auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.6;
+    letter-spacing: 0.045em;
+}
+
+section.topic h2 {
+    font-family: inherit;
+    background-color: #dbeefb;
+    padding: 0.9em 0;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+section.topic h2 div {
+    font-size: 120%;
+    letter-spacing: 0.07em;
+    max-width: 962px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section.topic:nth-child(3) h2 {
+    margin-top: 0;
+}
+
+section.topic p {
+    text-align: justify;
+}
+
+section.topic p a {
+    text-decoration: underline;
+}
+
+section.topic p img {
+    float: right;
+    margin-left: 1em;
+}
+
+section#device-support {
+    padding-bottom: 3em;
+}
+
+section#device-support div.center-title {
+    background-color: #ececec;
+    padding: 1em 0;
+    margin: 1.5em 0 0 0;
+}
+
+div.devices {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+div.devices a.device {
+    display: block;
+    text-align: center;
+    width: 130px;
+    height: 140px;
+    background-color: rgba(255,255,255,0.5);
+    padding: 5px;
+    border-radius: 1px;
+    margin: 0 5px;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+div.devices a.device.comingsoon {
+    background-color: rgba(255,255,255,0.2);
+    position: relative;
+}
+div.devices a.device:hover {
+    opacity: 0.7;
+}
+
+div.devices a.device.comingsoon:hover {
+    opacity: 1.0;
+}
+div.devices a.device.comingsoon * {
+    opacity: 50%;
+}
+
+div.devices a.device.comingsoon:before {
+    content: "Coming soon";
+    position: absolute;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    width: 130px;
+    height: 30px;
+    left: 0;
+    top: 55px;
+    padding: 5px;
+}
+
+div.devices a.device.dev-selected {
+    background-color: #dfedfd;
+}
+
+div.devices a.device img {
+    width: 100px;
+    height: 100px;
+}
+
+div.devices a.device p {
+    margin: 0;
+}
+
+div.device-infos {
+}
+
+div.device-info {
+    max-height: 0px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+    background-color: #556E8A;
+}
+
+div.device-info > div {
+    max-width: 962px;
+    display: block;
+    color: white;
+    padding: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+div.device-info.dev-selected {
+    max-height: 140vh;
+    transition: max-height 0.5s;
+}
+
+div.device-info h3 {
+    text-align: center;
+    font-size: 150%;
+}
+
+div.device-info div.features {
+    text-align: center;
+}
+
+div.device-info div.features div {
+    display: inline-block;
+    background-color: #caffc3;
+    border-radius: 2px;
+    padding: 5px 15px;
+    margin: 10px;
+    text-align: center;
+    color: #111;
+}
+
+div.device-info div.features div.unsup {
+    background-color: #ffc3c3;
+}
+
+div.device-info div.features div p {
+    font-size: 80%;
+}
+
+div.device-info > div > p {
+    text-align: center;
+    font-size: 85%;
+}
+
 /* Footer */
 
 footer {
@@ -1170,6 +1393,28 @@ ul.footer-services i {
         justify-content: center;
         order: 2;
         text-align: center;
+    }
+
+    body.landing section.topic p {
+        font-size: 100%;
+    }
+    section.topic p img.w-200 {
+        width: 120px;
+    }
+    section.topic p img.w-150 {
+        width: 90px;
+    }
+
+    div.features {
+        font-size: 90%;
+    }
+
+    div.device-info h3 {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+    div.device-info div.features div {
+        margin: 7px;
     }
 
 }
