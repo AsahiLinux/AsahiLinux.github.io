@@ -1,0 +1,33 @@
+# Header
+about = "À propos"
+community = "Communauté"
+contribute = "Contribuer"
+wiki = "Wiki"
+blog = "Blog"
+donate = "Faire un don"
+
+# Footer
+code_of_conduct = "Code de Conduite"
+copyright_policy = "Politique de droits d'auteur"
+license = "Sous licence CC BY-SA 4.0"
+disclaimer = "Linux® est la marque déposée de Linus Torvalds aux États-Unis et dans les autres pays. Tous les autres noms de produits, logos et marques sont la propriété de leurs détenteurs respectifs."
+
+# Homepage
+linux_on_apple_silicon = "Linux sur Apple Silicon"
+asahi_linux_description = "Asahi Linux vise à vous offrir une expérience Linux® optimisée sur les Macs équipés de puces Apple Silicon."
+learn_more = "En savoir plus"
+install_from_macos = "Installer depuis macOS"
+device_support = "Compatibilité des appareils"
+download = "Télécharger"
+fedora_asahi_released = "Fedora Asahi Remix est désormais disponible !"
+read_the_announcement = "Lire l'annonce"
+community_fedora_description = "Posez des questions et discutez avec d'autres utilisateurs sur notre sujet de discussion Fedora !"
+community_fedora_button = "Discussion Asahi Linux"
+community_mastodon_description = "Suivez-nous sur Mastodon pour recevoir des annonces et d'autres informations."
+community_oftc_description = "Notre plateforme de communication principale est IRC sur OFTC."
+community_oftc_channel_list = "Liste des salons"
+contribute_description = "Asahi Linux et les projets open source dont il dépend sont rendus possibles grâce à des communautés de bénévoles. Tous les contributeurs sont les bienvenus, quel que soit leur niveau de compétence !"
+how_to_contribute = "Comment contribuer"
+documentation = "Documentation"
+documentation_description = "Nous documentons la plateforme Apple Silicon sur notre wiki GitHub."
+visit_the_wiki = "Visiter le Wiki"

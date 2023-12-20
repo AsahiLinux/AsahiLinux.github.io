@@ -1,5 +1,16 @@
 baseURL = "https://asahilinux.org/"
-languageCode = "en-us"
+defaultContentLanguage = 'en'
+[languages]
+  [languages.en]
+    contentDir = 'content/en'
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 1
+  [languages.fr]
+    contentDir = 'content/fr'
+    languageCode = 'fr-FR'
+    languageName = 'Français'
+    weight = 2
 title = "Asahi Linux"
 
 pluralizelisttitles = false
