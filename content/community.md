@@ -18,8 +18,9 @@ Most development and project discussion takes place on IRC. We have several chan
 * #asahi-dev [[logs](https://oftc.irclog.whitequark.org/asahi-dev)] - Development discussion
 * #asahi-re [[logs](https://oftc.irclog.whitequark.org/asahi-re)] - Reverse engineering (hardware/firmware interfaces/etc)
 * #asahi-gpu [[logs](https://oftc.irclog.whitequark.org/asahi-gpu)] - GPU reverse engineering and development
+* #asahi-alt [[logs](https://oftc.irclog.whitequark.org/asahi-alt)] - Discussion and support for unofficial third-party distro ports
 * #asahi-stream - Chatroom for people to talk during the devs' video streams
-* #asahi-alt - For discussion and support for unofficial third-party distro ports
+
 
 Even if you don't plan to speak, feel free to join and idle in the above channels if you'd like to follow the discussion.
 
