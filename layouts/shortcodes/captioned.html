@@ -1,3 +1,6 @@
 <figure class="captioned">{{ .Inner }}
-{{ with .Get "caption"}}<figcaption><p>{{.}}</p></figcaption>{{end}}
+<figcaption>
+    {{ with .Get "caption"}}<p>{{.}}</p>{{end}}
+    {{ with .Get "link"}}<p><a href={{.}}>{{end}}{{ with .Get "source"}}Source: {{.}}</a>{{end}}</p>
+</figcaption>
 </figure>
