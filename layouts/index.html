@@ -3,12 +3,12 @@
 <section id="eye-catch">
     <div>
         <div>
-            <h1>Linux on Apple Silicon</h1>
-            <p>Asahi Linux aims to bring you a polished Linux® experience on Apple Silicon Macs.</p>
-            <a href="/about" class="more">Learn more<i class="fas fa-angle-right more"></i></a>
-            <h2>Install from macOS</h2>
+            <h1>{{ T "linux_on_apple_silicon" }}</h1>
+            <p>{{ T  "asahi_linux_description" }}</p>
+            <a href="{{ relLangURL "about" }}" class="more">{{ T "learn_more" }}<i class="fas fa-angle-right more"></i></a>
+            <h2>{{ T "install_from_macos" }}</h2>
             <pre><code id="curl">curl https://alx.sh | sh</code> <a id="copy-button" href="#"><i class="fa fa-clipboard"></i></code></a></pre>
-            <h3><a class="more" href="/fedora/#device-support">Device support<i class="fas fa-angle-right more"></i></a></h3>
+            <h3><a class="more" href="{{ relLangURL "fedora/#device-support" }}">{{ T "device_support" }}<i class="fas fa-angle-right more"></i></a></h3>
         </div>
         <div>
             <img src="/img/asahilinux_laptop.svg?{{ slicestr (readFile "static/img/asahilinux_laptop.svg" | md5) 0 8 }}" alt="Asahi Linux on a laptop">
@@ -17,17 +17,17 @@
 </section>
 <section id="download">
     <div class="center-title">
-        <h1><a class="stealth" href="/fedora">Download</a></h1>
+        <h1><a class="stealth" href="{{ relLangURL "fedora" }}">{{ T "download" }}</a></h1>
     </div>
     <div class="download-card center-card">
         <i class="big-icon fas fa-arrow-down"></i>
-        <p>Fedora Asahi Remix is now released!</p>
-        <a href="/fedora" class="more">Read the announcement<i class="fas fa-angle-right more"></i></a>
+        <p>{{ T "fedora_asahi_released" }}</p>
+        <a href="{{ relLangURL "fedora" }}" class="more">{{ T "read_the_announcement" }}<i class="fas fa-angle-right more"></i></a>
     </div>
 </section>
 <section id="community" class="white-text">
     <div class="center-title">
-        <h1>Community</h1>
+        <h1>{{ T "community" }}</h1>
     </div>
     <div class="community-links">
         <div class="community-fedora">
@@ -36,11 +36,11 @@
                     <i class="big-icon fab fa-discourse"></i>
                 </div>
                 <div class="community-text">
-                    <p>Ask questions and talk with other users on our little corner of Fedora Discussion!</p>
+                    <p>{{ T "community_fedora_description" }}</p>
                 </div>
             </div>
             <div class="community-button discourse-button">
-                <a rel="me" href="https://discussion.fedoraproject.org/c/neighbors/asahi/92" class="mastodon-button rounded-button"><i class="fab fa-discourse"></i> Asahi Linux Discussion</a>
+                <a rel="me" href="https://discussion.fedoraproject.org/c/neighbors/asahi/92" class="mastodon-button rounded-button"><i class="fab fa-discourse"></i> {{ T "community_fedora_button" }}</a>
             </div>
         </div>
         <div class="community-twitter">
@@ -49,7 +49,7 @@
                     <i class="big-icon fab fa-mastodon"></i>
                 </div>
                 <div class="community-text">
-                    <p>Follow us on Mastodon to get announcements and other information.</p>
+                    <p>{{ T "community_mastodon_description" }}</p>
                 </div>
             </div>
             <div class="community-button twitter-buttons">
@@ -62,33 +62,33 @@
                     <i class="big-icon fas fa-hashtag"></i>
                 </div>
                 <div class="community-text">
-                    <p>Our primary communications platform is IRC on OFTC.</p>
+                    <p>{{ T "community_oftc_description" }}</p>
                 </div>
             </div>
             <div class="community-button chat-button">
-                <a href="/community" class="rounded-button"><i class="fas fa-hashtag"></i> Channel list</a>
+                <a href="{{ relLangURL "community" }}" class="rounded-button"><i class="fas fa-hashtag"></i> {{ T "community_oftc_channel_list" }}</a>
             </div>
         </div>
     </div>
 </section>
 <section id="contribute">
     <div class="center-title">
-        <h1>Contribute</h1>
+        <h1>{{ T "contribute" }}</h1>
     </div>
     <div class="contribute-card center-card">
         <i class="big-icon fab fa-github"></i>
-        <p>Asahi Linux and the open source projects it depends on are made possible by communities of volunteers. All contributors are welcome, of any skill level!</p>
-        <a href="/contribute" class="more">How to contribute<i class="fas fa-angle-right more"></i></a>
+        <p>{{ T "contribute_description" }}</p>
+        <a href="{{ relLangURL "contribute" }}" class="more">{{T "how_to_contribute" }}<i class="fas fa-angle-right more"></i></a>
     </div>
 </section>
 <section id="documentation">
     <div class="center-title">
-        <h1>Documentation</h1>
+        <h1>{{ T "documentation" }}</h1>
     </div>
     <div class="documentation-card center-card">
         <i class="big-icon fas fa-book-open"></i>
-        <p>We are documenting the Apple Silicon platform on our GitHub wiki.</p>
-        <a href="https://github.com/AsahiLinux/docs/wiki" class="more">Visit the Wiki<i class="fas fa-angle-right more"></i></a>
+        <p>{{ T "documentation_description" }}</p>
+        <a href="https://github.com/AsahiLinux/docs/wiki" class="more">{{ T "visit_the_wiki" }}<i class="fas fa-angle-right more"></i></a>
     </div>
 </section>
 {{ partial "footer.html" . }}

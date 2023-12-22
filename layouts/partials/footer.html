@@ -1,25 +1,25 @@
-    <footer id="footer">
-        <div class="footer-menu">
-            <div class="footer-logo">
-                <a href="/">
-                    <img src="/img/AsahiLinux_logomark.svg" class="logo" alt="Asahi Linux logo">
-                </a>
-                <span class="license">Licensed under CC BY-SA 4.0</span>
-                <span class="disclaimer">Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.</span>
-            </div>
-            <div class="footer-links">
-                <ul class="footer-services">
-                    <li><a href="https://social.treehouse.systems/@AsahiLinux"><i class="fab fa-mastodon"></i></a></li>
-                    <li><a href="https://github.com/AsahiLinux"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.patreon.com/marcan"><i class="fab fa-patreon"></i></a></li>
-                </ul>
-                <ul class="footer-menu-container">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/code-of-conduct">Code of Conduct</a></li>
-                    <li><a href="/copyright">Copyright policy</a></li>
-                </ul>
-            </div>
+<footer id="footer">
+    <div class="footer-menu">
+        <div class="footer-logo">
+            <a href="{{ relLangURL "" }}">
+                <img src="/img/AsahiLinux_logomark.svg" class="logo" alt="Asahi Linux logo">
+            </a>
+            <span class="license">{{ T "license" }}</span>
+            <span class="disclaimer">{{ T "disclaimer" }}</span>
         </div>
-    </footer>
+        <div class="footer-links">
+            <ul class="footer-services">
+                <li><a href="https://social.treehouse.systems/@AsahiLinux"><i class="fab fa-mastodon"></i></a></li>
+                <li><a href="https://github.com/AsahiLinux"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.patreon.com/marcan"><i class="fab fa-patreon"></i></a></li>
+            </ul>
+            <ul class="footer-menu-container">
+                <li><a href="{{ relLangURL "about" }}">{{ T "about" }}</a></li>
+                <li><a href="{{ relLangURL "code-of-conduct" }}">{{ T "code_of_conduct" }}</a></li>
+                <li><a href="{{ relLangURL "copyright" }}">{{ T "copyright_policy" }}</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
