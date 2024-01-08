@@ -966,6 +966,7 @@ blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
     padding: 15px;
+    padding-bottom: 5px;
 }
 
 p img, figure img {
