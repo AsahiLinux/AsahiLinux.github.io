@@ -21,10 +21,15 @@ Most development and project discussion takes place on IRC. We have several chan
 * #asahi-alt [[logs](https://oftc.irclog.whitequark.org/asahi-alt)] - Discussion and support for unofficial third-party distro ports
 * #asahi-stream - Chatroom for people to talk during the devs' video streams
 
-
 Even if you don't plan to speak, feel free to join and idle in the above channels if you'd like to follow the discussion.
 
 **Note: Due to spambot attacks, we currently only allow users connecting with TLS to join the channels. Please make sure your IRC client is set to enable TLS and connect to irc.oftc.net on port 6697**.
+
+## Matrix
+
+The Fedora-specific Asahi discussions take place in Matrix on Fedora infra:
+* [#asahi-devel:fedoraproject.org](https://matrix.to/#/#asahi-devel:fedoraproject.org) - Fedora Asahi Development. IRC bridge: #fedora-asahi-dev
+* [#asahi:fedoraproject.org](https://matrix.to/#/#asahi:fedoraproject.org) - Fedora Asahi general discussion/support
 
 ## Wiki
 
