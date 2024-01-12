@@ -903,9 +903,17 @@ body.landing #documentation {
 
 .post h1, .post h2 {
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #999999;
     margin-top: 30px;
+}
+
+.post h1 {
+    margin-top: 45px;
+}
+
+.post h2 {
+    margin-bottom: 15px;
 }
 
 .post p, .code-box, .post ul, blockquote {
@@ -966,10 +974,21 @@ blockquote {
     border: solid 1px;
     background-color: #e2e2e2;
     padding: 15px;
+    padding-bottom: 5px;
 }
 
 p img, figure img {
+    padding-top: 10px;
     max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .twitter-tweet {
@@ -977,11 +996,15 @@ p img, figure img {
 }
 
 .post figure figcaption p {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0;
     text-align: center;
     font-weight: 300;
     font-size: 80%;
+}
+
+.post figure {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Blog */
@@ -1292,11 +1315,11 @@ ul.footer-services i {
     .community-links > div {
         display: block;
     }
-    
+
     div.chat-button {
         padding-bottom: 40px;
     }
-    
+
     div.community-button {
         align-items: center;
     }
@@ -1309,16 +1332,16 @@ ul.footer-services i {
     .header-logo img.logo {
         height: 90px;
     }
-    
+
     .menu-container {
         flex-wrap: wrap;
     }
-    
+
     .menu-container li {
         margin: 0px 15px;
         line-height: 2em;
     }
-    
+
     div.header-menu {
         width: 90%;
     }
@@ -1326,7 +1349,7 @@ ul.footer-services i {
     .community-links > div {
         width: 85%;
     }
-    
+
     div.community-more {
         padding-bottom: 40px;
     }
@@ -1343,52 +1366,52 @@ ul.footer-services i {
     .footer-menu {
         width: 85%;
     }
-    
+
     #eye-catch > div > div:nth-of-type(1) {
         padding-right: 0px;
     }
-    
+
     #eye-catch > div {
         display: block;
         padding: 50px 0px;
     }
-    
+
     #eye-catch > div > div:nth-of-type(2) {
         padding: 50px 0px 50px 0px;
         border-left: none;
     }
-    
+
     div.community-card div.community-text {
         padding: 30px 0px 30px 30px;
     }
-    
+
     div.community-button {
         flex-direction: column;
     }
-    
+
     div.community-button a {
         width: 60%;
         min-width: 200px;
     }
-    
+
     .footer-menu {
         flex-direction: column;
         margin: 20px auto;
     }
-    
+
     .footer-services {
         justify-content: center;
     }
-    
+
     ul.footer-services i {
         margin: 0px 10px;
     }
-    
+
     .footer-links ul {
         justify-content: center;
         margin-bottom: 20px;
     }
-    
+
     .footer-logo {
         justify-content: center;
         order: 2;
