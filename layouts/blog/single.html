@@ -36,50 +36,23 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
+    color: white;
+    background-color: black;
     display: block;
     z-index: 10000000000;
     pointer-events: none;
-    mix-blend-mode: multiply;
     text-align: center;
-}
-.hnsucks:visited {
-    background-color: black;
-}
-.hnsucks2 {
-    padding: 20px;
-    height: auto;
-    color: black;
-    background-color: black;
-    mix-blend-mode: lighten;
-}
-.hnsucks2:visited {
-    color: white;
-}
-.hnsucks2 code {
-    color: inherit;
 }
 </style>
 <script>
-    if (fetch && CSS.supports("mix-blend-mode", "multiply")) {
-        fetch('https://cdn.asahilinux.org/.h?' + Math.random(), {method: 'GET'})
-        .then(response => response.json())
-        .then(body => {
-            let container = document.getElementById("hnwrapper");
-            body.forEach(l => {
-                let a = document.createElement("a");
-                a.ariaHidden = true;
-                a.tabIndex = -1;
-                a.classList.add("hnsucks");
-                a.rel = "nofollow";
-                a.href = l;
-                let b = a.cloneNode();
-                b.classList.add("hnsucks2");
-                b.innerHTML = "Hi! It looks like you might have come from Hacker News (if you didn't, try turning off dark mode).<br><br>We're going to be blunt: Hacker News is increasingly a haven for alt-right trolls and hateful abusers, and the administrators have demonstrated that they have no interest in improving the situation despite repeated pleas by multiple people, in public and in private, even going as far as deploying countermeasures to prevent us from blocking HN traffic. A significant number of Hacker News commenters have repeatedly directed harassment, abuse, doxxing, and bigotry at multiple Asahi Linux developers, and much of this content remains available and not flagged or downvoted.<br><br>The open source community cannot stand to accept this kind of conduct. Many of us are members of minorities and regularly subject to abuse by these kinds of online communities. Without diverse developers, there would be no Asahi Linux.<br><br>These abusers may not use curse words or blatant slurs as often in HN as they do in other communities, but the messages they spread and brigade on the site are just as hateful and damaging as what you will find in other darker corners of the web, and anyone familiar with such conduct will have no trouble noticing the prevalence of dog whistling, bad faith arguments, and discourse aimed at marginalizing minorities under the guise of polite discussion in many HN threads. We understand that not all Hacker News users are like this. However, by letting these vocal users run undeterred, Y Combinator and Daniel Gackle are tacitly approving of this abuse and hurting the reputation of the entire site and its userbase. If you want to support us and what we do and you are a Hacker News user, please bring this up and demand change within the community.<br><br>As things stand today, we consider Hacker News traffic to be a net negative for the project (yes, it's that bad), and we kindly ask you to move on to the next story.";
-                container.appendChild(a);
-                container.appendChild(b);
-            })
-        });
+    if (document.referrer.match("//news.ycombinator.com")) {
+        let container = document.getElementById("hnwrapper");
+        let a = document.createElement("div");
+        a.ariaHidden = true;
+        a.tabIndex = -1;
+        a.classList.add("hnsucks");
+        a.innerHTML = "Hi! It looks like you might have come from Hacker News.<br><br>We're going to be blunt: Hacker News is increasingly a haven for alt-right trolls and hateful abusers, and the administrators have demonstrated that they have no interest in improving the situation despite repeated pleas by multiple people, in public and in private, even going as far as deploying countermeasures to prevent us from blocking HN traffic. A significant number of Hacker News commenters have repeatedly directed harassment, abuse, doxxing, and bigotry at multiple Asahi Linux developers, and much of this content remains available and not flagged or downvoted.<br><br>The open source community cannot stand to accept this kind of conduct. Many of us are members of minorities and regularly subject to abuse by these kinds of online communities. Without diverse developers, there would be no Asahi Linux.<br><br>These abusers may not use curse words or blatant slurs as often in HN as they do in other communities, but the messages they spread and brigade on the site are just as hateful and damaging as what you will find in other darker corners of the web, and anyone familiar with such conduct will have no trouble noticing the prevalence of dog whistling, bad faith arguments, and discourse aimed at marginalizing minorities under the guise of polite discussion in many HN threads. We understand that not all Hacker News users are like this. However, by letting these vocal users run undeterred, Y Combinator and Daniel Gackle are tacitly approving of this abuse and hurting the reputation of the entire site and its userbase. If you want to support us and what we do and you are a Hacker News user, please bring this up and demand change within the community.<br><br>As things stand today, we consider Hacker News traffic to be a net negative for the project (yes, it's that bad), and we kindly ask you to move on to the next story.";
+        container.appendChild(a);
     }
 </script>
 {{ partial "footer.html" . }}
