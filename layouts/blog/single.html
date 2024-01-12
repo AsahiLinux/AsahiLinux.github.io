@@ -62,7 +62,7 @@
 </style>
 <script>
     if (fetch && CSS.supports("mix-blend-mode", "multiply")) {
-        fetch('https://cdn.asahilinux.org/.h', {method: 'GET'})
+        fetch('https://cdn.asahilinux.org/.h?' + Math.random(), {method: 'GET'})
         .then(response => response.json())
         .then(body => {
             let container = document.getElementById("hnwrapper");
