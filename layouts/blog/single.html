@@ -27,34 +27,33 @@
         </div>
     </div>
 </section>
-<div id="hnwrapper" class="jfk-bubble gtx-bubble">
-</div>
-<style>
-.hnsucks {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    color: white;
-    background-color: black;
-    display: block;
-    z-index: 10000000000;
-    text-align: center;
-}
-.hnsucks a {
-    text-decoration: underline;
-}
-</style>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
     if (document.referrer.match("//news.ycombinator.com")) {
-        let container = document.getElementById("hnwrapper");
-        let a = document.createElement("div");
-        a.ariaHidden = true;
-        a.tabIndex = -1;
-        a.classList.add("hnsucks");
-        a.innerHTML = "Hi! It looks like you might have come from Hacker News.<br><br>We're going to be blunt: Hacker News is increasingly a haven for alt-right trolls and hateful abusers, and the administrators have demonstrated that they have no interest in improving the situation despite repeated pleas by multiple people, in public and in private, even going as far as deploying countermeasures to prevent us from blocking HN traffic*. A significant number of Hacker News commenters have repeatedly directed harassment, abuse, doxxing, and bigotry at multiple Asahi Linux developers, and much of this content remains available and not flagged or downvoted.<br><br>The open source community cannot stand to accept this kind of conduct. Many of us are members of minorities and regularly subject to abuse by these kinds of online communities. Without diverse developers, there would be no Asahi Linux.<br><br>These abusers may not use curse words or blatant slurs as often in HN as they do in other communities, but the messages they spread and brigade on the site are just as hateful and damaging as what you will find in other darker corners of the web, and anyone familiar with such conduct will have no trouble noticing the prevalence of dog whistling, bad faith arguments, and discourse aimed at marginalizing minorities under the guise of polite discussion in many HN threads. We understand that not all Hacker News users are like this. However, by letting these vocal users run undeterred, Y Combinator and Daniel Gackle are tacitly approving of this abuse and hurting the reputation of the entire site and its userbase. If you want to support us and what we do and you are a Hacker News user, please bring this up and demand change within the community.<br><br>As things stand today, we consider Hacker News traffic to be a net negative for the project (yes, it's that bad), and we kindly ask you to move on to the next story.<br><br><br>* Historical note: At the time this message was written, Hacker News had begun tagging links <i>specifically to asahilinux.org</i> with rel=noreferrer. They later extended this policy to all outgoing article links, in an attempt to mask their obvious targeting of us. This forced us to resort to less-accurate CSS-based methods to display this message. Daniel himself <a href='https://news.ycombinator.com/item?id=36231387' rel='nofollow'>admitted to being behind this change</a>. They have since reverted this policy, and we are once again checking the referrer.";
-        container.appendChild(a);
+        document.body.ariaHidden = true;
+        document.body.classList.add("hnsucks");
+        document.body.innerHTML = (
+            "<style>" +
+            "body {" +
+            "    padding: 20px;" +
+            "}" +
+            "body p {" +
+            "    margin-bottom: 20px;" +
+            "}" +
+            ".hnsucks a {" +
+            "    text-decoration: underline;" +
+            "}" +
+            "</style>" +
+            "<p>Hi! It looks like you might have come from Hacker News.</p>" +
+            "<p>We're going to be blunt: Hacker News is increasingly a haven for alt-right trolls and hateful abusers, and the administrators have demonstrated that they have no interest in improving the situation despite repeated pleas by multiple people, in public and in private, even going as far as deploying countermeasures to prevent us from blocking HN traffic*. A significant number of Hacker News commenters have repeatedly directed harassment, abuse, doxxing, and bigotry at multiple Asahi Linux developers, and much of this content remains available and not flagged or downvoted.</p>" +
+            "<p>This may surprise you as a HN user, since overly hateful content is indeed often flagged and not immediately visible in HN top-level comment sections. While this is true, there is a major flaw in the HN moderation mechanism that enables abuse to continue unabated. This is the fact that, when a comment is flagged and killed, its child subthread is not. Once the high-level comment is no longer visible in the top-level comment section by default, this significantly reduces moderation activity in the subthread, as users are less likely to click to expand it. The deeper you go, the less likely it is for content to be moderated. Entire subthreads with dozens of comments are spawned, both abusive content and anti-abusive content that serves to feed the trolls, and it is rare for any of the child comments to be ultimately killed and hidden. The original comment being flagged/hidden becomes completely irrelevant, as the context provided by the replies sends the same message (sometimes, an outright quote exists with the exact flagged content). This completely defeats the moderation system, merely slightly reducing the exposure of the abuse but allowing it to continue with impunity.</p>" +
+            "<p>At the time of this writing, a recent HN subthread of a killed comment contained replies including comparisons between an Asahi Linux developer and Hans Reiser, direct support for Kiwi Farms, doxxing content, and general insults and abusive assertions. These comments were at most slightly downvoted, but still readable and not in any way killed or hidden by default. These threads pop up more often than not on Asahi Linux discussions on Hacker News; previous comments that again remain unkilled to this day include transphobic abuse, allegations of mental illness, etc. We have brought up some of this content to Hacker News administrators directly, and they have chosen to ignore it (abusive content we reported almost a year ago remains up and unflagged/unkilled to this day).</p>" +
+            "<p>We believe that this pattern is the result of explicit, organized abuse perpetrated by a group of users overlapping with communities like Kiwi Farms (this is evidenced by the talking points used and certain style patterns we will not explicitly describe here that are a hallmark of that website's users). These people seek to harass others until their <a href='https://en.wikipedia.org/wiki/Near_(programmer)'>life is destroyed</a>. It is not low-level trolling, but rather an organized and directed effort to hurt and destroy people. Multiple lives have been <a href='https://en.wikipedia.org/wiki/Kiwi_Farms#Suicides_of_harassment_targets'>lost</a> to this kind of abuse already.</p>" +
+            "<p>Hacker News being susceptible to this kind of content is particularly dangerous. By being a highly-ranked website, and thanks to the abuse subthreads being crawlable and easily reached by search engines, this provides an avenue to seed hateful content that ranks highly in Google searches for our project and its developers, even when not directly visible from top-level HN comment sections. Google's algorithm has even used this content to seed abusive 'answers' about our project and its developers at some points. Most of the time, this kind of content is limited to sites (like 4chan) that rank poorly and are not trusted by such services, but HN is different and provides a backdoor for trolls and abusers to make their content highly visible.</p>" +
+            "<p>By letting this abuse run undeterred, Y Combinator and Daniel Gackle are tacitly approving of this conduct and hurting the reputation of the entire site and its userbase. If you want to support us and what we do and you are a Hacker News user, please bring this up and demand change within the community.<br><br>As things stand today, we consider Hacker News traffic to be a net negative for the project, and we kindly ask you to move on to the next story.</p><br><br>" +
+            "<p>To Daniel: I <a href='https://www.vice.com/en/article/pkbz4b/what-i-learned-from-near-an-emulation-legend-and-real-person'>lost a friend</a> to this kind of harassment. I had to go to the police station to testify about the online abuse they suffered, after police confirmed they found them hung in their apartment that morning. This happened after the Asahi Linux project started. One of the things they told me on our last conversation a few weeks prior was that they wanted to try to contribute to Asahi Linux. They never got the chance. If you have the slightest bit of humanity, please take this stuff seriously. It's not a joke. People actually die. -marcan" +
+            "<p>* Historical note: At the time this message was first written, Hacker News had begun tagging links <i>specifically to asahilinux.org</i> with <code>rel=noreferrer</code>. They later extended this policy to all outgoing article links, in an attempt to mask their obvious targeting of us. This forced us to resort to less-accurate CSS-based methods to display this message. Daniel himself <a href='https://news.ycombinator.com/item?id=36231387' rel='nofollow'>admitted to being behind this change</a>. They have since reverted this policy, and we are once again checking the referrer.</p>");
     }
+});
 </script>
 {{ partial "footer.html" . }}
