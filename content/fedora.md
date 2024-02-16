@@ -54,9 +54,9 @@ And with upcoming improvements in the Wayland ecosystem, we'll be able to suppor
 
 ## <div>OpenGL, deprecated? Not here</div>
 
-<img width="200" class="w-200" src="/img/far_landing/OpenGL_ES_logo.svg">Fedora Asahi Remix ships with non-conformant OpenGL 3.3 support including GPU-accelerated geometry shaders and transform feedback, as well as the world's first and only [certified conformant OpenGL ES 3.1](https://www.khronos.org/conformance/adopters/conformant-products/opengles#submission_1007) implementation for Apple Silicon.
+<img width="200" class="w-200" src="/img/far_landing/OpenGL_logo.svg">Fedora Asahi Remix ships with the world's first and only [certified conformant OpenGL 4.6](https://www.khronos.org/conformance/adopters/conformant-products/opengl#submission_347) and [OpenGL ES 3.2](https://www.khronos.org/conformance/adopters/conformant-products/opengles#submission_1045) for Apple Silicon.
 
-We support open graphics standards and test against official and industry-standard test suites, which means you can be confident that your apps and games will run correctly and render as they're intended to. And we're not stopping there, with OpenGL 4.x and Vulkan support in the works. We aim to unlock the full potential of Apple Silicon graphics, well beyond what is possible by layering on top of vendor-proprietary APIs like Metal.
+We support open graphics standards and test against official and industry-standard test suites, which means you can be confident that your apps and games will run correctly and render as they're intended to. And we're not stopping there, with Vulkan support in the works. We aim to unlock the full potential of Apple Silicon graphics, well beyond what is possible by layering on top of vendor-proprietary APIs like Metal.
 
 </section>
 <section class="topic">
