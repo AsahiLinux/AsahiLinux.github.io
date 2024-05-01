@@ -1311,6 +1311,27 @@ ul.footer-services i {
     opacity: 0.8;
 }
 
+.disclaimer a {
+    text-decoration: underline;
+}
+
+/* Kawaii mode */
+html.kawaii img.logo {
+    content: url("/img/AsahiLinux_kawaii_logo.png");
+}
+
+html.kawaii img.laptop {
+    content: url("/img/asahilinux_kawaii_laptop.svg");
+}
+
+.kawaii-disclaimer {
+    display: none;
+}
+
+html.kawaii .kawaii-disclaimer {
+    display: inline;
+}
+
 @media screen and (max-width: 1050px) {
     .community-links > div {
         display: block;

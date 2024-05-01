@@ -25,6 +25,15 @@
 
     <meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
     <meta property="og:title" content="{{ if not .IsHome }}{{.Title}} - {{ end }}Asahi Linux">
+    <script>
+        var kawaii = (new URLSearchParams(window.location.search)).get("kawaii") ?? localStorage.getItem("kawaii");
+        if (kawaii == "true") {
+            document.documentElement.classList.add("kawaii");
+            localStorage.setItem("kawaii", "true");
+        } else {
+            localStorage.removeItem("kawaii");
+        }
+    </script>
 </head>
 <body class="{{ .Scratch.Get "body_class" }}">
     <header id="header">
