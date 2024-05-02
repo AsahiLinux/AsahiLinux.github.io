@@ -22,6 +22,10 @@ Asahi means "rising sun" in Japanese, and it is also the name of an apple cultiv
 
 The Asahi Linux logo and website were designed by [soundflora*](https://soundflora.tokyo). You can find the logo artwork [here](https://github.com/AsahiLinux/artwork/tree/main/logos).
 
+<img src="/img/AsahiLinux_kawaii_logo.png" alt="Kawaii Asahi Linux logo" width="100">
+
+Kawaii Asahi Linux logo by [SAWARATSUKI](https://twitter.com/sawaratsuki1004). You can find the logo artwork [here](https://github.com/SAWARATSUKI/Logos). Click to \[[enable](/about/?kawaii=true)・[disable](/about/?kawaii=false)\] kawaii mode.
+
 # FAQ
 
 ## What devices are/will be supported?
