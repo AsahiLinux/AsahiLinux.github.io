@@ -72,3 +72,7 @@ Asahi Linux is a community, and everyone is invited to contribute. If you are in
 * [Martin Povišer (povik)](https://github.com/povik/), who is leading our audio kernel driver effort. Martin wrote and is upstreaming the Apple-specific SoC audio drivers as well as drivers for Apple-proprietary codecs and codec variants.
 
 * [Janne Grunau](https://github.com/jannau), who implemented touchpad/keyboard support for the M1 series and is now maintaining the display controller (DCP) driver, having recently added HDMI out support. He has also been involved in countless other bits and pieces, including device trees and submission.
+
+* [James Calligeros (chadmed)](https://github.com/chadmed), who implemented energy-aware scheduling (EAS), hand-tuned fancy DSPs for the speakers, then added utilisation clamping to PipeWire such that the fancy DSPs don't draw fancy power. Also maintains asahi-gentoo.
+
+* [Eileen Yoon (eiln)](https://github.com/eiln), our signals guru covering multimedia and accelerators. Eileen is currently working on hardware video codec acceleration, having already knocked out the Neural Engine and Image Signal Processor (camera).
