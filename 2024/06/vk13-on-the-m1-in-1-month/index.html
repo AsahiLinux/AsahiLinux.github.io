@@ -1,0 +1,231 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Vulkan 1.3 on the M1 in 1 month - Asahi Linux</title><link rel=stylesheet href=/css/main.css?b10066a9>
+<link href=https://use.fontawesome.com/releases/v5.6.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Vulkan 1.3 on the M1 in 1 month - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Vulkan 1.3 on the M1 in 1 month - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=https://github.com/AsahiLinux/docs/wiki>Wiki</a></li><li><a href=/blog>Blog</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2024/06/vk13-on-the-m1-in-1-month/>
+Vulkan 1.3 on the M1 in 1 month
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Vulkan 1.3 on the M1 in 1 month</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2024/02/conformant-gl46-on-the-m1/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><style>u{text-decoration-thickness:.09em;text-decoration-color:skyblue}</style><p>Finally, conformant Vulkan for the M1! The new &ldquo;Honeykrisp&rdquo; driver is the first
+<a href=https://www.khronos.org/conformance/adopters/conformant-products/vulkan#submission_780>conformant
+Vulkan®</a>
+for Apple hardware on any operating system, implementing the full 1.3 spec
+without &ldquo;portability&rdquo; waivers.</p><p>Honeykrisp is <strong>not yet released</strong> for end users. We&rsquo;re
+continuing to add features, improve performance, and port to more hardware.
+<a href="https://gitlab.freedesktop.org/alyssa/mesa/-/tree/honeykrisp-20240506-2/src/asahi/vulkan?ref_type=heads">Source
+code</a>
+is available for developers.</p><figure><a href=/img/blog/2024/06/holocure.png><img src=/img/blog/2024/06/holocure.avif alt="HoloCure running on Honeykrisp ft. DXVK, FEX, and Proton."></a> <figcaption aria-hidden=true><a href=https://kay-yu.itch.io/holocure>HoloCure</a> running on Honeykrisp ft. DXVK, FEX, and Proton.</figcaption></figure><p>Honeykrisp is not based on prior M1 Vulkan efforts, but rather
+<a href=https://mastodon.gamedev.place/@gfxstrand>Faith Ekstrand</a>&rsquo;s open source <a href=https://www.collabora.com/news-and-blog/news-and-events/introducing-nvk.html>NVK
+driver</a>
+for NVIDIA GPUs. In her words:</p><blockquote>
+<p>All Vulkan drivers in Mesa trace their lineage to the Intel Vulkan
+driver and started by copying+pasting from it. My hope is that NVK
+will eventually become the driver that everyone copies and pastes from. To
+that end, I&rsquo;m building NVK with all the best practices we&rsquo;ve developed for
+Vulkan drivers over the last 7.5 years and trying to keep the code-base clean
+and well-organized.</p></blockquote><p>Why spend years implementing features from scratch when we can reuse NVK?
+There will be friction starting out, given NVIDIA&rsquo;s desktop architecture
+differs from the M1&rsquo;s mobile roots. In exchange, we get a modern driver
+designed for desktop games.</p><p>We&rsquo;ll need to pass a half-million tests ensuring correctness, <a href=https://www.khronos.org/conformance/adopters>submit the
+results</a>, and then we&rsquo;ll become
+conformant after 30 days of industry review. Starting from NVK and our OpenGL
+4.6 driver&mldr; can we write a driver passing the Vulkan 1.3 conformance test
+suite <em>faster</em> than the 30 day review period?</p><p>It&rsquo;s unprecedented&mldr;</p><p>Challenge accepted.</p><h3 id=april-2>April 2</h3><p>It begins with a text.</p><blockquote>
+<p><em>Faith&mldr; I think I want to write a Vulkan driver.</em></p></blockquote><p>Her advice?</p><blockquote>
+<p><em>Just start typing.</em></p></blockquote><p>There&rsquo;s no copy-pasting yet &ndash; we just add M1 code to NVK and
+remove NVIDIA as we go. Since the kernel mediates our access to the hardware, we
+begin connecting &ldquo;NVK&rdquo; to <a href=https://vt.social/@lina>Asahi Lina</a>&rsquo;s kernel
+driver using code shared with OpenGL. Then we plug in our shader
+compiler and hit the hay.</p><h3 id=april-3>April 3</h3><p>To access resources, GPUs use &ldquo;descriptors&rdquo; containing the address, format, and
+size of a resource. Vulkan bundles descriptors into &ldquo;sets&rdquo; per the application&rsquo;s &ldquo;descriptor
+set layout&rdquo;. When compiling shaders, the driver lowers descriptor accesses to
+marry the set layout with the hardware&rsquo;s data structures. As our descriptors
+differ from NVIDIA&rsquo;s, our next task is adapting NVK&rsquo;s descriptor set lowering.
+We start with a simple but correct approach, deleting far more code than we
+add.</p><h3 id=april-4>April 4</h3><p>With working descriptors, we can compile compute shaders. Now we program
+the fixed-function hardware to dispatch compute. We first add
+bookkeeping to map Vulkan command buffers to lists of M1 &ldquo;control streams&rdquo;,
+then we generate a compute control stream. We copy that code from our OpenGL
+driver, translate the GL into Vulkan, and compute works.</p><p>That&rsquo;s enough to move on to &ldquo;copies&rdquo; of buffers and images. We implement
+Vulkan&rsquo;s copies with compute shaders, internally dispatched
+with Vulkan commands as if we were the application. The first copy test
+passes.</p><h3 id=april-5>April 5</h3><p>Fleshing out yesterday&rsquo;s code, <em>all</em> copy tests pass.</p><h3 id=april-6>April 6</h3><p>We&rsquo;re ready to tackle graphics. The novelty is handling graphics state like
+depth/stencil. That&rsquo;s straightforward, but there&rsquo;s a <em>lot</em>
+of state to handle. Faith&rsquo;s code collects all &ldquo;dynamic state&rdquo; into a single
+structure, which we translate into hardware control words. As usual, we grab
+that translation from our OpenGL driver, blend with NVK, and move on.</p><h3 id=april-7>April 7</h3><p>What makes state &ldquo;dynamic&rdquo;? Dynamic state can change without
+recompiling shaders. By contrast, static state is baked into shader
+binaries called &ldquo;pipelines&rdquo;. If games create all their pipelines
+during a loading screen, there is no compiler &ldquo;stutter&rdquo; during gameplay. The
+idea hasn&rsquo;t quite panned out: many game developers don&rsquo;t know their state
+ahead-of-time so cannot create pipelines early. In response, Vulkan has
+<u><a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state.html>made</a></u>
+<u><a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state2.html>ever</a></u>
+<u><a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state3.html>more</a></u>
+<u><a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_vertex_input_dynamic_state.html>state</a></u>
+<u><a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_graphics_pipeline_library.html>dynamic</a></u>, punctuated with the
+<a href=https://www.khronos.org/blog/you-can-use-vulkan-without-pipelines-today><code>EXT_shader_object</code></a>
+extension that makes pipelines <em>optional</em>.</p><p>We want full dynamic state and shader objects. Unfortunately, the M1 bakes
+random state into shaders: vertex attributes, fragment outputs, blending, even
+linked interpolation qualifiers. Like most of the industry in the 2010s, the
+M1&rsquo;s designers bet on pipelines.</p><p>Faced with this hardware, a reasonable driver developer would double-down on
+pipelines. DXVK would stutter, but we&rsquo;d pass conformance.</p><p>I am not reasonable.</p><p>To eliminate stuttering in OpenGL, we make state dynamic with four strategies:</p><ul>
+<li>Conditional code.</li><li>Precompiled variants.</li><li>Indirection.</li><li>Prologs and epilogs.</li></ul><p>Wait, what-a-logs?</p><p>AMD also bakes state into shaders&mldr; with a twist. They divide the
+hardware binary into three parts: a <em>prolog</em>, the shader, and an <em>epilog</em>.
+Confining dynamic state to the periphery eliminates shader variants. They
+compile prologs and epilogs on the fly, but that&rsquo;s fast and doesn&rsquo;t stutter.
+Linking shader parts is a quick concatenation, or long jumps avoid linking
+altogether. This strategy works for the M1, too.</p><p>For Honeykrisp, let&rsquo;s follow NVK&rsquo;s lead and treat <em>all</em> state as dynamic.
+No other Vulkan driver has implemented full dynamic state and shader objects
+this early on, but it avoids refactoring later. Today we add the code to build,
+compile, and cache prologs and epilogs.</p><p>Putting it together, we get a (dynamic) triangle:</p><p><a href=/img/blog/2024/06/hk-triangle.png><img src=/img/blog/2024/06/hk-triangle.avif alt="Classic rainbow triangle"></a></p><h3 id=april-8>April 8</h3><p>Guided by the list of failing tests, we wire up the little bits missed along
+the way, like translating border colours.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>/* Translate an American VkBorderColor into a Canadian agx_border_colour */</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>enum</span> agx_border_colour
+</span></span><span style=display:flex><span><span style=color:#a6e22e>translate_border_color</span>(VkBorderColor color)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>switch</span> (color) {
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>case</span> VK_BORDER_COLOR_INT_TRANSPARENT_BLACK:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> AGX_BORDER_COLOUR_TRANSPARENT_BLACK;
+</span></span><span style=display:flex><span>   ...
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Test results are getting there.</p><blockquote>
+<p><strong>Pass</strong>: 149770, <strong>Fail</strong>: 7741, <strong>Crash</strong>: 2396</p></blockquote><p>That&rsquo;s good enough for <a href=https://github.com/Novum/vkQuake>vkQuake</a>.</p><p><a href=/img/blog/2024/06/vkquake.png><img src=/img/blog/2024/06/vkquake.avif alt="Vulkan port of Quake running on Honeykrisp"></a>\</p><h3 id=april-9>April 9</h3><p>Lots of little fixes bring us to a 99.6% pass rate&mldr; for Vulkan 1.1. Why stop
+there? NVK is 1.3 conformant, so let&rsquo;s claim 1.3 and skip to the finish line.</p><blockquote>
+<p><strong>Pass</strong>: 255209, <strong>Fail</strong>: 3818, <strong>Crash</strong>: 599</p></blockquote><p>98.3% pass rate for 1.3 on our 1 week anniversary.</p><p>Not bad.</p><h3 id=april-10>April 10</h3><p>SuperTuxKart has a Vulkan renderer.</p><p><a href=/img/blog/2024/06/hkr-stk.png><img src=/img/blog/2024/06/hkr-stk.avif alt="SuperTuxKart rendering with Honeykrisp, showing Pepper (from Pepper and Carrot) riding her broomstick in the STK Enterprise"></a></p><h3 id=april-11>April 11</h3><p><a href=https://docs.mesa3d.org/drivers/zink.html>Zink</a> works too.</p><p><a href=/img/blog/2024/06/hkr-stk-zink.png><img src=/img/blog/2024/06/hkr-stk-zink.avif alt="SuperTuxKart rendering with Zink on Honeykrisp, same scene but with better lighting"></a></p><h3 id=april-12>April 12</h3><p>I tracked down some fails to a test bug, where an arbitrary verification
+threshold was too strict to pass on some devices. I filed a bug report, and it&rsquo;s
+<a href=https://github.com/KhronosGroup/VK-GL-CTS/commit/5fd73c841d775dff1ad52d8340d79dc120d64696>resolved</a>
+within a few weeks.</p><h3 id=april-16>April 16</h3><p>The tests for &ldquo;descriptor indexing&rdquo; revealed a compiler bug affecting subgroup
+shuffles in non-uniform control flow. The M1&rsquo;s shuffle instruction is quirky,
+but it&rsquo;s easy to workaround. Fixing that fixes the descriptor indexing tests.</p><h3 id=april-17>April 17</h3><p>A few tests crash inside our register allocator. Their shaders contain a
+peculiar construction:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>if</span> (condition) {
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>while</span> (true) { }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><code>condition</code> is always false, but the compiler doesn&rsquo;t know that.</p><p>Infinite loops are nominally invalid since shaders must terminate in finite
+time, but this shader is syntactically valid. &ldquo;All loops contain a break&rdquo; seems
+obvious for a shader, but it&rsquo;s false. It&rsquo;s straightforward to fix register
+allocation, but what a doozy.</p><h3 id=april-18>April 18</h3><p>Remember copies? They&rsquo;re slow, and every frame currently requires a copy to get
+on screen.</p><p>For &ldquo;zero copy&rdquo; rendering, we need enough Linux window system integration to
+negotiate an efficient surface layout across process boundaries. Linux uses
+&ldquo;modifiers&rdquo; for this purpose, so we implement the
+<a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_image_drm_format_modifier.html><code>EXT_image_drm_format_modifier</code></a>
+extension. And by implement, I mean copy.</p><p>Copies to avoid copies.</p><h3 id=april-20>April 20</h3><blockquote>
+<p><em>&ldquo;I&rsquo;d like a 4K x86 Windows Direct3D PC game on a 16K arm64 Linux Vulkan Mac.&rdquo;</em></p><p>&mldr;</p><p><em>&ldquo;Ma&rsquo;am, this is a Wendy&rsquo;s.&rdquo;</em></p></blockquote><h3 id=april-22>April 22</h3><p>As bug fixing slows down, we step back and check our driver architecture.
+Since we treat all state as dynamic, we don&rsquo;t pre-pack control words during
+pipeline creation. That adds theoretical CPU overhead.</p><p>Is that a problem? After some optimization,
+<a href=https://github.com/zmike/vkoverhead>vkoverhead</a> says we&rsquo;re pushing 100
+million draws per second.</p><p>I think we&rsquo;re okay.</p><h3 id=april-24>April 24</h3><p>Time to light up YCbCr. If we don&rsquo;t use special YCbCr hardware,
+this feature is &ldquo;software-only&rdquo;. However, it touches a <em>lot</em> of code.</p><p>It touches so much code that <a href=https://mohamexiety.github.io/posts/final_report/>Mohamed
+Ahmed</a> spent an entire
+summer adding it to NVK.</p><p>Which means he spent a summer adding it to Honeykrisp.</p><p>Thanks, Mohamed ;-)</p><h3 id=april-25>April 25</h3><p>Query copies are next. In Vulkan, the application can query the number of samples rendered,
+writing the result into an opaque
+&ldquo;query pool&rdquo;. The result can be copied from the query pool on the CPU or GPU.</p><p>For the CPU, the driver maps the pool&rsquo;s internal data structure and copies the
+result. This may require nontrivial repacking.</p><p>For the GPU, we need to repack in a compute shader. That&rsquo;s harder, because
+we can&rsquo;t just run C code on the GPU, right?</p><p>&mldr;Actually, we can.</p><p>A little witchcraft makes GPU query copies as easy as C.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>copy_query</span>(<span style=color:#66d9ef>struct</span> params <span style=color:#f92672>*</span>p, <span style=color:#66d9ef>int</span> i) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>uintptr_t</span> dst <span style=color:#f92672>=</span> p<span style=color:#f92672>-&gt;</span>dest <span style=color:#f92672>+</span> i <span style=color:#f92672>*</span> p<span style=color:#f92672>-&gt;</span>stride;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> query <span style=color:#f92672>=</span> p<span style=color:#f92672>-&gt;</span>first <span style=color:#f92672>+</span> i;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (p<span style=color:#f92672>-&gt;</span>available[query] <span style=color:#f92672>||</span> p<span style=color:#f92672>-&gt;</span>partial) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> q <span style=color:#f92672>=</span> p<span style=color:#f92672>-&gt;</span>index[query];
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>write_result</span>(dst, p<span style=color:#f92672>-&gt;</span>_64, p<span style=color:#f92672>-&gt;</span>results[q]);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  ...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=april-26>April 26</h3><p>The final boss: border colours, hard mode.</p><p>Direct3D lets the application choose an arbitrary border colour when
+creating a sampler. By contrast, Vulkan only requires three border colours:</p><ul>
+<li><strong><code>(0, 0, 0, 0)</code></strong> &ndash; transparent black</li><li><strong><code>(0, 0, 0, 1)</code></strong> &ndash; opaque black</li><li><strong><code>(1, 1, 1, 1)</code></strong> &ndash; opaque white</li></ul><p>We handled these on April 8. Unfortunately, there are two problems.</p><p>First, we need custom border colours for Direct3D compatibility. Both <a href=https://github.com/doitsujin/dxvk>DXVK</a> and
+<a href=https://github.com/HansKristian-Work/vkd3d-proton>vkd3d-proton</a> require the
+<a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_custom_border_color.html><code>EXT_custom_border_color</code></a>
+extension.</p><p>Second, there&rsquo;s a subtle problem with our hardware, causing dozens of fails
+even without custom border colours. To understand the issue, let&rsquo;s revisit
+texture descriptors, which contain a
+pixel <em>format</em> and a component reordering <em>swizzle</em>.</p><p>Some formats are implicitly reordered. Common &ldquo;BGRA&rdquo; formats swap red and blue
+for <a href=https://stackoverflow.com/questions/74924790/why-bgra-instead-of-rgba>historical
+reasons</a>.
+The M1 does not directly support these formats. Instead, the driver composes
+the swizzle with the format&rsquo;s reordering. If the application uses a <code>BARB</code>
+swizzle with a <code>BGRA</code> format, the driver uses an <code>RABR</code> swizzle with an
+<code>RGBA</code> format.</p><p>There&rsquo;s a catch: swizzles apply to the border colour, but formats do not. We
+need to <em>undo</em> the format reordering when programming the border colour for
+correct results after the hardware applies the composed swizzle. Our OpenGL
+driver implements border colours this way, because it knows the texture format
+when creating the sampler. Unfortunately, Vulkan doesn&rsquo;t give us that
+information.</p><p>Without custom border colour support, we &ldquo;should&rdquo; be okay. Swapping red
+and blue doesn&rsquo;t change anything if the colour is white or black.</p><p>There&rsquo;s an even <em>subtler</em> catch. Vulkan mandates support for a
+packed 16-bit format with 4-bit components. The M1 supports a similar format&mldr;
+but with reversed &ldquo;endianness&rdquo;, swapping red and <em>alpha</em>.</p><p>That still seems okay. For transparent black (all zero) and opaque white (all
+one), swapping components doesn&rsquo;t change the result.</p><p>The problem is opaque black: <code style=white-space:nowrap>(0, 0, 0,
+1)</code>. Swapping red and alpha gives <code style=white-space:nowrap>(1,
+0, 0, 0)</code>. Transparent red? Uh-oh.</p><p>We&rsquo;re stuck. No known hardware configuration implements correct Vulkan
+semantics.</p><p>Is hope lost?</p><p>Do we give up?</p><p>A reasonable person would.</p><p>I am not reasonable.</p><p>Let&rsquo;s jump into the deep end. If we implement custom border colours, opaque
+black becomes a special case. But how? The M1&rsquo;s custom border colours entangle
+the texture format with the sampler. A reasonable person would skip Direct3D
+support.</p><p>As you know, I am not reasonable.</p><p>Although the hardware is unsuitable, we control software. Whenever a shader
+samples a texture, we&rsquo;ll inject code to fix up the border colour. This
+emulation is simple, correct, and slow. We&rsquo;ll use dirty driver
+tricks to speed it up later. For now, we eat the cost, advertise full custom border
+colours, and pass the opaque black tests.</p><h3 id=april-27>April 27</h3><p>All that&rsquo;s left is some last minute bug fixing, and&mldr;</p><blockquote>
+<p><strong>Pass</strong>: 686930, <strong>Fail</strong>: 0</p></blockquote><p>Success.</p><h3 id=the-future>The future</h3><p>The next task is implementing everything that
+<a href=https://github.com/doitsujin/dxvk/blob/master/VP_DXVK_requirements.json>DXVK</a>
+and
+<a href=https://github.com/HansKristian-Work/vkd3d-proton/blob/master/VP_D3D12_VKD3D_PROTON_profile.json>vkd3d-proton</a>
+require to layer Direct3D. That includes esoteric extensions like
+<a href=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_transform_feedback.html>transform feedback</a>. Then <a href=https://www.winehq.org/>Wine</a> and an <a href=https://github.com/FEX-Emu/FEX>open source x86
+emulator</a> will run Windows games on <a href=https://asahilinux.org/>Asahi
+Linux</a>.</p><p>That&rsquo;s getting ahead of ourselves. In the mean time, enjoy Linux games with
+our <a href=/img/blog/2024/06/blog/conformant-gl46-on-the-m1.html>conformant OpenGL
+4.6</a> drivers&mldr; and
+stay tuned.</p><figure><a href=/img/blog/2024/06/babystorm.png><img src=/img/blog/2024/06/babystorm.avif alt="Baby Storm running on Honeykrisp ft. DXVK, FEX, and Proton."></a> <figcaption aria-hidden=true><a href=https://store.steampowered.com/app/2176400/Baby_Storm/>Baby Storm</a> running on Honeykrisp ft. DXVK, FEX, and Proton.</figcaption></figure><hr>
+<div class=post-bottom>Alyssa Rosenzweig · <span class=publishdate>2024-06-05</span></div></div></div></section><script>document.addEventListener("DOMContentLoaded",function(){document.referrer.match("//news.ycombinator.com")&&(document.body.ariaHidden=!0,document.body.classList.add("hnsucks"),document.body.innerHTML="<style>body {    padding: 20px;}body p {    margin-bottom: 20px;}.hnsucks a {    text-decoration: underline;}</style><p>Hi! It looks like you might have come from Hacker News.</p><p>We're going to be blunt: Hacker News is increasingly a haven for alt-right trolls and hateful abusers, and the administrators have demonstrated that they have no interest in improving the situation despite repeated pleas by multiple people, in public and in private, even going as far as deploying countermeasures to prevent us from blocking HN traffic*. A significant number of Hacker News commenters have repeatedly directed harassment, abuse, doxxing, and bigotry at multiple Asahi Linux developers, and much of this content remains available and not flagged or downvoted.</p><p>This may surprise you as a HN user, since overly hateful content is indeed often flagged and not immediately visible in HN top-level comment sections. While this is true, there is a major flaw in the HN moderation mechanism that enables abuse to continue unabated. This is the fact that, when a comment is flagged and killed, its child subthread is not. Once the high-level comment is no longer visible in the top-level comment section by default, this significantly reduces moderation activity in the subthread, as users are less likely to click to expand it. The deeper you go, the less likely it is for content to be moderated. Entire subthreads with dozens of comments are spawned, both abusive content and anti-abusive content that serves to feed the trolls, and it is rare for any of the child comments to be ultimately killed and hidden. The original comment being flagged/hidden becomes completely irrelevant, as the context provided by the replies sends the same message (sometimes, an outright quote exists with the exact flagged content). This completely defeats the moderation system, merely slightly reducing the exposure of the abuse but allowing it to continue with impunity.</p><p>At the time of this writing, a recent HN subthread of a killed comment contained replies including comparisons between an Asahi Linux developer and Hans Reiser, direct support for Kiwi Farms, doxxing content, and general insults and abusive assertions. These comments were at most slightly downvoted by the community, but still readable and not in any way killed or hidden by default. These threads pop up more often than not on Asahi Linux discussions on Hacker News; previous comments that again remain unkilled to this day include transphobic abuse, allegations of mental illness, etc. We have brought up some of this content to Hacker News administrators directly, and they have chosen to ignore it (abusive content we reported almost a year ago remains up and unflagged/unkilled to this day).</p><p>We believe that this pattern is the result of explicit, organized abuse perpetrated by a group of users overlapping with communities like Kiwi Farms (this is evidenced by the talking points used and certain style patterns we will not explicitly describe here that are a hallmark of that website's users). These people seek to harass others until their <a href='https://en.wikipedia.org/wiki/Near_(programmer)'>life is destroyed</a>. It is not low-level trolling, but rather an organized and directed effort to hurt and destroy people. Multiple lives have been <a href='https://en.wikipedia.org/wiki/Kiwi_Farms#Suicides_of_harassment_targets'>lost</a> to this kind of abuse already.</p><p>Hacker News being susceptible to this kind of content is particularly dangerous. By being a highly-ranked website, and thanks to the abuse subthreads being crawlable and easily reached by search engines, this provides an avenue to seed hateful content that ranks highly in Google searches for our project and its developers, even when not directly visible from top-level HN comment sections. Google's algorithm has even used this content to seed abusive 'answers' about our project and its developers at some points. Most of the time, this kind of content is limited to sites (like 4chan) that rank poorly and are not trusted by such services, but HN is different and provides a backdoor for trolls and abusers to make their content highly visible.</p><p>In addition, Hacker News administrators regularly engage in moderation practices that exacerbate the problem, such as detaching bad comment threads from their parent and burying them at the bottom of the comments page. This practice seeks to preserve the 'clean' image of the community by ensuring that the vast majority of visitors never stumble upon the toxic threads and they are not easily findable for a casual observer, but in fact further undermines ongoing community moderation and leaves the threads fully indexable by search engines open to further replies and toxic discussion, all hidden from most public view as a safe haven for abuse. This is at best shortsighted and represents a clear lack of understanding of the responsibilities of a competent moderation team and framework for a website as notable and highly ranked as Hacker News.</p><p>By letting this abuse run undeterred, Y Combinator and Daniel Gackle are tacitly approving of this conduct and hurting the reputation of the entire site and its userbase. If you want to support us and what we do and you are a Hacker News user, please bring this up and demand change within the community.<br><br>As things stand today, we consider Hacker News traffic to be a net negative for the project, and we kindly ask you to move on to the next story.</p><br><br><p>To Daniel: I <a href='https://www.vice.com/en/article/pkbz4b/what-i-learned-from-near-an-emulation-legend-and-real-person'>lost a friend</a> to this kind of harassment. I had to go to the police station to testify about the online abuse they suffered, after police confirmed they found them hung in their apartment that morning. This happened after the Asahi Linux project started. One of the things they told me on our last conversation a few weeks prior was that they wanted to try to contribute to Asahi Linux. They never got the chance. If you have the slightest bit of humanity, please take this stuff seriously. It's not a joke. People actually die. -marcan<p>* Historical note: At the time this message was first written, Hacker News had begun tagging links <i>specifically to asahilinux.org</i> with <code>rel=noreferrer</code>. They later extended this policy to all outgoing article links, in an attempt to mask their obvious targeting of us. This forced us to resort to less-accurate CSS-based methods to display this message. Daniel himself <a href='https://news.ycombinator.com/item?id=36231387' rel='nofollow'>admitted to being behind this change</a>. They have since reverted this policy, and we are once again checking the referrer.</p>")})</script>
+<footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li><li><a href=https://www.patreon.com/marcan><i class="fab fa-patreon"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
