@@ -54,9 +54,17 @@ And with upcoming improvements in the Wayland ecosystem, we'll be able to suppor
 
 ## <div>OpenGL, deprecated? Not here</div>
 
-<img width="200" class="w-200" src="/img/far_landing/OpenGL_logo.svg">Fedora Asahi Remix ships with the world's first and only [certified conformant OpenGL 4.6](https://www.khronos.org/conformance/adopters/conformant-products/opengl#submission_347) and [OpenGL ES 3.2](https://www.khronos.org/conformance/adopters/conformant-products/opengles#submission_1045) for Apple Silicon.
+<p style="text-align:unset">
+<img width="200" style="float:unset" src="/img/far_landing/OpenGL_logo.svg"/>
+<img width="200" style="float:unset" src="/img/far_landing/OpenGL_ES_logo.svg"/>
+<img width="200" style="float:unset" src="/img/far_landing/OpenCL_logo.svg"/>
+<img width="200" style="float:unset" src="/img/far_landing/Vulkan_logo.svg"/>
+</p>
 
-We support open graphics standards and test against official and industry-standard test suites, which means you can be confident that your apps and games will run correctly and render as they're intended to. And we're not stopping there, with Vulkan support in the works. We aim to unlock the full potential of Apple Silicon graphics, well beyond what is possible by layering on top of vendor-proprietary APIs like Metal.
+Fedora Asahi Remix ships the world's first and only certified conformant [OpenGL 4.6](https://www.khronos.org/conformance/adopters/conformant-products/opengl#submission_347), [OpenGL ES 3.2](https://www.khronos.org/conformance/adopters/conformant-products/opengles#submission_1045), [OpenCL 3.0](https://www.khronos.org/conformance/adopters/conformant-products/opencl#submission_433), and
+[Vulkan 1.3](https://www.khronos.org/conformance/adopters/conformant-products#submission_7910) for Apple Silicon.
+
+We support open graphics standards and test against official and industry-standard test suites, which means you can be confident that your apps and games will run correctly and render as they're intended to. Fedora Asahi Remix unlocks the full potential of Apple Silicon graphics, well beyond what is possible by layering on top of vendor-proprietary APIs like Metal.
 
 </section>
 <section class="topic">
