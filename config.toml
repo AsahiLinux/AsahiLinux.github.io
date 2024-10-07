@@ -22,3 +22,6 @@ term = ["HTML", "RSS"]
 
 [privacy.twitter]
 enableDNT = true
+
+[markup.highlight]
+style = 'vulcan'
