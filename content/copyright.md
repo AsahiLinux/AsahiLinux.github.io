@@ -16,7 +16,7 @@ Code developed for Asahi Linux itself should be licensed under a permissive lice
 
 Code developed for other open source projects must be licensed under that same project's license, and follow licensing/header/authorship conventions appropriate for that project. However, specific modules developed by Asahi Linux contributors (such as entire drivers or submodules) should be dual-licensed under a permissive license such as MIT, to ensure that they can be ported or reused within other projects.
 
-For original code, we use [SPDX license identifiers](https://spdx.github.io/spdx-spec/appendix-V-using-SPDX-short-identifiers-in-source-files/) to record the license of individual files in a concise way. Files should have header of this form (with whatever license information is appropriate):
+For original code, we use [SPDX license identifiers](https://spdx.github.io/spdx-spec/v2.3/using-SPDX-short-identifiers-in-source-files/) to record the license of individual files in a concise way. Files should have header of this form (with whatever license information is appropriate):
 
 ```// SPDX-License-Identifier: GPL-2.0+ OR MIT```
 
