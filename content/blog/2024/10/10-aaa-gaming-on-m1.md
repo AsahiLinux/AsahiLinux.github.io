@@ -1,5 +1,5 @@
 +++
-date = "2024-10-01T10:00:00-04:00"
+date = "2024-10-10T10:00:00-04:00"
 draft = false
 title = "AAA gaming on Asahi Linux"
 slug = "aaa-gaming-on-asahi-linux"
