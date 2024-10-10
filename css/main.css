@@ -524,6 +524,14 @@ a:hover {
     transition: opacity 0.5s;
 }
 
+/* The above rule makes sense for linked text but not for linked images.
+ *
+ * We shouldn't change the opacity of an image, since that would distort its content.
+ */
+.post a:hover:has(> img) {
+    opacity: 1.0;
+}
+
 a.stealth:hover {
     opacity: 1.0;
     cursor: default;
