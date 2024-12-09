@@ -62,7 +62,7 @@ And with upcoming improvements in the Wayland ecosystem, we'll be able to suppor
 </p>
 
 Fedora Asahi Remix ships the world's first and only certified conformant [OpenGL 4.6](https://www.khronos.org/conformance/adopters/conformant-products/opengl#submission_347), [OpenGL ES 3.2](https://www.khronos.org/conformance/adopters/conformant-products/opengles#submission_1045), [OpenCL 3.0](https://www.khronos.org/conformance/adopters/conformant-products/opencl#submission_433), and
-[Vulkan 1.3](https://www.khronos.org/conformance/adopters/conformant-products#submission_7910) for Apple Silicon.
+[Vulkan 1.4](https://www.khronos.org/conformance/adopters/conformant-products/vulkan#submission_812) for Apple Silicon.
 
 We support open graphics standards and test against official and industry-standard test suites, which means you can be confident that your apps and games will run correctly and render as they're intended to. Fedora Asahi Remix unlocks the full potential of Apple Silicon graphics, well beyond what is possible by layering on top of vendor-proprietary APIs like Metal.
 
