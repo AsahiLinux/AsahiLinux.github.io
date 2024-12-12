@@ -1015,6 +1015,17 @@ p img, figure img {
     margin-bottom: 20px;
 }
 
+.post aside {
+    border: solid 1px;
+    background-color: #e2e2e2;
+    padding: 15px;
+    margin: 20px;
+    font-size: 90%;
+}
+.post aside p {
+    margin: 0;
+}
+
 /* Blog */
 
 .blog-header {
