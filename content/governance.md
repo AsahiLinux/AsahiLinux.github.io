@@ -14,7 +14,7 @@ There are seven board members, aside from temporary vacancies. The current membe
 
 * [Alyssa Rosenzweig](https://rosenzweig.io) (treasurer). <alyssa@rosenzweig.io>
 * [Davide Cavalca](https://github.com/davide125) (administrator). <davide@cavalca.name>
-* [Neal Gompa](https://royalgeekworld.com/) (secretary). <neal@gompa.dev>
+* [Neal Gompa](https://royalgeekworld.com/) (secretary, treasurer). <neal@gompa.dev>
 * [James Calligeros](https://social.treehouse.systems/@chadmed). <jcalligeros99@gmail.com>
 * [Janne Grunau](https://social.treehouse.systems/@janne) (administrator). <j@jannau.net>
 * Sasha Finkelstein. <fnkl.kernel@gmail.com>
