@@ -27,4 +27,4 @@ Feel free to jump right and help us out - there is lots of work to do. A brief i
 
 ## Prefer to help financially?
 
-Head over to the [support](/support) page for more information. Every little bit counts!
+Head over to our [Open Collective](https://opencollective.com/asahilinux) to donate. Every little bit counts!
