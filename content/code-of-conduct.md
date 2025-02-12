@@ -44,8 +44,8 @@ A large fraction of Asahi Linux consists of contributions to upstream projects. 
 ## Consequences
 
 1. Except in flagrant or otherwise egregious cases, the first infraction will result in a verbal warning. Everyone slips up or acts out of frustration at times, we just ask that you work to not repeat the behavior.
-2. A second infraction (or more flagrant first offense, as determined by the project leaders) will have an anonymized summary of the interaction published as a way to educate the community and serve as a reminder that adverse behavior will not be tolerated.
-3. A third infraction (or especially egregious first offense, as determined by the project leaders) will result in temporary suspension from all avenues of Asahi Linux community participation for 4 weeks. This will include, but is not limited to, IRC, Discord, and GitHub issues/PRs.
+2. A second infraction (or more flagrant first offense, as determined by the board) will have an anonymized summary of the interaction published as a way to educate the community and serve as a reminder that adverse behavior will not be tolerated.
+3. A third infraction (or especially egregious first offense, as determined by the board) will result in temporary suspension from all avenues of Asahi Linux community participation for 4 weeks. This will include, but is not limited to, IRC, Matrix, and GitHub issues/PRs.
 4. Continued infractions will be dealt with on a case-by-case basis, but could result in permanent suspension from the Asahi Linux community.
 
 This text is adapted from the [Ceph Code of Conduct](https://ceph.io/community/code-of-conduct/), which itself credits [Django Project](https://www.djangoproject.com/conduct/) for the original inspiration of this document and the [Ada Initiative](https://adainitiative.org/) for expanding the fight for equality and civility within FLOSS communities and beyond.
