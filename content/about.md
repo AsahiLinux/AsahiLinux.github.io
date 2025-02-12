@@ -34,7 +34,7 @@ All Apple Silicon Macs are in scope, as well as future generations as developmen
 
 ## Is this a Linux distribution?
 
-Asahi Linux is an overall project to develop support for these Macs. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. Our current flagship distro is [Fedora Asahi Remix](/fedora), which is a collaboration between Asahi Linux and the Fedora Project, and serves as both a polished end-user distribution and a reference for other distributions who wish to incorporate our work.
+Asahi Linux is an overall project to develop support for these Macs. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. Our flagship distro is [Fedora Asahi Remix](/fedora), which is a collaboration between Asahi Linux and the Fedora Project, and serves as both a polished end-user distribution and a reference for other distributions who wish to incorporate our work.
 
 Other distributions are already working on implementing support for these platforms, and we expect to have more options officially available in the future. Check out our [Alternative Distros](https://github.com/AsahiLinux/docs/wiki/SW:Alternative-Distros) page for a list of ongoing distro integration projects.
 
@@ -47,7 +47,7 @@ As long as no code is taken from macOS to build the Linux support, the result is
 
 ## How will this be released?
 
-All development takes place on GitHub, [github.com/AsahiLinux](https://github.com/AsahiLinux). All contributions will be written with the intent to upstream them into the respective upstream projects (starting with the Linux kernel) and upstreamed as early as is practical. Code will be dual-licensed as the upstream license (e.g. GPL) and a permissive license (e.g. MIT), to ensure that the work can be reused in other OSes where possible.
+All development takes place on GitHub, [github.com/AsahiLinux](https://github.com/AsahiLinux). We write our contributions with the intent to upstream them into the respective upstream projects, including the Linux kernel. We aim to upstream as early as is practical. Code will be dual-licensed as the upstream license (e.g. GPL) and a permissive license (e.g. MIT), to ensure that the work can be reused in other OSes where possible.
 
 ## Will this make Apple Silicon Macs a fully open platform?
 
