@@ -69,8 +69,6 @@ Current major contributors are:
 
 * [Mark Kettenis](https://github.com/kettenis), OpenBSD developer. Mark has written m1n1 and U-Boot drivers for the Apple M1 core peripherals, including the bringup needed for PCIe and NVMe (ANS). Mark has also written OpenBSD drivers for the Apple M1 as a parallel effort to the Linux port.
 
-* [Martin Povišer (povik)](https://github.com/povik/), who is leading our audio kernel driver effort. Martin wrote and is upstreaming the Apple-specific SoC audio drivers as well as drivers for Apple-proprietary codecs and codec variants.
-
 * [Janne Grunau](https://github.com/jannau), who implemented touchpad/keyboard support for the M1 series and is now maintaining the display controller (DCP) driver, having recently added HDMI out support. He has also been involved in countless other bits and pieces, including device trees and submission.
 
 * [James Calligeros (chadmed)](https://github.com/chadmed), who implemented energy-aware scheduling (EAS), hand-tuned fancy DSPs for the speakers, then added utilisation clamping to PipeWire such that the fancy DSPs don't draw fancy power. Also maintains asahi-gentoo.
@@ -80,3 +78,5 @@ Current major contributors are:
 Past major contributors include:
 
 * [Hector Martin (marcan)](https://github.com/marcan), the founder of Asahi Linux. marcan is a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. Asahi Linux was his most ambitious project yet. His previous projects include [PS4 Linux](https://github.com/fail0verflow/ps4-linux), a Linux port to the proprietary hardware found on the PS4, capable of full 3D acceleration using OpenGL and Vulkan (radeon/amdgpu drivers); [AsbestOS](https://github.com/marcan/asbestos), a PS3 Linux bootloader for GameOS mode, and associated kernel patches to make Linux work on the PS3 Slim; and numerous contributions to the [Wii Homebrew ecosystem](https://wiibrew.org/), including being part of the team that developed [The Homebrew Channel](https://wiibrew.org/wiki/Homebrew_Channel) and [BootMii](https://wiibrew.org/wiki/BootMii), documenting much of the hardware, and contributing to open homebrew SDK tooling.
+
+* [Martin Povišer (povik)](https://github.com/povik/), who led our audio kernel driver effort. Martin wrote the Apple-specific SoC audio drivers as well as drivers for Apple-proprietary codecs and codec variants.
