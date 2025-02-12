@@ -65,15 +65,15 @@ Current major contributors are:
 
 * [Dougall Johnson (dougallj)](https://github.com/dougallj), instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1's CPU cores to infer microarchitectural details.
 
-* [Sven Peter](https://github.com/svenpeter42). Sven has worked tirelessly on upstream Linux support for Apple's Device Address Resolution Table (DART) required for USB, PCIe, Ethernet, and Wi-Fi. He also added USB gadget support to m1n1, and is now working on DisplayPort and Thunderbolt support.
-
-* [Mark Kettenis](https://github.com/kettenis), OpenBSD developer. Mark has written m1n1 and U-Boot drivers for the Apple M1 core peripherals, including the bringup needed for PCIe and NVMe (ANS). Mark has also written OpenBSD drivers for the Apple M1 as a parallel effort to the Linux port.
-
-* [Janne Grunau](https://github.com/jannau), who implemented touchpad/keyboard support for the M1 series and is now maintaining the display controller (DCP) driver, having recently added HDMI out support. He has also been involved in countless other bits and pieces, including device trees and submission.
+* [Eileen Yoon (eiln)](https://github.com/eiln), our signals guru covering multimedia and accelerators. Eileen is currently working on hardware video codec acceleration, having already knocked out the Neural Engine and Image Signal Processor (camera).
 
 * [James Calligeros (chadmed)](https://github.com/chadmed), who implemented energy-aware scheduling (EAS), hand-tuned fancy DSPs for the speakers, then added utilisation clamping to PipeWire such that the fancy DSPs don't draw fancy power. Also maintains asahi-gentoo.
 
-* [Eileen Yoon (eiln)](https://github.com/eiln), our signals guru covering multimedia and accelerators. Eileen is currently working on hardware video codec acceleration, having already knocked out the Neural Engine and Image Signal Processor (camera).
+* [Janne Grunau](https://github.com/jannau), who implemented touchpad/keyboard support for the M1 series and is now maintaining the display controller (DCP) driver, having recently added HDMI out support. He has also been involved in countless other bits and pieces, including device trees and submission.
+
+* [Mark Kettenis](https://github.com/kettenis), OpenBSD developer. Mark has written m1n1 and U-Boot drivers for the Apple M1 core peripherals, including the bringup needed for PCIe and NVMe (ANS). Mark has also written OpenBSD drivers for the Apple M1 as a parallel effort to the Linux port.
+
+* [Sven Peter](https://github.com/svenpeter42). Sven has worked tirelessly on upstream Linux support for Apple's Device Address Resolution Table (DART) required for USB, PCIe, Ethernet, and Wi-Fi. He also added USB gadget support to m1n1, and is now working on DisplayPort and Thunderbolt support.
 
 Past major contributors include:
 
