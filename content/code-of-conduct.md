@@ -12,7 +12,7 @@ However, when a large and sufficiently diverse group of people work together, th
 
 No list is ever exhaustive, so we encourage members of the Asahi Linux community to adhere to the spirit, rather than the letter, of this code, as that is how it will be enforced. Places where this code may be particularly applicable are GitHub issues and pull requests, IRC, Matrix, mailing lists, Fediverse discussions broadly directed at or between members of the community, and other direct interactions within the community. Any violations, especially continued or flagrant offenses, may affect an individual’s (or organization’s) ability to participate within the Asahi Linux community.
 
-If you feel that someone is in violation of the code of conduct, whether in letter or in spirit, we request that you email as detailed a description as possible of the offense and offending party/parties to conduct@asahilinux.org. If you have questions, concerns, or any other inquiries please feel free to contact the project leads.
+If you feel that someone is in violation of the code of conduct, whether in letter or in spirit, we request that you email as detailed a description as possible of the offense and offending party/parties to /*TODO*/. If you have questions, concerns, or any other inquiries please feel free to contact the project leads.
 
 A large fraction of Asahi Linux consists of contributions to upstream projects. All Asahi Linux contributors are expected to adhere to the respective upstream Codes of Conduct when interacting with such projects, or developing code intended for upstreaming.
 
