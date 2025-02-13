@@ -489,8 +489,13 @@ template {
 }
 /* CSS Reset End */
 
+:root {
+  color-scheme: light dark;
+}
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: light-dark(#fff, #171717);
 }
 
 h1 {
@@ -541,7 +546,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    color: #2C2C2C;
+    color: light-dark(#2C2C2C, #E5E5E5);
 }
 
 body.landing h1 {
@@ -580,7 +585,7 @@ div.header-menu {
     justify-content: center;
     margin-top: 15px;
     padding: 20px 0px;
-    border-top: solid 1px #2C2C2C;
+    border-top: solid 1px light-dark(#2C2C2C, #E5E5E5);
 }
 
 .menu-container li {
@@ -590,11 +595,11 @@ div.header-menu {
 }
 
 header {
-    border-bottom: solid 1px #B8E1FF;
+    border-bottom: solid 1px light-dark(#B8E1FF, #002a47);
 }
 
 #eye-catch {
-    background-color: #EFEFEF;
+    background-color: light-dark(#EFEFEF, #151515);
 }
 
 #eye-catch > div {
@@ -627,7 +632,7 @@ to {
 
 #eye-catch > div > div:nth-of-type(2) {
     padding: 50px 0px 50px 60px;
-    border-left: solid 1px #6D6D6D;
+    border-left: solid 1px light-dark(#6D6D6D, #2C2C2C);
 }
 
 #eye-catch > div > div > img {
@@ -688,7 +693,7 @@ h3 .more i {
 }
 
 #eye-catch .more {
-    color: #A61200;
+    color: light-dark(#A61200, #d11800);
 }
 
 #eye-catch h3 {
@@ -703,7 +708,7 @@ h3 .more i {
 }
 
 body.landing #community {
-    background-color: #9D2D48;
+    background-color: light-dark(#9D2D48, #5f1b2b);
 }
 
 div.center-title {
@@ -715,7 +720,7 @@ div.center-title h1, div.center-title h2 {
 }
 
 .community-links {
-    background-color: #7A162E;
+    background-color: light-dark(#7A162E, #3f121d);
 }
 
 .community-links div {
@@ -815,30 +820,30 @@ div.chat-button a {
 
 /* Download */
 body.landing #download {
-    background-color: #4ecbaa;
+    background-color: light-dark(#4ecbaa, #1d6350);
 }
 
 .download-card {
-    background-color: #057f5f;
+    background-color: light-dark(#057f5f, #034533);
 }
 
 /* Contribute */
 body.landing #contribute {
-    background-color: #FFF;
+    background-color: inherit;
 }
 
 .contribute-card {
-    background-color: #848484;
+    background-color: light-dark(#848484, #101010);
 }
 
 /* Documentation */
 
 body.landing #documentation {
-    background-color: #D7EAFF;
+    background-color: light-dark(#D7EAFF, #00408a);
 }
 
 .documentation-card {
-    background-color: #556E8A;
+    background-color: light-dark(#556E8A, #313f4f);
 }
 
 /* Centered cards */
@@ -874,7 +879,7 @@ body.landing #documentation {
 /* Single post */
 
 #post-section {
-    background-color: #EFEFEF;
+    background-color: light-dark(#EFEFEF, #151515);
     min-height: 70vh;
 }
 
@@ -936,12 +941,12 @@ body.landing #documentation {
 }
 
 .post a {
-    color: #E20052;
+    color: light-dark(#E20052, #ff2977);
     text-decoration: underline;
 }
 
 code {
-    color: #0D4F1A;
+    color: light-dark(#0D4F1A, #20c541);
     padding: 0 .4em;
     font-weight: normal;
     font-size: 85%;
@@ -980,7 +985,7 @@ div.curlsh pre {
 
 blockquote {
     border: solid 1px;
-    background-color: #e2e2e2;
+    background-color: light-dark(#e2e2e2, #202020);
     padding: 15px;
     padding-bottom: 5px;
 }
@@ -1042,7 +1047,7 @@ ul.blog-nav li {
     list-style: none;
     margin: 0px;
     padding: 5px 15px;
-    background-color: #dedede;
+    background-color: light-dark(#e0e0e0, #202020);
 }
 
 ul.blog-nav li.nav-spacer {
@@ -1066,7 +1071,7 @@ ul.blog-nav > li > a > .fa-arrow-right {
 
 div#breadcrumbs, div.post-bottom {
     padding: 10px;
-    background-color: #dedede;
+    background-color: light-dark(#e0e0e0, #202020);
 }
 
 div#breadcrumbs a {
@@ -1084,7 +1089,7 @@ div.post-bottom {
 
 /* Post list */
 .post-list ul li {
-    background-color: #e0e0e0;
+    background-color: light-dark(#e0e0e0, #202020);
     list-style: none;
     margin-left: 0px;
     padding: 15px;
