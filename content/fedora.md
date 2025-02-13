@@ -128,10 +128,11 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Bluetooth</div>
                 <div class="unsup">USB-C Displays</div>
                 <div class="unsup">Thunderbolt / USB4</div>
-                <div class="unsup">Microphone</div>
+                <div class="unsup">Microphone**</div>
                 <div class="unsup">Touch ID</div>
             </div>
             <p>* Available on M2 model only.</p>
+            <p>** Available on M2 model (2023) only, following next release of Asahi Linux.</p>
         </div></div>
         <div id="info-dev2" class="device-info"><div>
             <h3>Chips</h3>
@@ -160,10 +161,11 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Bluetooth</div>
                 <div class="unsup">USB-C Displays</div>
                 <div class="unsup">Thunderbolt / USB4</div>
-                <div class="unsup">Microphone</div>
+                <div class="unsup">Microphone**</div>
                 <div class="unsup">Touch ID</div>
             </div>
             <p>* Local dimming available on 14" and 16" models. Maximum 60Hz refresh rate on all models. HDR/120Hz not yet supported.</p>
+            <p>** Available on 14" M1/M2 Pro/Max (2021/2023) and 16" M1/M2 Pro/Max (2021/2023) models only, following next release of Asahi Linux.</p>
             <p>† Available on 13" models only.</p>
             <p>‡ Available on 14" and 16" models only.</p>
         </div></div>
