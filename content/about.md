@@ -24,7 +24,7 @@ The Asahi Linux logo and website were designed by [soundflora*](https://soundflo
 
 <img src="/img/AsahiLinux_kawaii_logo.png" alt="Kawaii Asahi Linux logo" width="100">
 
-Kawaii Asahi Linux logo by [SAWARATSUKI](https://twitter.com/sawaratsuki1004). You can find the logo artwork [here](https://github.com/SAWARATSUKI/Logos). Click to \[[enable](/about/?kawaii=true)・[disable](/about/?kawaii=false)\] kawaii mode.
+Kawaii Asahi Linux logo by [SAWARATSUKI](https://twitter.com/sawaratsuki1004). Click to \[[enable](/about/?kawaii=true)・[disable](/about/?kawaii=false)\] kawaii mode.
 
 # FAQ
 
