@@ -114,7 +114,7 @@ Note: on the 13" MacBook Pro, you can use Fn + the number row keys (1-9, 0, and 
 
 ## Known broken applications
 
-The Asahi Linux kernel is compiled to use 16K pages. This both performs better, and is required with our kernel branch right now in order to work properly with the M1's IOMMUs. Unfortunately, some Linux software has [problems running with 16K pages](https://github.com/AsahiLinux/docs/wiki/Software-known-to-have-issues-with-16k-page-size). Most notably:
+The Asahi Linux kernel is compiled to use 16K pages. This both performs better, and is required with our kernel branch right now in order to work properly with the M1's IOMMUs. Unfortunately, some Linux software has [problems running with 16K pages](/docs/Broken-Software). Most notably:
 
 * Chromium (needs volunteer to fix)
 * Emacs (fix committed, not released)
@@ -127,22 +127,22 @@ There is a category of software that will likely never support 16K page sizes: c
 
 ## Further information
 
-Visit our [docs wiki](https://github.com/AsahiLinux/docs/wiki) for more information! We could use more people working on documentation, so feel free to contribute too! Note that, since things have been moving very quickly, some of the docs may be out of date.
+Visit our [docs site](https://asahilinux.org/docs/) for more information! We could use more people working on documentation, so feel free to contribute too! Note that, since things have been moving very quickly, some of the docs may be out of date.
 
 Recommended reading:
 
-* ["When will Asahi Linux be done?"](https://github.com/AsahiLinux/docs/wiki/%22When-will-Asahi-Linux-be-done%3F%22)
-* [Introduction to Apple Silicon](https://github.com/AsahiLinux/docs/wiki/Introduction-to-Apple-Silicon)
-* [Open OS Ecosystem on Apple Silicon Macs](https://github.com/AsahiLinux/docs/wiki/Open-OS-Ecosystem-on-Apple-Silicon-Macs)
-* [m1n1:User Guide](https://github.com/AsahiLinux/docs/wiki/m1n1%3AUser-Guide)
+* ["When will Asahi Linux be done?"](/docs/When-will-Asahi-Linux-be-done)
+* [Introduction to Apple Silicon](/docs/Introduction-to-Apple-Silicon/)
+* [Open OS Ecosystem on Apple Silicon Macs](/docs/Open-OS-Ecosystem-on-Apple-Silicon-Macs/)
+* [m1n1:User Guide](/docs/m1n1-User-Guide/)
 
 If you're a developer or reverse engineer, we have some really cool toys:
 
-* [SW:Hypervisor](https://github.com/AsahiLinux/docs/wiki/SW:Hypervisor)
+* [SW:Hypervisor](/docs/SW-Hypervisor)
 
 And if you're bored:
 
-* [Trivia](https://github.com/AsahiLinux/docs/wiki/Trivia)
+* [Trivia](/docs/Trivia)
 
 ## Frequently Asked Questions
 
@@ -224,7 +224,7 @@ As part of our project, we are contributing fixes and improvements to a number o
 
 Absolutely! Our goal is to work with other developers to bring full support for these machines to your favorite distro.
 
-That said, at the time of this writing no other Linux distros provide official Apple Silicon install images to our knowledge, and vanilla ARM64 images will not work until the necessary changes have trickled into upstream kernels; therefore, setting up another distro is more of a manual process. Some users are providing [unofficial installation guides](https://github.com/AsahiLinux/docs/wiki/SW:Alternative-Distros) and images for other distros, and in the future we will add some of them as options to the Asahi Linux installer. Keep in mind that these are user-contributed and we cannot provide end-to-end support as the Asahi Linux project.
+That said, at the time of this writing no other Linux distros provide official Apple Silicon install images to our knowledge, and vanilla ARM64 images will not work until the necessary changes have trickled into upstream kernels; therefore, setting up another distro is more of a manual process. Some users are providing [unofficial installation guides](/docs/SW-Alternative-Distros) and images for other distros, and in the future we will add some of them as options to the Asahi Linux installer. Keep in mind that these are user-contributed and we cannot provide end-to-end support as the Asahi Linux project.
 
 If you are a developer for a distribution and interested in officially supporting Apple Silicon machines, please get in touch! We'd love to work with you to make it happen. You can find us on our [IRC channels](https://asahilinux.org/community/).
 

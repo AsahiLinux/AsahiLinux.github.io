@@ -131,7 +131,7 @@ In case you're wondering, no, we can't write our own firmware, as it is loaded b
 
 ## Building an installer
 
-Those of you adventurous enough to try to test out m1n1 and our Linux patches by yourselves will have likely run into our [Developer Quickstart](https://github.com/AsahiLinux/docs/wiki/Developer-Quickstart) guide. It describes a dense and tedious manual installation process.
+Those of you adventurous enough to try to test out m1n1 and our Linux patches by yourselves will have likely run into our [Developer Quickstart](/docs/Developer-Quickstart) guide. It describes a dense and tedious manual installation process.
 
 In order for an OS to be bootable on Apple Silicon machines, it has to "look" like a real macOS installation. This means it has to be an APFS container with multiple volumes within it, containing specific directory structures and files. Until now, the simplest way of doing this was to actually install macOS a second time in a separate partition, and then replace its kernel with m1n1. This is, needless to say, a major pain in the ass, as the installation process is fairly slow. It also wastes around 70GB of disk space, which is how much you need for an upgradable macOS install. It also makes it difficult to install a specific macOS version, which is going to become a problem once we start requiring the usage of specific firmware bundles. This clearly won't cut it for anything beyond early development.
 
@@ -271,7 +271,7 @@ This will eventually be available at our short domain `https://alx.sh`, but it i
 
 ## More kernel drivers
 
-Sven has been dutifully working on the Linux driver for [DART](https://github.com/AsahiLinux/docs/wiki/Glossary#d), the M1's IOMMU (I/O Memory Management Unit). This driver is required to make all kinds of hardware work, like PCIe, USB, DCP, and more. It has just been accepted by upstream and is now on its way to Linux 5.15!
+Sven has been dutifully working on the Linux driver for [DART](/docs/Glossary#d), the M1's IOMMU (I/O Memory Management Unit). This driver is required to make all kinds of hardware work, like PCIe, USB, DCP, and more. It has just been accepted by upstream and is now on its way to Linux 5.15!
 
 With this driver in, we can now make USB and PCIe work with minimal additional patches and drivers. There are various other dependencies (GPIO for miscellaneous things, I²C for proper USB-PD support, SPI for touchpad/keyboard support on the laptops, and NVMe support patches) that are spread around in various trees that people have been working on. Next we'll direct our focus towards polishing these simpler drivers and putting together a clean, working reference tree that we can use to continue development and provide new developers with a stable foundation. With the current state of things, it's already possible to use Asahi Linux as a development machine with a (non-accelerated) GUI, although things are still rough around the edges. Upstreaming these changes will require a bit more time, as there are some bureaucratic yaks to be shaved around how to properly implement these (technically simple) drivers, but things shouldn't take too long!
 
