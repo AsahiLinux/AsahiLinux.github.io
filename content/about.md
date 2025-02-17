@@ -30,17 +30,17 @@ Kawaii Asahi Linux logo by [SAWARATSUKI](https://twitter.com/sawaratsuki1004). Y
 
 ## What devices are/will be supported?
 
-All Apple Silicon Macs are in scope, as well as future generations as development time permits. We currently have support for most machines of the M1 and M2 generations. Check out our [feature support page](https://github.com/AsahiLinux/docs/wiki/Feature-Support) for the most up-to-date information. There's also a condensed feature overview available [here](/fedora/#device-support).
+All Apple Silicon Macs are in scope, as well as future generations as development time permits. We currently have support for most machines of the M1 and M2 generations. Check out our [feature support page](/docs/Feature-Support) for the most up-to-date information. There's also a condensed feature overview available [here](/fedora/#device-support).
 
 ## Is this a Linux distribution?
 
 Asahi Linux is an overall project to develop support for these Macs. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. Our flagship distro is [Fedora Asahi Remix](/fedora), which is a collaboration between Asahi Linux and the Fedora Project, and serves as both a polished end-user distribution and a reference for other distributions who wish to incorporate our work.
 
-Other distributions are already working on implementing support for these platforms, and we expect to have more options officially available in the future. Check out our [Alternative Distros](https://github.com/AsahiLinux/docs/wiki/SW:Alternative-Distros) page for a list of ongoing distro integration projects.
+Other distributions are already working on implementing support for these platforms, and we expect to have more options officially available in the future. Check out our [Alternative Distros](/docs/SW-Alternative-Distros) page for a list of ongoing distro integration projects.
 
 ## Does Apple allow this? Don't you need a jailbreak?
 
-Apple allows booting unsigned/custom kernels on Apple Silicon Macs without a jailbreak! This isn't a hack or an omission, but an actual feature that Apple built into these devices. That means that, unlike iOS devices, Apple does not intend to lock down what OS you can use on Macs (though they probably won't help with the development). Further reading: ["Introduction to Apple Silicon"](https://github.com/AsahiLinux/docs/wiki/Introduction-to-Apple-Silicon) and ["Apple Platform Security Crash Course"](https://github.com/AsahiLinux/docs/wiki/Apple-Platform-Security-Crash-Course).
+Apple allows booting unsigned/custom kernels on Apple Silicon Macs without a jailbreak! This isn't a hack or an omission, but an actual feature that Apple built into these devices. That means that, unlike iOS devices, Apple does not intend to lock down what OS you can use on Macs (though they probably won't help with the development). Further reading: ["Introduction to Apple Silicon"](/docs/Introduction-to-Apple-Silicon) and ["Apple Platform Security Crash Course"](/docs/Apple-Platform-Security-Crash-Course).
 ## Is this legal?
 
 As long as no code is taken from macOS to build the Linux support, the result is completely legal to distribute and for end-users to use, as it would not be a derivative work of macOS. Please see our [Copyright & Reverse Engineering Policy](/copyright) for more information.
@@ -51,7 +51,7 @@ All development takes place on GitHub, [github.com/AsahiLinux](https://github.co
 
 ## Will this make Apple Silicon Macs a fully open platform?
 
-No, Apple still controls the boot process and, for example, the firmware that runs on the Secure Enclave Processor. However, no modern device is "fully open" - no usable computer exists today with completely open software and hardware (as much as some companies want to market themselves as such). What ends up changing is where you draw the line between closed parts and open parts. The line on Apple Silicon Macs is when the alternate kernel image is booted, while SEP firmware remains closed - which is quite similar to the line on standard PCs, where the UEFI firmware boots the OS loader, while the ME/PSP firmware remains closed. In fact, mainstream x86 platforms are arguably more intrusive because the proprietary UEFI firmware is allowed to steal the main CPU from the OS at any time via SMM interrupts, which is not the case on Apple Silicon Macs. This has real performance/stability implications; it's not just a philosophical issue. Further reading: ["Open OS Ecosystem on Apple Silicon Macs"](https://github.com/AsahiLinux/docs/wiki/Open-OS-Ecosystem-on-Apple-Silicon-Macs).
+No, Apple still controls the boot process and, for example, the firmware that runs on the Secure Enclave Processor. However, no modern device is "fully open" - no usable computer exists today with completely open software and hardware (as much as some companies want to market themselves as such). What ends up changing is where you draw the line between closed parts and open parts. The line on Apple Silicon Macs is when the alternate kernel image is booted, while SEP firmware remains closed - which is quite similar to the line on standard PCs, where the UEFI firmware boots the OS loader, while the ME/PSP firmware remains closed. In fact, mainstream x86 platforms are arguably more intrusive because the proprietary UEFI firmware is allowed to steal the main CPU from the OS at any time via SMM interrupts, which is not the case on Apple Silicon Macs. This has real performance/stability implications; it's not just a philosophical issue. Further reading: ["Open OS Ecosystem on Apple Silicon Macs"](/docs/Open-OS-Ecosystem-on-Apple-Silicon-Macs).
 
 ## Who is working on Asahi Linux?
 
