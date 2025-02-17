@@ -31,9 +31,9 @@ The Fedora-specific Asahi discussions take place in Matrix on Fedora infra:
 * [#asahi-devel:fedoraproject.org](https://matrix.to/#/#asahi-devel:fedoraproject.org) - Fedora Asahi Development. IRC bridge: #fedora-asahi-dev
 * [#asahi:fedoraproject.org](https://matrix.to/#/#asahi:fedoraproject.org) - Fedora Asahi general discussion/support
 
-## Wiki
+## Documentation
 
-Our working documentation is maintained in a [GitHub Wiki](https://github.com/AsahiLinux/docs/wiki/).
+Our working documentation is maintained in a [documentation site](/docs) built from [GitHub](https://github.com/AsahiLinux/docs) using [MkDocs](https://mkdocs.org).
 
 ## Mastodon (Fediverse)
 
