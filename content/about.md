@@ -30,7 +30,7 @@ Kawaii Asahi Linux logo by [SAWARATSUKI](https://twitter.com/sawaratsuki1004). C
 
 ## What devices are/will be supported?
 
-All Apple Silicon Macs are in scope, as well as future generations as development time permits. We currently have support for most machines of the M1 and M2 generations. Check out our [feature support page](/docs/Feature-Support) for the most up-to-date information. There's also a condensed feature overview available [here](/fedora/#device-support).
+All Apple Silicon Macs are in scope, as well as future generations as development time permits. We currently have support for most machines of the M1 and M2 generations. Check out our [feature support page](/docs/platform/feature-support/overview) for the most up-to-date information. There's also a condensed feature overview available [here](/fedora/#device-support).
 
 ## Is this a Linux distribution?
 
