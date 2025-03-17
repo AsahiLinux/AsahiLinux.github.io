@@ -61,8 +61,6 @@ Current major contributors are:
 
 * [Alyssa Rosenzweig](https://rosenzweig.io/), the Asahi GPU lead. Alyssa is a Linux graphics hacker known for her work on reverse-engineering the Arm Mali GPUs to build the free Panfrost driver. She is an upstream Mesa3D developer today maintaining Asahi's OpenGL and Vulkan drivers.
 
-* [Asahi Lina](https://github.com/asahilina), our GPU kernel sourceress. Lina joined the team to reverse engineer the M1 GPU kernel interface, and found herself writing the world's first Rust Linux GPU kernel driver. When she's not working on the Asahi DRM kernel driver, she sometimes hacks on open source VTuber tooling and infrastructure.
-
 * [Dougall Johnson (dougallj)](https://github.com/dougallj), instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1's CPU cores to infer microarchitectural details.
 
 * [Eileen Yoon (eiln)](https://github.com/eiln), our signals guru covering multimedia and accelerators. Eileen is currently working on hardware video codec acceleration, having already knocked out the Neural Engine and Image Signal Processor (camera).
@@ -76,6 +74,8 @@ Current major contributors are:
 * [Sven Peter](https://github.com/svenpeter42). Sven has worked tirelessly on upstream Linux support for Apple's Device Address Resolution Table (DART) required for USB, PCIe, Ethernet, and Wi-Fi. He also added USB gadget support to m1n1, and is now working on DisplayPort and Thunderbolt support.
 
 Past major contributors include:
+
+* [Asahi Lina](https://github.com/asahilina), GPU kernel sourceress. Lina joined the team to reverse engineer the M1 GPU kernel interface, and found herself writing the world's first Rust Linux GPU kernel driver. Outside of GPUs, she sometimes hacks on open source VTuber tooling and infrastructure.
 
 * [Hector Martin (marcan)](https://github.com/marcan), the founder of Asahi Linux. marcan is a seasoned reverse engineer and developer with more than 15 years of experience porting Linux and running unofficial software on undocumented and/or closed devices. Asahi Linux was his most ambitious project yet. His previous projects include [PS4 Linux](https://github.com/fail0verflow/ps4-linux), a Linux port to the proprietary hardware found on the PS4, capable of full 3D acceleration using OpenGL and Vulkan (radeon/amdgpu drivers); [AsbestOS](https://github.com/marcan/asbestos), a PS3 Linux bootloader for GameOS mode, and associated kernel patches to make Linux work on the PS3 Slim; and numerous contributions to the [Wii Homebrew ecosystem](https://wiibrew.org/), including being part of the team that developed [The Homebrew Channel](https://wiibrew.org/wiki/Homebrew_Channel) and [BootMii](https://wiibrew.org/wiki/BootMii), documenting much of the hardware, and contributing to open homebrew SDK tooling.
 
