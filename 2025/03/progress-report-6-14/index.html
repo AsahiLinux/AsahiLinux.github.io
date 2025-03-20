@@ -1,0 +1,212 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 6.14 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v5.6.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 6.14 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 6.14 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2025/03/progress-report-6-14/>
+Progress Report: Linux 6.14
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 6.14</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2025/02/passing-the-torch/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>As March draws to a close and Linux 6.14 nears release, now is a good time to
+provide you all with our first major progress update since <a href=https://asahilinux.org/2025/02/passing-the-torch/>taking the lead on
+the project</a>. Going forward,
+we hope to keep these updates in sync with upstream kernel releases. We feel
+that this is a natural cadence given the focus on upstreaming, with enough time
+between posts for noteworthy downstream changes to accumulate.</p><p>After getting through all the administrative work required to keep the lights
+on after marcan&rsquo;s departure, we&rsquo;ve hit the ground running with upstream patch
+submission. We held our first board meeting under interesting circumstances,
+and we&rsquo;ve even managed to sneak a couple of new features in downstream
+while you weren&rsquo;t looking. So, without further ado, let&rsquo;s get into it.</p><h2 id=our-first-board-meeting>Our first board meeting</h2><p>We held our inaugural board meeting on 7 March, under challenging conditions
+for some. Neal and Davide battled crappy conference hall WiFi while at Southern
+California Linux Expo, while I sat in the dark with no power as Tropical Cyclone
+Alfred ravaged Southeast Queensland and northern New South Wales. Despite this,
+we managed to get through quite a bit. You can find the meeting minutes
+<a href=https://asahilinux.org/docs/project/board/minutes/20250307>here</a>.</p><h2 id=lightening-the-load>Lightening the load</h2><p>After four years of development, we have racked up a considerable patch
+set. Here are some quick-fire stats:</p><ul>
+<li>90,000+ lines of code added to the Linux kernel as of 6.13, across 1250 patches</li><li>A downstream U-Boot with a number of Apple Silicon and USB stack fixes</li><li>A downstream Mesa - required since our GPU uAPI is not upstream yet</li><li>A downstream virglrenderer - required since our GPU uAPI is not upstream yet</li><li>A downstream Flatpak runtime extension - required since we have a downstream Mesa</li></ul><p>This is&mldr; less than ideal. Rebasing, testing, and releasing
+our forks is a massive drain on our time. This is especially true
+of Janne, who has the Sisyphean task of keeping our kernel patch set applying
+upstream and porting it to every stable point release. That is hours of work
+on an almost weekly basis, especially as the pace of Rust abstraction upstreaming
+increases. We can&rsquo;t keep doing this.</p><p>We want to bring you M3 and M4 support. We want to bring you Thunderbolt. We want
+to bring you DisplayPort Alt Mode. We want to bring you Variable Refresh Rate, and
+HDR, and hardware accelerated video playback, and better power management for the
+Pro/Max/Ultra Macs. To do that, however, we must start reducing the amount of patches
+we&rsquo;re carrying downstream. Most of what we&rsquo;re carrying is stable and has been
+for years. So after a month of tireless effort, how are we doing?</p><p>We have submitted three new drivers upstream - the Image Signal Processor (ISP)
+driver, which is necessary for webcam support, and drivers for the Touchbar&rsquo;s
+display controller and input digitiser. These three drivers total to almost
+8,000 lines of code, with the ISP driver being 6,000 of those. The good news is
+that both Touchbar drivers have already been accepted! Thanks to chaos_princess
+for taking on the responsibility of preparing and submitting all three.</p><p>Alyssa and Janne have been hard at work tidying up the GPU driver to prepare it for
+submission. This has involved some changes to the uAPI, which should slightly
+improve performance for some workloads.</p><p>Now that Rust for Linux abstractions are starting to be merged at a healthy
+pace, we are faced with an emerging challenge. It is rare for
+any kernel patch to survive the mailing list without at least a couple of
+non-trivial changes, and Rust abstractions are no exception. Every time an
+abstraction used by our driver is merged, we must drop our downstream version
+and rebase the driver atop the version accepted upstream. This is gruelling, menial,
+and unpleasant work, and Janne has our deepest gratitude for volunteering his
+time to get through it.</p><p>We have also been working to clean up and upstream other parts of the kernel.
+In addition to a number of miscellaneous fixes and changes for drivers already
+upstreamed such as the NVMe and I<sup>2</sup>C controllers, we have also submitted
+changes to the upstream Texas Instrumentes TAS2764 and TAS2770 speaker amplifier
+drivers which extend them to support the Apple-specific variants found in
+Apple Silicon Macs. Through this process, we found that the ASoC maintainers
+had already been cherry-picking some commits from our development branches!</p><p>We&rsquo;re far from done, but we are committed to getting through this vital work.
+More patches are being submitted all the time, so watch this space!</p><h2 id=is-this-thing-on>Is this thing on?</h2><p>By the time you&rsquo;re reading this, we will have enabled microphone support on
+most laptops! This has been a long time coming, with Martin Povišer, Eileen
+Yoon, and chaos_princess having reverse engineered and developed a driver
+for the Always-On Processor (AOP) in Rust quite some time ago. This is Apple
+though. Nothing is ever simple.</p><p>Before even getting to play with the mics in Linux, we hit a hurdle.
+On certain machines, the Secure Enclave is in the path of the physical mic
+data lines. If SEP is unhappy, you don&rsquo;t get mic access. chaos_princess
+quickly reverse engineered the SEP endpoint responsible, and wrote a
+stub driver to simply toggle the hardware mic switch on. With data now
+coming in to ALSA on all machines, we can continue.</p><p>In all laptops released so far, Apple use three Pulse Density Modulation
+(PDM) mics wired up to an ADC and decimator in the AOP. All three mics are
+plumbed directly to userspace on separate channels, with no preamplification.
+Having three mics enables Apple to use beamforming, which is a signal processing
+technique to greatly enhance the directivity and sensitivity of an array of sensors.
+Originally developed for RADAR and military communications, it&rsquo;s now mostly known
+for being a marketing dot point for WiFi access points. It&rsquo;s also really, really,
+really hard.</p><p>Unfortunately, PDM mics are very omnidirectional and very sensitive. We cannot
+get by without some kind of beamforming. I initially tried
+a very basic delay-and-sum beamformer, which involves no advanced signal
+processing. However since the mics are only about 2cm apart and only sample at
+48 kHz, we cannot achieve the temporal resolution required to make this
+approach work. Signal processing it is, then.</p><p>The mysteries of signal processing in the acoustic domain are truly understood by
+very few. After consulting the scant available literature on the matter and my high
+school maths textbooks, I thought I had absolutely no hope of doing a good job of this.
+I put out a call for help on Mastodon, however no one offered to step up. Fine, I&rsquo;ll
+do it myself.</p><p>After reading a few more papers, I found an approach that looked familiar to me.
+A Minimum Variance Distortionless Response beamformer works by taking your complex
+sample data in the time domain and using optimisation techniques weighted in a
+particular direction relative to a fixed point (usually some mic in the array).
+At some point, it clicked that this is really just statistics!</p><p>After wrestling with Rust&rsquo;s immature scientific computing libraries for a few weeks,
+and even more reading of my high school maths and university statistics textbooks,
+the result was <a href=https://crates.io/crates/triforce-lv2>Triforce</a> - an MVDR beamformer
+for the mics found in Apple laptops.</p><p>Thanks to the groundwork laid in PipeWire and WirePlumber for speaker support,
+wiring up a DSP chain including Triforce for the microphones was really simple.
+We just had to update the config files, and let WirePlumber figure out the rest!</p><p>Did it work? It&rsquo;s Rust, so it worked on the first try! When properly dialled in,
+the mic array is sensitive to signals coming from a &ldquo;typical&rdquo; seating position in
+front of the laptop, and mostly rejects noise from any other direction. Try it
+yourself - play some music out of your phone and move it around your laptop. It
+should become suppressed when moved out to the sides or behind the machine.</p><p>Once again, a huge thanks to Martin, Eileen, and chaos_princess for their incredible
+work reversing AOP and SEP.</p><h2 id=fedora-asahi-remix-42-beta>Fedora Asahi Remix 42 Beta</h2><p>Thanks to Davide&rsquo;s work validating builds, we are pleased to announce that Fedora
+Asahi Remix 42 is <a href=https://fedoramagazine.org/announcing-fedora-asahi-remix-42-beta/>now available</a>
+as a beta! The final release is expected in about a month, bringing us closer than
+ever to releasing at the same time as Fedora. We hope that in the next cycle
+Fedora Asahi Remix 43 will release on the same day as Fedora Linux 43.</p><h2 id=asahi-linux--scale>Asahi Linux @ SCaLE</h2><p>While at <a href=https://www.socallinuxexpo.org/scale/22x>SCaLE</a>, Neal and Davide managed
+to set up a demonstration of Asahi Linux running on an M2 Mac mini and an M1 Mac Studio
+in the expo hall. Reception was extremely positive, and folks had a blast playing a whole
+bunch of Steam games through muvm and FEX! We even managed to get kids involved by firing
+up Nidhogg, which proved to be the most popular game by far.</p><h2 id=woaoa>WoAoA</h2><p>Some astute users have noticed that ARM64 Windows VMs now work with KVM on
+Asahi! This is thanks to Oliver Upton, who submitted a rather large series of
+patches upstream to enable Arm PMUv3 emulation on Apple SoCs. WoA requires
+PMUv3, and until now we could not emulate it. We quietly cherry-picked those
+patches, and they are now incorporated into our latest kernels. Interested
+parties can try Windows on ARM on Asahi today!</p><h2 id=what-does-the-dxdiag-say-about-its-feature-level>What does the dxdiag say about its Feature Level?</h2><p>It&rsquo;s 12_0! Alyssa recently added sparse binding support to our Vulkan driver,
+which was the last piece of the puzzle for Direct3D Feature Level 12_0 via vkd3d-proton.
+Many more D3D12 games now run with the latest Mesa and FEX rootfs.
+Our Vulkan driver is not yet as mature as our OpenGL driver though, so performance
+and playability vary&mldr; but optimisations are coming soon.</p><h2 id=magic-pairing>Magic pairing</h2><p>Apple Silicon Macs have a neat feature whereby Bluetooth devices remain
+synchronised across all macOS installs, even recoveryOS. Information required
+to pair devices is stored in the machine&rsquo;s NVRAM. macOS checks the NVRAM
+for devices that it doesn&rsquo;t know about, and copies that data. Since
+they see the same Bluetooth controller in the Mac regardless of
+which macOS install is booted, devices will happily connect automatically without
+having to go through the pairing process again. This is really useful for
+ensuring that Bluetooth keyboards and mice work seamlessly across all environments,
+especially in recoveryOS.</p><p>To replicate this in Linux, Janne developed <a href=https://crates.io/crates/asahi-btsync>asahi-btsync</a>.
+The tool reads the Bluetooth device information out of NVRAM and injects it into
+BlueZ&rsquo;s configuration. Up until a few weeks ago this was a manual process which
+required running asahi-btsync and connecting to the discovered devices manually.
+This is impractical for input devices which are required to be working for these
+actions.</p><p>As of version 2.4, asahi-btsync integrates with systemd and D-Bus to
+fully automate the Bluetooth device synchronisation process. Starting with Fedora
+Asahi Remix 42, all Bluetooth LE devices paired with macOS will be available from
+your first boot - including the initial Fedora Asahi Remix setup!</p><p>Do note however that this does not apply to Bluetooth 5.0 devices, which use a
+new authentication and encryption scheme.</p><h2 id=opencollective-and-github-sponsors>OpenCollective and GitHub Sponsors</h2><p>When we stood up our <a href=https://opencollective.com/asahilinux>OpenCollective</a>,
+none of us really knew what to expect. We had hoped to maybe scrape together
+enough support to keep the domains and CDN going, but we dared not hope any harder.</p><p>The sheer volume of support and the speed at which it flowed
+in left us floored and humbled beyond measure. Your faith in our work means more
+than can be expressed in words, and we seriously cannot thank you all enough.</p><p>The financial support provided via OpenCollective allows us to continue our work
+with confidence. Not only do we have the cash we need to keep the project&rsquo;s
+existing infrastructure online, but we have the resources we have always wanted
+to ensure the project&rsquo;s viability long into the future.</p><p>Until now, we have been mostly purchasing machines out of our own pockets. Given
+the nature of what we do, this can mean spending upwards of $10,000 a year on
+Macs. Not only is this unsustainable for us on an individual level, it
+also presents an enormous barrier to entry for talented folks who may not have
+the means to buy such expensive computers. The financial support provided by
+OpenCollective backers enables us to signficantly reduce that financial
+burden. This has already been invaluable for development work.</p><p>The M1 MacBook Air is our most popular Mac by far, with almost 14,000 installations
+and counting. This represents almost 30% of the total install base. We couldn&rsquo;t
+possibly release microphone support without supporting it. Being able to simply
+buy the machine and get the work done without worrying about food for the next
+two weeks is the only reason we were able to ship mics in a timely manner.</p><p>Buying hardware is not the only game-changing benefit afforded to us by your
+financial support. We can now actually build and maintain the CI farm we have
+sorely needed for years, which will accelerate development. We can afford email
+hosting and other collaborative infrastructure that greatly reduces friction.
+We can go to conferences and events without fear of going into financial stress.
+All of this is necessary to ensure the long-term sustainability of Asahi as a
+project, and none of it would be possible without you.</p><p>For those who would prefer to support us via GitHub Sponsors, it&rsquo;s in the works.
+We have put in the request with GitHub to link our Sponsors account to our OpenCollective,
+however this has not yet been approved. Stay tuned for more.</p><h2 id=whats-next>What&rsquo;s next?</h2><p>While this month has been a whirlwind, literally in my case, we&rsquo;ve started
+settling down into a rhythm that will work nicely in the near-term. Our primary
+focus is to continue submitting kernel patches upstream. Reducing our maintenance
+burden is the only way we will be able to get back to the fun stuff sustainably.</p><p>Neal and Davide will be <a href=https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort>presenting</a> at <a href=https://www.redhat.com/en/summit>Red Hat Summit</a> on 19 May,
+demonstrating Fedora Asahi Remix and the upcoming CentOS Hyperscale Asahi Remix
+to showcase how Asahi has made it easier than ever for developers to start bringing
+their workloads to ARM64 Linux.</p><p>We hope to have even more good news for you when Linux 6.15 releases, so stay tuned
+for more updates! Once again, we sincerely thank everyone who has supported us so far.</p><div class=post-bottom>James Calligeros · <span class=publishdate>2025-03-21</span></div></div></div></section><script>document.addEventListener("DOMContentLoaded",function(){document.referrer.match("//news.ycombinator.com")&&(document.body.ariaHidden=!0,document.body.innerHTML="<style>.hnsucks {    background-color: #ff6600;    padding: 20px;    color: #000;}.hnsucks p {    margin-bottom: 20px;    font-family: Verdana, Geneva, sans-serif;    font-weight: revert;    max-width: 60em;    margin-left: auto;    margin-right: auto;    font-size: 1.25em;}.hnsucks a {    text-decoration: underline;}</style><div class='hnsucks'><p>Hi! It looks like you might have come from Hacker News.</p><p>Asahi Linux developers are frequent targets of abuse on Hacker News. Despite our pleas, the moderators have not taken effective action to improve the situation.</p><p>Overtly hateful content is often flagged on HN and not immediately visible. Unfortunately, when a comment is flagged and killed, its child subthread is not. That preserves the 'clean' image of the website, but the reduced moderation activity enables abuse to continue. Although you don't see those threads, search engines do. HN uniquely has a high page rank and low moderation, making it a prime target for <a href='https://en.wikipedia.org/wiki/Kiwi_Farms'>bad actors</a> to poison search results with abuse, bigotry, and nastiness. This isn't low-level trolling, but an organized attempt to <a href='https://en.wikipedia.org/wiki/Kiwi_Farms#Suicides_of_harassment_targets'>destroy lives</a>, including of developers in our communities</a>.</p><p>Please demand change within your community.</p></div><hr/>"+document.body.innerHTML)})</script>
+<footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
