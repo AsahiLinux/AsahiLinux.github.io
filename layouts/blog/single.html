@@ -27,37 +27,4 @@
         </div>
     </div>
 </section>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    if (document.referrer.match("//news.ycombinator.com")) {
-        document.body.ariaHidden = true;
-        document.body.innerHTML = (
-            "<style>" +
-            ".hnsucks {" +
-            "    background-color: #ff6600;" +
-            "    padding: 20px;" +
-            "    color: #000;" +
-            "}" +
-            ".hnsucks p {" +
-            "    margin-bottom: 20px;" +
-            "    font-family: Verdana, Geneva, sans-serif;" +
-            "    font-weight: revert;" +
-            "    max-width: 60em;" +
-            "    margin-left: auto;" +
-            "    margin-right: auto;" +
-            "    font-size: 1.25em;" +
-            "}" +
-            ".hnsucks a {" +
-            "    text-decoration: underline;" +
-            "}" +
-            "</style>" +
-            "<div class='hnsucks'>" +
-            "<p>Hi! It looks like you might have come from Hacker News.</p>" +
-            "<p>Asahi Linux developers are frequent targets of abuse on Hacker News. Despite our pleas, the moderators have not taken effective action to improve the situation.</p>" +
-            "<p>Overtly hateful content is often flagged on HN and not immediately visible. Unfortunately, when a comment is flagged and killed, its child subthread is not. That preserves the 'clean' image of the website, but the reduced moderation activity enables abuse to continue. Although you don't see those threads, search engines do. HN uniquely has a high page rank and low moderation, making it a prime target for <a href='https://en.wikipedia.org/wiki/Kiwi_Farms'>bad actors</a> to poison search results with abuse, bigotry, and nastiness. This isn't low-level trolling, but an organized attempt to <a href='https://en.wikipedia.org/wiki/Kiwi_Farms#Suicides_of_harassment_targets'>destroy lives</a>, including of developers in our communities</a>.</p>" +
-            "<p>Please demand change within your community.</p>" +
-            "</div><hr/>") + document.body.innerHTML;
-    }
-});
-</script>
 {{ partial "footer.html" . }}
