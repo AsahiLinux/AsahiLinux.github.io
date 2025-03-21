@@ -74,7 +74,7 @@ time to get through it.
 We have also been working to clean up and upstream other parts of the kernel.
 In addition to a number of miscellaneous fixes and changes for drivers already
 upstreamed such as the NVMe and I<sup>2</sup>C controllers, we have also submitted
-changes to the upstream Texas Instrumentes TAS2764 and TAS2770 speaker amplifier
+changes to the upstream Texas Instruments TAS2764 and TAS2770 speaker amplifier
 drivers which extend them to support the Apple-specific variants found in
 Apple Silicon Macs. Through this process, we found that the ASoC maintainers
 had already been cherry-picking some commits from our development branches!
