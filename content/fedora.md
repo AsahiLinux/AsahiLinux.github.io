@@ -121,6 +121,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Trackpad</div>
                 <div class="sup">Headset Jack</div>
                 <div class="sup">Speakers</div>
+                <div class="sup">Microphone</div>
                 <div class="sup">Camera</div>
                 <div class="sup">MagSafe*</div>
                 <div class="sup">USB Type C (USB 3.0)</div>
@@ -128,7 +129,6 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Bluetooth</div>
                 <div class="unsup">USB-C Displays</div>
                 <div class="unsup">Thunderbolt / USB4</div>
-                <div class="unsup">Microphone</div>
                 <div class="unsup">Touch ID</div>
             </div>
             <p>* Available on M2 model only.</p>
@@ -151,6 +151,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Touch Bar†</div>
                 <div class="sup">Headset Jack</div>
                 <div class="sup">Speakers</div>
+                <div class="sup">Microphone</div>
                 <div class="sup">Camera</div>
                 <div class="sup">MagSafe‡</div>
                 <div class="sup">USB Type C (USB 3.0)</div>
@@ -160,7 +161,6 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Bluetooth</div>
                 <div class="unsup">USB-C Displays</div>
                 <div class="unsup">Thunderbolt / USB4</div>
-                <div class="unsup">Microphone</div>
                 <div class="unsup">Touch ID</div>
             </div>
             <p>* Local dimming available on 14" and 16" models. Maximum 60Hz refresh rate on all models. HDR/120Hz not yet supported.</p>
