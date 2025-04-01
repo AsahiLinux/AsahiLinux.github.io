@@ -12,13 +12,13 @@ To support that code, we need infrastructure and funding, to run servers and sup
 
 There are seven board members, aside from temporary vacancies. The current members are:
 
-* [Alyssa Rosenzweig](https://rosenzweig.io) (treasurer). <alyssa@rosenzweig.io>
-* [Davide Cavalca](https://github.com/davide125) (administrator). <davide@cavalca.name>
-* [Neal Gompa](https://royalgeekworld.com/) (secretary, treasurer). <neal@gompa.dev>
-* [James Calligeros](https://social.treehouse.systems/@chadmed). <jcalligeros99@gmail.com>
-* [Janne Grunau](https://social.treehouse.systems/@janne) (administrator). <j@jannau.net>
-* Sasha Finkelstein. <fnkl.kernel@gmail.com>
-* [Sven Peter](https://social.treehouse.systems/@sven) (administrator). <sven@svenpeter.dev>
+* [Alyssa Rosenzweig](https://rosenzweig.io) (treasurer). <alyssa@asahilinux.org>
+* [Davide Cavalca](https://github.com/davide125) (administrator). <davide@asahilinux.org>
+* [Neal Gompa](https://royalgeekworld.com/) (secretary, treasurer). <neal@asahilinux.org>
+* [James Calligeros](https://social.treehouse.systems/@chadmed). <james@asahilinux.org>
+* [Janne Grunau](https://social.treehouse.systems/@janne) (administrator). <janne@asahilinux.org>
+* Sasha Finkelstein. <chaosprincess@asahilinux.org>
+* [Sven Peter](https://social.treehouse.systems/@sven) (administrator). <sven@asahilinux.org>
 
 The board is responsible for project governance, infrastructure, and money. It also acts as the ultimate arbiter in case of conflict, including code-of-conduct enforcement. The board meets monthly by video call to do business in meetings. Our meeting minutes are public.
 
