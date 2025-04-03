@@ -151,7 +151,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">Touch Bar†</div>
                 <div class="sup">Headset Jack</div>
                 <div class="sup">Speakers</div>
-                <div class="sup">Microphone</div>
+                <div class="sup">Microphone‡</div>
                 <div class="sup">Camera</div>
                 <div class="sup">MagSafe‡</div>
                 <div class="sup">USB Type C (USB 3.0)</div>
