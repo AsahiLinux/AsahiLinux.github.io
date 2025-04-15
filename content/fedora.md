@@ -1,6 +1,6 @@
 ---
 title: Fedora Asahi Remix
-date:  "2024-12-17T12:45:00-04:00"
+date:  "2025-04-15T11:27:00-04:00"
 draft: false
 body_class: "landing fedora"
 layout: landing
