@@ -36,7 +36,7 @@ With Fedora's excellent 64-bit ARM support and mature development process, you c
 
 Want to use Night Color to keep your screen from disrupting your sleep cycle? No worries, it just works. Tweak your trackpad settings for a more comfortable experience? Everything's right there in System Settings. Are things on screen too big or too small? Just adjust the display scale to your heart's content, even in 5% increments. We've worked with the KDE project to bring you bug fixes and improvements to improve platform support, and we've also built a custom Calamares-based initial setup wizard so you can be up and running in no time with minimal fuss.
 
-Fedora Linux 42 comes with [KDE Plasma 6.2](https://kde.org/announcements/plasma/6/6.3.0/), with the latest patches and improvements to provide *the* premier desktop experience.
+Fedora Linux 42 comes with [KDE Plasma 6.3](https://kde.org/announcements/plasma/6/6.3.0/), with the latest patches and improvements to provide *the* premier desktop experience.
 
 Rather use [GNOME](https://www.gnome.org/)? No worries, we've got you covered with [GNOME 48](https://release.gnome.org/48/). Or, if you prefer to roll your own desktop configuration or want to set up a headless server, our Minimal and Server images will let you set things up exactly the way you want to.
 
