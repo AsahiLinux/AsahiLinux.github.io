@@ -1,0 +1,161 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 6.15 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 6.15 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 6.15 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2025/05/progress-report-6-15/>
+Progress Report: Linux 6.15
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 6.15</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2025/03/progress-report-6-14/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>Linux 6.15 is right around the corner, which means it&rsquo;s time for another progress
+report! We have been pretty busy behind the scenes and we have some exciting developments
+to share with you all.</p><h2 id=fedora-asahi-remix-42-release>Fedora Asahi Remix 42 Release</h2><p>Last time, we announced that Fedora Asahi Remix 42 was close to release. It has since
+<a href=https://fedoramagazine.org/fedora-asahi-remix-42-is-now-available/>released</a> and is
+now available to install! The Asahi Installer now offers Fedora Asahi Remix
+42 images by default, and existing users on FAR 40 and 41 are encouraged to upgrade using
+<a href=https://docs.fedoraproject.org/en-US/quick-docs/upgrading-fedora-offline/><code>dnf system-upgrade</code></a>
+or Plasma&rsquo;s Discover to start enjoying the latest versions of your favourite
+software. This is also a reminder that Fedora Asahi Remix follows the <a href=https://docs.fedoraproject.org/en-US/releases/lifecycle/>Fedora Linux lifecycle policy</a>,
+and thus Fedora Asahi Remix 40 is now fully end-of-life (EOL).</p><h2 id=fewer-forks-more-spoons>Fewer forks, more spoons</h2><p>We are pleased to announce that our graphics driver userspace API (uAPI) has been merged
+into the Linux kernel. This major milestone allows us to finally enable OpenGL, OpenCL and Vulkan
+support for Apple Silicon in upstream Mesa. This is the only time a graphics driver&rsquo;s
+uAPI has been merged into the kernel independent of the driver itself, which was kindly
+allowed by the kernel graphics subsystem (DRM) maintainers to facilitate upstream Mesa enablement while
+the required Rust abstractions make their way upstream. We are grateful for this one-off exception,
+made possible with close collaboration with the kernel community.</p><p>This means that we will soon sunset our Mesa, virglrenderer, and Flatpak runtime forks. Eliminating these forks lightens
+our maintenance burden, and working directly with upstream Mesa improves the development
+experience for folks working on the userspace graphics stack. It also means that other distros
+like <a href=https://salsa.debian.org/xorg-team/lib/mesa/-/commit/bcd9afe05d2e31459eb8c1f54b6dda2a257cbf14>Debian</a>
+and <a href=https://github.com/gentoo/gentoo/commit/23e382acf4f7d75e49bc694f409c92385283632f>Gentoo</a>, and
+the <a href=https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/commit/13e0add938f4c74887a08ad0ef6493502a8d3913>Freedesktop SDK</a>
+can provide userspace graphics support for Apple Silicon without any additional packaging burden.</p><p>Fedora Asahi Remix will drop the forked packages with the upcoming Fedora Linux 43
+based release. We expect that to happen without user intervention. The transition will be
+disruptive for Fedora Rawhide, but Rawhide is not supported or expected to be used on end-user systems.</p><p>Upstreaming the uAPI has been an ongoing effort behind the scenes for
+a long time. Making a single change to the uAPI requires commensurate changes to the
+kernel driver, Mesa and virglrenderer. These changes need to be synchronised, since Mesa
+and virglrenderer rely on the uAPI to communicate with the kernel driver. Some keen observers
+may have noticed that <a href=https://lore.kernel.org/asahi/20250310-agx-uapi-v1-1-86c80905004e@rosenzweig.io/>many</a> <a href=https://lore.kernel.org/asahi/20250313-agx-uapi-v2-1-59cc53a59ea3@rosenzweig.io/>versions</a> <a href=https://lore.kernel.org/asahi/Z-Fn4niI6_Yd06Ze@blossom/>of</a> <a href=https://lore.kernel.org/asahi/20250323-agx-uapi-v4-1-12ed2db96737@rosenzweig.io/>the</a> <a href=https://lore.kernel.org/asahi/20250326-agx-uapi-v5-1-04fccfc9e631@rosenzweig.io/>uAPI</a> <a href=https://lore.kernel.org/asahi/20250327-agx-uapi-v6-1-df6b878a61b2@rosenzweig.io/>were</a> <a href=https://lore.kernel.org/asahi/20250408-agx-uapi-v7-1-ad122d4f7324@rosenzweig.io/>submitted</a> to the kernel mailing lists
+before it was finally merged. Some of the changes between versions were fundamental
+in nature, requiring significant rework to the userspace components and
+kernel driver itself. Alyssa and Janne dedicated countless hours to this endeavour over
+the past few months - making changes, testing them, changing the changes, testing the
+new changes, rinse and repeat. As ever, they have our deepest gratitude and respect
+for pouring so much of their time and effort into closing this out.</p><h2 id=even-more-kernel-upstreaming>Even more kernel upstreaming!</h2><p>The past couple of months have also led to even more kernel patches finding their
+way upstream. Linux 6.15 sees the introduction of the Apple Display Pipe (ADP) display
+controller and Z2 touchscreen digitizer drivers, which together enable Touchbar
+support in the upstream kernel for the M1 and M2 13" MacBook Pros.</p><p>Also finding their way upstream are a number of critical patches for supporting various
+functional blocks in Apple&rsquo;s SoCs. PCIe controller support has been merged for the
+T6020 SoC (M2 Pro), which lays the groundwork for supporting the USB-A ports on
+the M2 Pro Mac mini, as well as WiFi and Bluetooth on all M2 Pro devices. WiFi/BT
+additionally depends upon the System Management Controller. Work is ongoing to get
+the SMC driver upstreamed.</p><p>Linux 6.15 also includes some patches we require for audio, particularly around the TAS2764 and TAS2770 speaker amp chips.
+These patches add basic support for the Apple-specific variants found in Apple Silicon
+Macs.</p><h2 id=i-cant-triforce>I can&rsquo;t triforce</h2><p>Last update, we released microphone support for most laptops. We have since added
+support for the M1 and M2 13" MacBook Pros. Unfortunately, wider release of the microphone
+stack revealed a number of issues. We discovered that the Always-On Processor (AOP) on M2 Pro/Max devices
+differs slightly from the rest of the Apple Silicon family, meaning that microphones
+currently do not work on laptops with those SoCs. Work is underway to sort this out,
+so hang tight!</p><p>As discussed last time, Triforce is my naive attempt at implementing a beamformer with
+minor prior knowledge. In my haste to get something working out the door in a
+reasonable timeframe, I made some questionable, <em>temporary</em> engineering decisions.
+Surely I would have time to undo these soon, right?</p><p>There is nothing more permanent than a temporary solution. Life got in the way, and I
+found myself with no time to rectify the issues. Ah well, performance is pretty
+bad, but it works well enough&mldr;</p><p>One of the assumptions I made when building Triforce is that PipeWire&rsquo;s &ldquo;quantum&rdquo; (buffer
+size) will always be 1024 samples. At the time, I thought this would be true on every Apple Silicon Mac. Turns out that was a
+bad assumption. If Triforce sees an input buffer that is smaller than 1024 samples,
+it will return nothing to the graph, effectively muting the microphone.</p><p><a href=https://github.com/let-def>Frédéric Bour</a> ran into this somehow on Fedora Linux 42, and in
+the process of fixing it also took it upon himself to fix many of the other bad choices
+I made in the course of development. The end result is that Triforce should now be more
+accommodating of oddball PipeWire configurations, and about 4 times faster! A huge
+thanks to Frédéric for picking up my slack on this one.</p><h2 id=upcoming-talks>Upcoming talks</h2><p>May brings with it <a href=https://www.redhat.com/en/summit>Red Hat Summit</a> and
+June brings <a href=https://devconf.info/cz>DevConf CZ</a>. Asahi will be present at both.
+At RH Summit, Neal and Davide will <a href=https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort>present</a>
+Fedora Asahi Remix and CentOS Hyperscale Asahi Remix as accessible platforms
+for developers targeting Linux on ARM64. The <a href=https://pretalx.devconf.info/devconf-cz-2025/talk/P3TEBA/>talk</a>
+at DevConf CZ will focus on the effort to port CentOS Stream to Apple Silicon.
+Both sessions will be available online.</p><h2 id=were-chronically-online>We&rsquo;re chronically online</h2><p>In addition to our <a href=https://social.treehouse.systems/@AsahiLinux>Mastodon</a> profile, we now
+have Bluesky and LinkedIn accounts. You can follow us at <a href=https://bsky.app/profile/asahilinux.org>@asahilinux.org</a>
+on Bluesky, and at <a href=https://www.linkedin.com/company/asahilinux/>Asahi Linux</a>
+on LinkedIn.</p><h2 id=new-distro-guidelines>New distro guidelines</h2><p>Since the beginning of the project, folks from all walks have worked to support Apple
+Silicon in their favourite distros. This immense interest is a gratifying confirmation
+that the community values our work.</p><p>As part of our effort to encourage distros to take up Apple Silicon support, we have
+accommodated all third-party efforts, even allowing distro-specific
+documentation on our project&rsquo;s website. Unfortunately, this has led to
+an impression that we, as the upstream Asahi Linux developers, are involved
+with or otherwise endorse these efforts. This creates both an expectation
+of support and an impression that these efforts are representative of the state
+of Apple Silicon support, or even the state of the broader AArch64 ecosystem. These expectations are
+a significant and growing burden on us, and we need to address it.</p><p>We have released <a href=https://asahilinux.org/docs/alt/policy/>guidelines</a>
+outlining our expectations for distros supporting Apple Silicon. These
+guidelines target official distro projects wishing to collaborate directly with us. We will
+never discourage anyone from adding Apple Silicon support to any distro they choose, but we
+cannot offer official support or endorsement to those projects either.</p><p>As a result, we are purging all distro-specific documentation and filtering
+the list of advertised distros to only those which follow the guidelines.</p><p>Our long-term goal remains upstreaming everything such that Apple Silicon does not need
+any special treatment or handling.</p><h2 id=infrastructure-ownership>Infrastructure ownership</h2><p>Until recently, most of our infrastructure was under the control of individuals, including
+domain names. Over the past month, we have been working on transferring as much of this
+as possible away from developers&rsquo; private accounts and into ownership at the project level.
+This ensures that the project is resilient against any one person leaving.
+It also makes it easier for project expenses to be accounted for. For example, having
+our domain names under the financial ownership of Open Source Collective means that all
+domain-related expenses are processed automatically, rather than needing to paid out
+by a developer and reimbursed.</p><h2 id=coming-up-next>Coming up next&mldr;</h2><p>We have a few items currently pending review on the mailing list, or merged pending
+release in Linux 6.16. Of particlar note are drivers for the SMC and SPMI controller.
+The SMC is important for system shutdown and reboot, GPIO (required to e.g. power on the WiFi board),
+various hardware monitoring sensors, and the RTC. SPMI is a two-wire serial bus similar to I<sup>2</sup>C.
+Important peripherals, like the power management controller, are attached via this bus.
+Starting with the M3, the USB PD controllers, which negotiate the mode
+(e.g. USB3, Display Port, etc.) with the devices attached to the ports and forward
+it to the PHY and USB controller, are also attached to SPMI rather than
+I<sup>2</sup>C, making the SPMI controller driver essential for supporting
+those devices. We hope to have more to share in the next progress report.</p><p>As always, we want to thank everyone who supports us on <a href=https://opencollective.com/asahilinux/>OpenCollective</a>
+and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>. None of this would be possible
+without your generous support.</p><div class=post-bottom>James Calligeros · <span class=publishdate>2025-05-15</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
