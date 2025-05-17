@@ -34,9 +34,13 @@ All Apple Silicon Macs are in scope, as well as future generations as developmen
 
 ## Is this a Linux distribution?
 
-Asahi Linux is an overall project to develop support for these Macs. The majority of the work resides in hardware support, drivers, and tools, and it will be upstreamed to the relevant projects. Our flagship distro is [Fedora Asahi Remix](/fedora), which is a collaboration between Asahi Linux and the Fedora Project, and serves as both a polished end-user distribution and a reference for other distributions who wish to incorporate our work.
+Asahi Linux is an upstream-focused project to develop hardware support, drivers, and tools for Apple Silicon Macs. Our primary goal is to integrate this support into the wider Linux ecosystem.
 
-Other distributions are already working on implementing support for these platforms, and we expect to have more options officially available in the future. Check out our [Alternative Distros](/docs/alt/alt-distros) page for a list of ongoing distro integration projects.
+Our flagship distribution is the [Fedora Asahi Remix](https://fedora-asahi-remix.org), a collaboration between Asahi Linux and the Fedora Project. It serves as both a polished end-user experience and a reference platform showcasing the state of the art in Apple Silicon support.
+
+Other Linux distributions are welcome to integrate Apple Silicon support, provided they adhere to our [Distribution Guidelines](https://asahilinux.org/docs/alt/policy/). These outline the technical, support, and quality expectations for alternative distributions.
+
+We encourage interested distributions to consult the policy to understand the requirements for official recognition or endorsement.
 
 ## Does Apple allow this? Don't you need a jailbreak?
 
