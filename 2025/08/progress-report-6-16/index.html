@@ -1,0 +1,189 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 6.16 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 6.16 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 6.16 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/merch>Merch</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2025/08/progress-report-6-16/>
+Progress Report: Linux 6.16
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 6.16</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2025/05/progress-report-6-15/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>With Linux 6.16 now out in the wild, it&rsquo;s time for yet another progress report!
+As we mentioned last time, the Asahi and Honeykrisp Mesa drivers have finally
+found their way upstream. This has resulted in a flurry of GPU-related work, so
+let&rsquo;s start there.</p><h3 id=no-missing-nuts-in-this-flatpak>No missing nuts in this Flatpak</h3><p>For quite some time, we have maintained a version of our Mesa driver built against
+the Flatpak runtime and shipped it as a Flatpak runtime extension. This was required
+to enable GPU acceleration on Flatpak while our Mesa driver was not enabled upstream.
+As Flatpak runtime version 23.08 reaches end of life this month, this will no longer
+be necessary. 24.08 now ships with Mesa 25.1, and so will the forthcoming 25.08
+runtime. Once 25.08 is released, we will be discontinuing the Flatpak runtime
+extension as it will serve no purpose.</p><h3 id=a-_fully_-upstream-graphics-stack>A <em>fully</em> upstream graphics stack</h3><p>Asahi uses DRM Native Context to paravirtualise the GPU. Rather than having to
+virtualise high-level APIs like DirectX and Vulkan, the VM runs the userspace component
+of the host&rsquo;s native GPU driver. The host is then passed native GPU commands that it
+only needs to forward on to the kernel without modifying. This improves GPU
+performance inside muvm, our virtual machine for <a href=https://asahilinux.org/2024/10/aaa-gaming-on-asahi-linux/>gaming on Asahi Linux</a>.
+Until now however, this has relied on downstream patches to virglrenderer and Mesa.</p><p>We are pleased to announce that our DRM Native Context implementation has now
+been merged into the upstream virglrenderer project, and will therefore be enabled
+in upstream Mesa 25.2! This completes our transition to a fully upstream graphics
+stack, and as such we are retiring our Mesa fork completely.</p><h3 id=gpu-go-brrrrr>GPU go brrrrr</h3><p>Now that our Mesa driver is totally upstream, work on improving it has been able to
+occur rapidly. Alyssa has been hard at work over the past couple of months optimising
+performance. <a href="https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/?sort=created_date&state=merged&label_name%5B%5D=asahi&author_username=alyssa">A whole mess of merge requests</a>
+have found their way upstream, with the bulk of them being merged in time for the
+release of Mesa 25.2. Performance improvements are variable but decent, especially
+when paired with <a href=https://fex-emu.com/FEX-2508/>this month&rsquo;s improvements</a> to FEX&rsquo;s JIT.</p><h3 id=a-fine-vintage>A fine vintage</h3><p>Also new in Mesa 25.2 is support for <code>VK_EXT_map_memory_placed</code>, courtesy of
+chaos_princess. This Vulkan extension allows applications to request GPU memory
+be mapped at a specific address. WINE uses this when thunking 32-bit DXVK to
+ensure any memory allocated by the GPU driver is within a 32-bit address space.
+This is required to enable GPU acceleration for 32-bit Windows applications.
+What&rsquo;s that? Your 32-bit games already work in FEX? Well&mldr;</p><p>The stack we currently ship to enable gaming is quite a beast. At the bottom
+we have muvm, which spins up a micro VM (who would&rsquo;ve guessed) using a kernel
+configured with 4K memory pages. FEX as it ships today requires this; the x86
+architecture only supports 4K pages and we cannot &ldquo;split&rdquo; a memory page into
+smaller pages, only combine them to create pages of a larger size. Atop that
+is FEX, which translates x86 binaries so they can run on 64-bit ARM devices.
+But binary applications are very rarely self-contained monoliths. They require
+access to kernel functions via syscalls, system libraries like glibc, and
+access to the GPU via APIs like Vulkan.</p><p>The obvious solution&mdash;and the one used by FEX&mdash;is to translate the entire
+world. When FEX loads an x86 or amd64 application, its loader pulls whichever
+libraries the application binary is linked to from a disk image or mount point
+containing a multilib amd64 root filesystem, and translates them. The benefit
+here is that the application we want to run gets ABI-correct, native versions of
+any libraries it&rsquo;s linked against. The disadvantages, however, are significant.</p><p>The image needs to have whichever libraries any arbitrary application could
+realistically be linked to. We either accept that some applications simply will
+not run, or we ship everyone an enormous filesystem image full of libraries for
+a foreign machine that they will likely never use. There are also the runtime
+costs associated with translating a bunch of libraries and faking syscall
+interfaces for their benefit. We can do better than this.</p><p>The emulation stack is being used overwhelmingly for gaming via WINE/Proton.
+For the sake of simplicity, let us simplify the problem space and say that our
+goal is not to run x86 Linux applications, but x86 Windows applications, and
+games especially.</p><p>Users of Windows on Arm will have noticed that it can run x86 applications.
+I&rsquo;ll spare you the Windows NT history lesson for today, but the NT team&rsquo;s almost
+religious focus on abstraction, portability and backward compatibility for nearly
+40 years has given us three <em>very</em> important and beneficial features:</p><ul>
+<li>WoW64, which thunks out 32-bit system calls to their 64-bit counterparts</li><li>An API to plug binary translators into WoW64</li><li>64K virtual memory pages, regardless of the underlying physical page size</li></ul><p>Since WINE implements WoW64 and FEX implements the WoW64 binary translator API,
+AArch64 WINE is capable of running 32-bit x86 applications. Since all Windows
+applications are allocated 64K pages, we <em>theoretically</em> (more on this in a bit)
+don&rsquo;t need to worry about page size. With <code>VK_EXT_map_memory_placed</code>, all of the
+pieces of the puzzle are now in place; AArch64 WINE can now run 32-bit Windows
+applications and games <em>without</em> muvm!</p><ul>
+<li>We no longer have to paravirtualise the GPU, network access, or filesystem</li><li>We no longer have to mangle and proxy the X11 or PipeWire protocols</li><li>WINE can now use Wayland directly rather than be forced through XWayland</li><li>FEX only has to translate x86 Windows code; WINE calls out to native AArch64 64-bit Windows
+and *nix</li></ul><p>That said, your mileage may vary&mldr;</p><p>While it&rsquo;s true that Windows allocates 64K virtual memory pages, not all applications
+respect this. Windows application developers have a long tradition of simply
+ignoring the Windows API, with game developers committing particularly heinous crimes
+in pursuit of performance. This often means baking x86-isms like 4K physical memory
+pages into code. Any applications which do this simply will not work, and will continue
+to require the use of muvm. You will however be able to use WoW64 inside muvm, and these
+applications will still reap most of the benefits from doing so.</p><p>You should also expect bugs in FEX and WINE, though unlike broken Windows
+applications from 2003, these have a pretty good chance of being fixed.</p><p>Want to try this out for yourself? Some distros already make this seamless; thanks
+to chaos_princess once again, Gentoo automatically installs FEX&rsquo;s WoW64
+implementation on AArch64 systems when the <code>wow64</code> USE flag is enabled. Simply
+install your preferred WINE flavour with the <code>wow64</code> USE flag and create a new
+WINE prefix to get started!</p><p>On other distros, you will need to do some extra work:</p><ol>
+<li>Ensure your distro builds AArch64 WINE with WoW64 enabled. This is not currently
+the case for Fedora, but is coming soon!</li><li>Install WINE using your native distro packages</li><li>Download the latest <code>fex-emu-wine</code> build from the <a href=https://launchpad.net/~fex-emu/+archive/ubuntu/fex/+packages>FEX Ubuntu PPA</a></li><li>Extract <code>libwow64fex.dll</code> <em>only</em> to<code>/usr/lib/wine/aarch64-windows/xtajit.dll</code></li><li>Create a new WINE prefix</li></ol><p>Once you have a WINE prefix all set up, you can start enjoying your x86 Windows
+applications in a much improved fashion!</p><figure>
+<a href=/img/blog/2025/08/lsw.png>
+<img src=/img/blog/2025/08/lsw.png alt="LEGO Star Wars (2005) running in native AArch64 WINE using DXVK">
+</a>
+<figcaption>
+LEGO Star Wars (2005) running in native AArch64 WINE using DXVK
+</figcaption></figure><br>
+<p>What about amd64/x86_64/x64 applications, you ask? Well unfortunately there are some challenges
+unique to making amd64 Windows code run on an AArch64 Windows environment which mean we don&rsquo;t support this style of emulation for amd64 Windows applications.</p><figure>
+<a href=/img/blog/2025/08/npp.png>
+<img src=/img/blog/2025/08/npp.png alt="AMD64 Notepad++ running in WINE's ARM64EC mode">
+</a>
+<figcaption>
+AMD64 Notepad++ running in WINE's ARM64EC mode
+</figcaption></figure><p><em>&mldr;Yet.</em></p><h3 id=were-getting-there>We&rsquo;re getting there&mldr;</h3><p>As always, we have been hard at work upstreaming various bits and pieces.</p><p>Devicetree bindings for the GPU have been accepted and merged for 6.17, which allows
+us to stabilise how m1n1 initialises the GPU and forwards information onward to
+the kernel.</p><p>The SPMI controller driver, required for power management, landed in 6.16. The
+USB-C mux chips used in M3 Macs and above are also connected via SPMI bus, making
+this driver necessary for USB on those machines.</p><p>A bunch of audio-related patches have landed in 6.16 and are queued for 6.17. Some
+of these patches rework the upstream I<sup>2</sup>S controller driver, allowing
+the speaker amps to feed speakersafetyd the data it needs. This brings us very
+close to being able to upstream everything required to support speakers upstream.</p><p>The core SMC driver has been accepted for 6.17, along with subdevice drivers for
+its GPIO controller and reset controller functions. Combined, these allow the
+upstream kernel to not only shut down and reboot Apple Silicon Macs, but also
+enable the WiFi/Bluetooth module and USB Type A ports on machines with them. Also
+in the pipeline for upstreaming is the hwmon driver to enable fan control and access
+to the myriad hardware sensors present on these machines, the SMC HID driver to support
+power button presses for suspend/resume, and the SMC RTC driver to read and update
+the current system time.</p><p>With Linux 6.16, we also hit a pretty cool milestone. In our first progress report,
+we mentioned that we were carrying over 1200 patches downstream. After doing a little
+housekeeping on our branch and upstreaming what we have so far, that number is
+now below 1000 for the first time in many years, meaning we have managed to upstream
+a little over 20% of our entire patch set in just under five months. If we discount
+the DCP and GPU/Rust patches from both figures, that proportion jumps to just under half!</p><p>While we still have quite a way to go, this progress has already made rebases
+significantly less hassle and given us some room to breathe.</p><h3 id=miscellaneous-fixes>Miscellaneous fixes</h3><p>Now that we have some time to do so, we have managed to progress a number of
+things that had been sitting on the backburner.</p><p>Plymouth, the system used to display a boot splash screen instead of TTY messages,
+broke its automatic DPI scaling on 13-inch laptops at some point recently. We have
+now been able to fix this.</p><p>A recent update to OBS broke screencasting on KMSRO systems implementing DRM
+explicit sync. This was found to be caused by compositor bugs, and has been fixed
+in <a href=https://invent.kde.org/plasma/kwin/-/merge_requests/7941>kwin</a>, and a merge
+request has been raised for <a href=https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4547>Mutter</a>.
+As those fixes are not yet released and other compositors might have the same issue,
+Janne added DRM syncobj support to the DCP driver in <a href=https://github.com/AsahiLinux/linux/releases/tag/asahi-6.15.8-1>asahi-6.15.8-1</a>
+as a workaround.</p><p>Development on m1n1 has also started picking up again. The release of
+<a href=https://github.com/AsahiLinux/m1n1/releases/tag/v1.5.0>1.5.0</a> marks the first new
+release since February. A number of small fixes were able to be merged, including
+a fix for boot time crashes caused by missing calibration data on Macs that have had
+their WiFi/Bluetooth module replaced. We also made it easier for distros to
+add a custom logo to m1n1.</p><h3 id=conference-talks>Conference talks</h3><p>Davide and Neal presented at <a href=https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort>Red Hat Summit</a>
+and <a href=https://pretalx.devconf.info/devconf-cz-2025/talk/P3TEBA/>DevConf.CZ</a>,
+covering the ongoing work on Fedora Asahi Remix and introducing a CentOS Stream port
+as part of their work in the CentOS Hyperscale SIG. This was also covered
+at <a href=https://cfp.fedoraproject.org/centos-showcase-2025-07/talk/RRT8NW/>CentOS Showcase</a> in July.</p><h3 id=project-merch>Project merch</h3><p>Want to show your love for Asahi Linux to the world? Now you can! Head over to
+<a href=https://www.hellotux.com/asahi>HELLOTUX</a> to buy official Asahi Linux merch. A portion
+of each sale is donated to the project. Many thanks to HELLOTUX for facilitating this!</p><h3 id=until-next-time>Until next time!</h3><p>Our next report should hopefully bring even more improvements and developments,
+so make sure to stick around. As always, a warm thanks goes out to our supporters
+on <a href=https://opencollective.com/AsahiLinux>OpenCollective</a> and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>,
+without whom this would not be possible.</p><div class=post-bottom>James Calligeros · <span class=publishdate>2025-08-07</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
