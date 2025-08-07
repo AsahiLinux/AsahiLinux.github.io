@@ -46,13 +46,13 @@ Progress Report: Linux 6.16
 </li><li class=nav-spacer></li></ul></div><p>With Linux 6.16 now out in the wild, it&rsquo;s time for yet another progress report!
 As we mentioned last time, the Asahi and Honeykrisp Mesa drivers have finally
 found their way upstream. This has resulted in a flurry of GPU-related work, so
-let&rsquo;s start there.</p><h3 id=no-missing-nuts-in-this-flatpak>No missing nuts in this Flatpak</h3><p>For quite some time, we have maintained a version of our Mesa driver built against
+let&rsquo;s start there.</p><h2 id=no-missing-nuts-in-this-flatpak>No missing nuts in this Flatpak</h2><p>For quite some time, we have maintained a version of our Mesa driver built against
 the Flatpak runtime and shipped it as a Flatpak runtime extension. This was required
 to enable GPU acceleration on Flatpak while our Mesa driver was not enabled upstream.
 As Flatpak runtime version 23.08 reaches end of life this month, this will no longer
 be necessary. 24.08 now ships with Mesa 25.1, and so will the forthcoming 25.08
 runtime. Once 25.08 is released, we will be discontinuing the Flatpak runtime
-extension as it will serve no purpose.</p><h3 id=a-_fully_-upstream-graphics-stack>A <em>fully</em> upstream graphics stack</h3><p>Asahi uses DRM Native Context to paravirtualise the GPU. Rather than having to
+extension as it will serve no purpose.</p><h2 id=a-_fully_-upstream-graphics-stack>A <em>fully</em> upstream graphics stack</h2><p>Asahi uses DRM Native Context to paravirtualise the GPU. Rather than having to
 virtualise high-level APIs like DirectX and Vulkan, the VM runs the userspace component
 of the host&rsquo;s native GPU driver. The host is then passed native GPU commands that it
 only needs to forward on to the kernel without modifying. This improves GPU
@@ -60,12 +60,12 @@ performance inside muvm, our virtual machine for <a href=https://asahilinux.org/
 Until now however, this has relied on downstream patches to virglrenderer and Mesa.</p><p>We are pleased to announce that our DRM Native Context implementation has now
 been merged into the upstream virglrenderer project, and will therefore be enabled
 in upstream Mesa 25.2! This completes our transition to a fully upstream graphics
-stack, and as such we are retiring our Mesa fork completely.</p><h3 id=gpu-go-brrrrr>GPU go brrrrr</h3><p>Now that our Mesa driver is totally upstream, work on improving it has been able to
+stack, and as such we are retiring our Mesa fork completely.</p><h2 id=gpu-go-brrrrr>GPU go brrrrr</h2><p>Now that our Mesa driver is totally upstream, work on improving it has been able to
 occur rapidly. Alyssa has been hard at work over the past couple of months optimising
 performance. <a href="https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/?sort=created_date&state=merged&label_name%5B%5D=asahi&author_username=alyssa">A whole mess of merge requests</a>
 have found their way upstream, with the bulk of them being merged in time for the
 release of Mesa 25.2. Performance improvements are variable but decent, especially
-when paired with <a href=https://fex-emu.com/FEX-2508/>this month&rsquo;s improvements</a> to FEX&rsquo;s JIT.</p><h3 id=a-fine-vintage>A fine vintage</h3><p>Also new in Mesa 25.2 is support for <code>VK_EXT_map_memory_placed</code>, courtesy of
+when paired with <a href=https://fex-emu.com/FEX-2508/>this month&rsquo;s improvements</a> to FEX&rsquo;s JIT.</p><h2 id=a-fine-vintage>A fine vintage</h2><p>Also new in Mesa 25.2 is support for <code>VK_EXT_map_memory_placed</code>, courtesy of
 chaos_princess. This Vulkan extension allows applications to request GPU memory
 be mapped at a specific address. WINE uses this when thunking 32-bit DXVK to
 ensure any memory allocated by the GPU driver is within a 32-bit address space.
@@ -130,7 +130,7 @@ unique to making amd64 Windows code run on an AArch64 Windows environment which 
 </a>
 <figcaption>
 AMD64 Notepad++ running in WINE's ARM64EC mode
-</figcaption></figure><p><em>&mldr;Yet.</em></p><h3 id=were-getting-there>We&rsquo;re getting there&mldr;</h3><p>As always, we have been hard at work upstreaming various bits and pieces.</p><p>Devicetree bindings for the GPU have been accepted and merged for 6.17, which allows
+</figcaption></figure><p><em>&mldr;Yet.</em></p><h2 id=were-getting-there>We&rsquo;re getting there&mldr;</h2><p>As always, we have been hard at work upstreaming various bits and pieces.</p><p>Devicetree bindings for the GPU have been accepted and merged for 6.17, which allows
 us to stabilise how m1n1 initialises the GPU and forwards information onward to
 the kernel.</p><p>The SPMI controller driver, required for power management, landed in 6.16. The
 USB-C mux chips used in M3 Macs and above are also connected via SPMI bus, making
@@ -150,7 +150,7 @@ housekeeping on our branch and upstreaming what we have so far, that number is
 now below 1000 for the first time in many years, meaning we have managed to upstream
 a little over 20% of our entire patch set in just under five months. If we discount
 the DCP and GPU/Rust patches from both figures, that proportion jumps to just under half!</p><p>While we still have quite a way to go, this progress has already made rebases
-significantly less hassle and given us some room to breathe.</p><h3 id=miscellaneous-fixes>Miscellaneous fixes</h3><p>Now that we have some time to do so, we have managed to progress a number of
+significantly less hassle and given us some room to breathe.</p><h2 id=miscellaneous-fixes>Miscellaneous fixes</h2><p>Now that we have some time to do so, we have managed to progress a number of
 things that had been sitting on the backburner.</p><p>Plymouth, the system used to display a boot splash screen instead of TTY messages,
 broke its automatic DPI scaling on 13-inch laptops at some point recently. We have
 now been able to fix this.</p><p>A recent update to OBS broke screencasting on KMSRO systems implementing DRM
@@ -164,13 +164,13 @@ as a workaround.</p><p>Development on m1n1 has also started picking up again. Th
 release since February. A number of small fixes were able to be merged, including
 a fix for boot time crashes caused by missing calibration data on Macs that have had
 their WiFi/Bluetooth module replaced. We also made it easier for distros to
-add a custom logo to m1n1.</p><h3 id=conference-talks>Conference talks</h3><p>Davide and Neal presented at <a href=https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort>Red Hat Summit</a>
+add a custom logo to m1n1.</p><h2 id=conference-talks>Conference talks</h2><p>Davide and Neal presented at <a href=https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort>Red Hat Summit</a>
 and <a href=https://pretalx.devconf.info/devconf-cz-2025/talk/P3TEBA/>DevConf.CZ</a>,
 covering the ongoing work on Fedora Asahi Remix and introducing a CentOS Stream port
 as part of their work in the CentOS Hyperscale SIG. This was also covered
-at <a href=https://cfp.fedoraproject.org/centos-showcase-2025-07/talk/RRT8NW/>CentOS Showcase</a> in July.</p><h3 id=project-merch>Project merch</h3><p>Want to show your love for Asahi Linux to the world? Now you can! Head over to
+at <a href=https://cfp.fedoraproject.org/centos-showcase-2025-07/talk/RRT8NW/>CentOS Showcase</a> in July.</p><h2 id=project-merch>Project merch</h2><p>Want to show your love for Asahi Linux to the world? Now you can! Head over to
 <a href=https://www.hellotux.com/asahi>HELLOTUX</a> to buy official Asahi Linux merch. A portion
-of each sale is donated to the project. Many thanks to HELLOTUX for facilitating this!</p><h3 id=until-next-time>Until next time!</h3><p>Our next report should hopefully bring even more improvements and developments,
+of each sale is donated to the project. Many thanks to HELLOTUX for facilitating this!</p><h2 id=until-next-time>Until next time!</h2><p>Our next report should hopefully bring even more improvements and developments,
 so make sure to stick around. As always, a warm thanks goes out to our supporters
 on <a href=https://opencollective.com/AsahiLinux>OpenCollective</a> and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>,
 without whom this would not be possible.</p><div class=post-bottom>James Calligeros · <span class=publishdate>2025-08-07</span></div></div></div></section><footer id=footer>
