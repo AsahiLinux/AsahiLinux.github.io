@@ -11,7 +11,7 @@ As we mentioned last time, the Asahi and Honeykrisp Mesa drivers have finally
 found their way upstream. This has resulted in a flurry of GPU-related work, so
 let's start there.
 
-### No missing nuts in this Flatpak
+## No missing nuts in this Flatpak
 For quite some time, we have maintained a version of our Mesa driver built against
 the Flatpak runtime and shipped it as a Flatpak runtime extension. This was required
 to enable GPU acceleration on Flatpak while our Mesa driver was not enabled upstream.
@@ -20,7 +20,7 @@ be necessary. 24.08 now ships with Mesa 25.1, and so will the forthcoming 25.08
 runtime. Once 25.08 is released, we will be discontinuing the Flatpak runtime
 extension as it will serve no purpose.
 
-### A _fully_ upstream graphics stack
+## A _fully_ upstream graphics stack
 Asahi uses DRM Native Context to paravirtualise the GPU. Rather than having to
 virtualise high-level APIs like DirectX and Vulkan, the VM runs the userspace component
 of the host's native GPU driver. The host is then passed native GPU commands that it
@@ -33,7 +33,7 @@ been merged into the upstream virglrenderer project, and will therefore be enabl
 in upstream Mesa 25.2! This completes our transition to a fully upstream graphics
 stack, and as such we are retiring our Mesa fork completely.
 
-### GPU go brrrrr
+## GPU go brrrrr
 Now that our Mesa driver is totally upstream, work on improving it has been able to
 occur rapidly. Alyssa has been hard at work over the past couple of months optimising
 performance. [A whole mess of merge requests](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/?sort=created_date&state=merged&label_name%5B%5D=asahi&author_username=alyssa)
@@ -41,7 +41,7 @@ have found their way upstream, with the bulk of them being merged in time for th
 release of Mesa 25.2. Performance improvements are variable but decent, especially
 when paired with [this month's improvements](https://fex-emu.com/FEX-2508/) to FEX's JIT.
 
-### A fine vintage
+## A fine vintage
 Also new in Mesa 25.2 is support for `VK_EXT_map_memory_placed`, courtesy of
 chaos_princess. This Vulkan extension allows applications to request GPU memory
 be mapped at a specific address. WINE uses this when thunking 32-bit DXVK to
@@ -154,7 +154,7 @@ unique to making amd64 Windows code run on an AArch64 Windows environment which 
 
 _...Yet._
 
-### We're getting there...
+## We're getting there...
 As always, we have been hard at work upstreaming various bits and pieces.
 
 Devicetree bindings for the GPU have been accepted and merged for 6.17, which allows
@@ -189,7 +189,7 @@ the DCP and GPU/Rust patches from both figures, that proportion jumps to just un
 While we still have quite a way to go, this progress has already made rebases
 significantly less hassle and given us some room to breathe.
 
-### Miscellaneous fixes
+## Miscellaneous fixes
 Now that we have some time to do so, we have managed to progress a number of
 things that had been sitting on the backburner.
 
@@ -212,19 +212,19 @@ a fix for boot time crashes caused by missing calibration data on Macs that have
 their WiFi/Bluetooth module replaced. We also made it easier for distros to
 add a custom logo to m1n1.
 
-### Conference talks
+## Conference talks
 Davide and Neal presented at [Red Hat Summit](https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731519631980001Xort)
 and [DevConf.CZ](https://pretalx.devconf.info/devconf-cz-2025/talk/P3TEBA/),
 covering the ongoing work on Fedora Asahi Remix and introducing a CentOS Stream port
 as part of their work in the CentOS Hyperscale SIG. This was also covered
 at [CentOS Showcase](https://cfp.fedoraproject.org/centos-showcase-2025-07/talk/RRT8NW/) in July.
 
-### Project merch
+## Project merch
 Want to show your love for Asahi Linux to the world? Now you can! Head over to
 [HELLOTUX](https://www.hellotux.com/asahi) to buy official Asahi Linux merch. A portion
 of each sale is donated to the project. Many thanks to HELLOTUX for facilitating this!
 
-### Until next time!
+## Until next time!
 Our next report should hopefully bring even more improvements and developments,
 so make sure to stick around. As always, a warm thanks goes out to our supporters
 on [OpenCollective](https://opencollective.com/AsahiLinux) and [GitHub Sponsors](https://github.com/sponsors/AsahiLinux),
