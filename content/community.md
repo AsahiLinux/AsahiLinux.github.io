@@ -35,6 +35,7 @@ The Fedora-specific Asahi discussions take place in Matrix on Fedora infra:
 
 Our working documentation is maintained in a [documentation site](/docs) built from [GitHub](https://github.com/AsahiLinux/docs) using [MkDocs](https://mkdocs.org).
 
-## Mastodon (Fediverse)
+## Social media
 
-You will also find official announcements and information on the [Asahi Linux Mastodon account](https://social.treehouse.systems/@AsahiLinux).
+You will also find official announcements and information on the [Asahi Linux Mastodon (Fediverse) account](https://social.treehouse.systems/@AsahiLinux).
+These are also published to the [Asahi Linux Bluesky account](https://bsky.app/profile/asahilinux.org) and the [Asahi Linux LinkedIn page](https://linkedin.com/company/asahilinux/).
