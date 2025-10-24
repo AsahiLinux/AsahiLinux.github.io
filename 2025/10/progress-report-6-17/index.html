@@ -1,0 +1,224 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 6.17 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 6.17 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 6.17 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/merch>Merch</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2025/10/progress-report-6-17/>
+Progress Report: Linux 6.17
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 6.17</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2025/08/progress-report-6-16/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>Another upstream kernel release means it must be time for a progress report!</p><h2 id=the-patches-keep-coming>The patches keep coming</h2><p>As always, upstreaming continues. The highlight of this cycle is finally landing
+the SMC core driver, after discussions on the mailing list going all the way back
+to 2022! Along with the core driver, drivers for the SMC&rsquo;s GPIO controller and
+reboot controller have also been merged. This allows devices which are already
+upstream to reboot gracefully, and lays the groundwork for enabling WiFi and
+Bluetooth upstream.</p><p>Also merged for 6.17 are a few Devicetree changes which lay the groundwork for
+upstreaming GPU support. While these are ultimately a small piece of the whole GPU
+puzzle, they are very important. The Devicetree schema determines how the GPU kernel
+driver gets the information it needs from firmware to properly control the GPU. Now
+that this is stable and the properties merged into the upstream Devicetrees, we
+can be reasonably confident that the parts of the GPU driver that interact with
+the Devicetree won&rsquo;t require substantial changes.</p><p>Work is also progressing on getting more SMC functionality upstream. The hardware
+monitoring, lid switch and power button, and RTC drivers are all close to being
+merged, with just a few minor issues left to address.</p><p>Apple Silicon SoCs place peripheral devices and IP blocks (like the display
+controller) behind an IOMMU called DART. These act as a sort of firewall for peripherals,
+preventing them from accessing memory addresses that they shouldn&rsquo;t. The DARTs on the
+M2 Pro, Max and Ultra (T602x) SoCs are <em>mostly</em> compatible with those found on
+the base M2, with one caveat: they support a larger address space. Supporting this
+required implementing four-level pagetables in the DART driver. This change, along
+with the Devicetrees for all M2 Pro, Max and Ultra based devices have now been merged,
+and are available in v6.18-rc1!</p><p>And of course, there are the USB patches. It seems like just about everyone&rsquo;s
+been following these on the mailing list, so it would be remiss not to mention
+them. Anyway, moving on.</p><h2 id=m1n1s-starting-to-rust>m1n1&rsquo;s starting to Rust</h2><p>Slowing down the kernel treadmill has enabled us to finally start taking a look
+at other parts of the stack, and we&rsquo;ve been making some important (and long
+overdue) changes to m1n1.</p><p>For a while now, the recommended method for installing non-Fedora distros has
+been to use the &ldquo;UEFI Only&rdquo; installer option, then boot the preferred distro&rsquo;s
+Asahi installation media from USB. However, it has been quite some time since
+this installation option was updated, and the m1n1/U-Boot/Devicetree bundle it was
+installing was over two years old. A lot has changed in that time, and it turned
+out that this bundle was not capable of booting modern Asahi kernels. Oops.</p><p>To fix this, Janne has added a <a href=https://github.com/AsahiLinux/m1n1/actions/workflows/installer.yml>CI pipeline</a>
+to the m1n1 repo that will automatically build the UEFI bundle for us. With
+this step automated, it is now trivial to upload the resulting artefact to our CDN
+and point the Asahi Installer to it. The update cadence should now be a lot more
+frequent than biennially!</p><p>We have also released <a href=https://github.com/AsahiLinux/m1n1/releases/tag/v1.5.2>m1n1 v1.5.2</a>.
+This release is fairly uncontroversial, with the main changes being adding
+compatibility for the now-upstream USB and GPU Devicetree schema. However, this will
+likely be our last m1n1 release that can be built without Rust.</p><p>We believe that it is important for such a critical piece of software to be as
+maintainable, safe and logically sound as possible, especially given that it is
+<em>supposed</em> to root the chain of trust in a hypothetical Secure Boot environment.
+Certain components of m1n1 being written in C means that we currently cannot meet
+any of those goals.</p><p>One such component was the Apple Device Tree handling code. While the ADT is
+implicitly trustworthy data, the original C implementation was quite haphazardly
+put together. This resulted in an unsound API based on libfdt that was neither
+ergonomic to use nor a particularly good fit for the ADT data itself.</p><p>I was able to develop a sound, idiomatic Rust implementation and API with a little
+help from our resident Rust expert chaos_princess, and bind that back to the existing
+C API so that all our existing C code can make use of it. After a round of bug-squashing,
+we found that there is no speed difference between the old and new implementations,
+even with the overhead of the FFI glue logic!</p><p>We don&rsquo;t have any plans to actively port <em>all</em> of m1n1 to Rust. Safety-critical
+components in the boot chain are our primary focus, followed closely by components
+which could directly benefit from a rewrite due to unsound or unergonomic C APIs.
+Perhaps one day we will have an all-Rust m1n1, but if it happens it will do so
+organically over time.</p><h2 id=wow>WoW!</h2><p>Last time, we teased working 64-bit Windows applications running in WINE outside of
+muvm. Granted, Notepad++ is not a particularly exciting teaser, but we believe it is
+important to be transparent and set realisitic expectations. Anyway, here are both
+Hollow Knight and NieR:Automata&mdash;64-bit Windows games&mdash;running on WINE outside of muvm.</p><figure>
+<a href=/img/blog/2025/10/hollowknight.jpg>
+<img src=/img/blog/2025/10/hollowknight.jpg alt="Hollow Knight (2017) running outside of muvm on an M1 Pro MacBook Pro with Gentoo">
+</a>
+<figcaption>
+Hollow Knight (2017) running outside of muvm on an M1 Pro MacBook Pro with Gentoo
+</figcaption></figure><br>
+<figure>
+<a href=/img/blog/2025/10/nier.jpg>
+<img src=/img/blog/2025/10/nier.jpg alt="NieR:Automata (2017) running outside of muvm on an M1 Pro MacBook Pro with Gentoo">
+</a>
+<figcaption>
+NieR:Automata (2017) running outside of muvm on an M1 Pro MacBook Pro with Gentoo
+</figcaption></figure><p>Thanks once again to chaos_princess, the toolchain changes we were waiting for last
+time have now been integrated into Gentoo, and the required FEX DLLs are built
+automatically when installing WINE.</p><p>Mileage will vary to an even greater degree than 32-bit applications, however.
+WINE&rsquo;s support for ARM64X and ARM64EC (Microsoft&rsquo;s ABI and executable format
+that allow AArch64 and amd64 code to interoperate) is still incomplete, so
+many applications simply will not work (yet). We of course encourage folks who
+like to live dangerously to give it a try, but we cannot provide any support
+for this stack. Consider it an early alpha, a glimpse at better things to come.</p><h2 id=helping-developers>Helping developers</h2><p>When we first started the project, we created <a href=https://github.com/AsahiLinux/macvdmtool>macvdmtool</a>
+to puppeteer a device under test using Apple&rsquo;s USB-PD Vendor Defined Messages.
+These allow the user to reboot a Mac over USB and to route the SoC&rsquo;s primary
+UART to the USB port. These features are very useful when doing early device
+bringup. Rebooting the machine with this method works even when the system is
+locked up, and having access to the UART means that we can inspect any boot logs
+without relying on an initialised display or USB stack. macvdmtool relies on IOKit,
+a macOS system library. Having to use macOS for development is painful, but what
+if we could achieve the same functionality with a Linux utility instead?</p><p><a href=https://github.com/AsahiLinux/tuxvdmtool>tuxvdmtool</a> is a reimplementation
+of macvdmtool on Linux, made possible by changes to the USB-C mux chip driver
+present in our downstream kernel. tuxvdmtool offers the same features as macvdmtool,
+with the added benefit of allowing the &ldquo;host&rdquo; system to be an Apple Silicon device
+running Linux! Having access to a familiar and fully-featured Linux development
+environment helps make early bringup work just that little bit more accessible.
+We hope that tuxvdmtool encourages more folks to experiment with low-level bringup
+on Apple Silicon devices.</p><p>While the kernel patches required to make this work are not upstreamable, a future
+release of tuxvdmtool will be rewritten to use the Linux kernel&rsquo;s builtin
+<a href=https://docs.kernel.org/i2c/dev-interface.html>i2c dev interface</a>, which will
+allow us to drop them entirely.</p><h2 id=helping-everyone>Helping everyone</h2><p>We have always strived to work directly with upstream projects on Apple Silicon
+support where possible. This allows us to discuss ideas with those projects, get
+advice on the correct way to implement Apple Silicon support in their software, and
+in many cases even benefit the ecosystem more broadly. While this means we are
+beholden to the relevant upstream&rsquo;s release schedule, it also means that we don&rsquo;t
+have to worry about maintaining outdated forks, rebasing, backporting security
+patches, and any of the other software engineering things that are not directly
+related to supporting Apple Silicon devices. The past year has demonstrated
+clearly why not just an an upstream-first, but upstream-<em>only</em> approach to
+development is the only approach that makes sense long term.</p><p>But working upstream is not only for our own benefit. Sometimes, the work we
+do can be of benefit to other users on other platforms. Well documented examples
+of this include getting projects to <a href=https://asahilinux.org/docs/sw/broken-software/#fixed-packages>work properly</a>
+on machines with 16K pages, and the PipeWire and WirePlumber enhancements that
+allow us to automatically apply DSP profiles to each device. These were done with
+the direct benefit to others front and centre of mind.</p><p>Sometimes, however, it can be those other users who find our work and put it to
+use of their own accord.</p><p>Geometry shaders are a type of specialised shader which can work directly on
+polygons rather than vertices. Although now considered a legacy technique,
+some applications use them for various tasks, such as culling triangles from
+a scene based on some sort of filter condition.</p><p>Similarly, tessellation is a graphical technique that allows GPUs to programmatically
+fill a surface with new polygons. This is used to implement adaptive LOD, highly
+detailed water, and increase the fidelity of models without having to ship
+large, high-poly assets.</p><p>Modern high-performance GPUs support both of these with additional hardware,
+however this requires engineering effort as well as room in the design&rsquo;s power
+and die area budgets. Mobile GPU designers aim to minimise all three of these
+and more often than not end up emulating both geometry shaders and tessellation.
+Apple&rsquo;s GPUs, being derived from PowerVR and originally designed for iDevices,
+are no exception.</p><p>While Vulkan does not mandate support for geometry shaders for this reason, OpenGL
+does from version 3.2 onwards, as does Direct3D 10 and up. Since we would very
+much like to support OpenGL as well as Direct3D translation, we need to be
+able to execute geometry shaders somehow.</p><p>We may not have explicit support for geometry shaders, we <em>do</em> have support for
+compute shaders. With these, we can emulate full geometry shader and tessellation
+support on the GPU itself and avoid a great deal of the performance penalty
+associated with using the CPU.</p><p>Of course this isn&rsquo;t as performant as full hardware acceleration, but it does
+at least allow us to advertise support for geometry and tessellation shaders to
+applications. This in turn allows us to claim conformance with all modern OpenGL
+versions, allows Vulkan applications to use geometry and tessellation shaders,
+<em>and</em> enables the translation of Direct3D for games running under WINE/Proton!</p><p>Other mobile GPUs also have this problem. Arm&rsquo;s GPU designs for example do not
+have hardware support for geometry shaders or tessellation either.
+Enter <a href=https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37914><code>poly</code></a>,
+an effort by Mary Guillemard to convert our geometry and tessellation shader emulation
+into shared code that any Mesa driver can use. This can then be integrated into
+any Mesa GPU driver, enabling geometry and tessellation shader support without
+duplicating the emulation code itself!</p><p>Be sure to keep an eye out for geometry shader, tessellation shader, and transform
+feedback support in Panfrost, the open source Arm GPU driver, as well as in KosmicKrisp,
+a conformant Vulkan 1.3 implementation for macOS layered on top of Metal.</p><h2 id=life-the-universe-and-everything-plus-one>Life, the Universe, and Everything. Plus one.</h2><p>Keen eyes may have noticed we&rsquo;ve started building Fedora Asahi Remix
+<a href=https://fedora-asahi-remix.org/builds.html>dailies</a> targeting Fedora Linux 43.
+The new upstream Fedora release is slated to come out later this month, and
+you can expect the Remix to follow shortly.</p><h2 id=at-the-akademy>At the Akademy</h2><p>Neal and Janne attended <a href=https://akademy.kde.org/>KDE Akademy</a> in Berlin this year.
+As the annual KDE community conference, this was an opportunity to ensure future work
+in KDE aligns well with Fedora Linux and Fedora Asahi Remix. Neal
+<a href="https://youtu.be/CznIsJQQE9U?t=248">gave a talk</a> about the Fedora KDE Plasma Desktop
+Edition there, and prominently discussed Fedora Asahi Remix as part of it.</p><p>Additionally, there was a lot of discussion about the upcoming Plasma Setup application,
+which will provide a better integrated experience for first boot of a Fedora KDE
+install. Lessons learnt from Fedora Asahi Remix user feedback is being directly
+incorporated into Plasma Setup, and Neal is working on integrating this for Fedora
+Linux 44 as <a href=https://fedoraproject.org/wiki/Changes/Unified_KDE_OOBE>a formal Change</a>.</p><h2 id=m3-kinda>M3? Kinda&mldr;</h2><p>Way back in the early days, we predicted that Apple would refrain from making
+sweeping architectural changes to the various functional blocks found in Apple Silicon
+SoCs unless absolutely necessary, and that this would enable the reuse of a
+lot of code and significantly cut down on the amount of reverse engineering required
+between generations. The example we gave was the interrupt controller, which is
+quite unfortunate because that was the first thing Apple ended up changing. Oops.</p><p>But the overall principle has held mostly true. So much so in fact that some
+enterprising folks on Reddit have found that with only a trivial amount of
+hacking, you can actually boot Asahi on M3 series devices!</p><p>It may be surprising to learn that very basic, low-level support for M3 has
+existed for quite some time now. m1n1 is capable of initialising the CPU cores,
+turning on some critical peripheral devices, and booting the Asahi kernel.
+However, the level of support right now begins and ends with being able to boot
+to a blinking cursor. Naturally, this level of support is not at all useful for
+anything but low-level reverse engineering, but we of course plan on rectifying
+this in due time&mldr;</p><p>If you&rsquo;re interested in helping us out and have prior experience with reverse
+engineering or low-level embedded software development, we&rsquo;d love for you to say
+hi on IRC or Matrix! See <a href=https://asahilinux.org/contribute>this page</a> for more
+information.</p><h2 id=thanks>Thanks!</h2><p>As always, a warm thanks to our sponsors on <a href=https://opencollective.com/asahilinux>OpenCollective</a>
+and <a href=https://github.com/sponsors/asahilinux>GitHub Sponsors</a>, without whom we
+would not be able to keep the lights on. You&rsquo;re all truly wonderful!</p><div class=post-bottom>James Calligeros · <span class=publishdate>2025-10-24</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
