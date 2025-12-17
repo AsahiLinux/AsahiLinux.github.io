@@ -1,0 +1,150 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 6.18 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 6.18 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 6.18 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/merch>Merch</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2025/12/progress-report-6-18/>
+Progress Report: Linux 6.18
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 6.18</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2025/10/progress-report-6-17/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>Linux 6.18 has released, and we have a bit to talk about for this holiday season progress report!</p><h2 id=more-upstreaming-madness>More upstreaming madness</h2><p>Last time, we announced that the core SMC driver had finally been merged upstream after three long
+years. Following that success, we have started the process of merging the SMC&rsquo;s subdevice drivers
+which integrate all of the SMC&rsquo;s functionality into the various kernel subsystems. The hwmon driver
+has already been accepted for 6.19, meaning that the myriad voltage, current, temperature and power
+sensors controlled by the SMC will be readable using the standard hwmon interfaces. The SMC is also
+responsible for reading and setting the RTC, and the driver for this function has also been merged
+for 6.19! The only SMC subdevices left to merge is the driver for the power button and lid switch,
+which is still on the mailing list, and the battery/power supply management driver, which currently
+needs some tweaking to deal with changes in the SMC firmware in macOS 26.</p><p>Also finally making it upstream are the changes required to support USB3 via the USB-C ports. This
+too has been a long process, with our approach needing to change significantly from what we had
+originally developed downstream. The changes made to the Synopsis USB controller and the TI USB-PD
+controller drivers have been merged, with only the driver for Apple Type-C PHY (ATCPHY) requiring
+review. ATCPHY is responsible for configuring the physical USB-C connection, detecting and negotiating the
+required protocols and routing signals to and from the relevant controllers. This is required not
+just for USB3, but also all the other protocols one could reasonably expect a USB-C port to carry&mldr;</p><h2 id=its-always-a-single-line>It&rsquo;s always a single line&mldr;</h2><p>While most of us have been enjoying full microphone support, owners of M2 Pro/Max MacBooks have been
+missing out. Given that the M2 Pro/Max is almost identical to the M1 Pro/Max, it was assumed that this
+would extend to the &ldquo;Always-On&rdquo;<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup> Processor, which controls the microphone array. Unfortunately, it seemed
+for a while as though this assumption would not hold. What could be the issue though? A bug in RTKit?
+A change in how AOP is initialised? The only way we were going to find out was by buying a device&mldr;</p><p>Armed with a shiny <del>new</del> refurbished 16" MacBook Pro and a fresh Gentoo install, I started digging
+and quickly ran into the first major issue; everything kinda works. The AOP is booted correctly, the
+microphone endpoint is initialised, and the ALSA driver registers a PCM with the correct metadata.
+Trying to open that PCM, however, fails silently. Oh dear.</p><p>Just how does one debug something like this? Perhaps you could run Linux as a guest of m1n1 and
+stare at hexdumps for hours like we do for macOS. Or maybe you&rsquo;d use the kernel&rsquo;s builtin debugging
+features like ftrace or kgdb. Knowledge is leveraging all of the debugging facilities available to you
+to quickly and efficiently pinpoint the exact point of failure. Wisdom, however, is <code>printk()</code>.</p><p>And so it was for the next eight hours. <code>printk()</code>, compile, boot. <code>printk()</code>, compile, boot.
+Oops, followed the wrong branch. <code>printk()</code>, compile, boot.</p><p>Eventually, I ended up pretty deep in the DMA core, and came out the other side somewhere near
+IOMMU code. A memory allocation was failing, and this was bubbling back up to the ALSA driver. Following
+along just a little further revealed that the allocation itself wasn&rsquo;t failing, it was mapping of the
+memory region to an I/O virtual address.</p><p>For a multitude of reasons, the IOMMU core supports imposing a limit on the range of valid addresses
+for a given IOMMU. For DART, we specify these ranges in the Devicetree using the <code>apple,dma-range</code>
+property. If anything tries to map an IOVA outside of the specified range, the driver will return
+an error. The values for this property come from Apple&rsquo;s Devicetree, but have to be manually entered
+into the Linux Devicetree source. You already know where this is going&mldr;</p><p>With the <code>apple,dma-range</code> property removed, one more boot finally gave us what we wanted &mdash; working
+mics on an M2 Pro/Max laptop! A patch was quickly applied to the kernel tree and a version tagged off.
+Be sure to update your systems once your distro releases a kernel based on this tag!</p><p>We still have some work to do, however. Even with the <em>correct</em> values in the <code>apple,dma-range</code> property,
+our IOVA allocation still fails. Thankfully, this property is not actually required and isn&rsquo;t
+specified for the AOP DART in any other SoC&rsquo;s Devicetree, so M2 Pro/Max MacBook users can at least
+enjoy using their microphones while we figure this out.</p><p>Thanks to the funds made available by our generous supporters on GitHub Sponsors and OpenCollective,
+we are able to afford not only to keep the lights on, but to procure the hardware we need to reverse
+engineer and support the platform. That said, these funds are not an infinite money glitch.</p><p>OpenCollective works predominantly on a reimbursement model, where an invoice for a purchase
+<em>already made</em> must be presented and approved before funds can be released. This means that all of our
+expenses are paid for out of pocket, with a delay of up to 5 weeks between making the purchase and getting
+reimbursed. MacBooks are not cheap, and we do all still have other expenses in our lives. All of this to say,
+we can&rsquo;t just magic up a device at a moment&rsquo;s notice and drop everything to look at every bug we encounter.
+Things need to be prioritised, including our non-Asahi commitments. We understand that the wait for this
+has been long and testing on everyone&rsquo;s patience, and we thank you for bearing with us.</p><h2 id=asahi-at-the-congress>Asahi at the Congress</h2><p>It is December, which means the Chaos Communications Congress is almost upon us. We are pleased to
+announce that not only are some of us attending 39C3, but our very own Sven will be giving an
+Asahi-themed <a href=https://fahrplan.events.ccc.de/congress/2025/fahrplan/event/asahi-linux-porting-linux-to-apple-silicon>talk on Day 4</a>.
+Topics will include our reverse engineering process, what we&rsquo;ve already achieved, and what the future
+holds. Be sure to check it out, timezone permitting!</p><h2 id=a-better-installation-experience>A better installation experience</h2><p>We&rsquo;ve always said, somewhat tongue-in-cheek, that we want Asahi-the-distro to cease existing.
+At its core, Asahi Linux has always been a reverse engineering project. An &ldquo;official&rdquo; Asahi distro,
+be it Asahi ALARM or Fedora Asahi Remix, has always been considered a temporary measure while we work
+with the various upstream projects to integrate our code. By now everyone is aware of our work with
+the Linux kernel, PipeWire, WirePlumber and Mesa, but we also work with less obvious &mdash; yet equally
+important &mdash; projects.</p><p>Apple Silicon Macs are effectively scaled up iPads, and their SSDs reflect this. These machines use the
+SSD to store the bootloader, firmware, factory calibration data, and data used by the SEP for security.
+Each machine also has a system recovery partition at the end of the disk, and a paired recovery
+environment for each installed macOS instance. If <em>any</em> of these are deleted, your data is toast and
+you will need to DFU restore your Mac.</p><p>This is part of the reason that Fedora Asahi Remix is installed via a disk image. It is far safer
+to allow our installer to sanely partition your Mac&rsquo;s disk and flash known-good images into the
+relevant partitions. This approach is great for a single-distro pipeline, however comes with
+some serious drawbacks.</p><p>Firstly, it is unrealistic and unfair to expect other distros to take on the release engineering
+burden of building special disk images and installers for a single platform. Not only is this
+a lot of effort for a relatively small user base, it also involves a lot of duplicated effort
+across each distro.</p><p>Secondly &mdash; and most importantly for a lot of our users &mdash; this approach is rather unhygienic
+from an information security perspective. Flashing a pre-rolled disk image makes it impractical
+to set up disk encryption at install time, and means that we need to manually scramble partition
+UUIDs on first boot.</p><p>In an ideal world, installing Linux on an Apple Silicon Mac should be as easy as using the Asahi
+Installer to prep the machine, then booting your favourite distro&rsquo;s live image and installing from
+there. Some distros, such as Gentoo, are already taking this approach. Gentoo can get away with
+this because the partitioning is entirely manual and users almost always follow the documentation
+step-by-step; a little guidance and care on the user&rsquo;s part is enough to avoid most partitioning
+mishaps. However, distros with a graphical installer will typically offer to automatically partition
+a user&rsquo;s disk with the distro&rsquo;s defaults. These tools are mostly designed around the PC, and will
+happily wipe out the entire target disk. We obviously cannot allow this to happen, and the fact that
+it is highly likely means that we cannot support a traditional, mainstream install approach. Yet.</p><p>Every partition on GUID Partition Table<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup> disk is marked with a partition type UUID. These are
+standardised, and never change. Apple&rsquo;s special partitions are included in the standard, allowing
+us to easily identify a Zone of Avoidance for partitioning operations.</p><p>To this end, Neal has been working with the Anaconda team to hide these partitions so that they
+cannot be removed accidentally by Anaconda&rsquo;s disk partitioning module. Once this work is complete
+and filters through to a release, distros which utilise Anaconda will be safely installable from
+live media! The goal is for Anaconda to present <em>only</em> the free space created
+by the Asahi Installer, enabling fearless automatic partitioning. This also enables users to easily
+specify custom disk setups, such as full disk encryption or nonstandard filesystems if so desired.</p><p>In a similar vein, Neal has also been working with KDE on Plasma Setup, a new onboarding application
+intended to make system setup on first boot a pleasurable experience. Once stable, Plasma Setup will
+allow us to replace the current Calamares-based first boot wizard with a modern, integrated experience!</p><h2 id=happy-holidays>Happy holidays!</h2><p>As 2025 comes to a close, we want to thank everyone who has supported us financially on <a href=https://opencollective.com/asahilinux>Open Collective</a>
+and <a href=https://github.com/sponsors/asahilinux>GitHub Sponsors</a>, contributed code, reported a bug,
+or even just offered moral support! We will see you all up ahead.</p><div class=footnotes role=doc-endnotes>
+<hr>
+<ol>
+<li id=fn:1>
+<p>Not actually always on.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2>
+<p>Remember when this is what GPT stood for?&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div><div class=post-bottom>James Calligeros · <span class=publishdate>2025-12-14</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
