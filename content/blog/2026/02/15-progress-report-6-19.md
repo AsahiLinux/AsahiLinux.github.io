@@ -1,0 +1,420 @@
++++
+date = "2026-02-15T16:30:00+10:00"
+draft = false
+title = "Progress Report: Linux 6.19"
+slug = "progress-report-6-19"
+author = "James Calligeros"
++++
+
+Happy belated new year! Linux 6.19 is now out in the wild and... ah, let's just cut to
+the chase. We know what you're here for.
+
+## The big one
+Asahi Linux turns 5 this year. In those five years, we've gone from Hello World over
+a serial port to being one of the best supported desktop-grade AArch64 platform in the Linux
+ecosystem. The sustained interest in Asahi was the push many developers needed to start
+taking AArch64 seriously, with a whole slew of platform-specific bugs in popular software
+being fixed specifically to enable their use on Apple Silicon devices running Linux. We
+are immensely proud of what we have achieved and consider the project a resounding and
+continued success.
+
+And yet, there has remained one question seemingly on everyone's lips. Every announcement,
+every upstreaming victory, every blog post has drawn this question out in one way or another.
+It is asked at least once a week on IRC and Matrix, and we even occasionally receive
+emails asking it.
+
+"When will display out via USB-C be supported?"
+
+"Is there an ETA for DisplayPort Alt Mode?"
+
+"Can I use an HDMI adapter on my MacBook Air yet?"
+
+Despite repeated polite requests to not ask us for specific feature ETAs, the questions
+kept coming. In an effort to try and curtail this, we toyed with setting a "minimum"
+date for the feature and simply doubling it every time the question was asked. This
+very quickly led to the date being after the predicted heat death of the universe.
+We fell back on a tried and tested response pioneered by id Software; DP Alt Mode will
+be done when it's done.
+
+And, well, it's done. Kind of.
+
+In December, Sven gave a [talk at 39C3](https://media.ccc.de/v/39c3-asahi-linux-porting-linux-to-apple-silicon)
+recounting the Asahi story so far, our reverse
+engineering process, and what the immediate future looks like for us. At the end, he
+revealed that the slide deck had been running on an M1 MacBook Air, connected to
+the venue's AV system via a USB-C to HDMI adapter!
+
+At the same time, we quietly pushed the [fairydust](https://github.com/AsahiLinux/linux/tree/fairydust)
+branch to our downstream Linux tree. This branch is the culmination of years of hard work from Sven, Janne and marcan,
+wrangling and taming the fragile and complicated USB and display stacks
+on this platform. Getting a display signal out of a USB-C port on Apple Silicon involves
+four distinct hardware blocks; DCP[^1], DPXBAR[^2], ATCPHY[^3], and ACE[^4]. These four pieces of hardware
+each required reverse engineering, a Linux driver, and then a whole lot of convincing to
+play nicely with each other.
+
+All of that said, there is still work to do. Currently, the fairydust branch "blesses"
+a specific USB-C port on a machine for use with DisplayPort, meaning that multiple
+USB-C displays is still not possible. There are also some quirks regarding both cold
+and hot plug of displays. Moreover, some users have reported that DCP does not properly
+handle certain display setups, variously exhibiting incorrect or oversaturated colours or
+missing timing modes.
+
+For all of these reasons, we provide the fairydust branch strictly as-is. It is intended
+primarily for developers who may be able to assist us with ironing out these kinks with
+minimal support or guidance from us. Of course, users who are comfortable with building
+and installing their own kernels on Apple Silicon are more than welcome to try it out
+for themselves, but we cannot offer any support for this until we deem it ready for
+general use.
+
+## The other big one
+For quite some time, m1n1 has had basic support for the M3 series machines. What has
+been missing are Devicetrees for each machine, as well as patches to our Linux kernel
+drivers to support M3-specific hardware quirks and changes from M2. Our intent was always
+to get to fleshing this out once our existing patchset became more manageable, but with
+the quiet hope that the groundwork being laid would excite a new contributor enough to
+step up to the plate and attempt to help out. Well, we actually ended up with _three_
+new contributors!
+
+Between the three of them, [Alyssa Milburn (noopwafel)](https://noopwafel.net),
+[Michael Reeves (integralpilot)](https://github.com/IntegralPilot), and [Shiz](https://github.com/Shiz),
+with help from Janne, wrote some preliminary Devicetrees and found that a great deal of
+hardware worked without any changes! Adding in some minor kernel changes for the NVMe and interrupt
+controllers, Michael was able to [boot](https://www.reddit.com/r/AsahiLinux/comments/1qnddjd/m3_now_has_fedora_43_asahi_remix_working_with_kde/)
+all the way to Plasma on an M3 MacBook Air!
+
+In fact, the current state of M3 support is about where M1 support was when we released
+the first Arch Linux ARM based beta; keyboard, touchpad, WiFi, NVMe and USB3 are all
+working, albeit with some local patches to m1n1 and the Asahi kernel (yet to make their
+way into a pull request) required. So that must mean we will have a release ready soon, right?
+
+A lot has changed in five years. We have earnt a reputation for being the most complete
+and polished AArch64 desktop Linux experience available, and _one of_ the most complete
+and polished desktop Linux experiences in general. It is a reputation that we are immensely
+proud of, and has come at a great personal cost to many. We will not squander it or take
+it for granted.
+
+Ideally, the current state of M1 and M2 support should be the baseline for any general 
+availability release for M3. We know that's not _realistic_, however nor is releasing a
+janky, half-baked and unfinished mess like the initial ALARM releases all those years
+ago. So, what needs to be done before we can cut a release? Quite a bit, actually.
+
+The first thing intrepid testers will notice is that the graphical environment is entirely
+software-rendered. This is extremely slow and energy intensive, and barely keeps up
+with scrolling text in a terminal window. Unfortunately, this is not likely to change
+any time soon; the GPU design found in M3 series SoCs is a significant departure from
+the GPU found in M1 and M2, introducing hardware accelerated ray tracing and mesh shaders,
+as well as Dynamic Caching, which Apple claims enables more efficient allocation of
+low-level GPU resources. Alyssa M. and Michael have volunteered their time to M3 GPU
+reverse engineering, and building on the work done by dougallj and TellowKrinkle,
+have already made some progress on the myriad changes to the GPU ISA between M2
+and M3.
+
+We are also relying on iBoot to initialise DCP and allocate us a
+framebuffer, rather than driving DCP directly (and correctly) ourselves. This is
+extremely slow and inefficient, and prevents us from properly managing many display features,
+such as the backlight. Since no M3 devices can run macOS 13.5, and since Apple made
+a number of changes to the DCP firmware interface for macOS 14, bringing up DCP
+on M3 devices will require more reverse engineering. Luckily these changes only
+affect the API itself, and not the protocol used to communicate between the OS
+and coprocessor. This means we can reuse our existing tooling to trace the new
+firmware interface with minimal changes.
+
+Beyond hardware enablement, there are also the numerous integrations and finishing
+touches that make the Asahi experience what it is. Energy-Aware Scheduling, speaker
+safety and EQ tuning, microphone and webcam support, and a whole host of other features
+that folks expect are still not there, and won't be for some time. Some of these, like
+Energy-Aware Scheduling, are quality of life features that are not likely to block a
+release. Others, such as getting M3 devices supported in speakersafetyd, are release-blocking.
+
+We don't expect it to take _too_ long to get M3 support into a shippable state, but
+much as with everything else we do, we cannot provide an ETA and request that you
+do not ask for one.
+
+## Hertz so good
+The 14" and 16" MacBook Pros have very nice displays. They have extremely accurate colour
+reproduction, are extremely bright, _and_ are capable of a 120 Hz refresh rate. But
+there's a catch.
+
+On macOS, you cannot simply set these displays to 120 Hz and call it a day. Instead, Apple
+hides refresh rates above 60 Hz behind their ProMotion feature, which is really just a
+marketing term for bog standard variable refresh rate. One could be forgiven for assuming
+that this is just a quirk of macOS, and that simply selecting the 120 Hz timing mode in
+the DCP firmware would be enough to drive the panel at that refresh rate on Linux,
+however this is not the case.
+
+For reasons known only to Apple, DCP will refuse to drive the MacBook Pro panels higher
+than 60 Hz unless three specific fields in the surface swap request struct are filled. We
+have known for some time that these fields were some form of timestamp, however we never
+had the time to investigate them more deeply than that. Enter yet another new contributor!
+
+[Oliver Bestmann](https://github.com/oliverbestmann) took it upon himself to get 120 Hz
+working on MacBook Pros, and to that end looked into the three timestamps. Analysing traces
+from macOS revealed them to count upward in CPU timer ticks. The timestamps are almost always
+exactly one frame apart, hinting that they are used for frame presentation timekeeping. Presentation
+timekeeping is required for VRR to work properly, as the compositor and driver must both be
+aware of when specific frames are actually being shown on the display. Compositors can also
+use this sort of information to help with maintaining consistent frame pacing and minimising
+tearing, even when VRR is not active.
+
+At this stage, we are only interested in a consistent 120 Hz, not VRR. Since macOS
+couples the two together, it is difficult to ascertain exactly what DCP expects us to
+do for 120 Hz. Clearly the timestamps are required, but why? What does DCP do with them,
+and what _exactly_ are they supposed to represent?
+
+Sometimes, doing something stupid is actually very smart. Assuming that the timestamps
+are only _meaningful_ for VRR, Oliver tried stuffing a static value into each
+timestamp field. And it worked! Starting with kernel version 6.18.4, owners of 14" and
+16" MacBook Pros are able to drive their builtin displays at 120 Hz.
+
+Now of course, this solution is quite clearly jank. The presentation timestamps are
+currently being set every time the KMS subsystem triggers an atomic state flush, and
+they are definitely not supposed to be set to a static value. While it
+works for our use case, this solution precludes support for VRR, which brings us nicely
+to our next topic.
+
+## Landing the plane
+The DCP driver for Linux has historically been rather incomplete. This shouldn't be surprising;
+display engines are massively complex, and this is reflected in the absolutely enormous 9 MiB
+blob of firmware that DCP runs. This firmware exposes interfaces which are designed
+to integrate tightly with macOS. These interfaces also change in breaking ways between macOS
+releases, requiring special handling for versioned structures and function calls.
+
+All of this has led to a driver that has been developed in an suboptimal, piecemeal
+fashion. There are many reasons for this:
+
+- We lacked the time to do anything else, especially Janne, who took on the burden
+  of maintaining and rebasing the Asahi kernel tree
+- There were more important things to do, like bringing up other hardware
+- We plan to rewrite the driver in Rust anyway to take advantage of better
+  firmware version handling
+
+On top of all that, it simply did not matter for the design goals at the time. The
+initial goal was to get enough of DCP brought up to reliably drive the builtin displays
+on the laptops and the HDMI ports on the desktops, and we achieved that by gluing
+just enough of DCP's firmware interface to the KMS API to scan out a single 8-bit ARGB
+framebuffer on each swap.
+
+We have since implemented support for audio over DisplayPort/HDMI, basic colour management
+for Night Light implementations that support Colour Transformation Matrices, and
+rudimentary hardware overlays. But this still leaves a lot of features on the table, such
+as HDR, VRR, support for other framebuffer formats, hardware brightness control for
+external displays (DDC/CI), and direct scanout support for multimedia and fullscreen
+applications.
+
+Supporting these within the confines of the current driver architecture would be difficult.
+There are a number of outstanding issues with userspace integration and the way
+in which certain components interact with the KMS API. That said, want to push forward with
+new features, and waiting for Rust KMS bindings to land upstream could leave us
+waiting for quite some time. We have instead started refactoring sections of the existing
+DCP driver where necessary, starting with the code for handling hardware planes.
+
+Why start there? Having proper support for hardware planes is important for performance
+and efficiency. Most display engines have facilities for compositing
+multiple framebuffers in hardware, and DCP is no exception. It can layer, move, blend and
+even apply basic colour transformations to these framebuffers. The classical use case
+for this functionality has been cursors; rather than have the GPU redraw the entire desktop
+every time the cursor moves, we can put the cursor on one of the display engine's overlay
+planes and then command it to move that static framebuffer around the screen. The GPU is
+only actively rendering when on-screen _content_ needs redrawing, such as when hovering
+over a button.
+
+I shoehorned extremely limited support for this into the driver a while ago, and it
+has been working nicely with Plasma 6's hardware cursor support. But we need to go
+deeper.
+
+DCP is capable of some very nifty features, some of which are absolutely
+necessary for HDR and direct video scanout. Importantly for us, DCP can:
+
+- Directly scan out semiplanar Y'CbCr framebuffers (both SDR and HDR)
+- Take multiple framebuffers of differing colourspaces and normalise them to the
+  connected display's colourspace before scanout
+- Directly scan out compressed framebuffers created by AGX[^5] and AVD[^6]
+- Automatically normalise mixed dynamic range content
+
+All of these are tied to DCP's idea of a plane. I had initally attempted to
+add support for Y'CbCr framebuffers without any refactoring, however this
+this was proving to be messy and overly complicated to integrate with
+the way we were constructing a swap request at the time. Refactoring the
+plane code made both adding Y'CbCr support _and_ constructing a swap request
+simpler.
+
+We have also been able to begin _very early_ HDR experiments, and get more complete
+overlay support working, including for Y'CbCr video sources. Plasma 6.5 has
+very basic support for overlay planes hidden behind a feature flag, however
+it is still quite broken. A few Kwin bugs related to this are slated to be
+fixed for Plasma 6.7, which may enable us to expand DCP's overlay support
+even further.
+
+On top of this, Oliver has also begun working on compressed framebuffer support.
+There are currently two proprietary Apple framebuffer formats we know of in use on Apple
+Silicon SoCs; AGX has its own framebuffer format which is already supported in Mesa, however macOS
+never actually sends framebuffers in this format to DCP. Instead, DCP always
+scans out framebuffers in the "Apple Interchange" format for both GPU-rendered
+framebuffers and AVD-decoded video. Oliver reverse engineered this new format
+and added experimental support for it to Mesa and the DCP driver. While still
+a work in progress, this should eventually enable significant memory bandwidth
+and energy savings, particularly when doing display-heavy tasks like watching
+videos. Experimentation with DCP and its firmware suggests that it may be capable
+of directly reading AGX-format framebuffers too, however this will require further
+investigation as we cannot rely on observations from macOS.
+
+Additionally, Lina observed macOS using shader code to decompress Interchange
+framebuffers while reverse engineering AGX, suggesting that some variants of AGX
+may not be capable of working with the format. If this is the case, we will be
+restricted to only using Interchange for AVD-decoded video streams, falling back
+to either AGX format if it turns out to be supported by DCP, or linear framebuffers
+for content rendered by the GPU.
+
+Beyond adding new features, reworking the plane handling code has also
+enabled us to more easily fix oversaturated colours on the builtin
+MacBook displays, starting with kernel version 6.18. Folks currently using
+an ICC profile to work around this problem should disable this, as it will
+conflict with DCP's internal colour handling.
+
+Planes are just one part of the puzzle, however. There is still much work to be
+done cleaning up the driver and getting features like HDR into a shippable state.
+Watch this space!
+
+## Say cheese!
+It's been quite a while since we shipped webcam support, and for _most_ users
+it seems to have Just Worked! But not for _all_ users.
+
+Users of certain webcam applications, most notable GNOME's Camera app, have been
+reporting severe issues with webcam support since day one. Doing some initial
+debugging on this pointed to it being a an issue with GNOME's app, however this
+turned out not to be the case. The Asahi OpenGL driver was actually improperly
+handling planar video formats. The ISP/webcam exports
+planar video framebuffers via V4L2, which must then be consumed and turned into
+RGB framebuffers for compositing with the desktop. Apps such as GNOME's Camera
+app do this with the GPU, and thus were failing hard. While studying the
+[fix](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38160) for this,
+Janne noticed that Honeykrisp was not properly announcing the number of planes
+in any planar framebuffers, and [fixed](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38200)
+that too. In the process of debugging these issues, Robert Mader found
+that Fedora was not building GStreamer's gtk4paintablesink plugin with
+Y'CbCr support, which will be fixed for Fedora Linux 43.
+
+So all good right? Nope! Hiding behind these bugs in the GPU drivers were two more
+bugs, this time in PipeWire. The first was an integer overflow in PipeWire's
+GStreamer code, [fixed](https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/2582)
+by Robert. This then revealed the second bug; the code which determines the latency of a stream was
+assuming a period numerator of 1, which is not always the case. With Apple Silicon
+machines, the period is expressed as 256/7680, which corresponds to 30 frames per
+second. Since the numerator is not 1, the latency calculation was not being normalised,
+and thus ended up so long that streams would crash waiting for data from PipeWire.
+Janne submitted a [merge request](https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/2636)
+with a fix, which made it in to Pipewire 1.4.10. Why 256/7680 is not reduced to
+1/30 is another mystery that needs solving, however at least now with these two
+patches, we're all good right? Right?
+
+So, graphics programming is actually really hard. As it happens, the GPU kernel driver
+was not properly handling DMA-BUFs from external devices, deadlocking once it was
+done using the imported buffer. After fixing this and removing a very noisy log
+message that was being triggered for every imported frame, the webcam came to life!
+This should mean that the webcam is now fully supported across the vast majority of
+applications.
+
+## The beast stirs
+We've made incredible progress upstreaming patches over the past 12 months. Our patch
+set has shrunk from 1232 patches with 6.13.8, to 858 as of 6.18.8. Our total delta in
+terms of lines of code has also shrunk, from 95,000 lines to 83,000 lines for the same
+kernel versions. Hmm, a 15% reduction in lines of code for a 30% reduction in patches
+seems a bit wrong...
+
+Not all patches are created equal. Some of the upstreamed patches have been small
+fixes, others have been thousands of lines. All of them, however, pale in comparison
+to the GPU driver.
+
+The GPU driver is 21,000 lines by itself, discounting the downstream Rust abstractions
+we are still carrying. It is almost double the size of the DCP driver and thrice the
+size of the ISP/webcam driver, its two closest rivals. And upstreaming work has
+now begun.
+
+We were very graciously granted leave to upstream our UAPI headers _without_ an
+accompanying driver by the DRM maintainers quite some time ago, on the proviso
+that the driver would follow. Janne has now been laying the groundwork for that
+to happen with [patches to IGT](https://lore.kernel.org/asahi/20260105-asahi-tests-wave1-v1-0-a6c72617e680@jannau.net/T/#t),
+the test suite for DRM drivers.
+
+There is still some cleanup work required to get the driver into an upstreamable
+state, and given its size we expect the review process to take quite some time
+even when it is ready. We hope to have more good news on this front shortly!
+
+## Correct, then fast
+GPU drivers have a lot of moving parts, and all of them are expected to work
+perfectly. They are also expected to be _fast_. As it so happens, writing software
+that is both correct _and_ fast is quite the challenge. The typical development
+cycle for any given GPU driver feature is to make it work properly first, then
+find ways to speed it up later if possible. Performance is sometimes left on
+the table though.
+
+While looking at [gpu-ratemeter](https://gitlab.freedesktop.org/mesa/gpu-ratemeter)
+benchmark results, Janne noticed that memory copies via the OpenGL driver were
+pathologically slow, much slower than Vulkan-initiated memory copies. As in, taking
+an hour to complete just this one microbenchmark slow. Digging
+around in the Asahi OpenGL driver revealed that memory copy operations were being
+offloaded to the CPU rather than implemented as GPU code like with Vulkan. After
+writing a shader to implement this, OpenGL copies now effectively saturate the
+memory bus, which is about as good as one could hope for!
+
+But why stop there? Buffer _copies_ are now fast, but what about clearing memory?
+The Asahi driver was using Mesa's default buffer clearing helpers, which work
+but cannot take advantage of hardware-specific optimisations. Janne also replaced
+this with calls to AGX-optimised functions which take optimised paths for
+memory-aligned buffers. This allows an M1 Ultra to clear buffers aligned to
+16 byte boundaries at 355 GB/s.
+
+But wait, there's more! While Vulkan copies were indeed faster than OpenGL copies,
+they weren't as fast as they could be. Once again, we were neglecting to use our
+AGX-optimised routines for copying aligned buffers. Fixing this gives us some pretty
+hefty performance increases for such buffers, ranging from 30% faster for 16 KiB
+buffers to more than twice as fast for buffers 8 MiB and larger!
+
+## Perfecting packages
+All this stuff around pushing pixels perfectly requires good delivery of the code,
+and Neal has worked on improving the package management experience in Fedora Asahi Remix.
+
+The major piece of technical debt that existed in Fedora's package management stack was
+that it technically shipped _two_ versions of the DNF package manager concurrently,
+which is exactly as bad as it sounds. Both versions had their own configuration,
+feature sets and behavioural quirks.
+
+DNF5, the newer version, introduces the ability to automatically transition
+packages across vendors. This is important for us, as it streamlines our ability to
+seamlessly replace our Asahi-specific forks with their upstreams packages as we get our code merged.
+DNF4 cannot do this, and until Fedora Linux 41 was the default version used when running `dnf`
+from the command line. To make matters worse, PackageKit, the framework used by GUI
+software stores like KDE Discover, only supports DNF4's API. Or rather, it _did_
+only support DNF4's API.
+
+Neal has been working with the both the DNF and PackageKit teams to make this work
+seamlessly. To that end, he [developed](https://github.com/PackageKit/PackageKit/pull/931)
+a DNF5-based backend for PackageKit, allowing GUI software managers to take advantage of
+this new feature. This will be [integrated](https://fedoraproject.org/wiki/Changes/PackageKit-DNF5)
+in Fedora Linux 44, however we will also be shipping it in the upcoming Fedora Asahi Remix 43.
+
+The automated transition to upstream packages will begin with Mesa and virglrenderer
+in Fedora Asahi Remix 44.
+
+## More conferences
+Sven, chaos_princess, Neal and Davide met up at FOSDEM in Belgium last month to discuss
+strategies for supporting M3 and M4, and to try their luck at nerd sniping folks into
+helping out. Additionally, both Neal and Davide will once again be at at [SCaLE](https://www.socallinuxexpo.org/scale/23x)
+next month. Davide will be hosting an Asahi demo system at Meta's
+booth, so be sure to drop in if you're attending!
+
+## One more go around
+2026 is starting off with some exciting progress, and we're hoping to keep it coming.
+As ever we are extremely grateful to our supporters on [OpenCollective](https://opencollective.com/AsahiLinux)
+and [GitHub Sponsors](https://github.com/sponsors/AsahiLinux), without whom we would
+not have been able to sustain this effort through last year. Here's to anoter 12 months
+of hacking!
+
+
+[^1]: Display Coprocessor
+[^2]: Display Crossbar
+[^3]: Apple Type-C PHY
+[^4]: USB-C Power Delivery Controller
+[^5]: Apple Graphics Accellerator, the GPU on M-series SoCs
+[^6]: Apple Video Decoder, the AVC, HEVC, VP9, and AV1 hardware video decoder on M-series SoCs
+
