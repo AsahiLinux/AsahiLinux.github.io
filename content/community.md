@@ -27,6 +27,8 @@ Even if you don't plan to speak, feel free to join and idle in the above channel
 
 ## Matrix
 
+The Asahi Linux Matrix space ([#asahilinux:matrix.org](https://matrix.to/#/#asahilinux:matrix.org)) lists all official project rooms.
+
 The Fedora-specific Asahi discussions take place in Matrix on Fedora infra:
 * [#asahi-devel:fedoraproject.org](https://matrix.to/#/#asahi-devel:fedoraproject.org) - Fedora Asahi Development. IRC bridge: #fedora-asahi-dev
 * [#asahi:fedoraproject.org](https://matrix.to/#/#asahi:fedoraproject.org) - Fedora Asahi general discussion/support
