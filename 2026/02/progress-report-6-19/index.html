@@ -185,7 +185,7 @@ has been working nicely with Plasma 6&rsquo;s hardware cursor support. But we ne
 deeper.</p><p>DCP is capable of some very nifty features, some of which are absolutely
 necessary for HDR and direct video scanout. Importantly for us, DCP can:</p><ul>
 <li>Directly scan out semiplanar Y&rsquo;CbCr framebuffers (both SDR and HDR)</li><li>Take multiple framebuffers of differing colourspaces and normalise them to the
-connected display&rsquo;s colourspace before scanout</li><li>Directly scan out compressed framebuffers created by AGX<sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup> and AVD<sup id=fnref:6><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup></li><li>Automatically normalise mixed dynamic range content</li></ul><p>All of these are tied to DCP&rsquo;s idea of a plane. I had initally attempted to
+connected display&rsquo;s colourspace before scanout</li><li>Directly scan out compressed framebuffers created by AGX<sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup> and AVD<sup id=fnref:6><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup></li><li>Automatically normalise mixed dynamic range content</li></ul><p>All of these are tied to DCP&rsquo;s idea of a plane. I had initially attempted to
 add support for Y&rsquo;CbCr framebuffers without any refactoring, however this
 this was proving to be messy and overly complicated to integrate with
 the way we were constructing a swap request at the time. Refactoring the
@@ -220,7 +220,7 @@ done cleaning up the driver and getting features like HDR into a shippable state
 Watch this space!</p><h2 id=say-cheese>Say cheese!</h2><p>It&rsquo;s been quite a while since we shipped webcam support, and for <em>most</em> users
 it seems to have Just Worked! But not for <em>all</em> users.</p><p>Users of certain webcam applications, most notable GNOME&rsquo;s Camera app, have been
 reporting severe issues with webcam support since day one. Doing some initial
-debugging on this pointed to it being a an issue with GNOME&rsquo;s app, however this
+debugging on this pointed to it being an issue with GNOME&rsquo;s app, however this
 turned out not to be the case. The Asahi OpenGL driver was actually improperly
 handling planar video formats. The ISP/webcam exports
 planar video framebuffers via V4L2, which must then be consumed and turned into
@@ -305,7 +305,7 @@ next month. Davide will be hosting an Asahi demo system at Meta&rsquo;s
 booth, so be sure to drop in if you&rsquo;re attending!</p><h2 id=one-more-go-around>One more go around</h2><p>2026 is starting off with some exciting progress, and we&rsquo;re hoping to keep it coming.
 As ever we are extremely grateful to our supporters on <a href=https://opencollective.com/AsahiLinux>OpenCollective</a>
 and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>, without whom we would
-not have been able to sustain this effort through last year. Here&rsquo;s to anoter 12 months
+not have been able to sustain this effort through last year. Here&rsquo;s to another 12 months
 of hacking!</p><div class=footnotes role=doc-endnotes>
 <hr>
 <ol>
@@ -314,7 +314,7 @@ of hacking!</p><div class=footnotes role=doc-endnotes>
 <p>Display Crossbar&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3>
 <p>Apple Type-C PHY&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4>
 <p>USB-C Power Delivery Controller&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5>
-<p>Apple Graphics Accellerator, the GPU on M-series SoCs&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:6>
+<p>Apple Graphics Accelerator, the GPU on M-series SoCs&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:6>
 <p>Apple Video Decoder, the AVC, HEVC, VP9, and AV1 hardware video decoder on M-series SoCs&#160;<a href=#fnref:6 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div><div class=post-bottom>James Calligeros · <span class=publishdate>2026-02-15</span></div></div></div></section><footer id=footer>
 <div class=footer-menu>
 <div class=footer-logo>
