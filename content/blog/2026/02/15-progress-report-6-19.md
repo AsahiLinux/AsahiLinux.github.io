@@ -231,7 +231,7 @@ necessary for HDR and direct video scanout. Importantly for us, DCP can:
 - Directly scan out compressed framebuffers created by AGX[^5] and AVD[^6]
 - Automatically normalise mixed dynamic range content
 
-All of these are tied to DCP's idea of a plane. I had initally attempted to
+All of these are tied to DCP's idea of a plane. I had initially attempted to
 add support for Y'CbCr framebuffers without any refactoring, however this
 this was proving to be messy and overly complicated to integrate with
 the way we were constructing a swap request at the time. Refactoring the
@@ -281,7 +281,7 @@ it seems to have Just Worked! But not for _all_ users.
 
 Users of certain webcam applications, most notable GNOME's Camera app, have been
 reporting severe issues with webcam support since day one. Doing some initial
-debugging on this pointed to it being a an issue with GNOME's app, however this
+debugging on this pointed to it being an issue with GNOME's app, however this
 turned out not to be the case. The Asahi OpenGL driver was actually improperly
 handling planar video formats. The ISP/webcam exports
 planar video framebuffers via V4L2, which must then be consumed and turned into
@@ -407,7 +407,7 @@ booth, so be sure to drop in if you're attending!
 2026 is starting off with some exciting progress, and we're hoping to keep it coming.
 As ever we are extremely grateful to our supporters on [OpenCollective](https://opencollective.com/AsahiLinux)
 and [GitHub Sponsors](https://github.com/sponsors/AsahiLinux), without whom we would
-not have been able to sustain this effort through last year. Here's to anoter 12 months
+not have been able to sustain this effort through last year. Here's to another 12 months
 of hacking!
 
 
@@ -415,6 +415,6 @@ of hacking!
 [^2]: Display Crossbar
 [^3]: Apple Type-C PHY
 [^4]: USB-C Power Delivery Controller
-[^5]: Apple Graphics Accellerator, the GPU on M-series SoCs
+[^5]: Apple Graphics Accelerator, the GPU on M-series SoCs
 [^6]: Apple Video Decoder, the AVC, HEVC, VP9, and AV1 hardware video decoder on M-series SoCs
 
