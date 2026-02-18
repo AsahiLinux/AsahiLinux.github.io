@@ -76,7 +76,7 @@ step up to the plate and attempt to help out. Well, we actually ended up with _t
 new contributors!
 
 Between the three of them, [Alyssa Milburn (noopwafel)](https://noopwafel.net),
-[Michael Reeves (integralpilot)](https://github.com/IntegralPilot), and [Shiz](https://github.com/Shiz),
+[Michael Reeves (integralpilot)](https://github.com/IntegralPilot), and [Shiz](https://mastodon.social/@shiz),
 with help from Janne, wrote some preliminary Devicetrees and found that a great deal of
 hardware worked without any changes! Adding in some minor kernel changes for the NVMe and interrupt
 controllers, Michael was able to [boot](https://www.reddit.com/r/AsahiLinux/comments/1qnddjd/m3_now_has_fedora_43_asahi_remix_working_with_kde/)
