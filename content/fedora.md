@@ -163,7 +163,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="unsup">Thunderbolt / USB4</div>
                 <div class="unsup">Touch ID</div>
             </div>
-            <p>* Local dimming available on 14" and 16" models. Maximum 60Hz refresh rate on all models. HDR/120Hz not yet supported.</p>
+            <p>* Local dimming available on 14" and 16" models. Fixed 120Hz refresh rate available on 14" and 16" models. Maximum 60Hz refresh rate on all other models. HDR not yet supported.</p>
             <p>† Available on 13" models only.</p>
             <p>‡ Available on 14" and 16" models only.</p>
         </div></div>
