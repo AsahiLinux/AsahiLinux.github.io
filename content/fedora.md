@@ -250,18 +250,5 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
         };
     });
-    var btn = document.getElementById("copy-button");
-    btn.onmouseover = function(e) {
-        btn.firstChild.classList.remove("fa-check");
-        btn.firstChild.classList.add("fa-clipboard");
-    }
-    btn.onclick = function(e) {
-        var text = document.getElementById("curl");
-        window.getSelection().selectAllChildren(text);
-        navigator.clipboard.writeText(text.textContent);
-        btn.firstChild.classList.add("fa-check");
-        btn.firstChild.classList.remove("fa-clipboard");
-        e.preventDefault();
-    };
 });
 </script>
