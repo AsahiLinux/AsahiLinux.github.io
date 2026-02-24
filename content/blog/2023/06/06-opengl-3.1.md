@@ -36,7 +36,7 @@ include:
 * Multiple render targets
 * Multisampling
 * [Transform feedback](https://cgit.freedesktop.org/mesa/mesa/commit/?id=d72e1418ce4f66c42f20779f50f40091d3d310b0)
-* [Texture buffer objects](https://social.treehouse.systems/@alyssa/109542058314148170)
+* [Texture buffer objects](https://alyssarosenzweig.ca/blog/texture-buffer-objects-on-asahi.html)
 * ..and more.
 
 For now, let's talk about...
