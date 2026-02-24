@@ -59,8 +59,6 @@ Asahi Linux is a community, and everyone is invited to contribute. If you are in
 
 Current major contributors are:
 
-* [Alyssa Rosenzweig](https://alyssarosenzweig.ca/), the Asahi GPU lead. Alyssa is a Linux graphics hacker known for her work on reverse-engineering the Arm Mali GPUs to build the free Panfrost driver. She is an upstream Mesa3D developer today maintaining Asahi's OpenGL and Vulkan drivers.
-
 * [Dougall Johnson (dougallj)](https://github.com/dougallj), instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1's CPU cores to infer microarchitectural details.
 
 * [Eileen Yoon (eiln)](https://github.com/eiln), our signals guru covering multimedia and accelerators. Eileen is currently working on hardware video codec acceleration, having already knocked out the Neural Engine and Image Signal Processor (camera).
@@ -74,6 +72,8 @@ Current major contributors are:
 * [Sven Peter](https://github.com/svenpeter42). Sven has worked tirelessly on upstream Linux support for Apple's Device Address Resolution Table (DART) required for USB, PCIe, Ethernet, and Wi-Fi. He also added USB gadget support to m1n1, and is now working on DisplayPort and Thunderbolt support.
 
 Past major contributors include:
+
+* [Alyssa Rosenzweig](https://alyssarosenzweig.ca/), GPU lead. Alyssa is a Linux graphics hacker. After reverse-engineering the Arm Mali GPUs and building the free Panfrost driver for them, she did the same magic trick on the Apple GPU and built the userspace Asahi graphics drivers.
 
 * [Asahi Lina](https://github.com/asahilina), GPU kernel sourceress. Lina joined the team to reverse engineer the M1 GPU kernel interface, and found herself writing the world's first Rust Linux GPU kernel driver. Outside of GPUs, she sometimes hacks on open source VTuber tooling and infrastructure.
 
