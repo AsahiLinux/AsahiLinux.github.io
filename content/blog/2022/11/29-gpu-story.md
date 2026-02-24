@@ -135,7 +135,6 @@ With the kernel driver on the right track, it was time to join forces with Alyss
 We gave a [joint talk](https://www.youtube.com/watch?v=SDJCzJ1ETsM) at XDC 2022, and at the time we ran the entire talk on an M1 using our drivers! Since then we've been working on adding new features, bug fixes, and performance improvements to both sides. I added support for the M1 Pro/Max/Ultra family and the M2 to the kernel side, as well as more and better debugging tools and memory allocation performance improvements. She's been steadily improving GL conformace, with OpenGL ES 2.0 conformance practically complete and 3.0 conformance at over 96%! She also added many new features and performance improvements, and today you can play games like Xonotic and Quake at 4K!
 
 <div style="text-align: center">
-    <iframe src="https://social.treehouse.systems/@alyssa/109311591472543702/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://social.treehouse.systems/embed.js" async="async"></script>
     <iframe src="https://vt.social/@lina/109405566112910885/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://vt.social/embed.js" async="async"></script>
 </div>
 
