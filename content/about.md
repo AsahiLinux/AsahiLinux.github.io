@@ -57,7 +57,7 @@ No, Apple still controls the boot process and, for example, the firmware that ru
 
 Asahi Linux is a community, and everyone is invited to contribute. If you are interested in contributing, check out our [contribute page](/contribute)! The project infrastructure and finances are overseen by our board. For more information, see our [governance page](/governance).
 
-Current major contributors are:
+A few current contributors include:
 
 * [Dougall Johnson (dougallj)](https://github.com/dougallj), instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1's CPU cores to infer microarchitectural details.
 
