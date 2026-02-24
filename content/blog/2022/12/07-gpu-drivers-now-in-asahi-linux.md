@@ -46,7 +46,7 @@ This "layered" hardware demands a "layered" graphics driver stack. We need...
 
 That's a lot of work, calling for a team effort! Fortunately, that layering gives us natural boundaries to divide work among our small team.
 
-* [Alyssa Rosenzweig](https://social.treehouse.systems/@alyssa) is writing the OpenGL driver and compiler.
+* [Alyssa Rosenzweig](https://alyssarosenzweig.ca) is writing the OpenGL driver and compiler.
 * [Asahi Lina](https://vt.social/@lina) is writing the kernel driver and helping with OpenGL.
 * [Dougall Johnson](https://mastodon.social/@dougall) is reverse-engineering the instruction set with Alyssa.
 
