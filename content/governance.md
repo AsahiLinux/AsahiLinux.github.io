@@ -12,7 +12,7 @@ To support that code, we need infrastructure and funding, to run servers and sup
 
 There are seven board members, aside from temporary vacancies. The current members are:
 
-* [Alyssa Rosenzweig](https://rosenzweig.io) (treasurer). <alyssa@asahilinux.org>
+* [Alyssa Rosenzweig](https://alyssarosenzweig.ca) (treasurer). <alyssa@asahilinux.org>
 * [Davide Cavalca](https://github.com/davide125) (administrator). <davide@asahilinux.org>
 * [Neal Gompa](https://royalgeekworld.com/) (secretary, treasurer). <neal@asahilinux.org>
 * [James Calligeros](https://social.treehouse.systems/@chadmed). <james@asahilinux.org>

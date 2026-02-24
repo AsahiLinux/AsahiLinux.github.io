@@ -15,7 +15,7 @@ opportunity to build sustainable project governance. No matter how talented an
 individual, a large project cannot rest on a single person's shoulders. So
 instead of one replacement... we have seven:
 
-* [**Alyssa Rosenzweig**](https://rosenzweig.io), graphics dev.
+* [**Alyssa Rosenzweig**](https://alyssarosenzweig.ca), graphics dev.
 * [**chaos_princess**](https://social.treehouse.systems/@chaos_princess), kernel dev.
 * [**Davide Cavalca**](https://github.com/davide125), Fedora dev.
 * [**Neal Gompa**](https://royalgeekworld.com/), Fedora dev.

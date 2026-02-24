@@ -31,11 +31,11 @@ That means that in order to make the M1 GPU work with Asahi Linux, we need two b
 
 ## Alyssa joins the project
 
-All the way back in 2021 when Asahi Linux started, Alyssa Rosenzweig joined the project to start working on reverse engineering the M1 GPU. Together with [Dougall Johnson](https://mastodon.social/@dougall) (who focused on documenting the GPU shader architecture), she started reverse engineering all the user space bits, including the shaders and all the command list structures needed to set up rendering. That's a ton of work, but less than one month in she was [already drawing her first triangle](https://rosenzweig.io/blog/asahi-gpu-part-2.html)! She's amazing! If you haven't checked out her series on dissecting the M1 GPU you should visit her [website](https://rosenzweig.io/) and take a look! ✨✨
+All the way back in 2021 when Asahi Linux started, Alyssa Rosenzweig joined the project to start working on reverse engineering the M1 GPU. Together with [Dougall Johnson](https://mastodon.social/@dougall) (who focused on documenting the GPU shader architecture), she started reverse engineering all the user space bits, including the shaders and all the command list structures needed to set up rendering. That's a ton of work, but less than one month in she was [already drawing her first triangle](https://alyssarosenzweig.ca/blog/asahi-gpu-part-2.html)! She's amazing! If you haven't checked out her series on dissecting the M1 GPU you should visit her [website](https://alyssarosenzweig.ca/) and take a look! ✨✨
 
-But wait, how can she work on the user space driver without a kernel driver to go with it? Easy, she did it on macOS! Alyssa reverse engineered the macOS GPU driver UAPI enough to allocate memory and submit her own commands to the GPU, and this way she could work on the user space part without having to worry about the kernel bit. That's super cool! She started writing an M1 GPU OpenGL driver for [Mesa](https://www.mesa3d.org/), the Linux userspace graphics stack, and just a few months later she was already [passing 75% of the OpenGL ES 2 conformance tests](https://rosenzweig.io/blog/asahi-gpu-part-4.html), all on macOS!
+But wait, how can she work on the user space driver without a kernel driver to go with it? Easy, she did it on macOS! Alyssa reverse engineered the macOS GPU driver UAPI enough to allocate memory and submit her own commands to the GPU, and this way she could work on the user space part without having to worry about the kernel bit. That's super cool! She started writing an M1 GPU OpenGL driver for [Mesa](https://www.mesa3d.org/), the Linux userspace graphics stack, and just a few months later she was already [passing 75% of the OpenGL ES 2 conformance tests](https://alyssarosenzweig.ca/blog/asahi-gpu-part-4.html), all on macOS!
 
-Earlier this year, her work was so far ahead that she was running [games](https://rosenzweig.io/blog/asahi-gpu-part-6.html) on a fully open source Mesa OpenGL stack, running on top of Apple's kernel driver on macOS! But there was still no Linux kernel driver... time to help out with that part! ✨
+Earlier this year, her work was so far ahead that she was running [games](https://alyssarosenzweig.ca/blog/asahi-gpu-part-6.html) on a fully open source Mesa OpenGL stack, running on top of Apple's kernel driver on macOS! But there was still no Linux kernel driver... time to help out with that part! ✨
 
 ## The Mysterious GPU Firmware
 
@@ -51,7 +51,7 @@ Just like other parts of the M1 chip, the GPU has a coprocessor called an "ASC" 
 * **Event messages**, which the firmware sends back to the driver when something happens (like a command completing or failing).
 * **Statistics**, **firmware logs**, and **tracing messages** used for GPU status information and debugging.
 * **Command queues**, which represent a single app's list of pending GPU work
-* **Buffer information**, **statistics**, and **page list structures**, used to manage the [Tiled Vertex Buffers](https://rosenzweig.io/blog/asahi-gpu-part-5.html).
+* **Buffer information**, **statistics**, and **page list structures**, used to manage the [Tiled Vertex Buffers](https://alyssarosenzweig.ca/blog/asahi-gpu-part-5.html).
 * **Context structures** and other bits that let the GPU firmware keep track of what is going on.
 * **Vertex rendering commands**, which tell the vertex processing and tiling part of the GPU how to process commands and shaders from userspace to run the vertex part of a whole render pass.
 * **Fragment rendering commands**, which tell the rasterization and fragment processing part of the GPU how to render the tiled vertex data from the vertex processing into an actual framebuffer.

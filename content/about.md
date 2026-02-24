@@ -59,7 +59,7 @@ Asahi Linux is a community, and everyone is invited to contribute. If you are in
 
 Current major contributors are:
 
-* [Alyssa Rosenzweig](https://rosenzweig.io/), the Asahi GPU lead. Alyssa is a Linux graphics hacker known for her work on reverse-engineering the Arm Mali GPUs to build the free Panfrost driver. She is an upstream Mesa3D developer today maintaining Asahi's OpenGL and Vulkan drivers.
+* [Alyssa Rosenzweig](https://alyssarosenzweig.ca/), the Asahi GPU lead. Alyssa is a Linux graphics hacker known for her work on reverse-engineering the Arm Mali GPUs to build the free Panfrost driver. She is an upstream Mesa3D developer today maintaining Asahi's OpenGL and Vulkan drivers.
 
 * [Dougall Johnson (dougallj)](https://github.com/dougallj), instruction set architecture extraordinaire. Dougall reverse-engineered much of the instruction set of the Apple GPU and has analyzed the timing of the Apple M1's CPU cores to infer microarchitectural details.
 

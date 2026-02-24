@@ -12,7 +12,7 @@ As you probably know, I've been working together with the rest of the Asahi Linu
 
 Today we're releasing a big update to our GPU drivers for Asahi Linux, so I wanted to talk to you about what we've been working on since then, and what's next!
 
-If this is your first time reading about our GPU adventures, you might want to check out my [Tales of the M1 GPU](/2022/11/tales-of-the-m1-gpu/) article first, which covers what I worked on last year! Also don't miss Alyssa's amazing series of articles on [her website](https://rosenzweig.io/), which goes all the way back to January 2021! ^^
+If this is your first time reading about our GPU adventures, you might want to check out my [Tales of the M1 GPU](/2022/11/tales-of-the-m1-gpu/) article first, which covers what I worked on last year! Also don't miss Alyssa's amazing series of articles on [her website](https://alyssarosenzweig.ca/), which goes all the way back to January 2021! ^^
 
 And if this is too long, feel free to [jump to the end](#conclusions) to learn what this all means for Asahi Linux!
 

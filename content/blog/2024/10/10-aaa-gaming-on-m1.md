@@ -53,7 +53,7 @@ virtual machine is 4K, and you're happy because you can play [**Fallout
 
 The final piece is an adult-level Vulkan driver, since translating DirectX requires Vulkan 1.3
 with many extensions. Back in April, I wrote
-[Honeykrisp](https://rosenzweig.io/blog/vk13-on-the-m1-in-1-month.html), the
+[Honeykrisp](https://alyssarosenzweig.ca/blog/vk13-on-the-m1-in-1-month.html), the
 only Vulkan 1.3 driver for Apple hardware. I've since added DXVK support. Let's look at some new features.
 
 ### Tessellation
@@ -81,7 +81,7 @@ just fast enough for games like
 without crashing the hardware. In OpenGL and Vulkan, out-of-bounds loads may
 return arbitrary elements, and out-of-bounds stores may corrupt the buffer.
 Our OpenGL driver [exploits this
-definition](https://rosenzweig.io/blog/conformant-gl46-on-the-m1.html) for
+definition](https://alyssarosenzweig.ca/blog/conformant-gl46-on-the-m1.html) for
 efficient robustness on the M1.
 
 Some games require stronger guarantees.  In DirectX, out-of-bounds loads return zero, and
@@ -143,7 +143,7 @@ enough to enjoy [**Portal 2**](https://store.steampowered.com/app/620/Portal_2/)
 
 This work has been years in the making with major contributions from...
 
-* [Alyssa Rosenzweig](https://rosenzweig.io)
+* [Alyssa Rosenzweig](https://alyssarosenzweig.ca)
 * [Asahi Lina](https://lina.yt/me)
 * [chaos_princess](https://social.treehouse.systems/@chaos_princess)
 * [Davide Cavalca](https://github.com/davide125)

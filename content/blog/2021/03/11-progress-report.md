@@ -283,7 +283,7 @@ And then, of course, there is the [GPU](https://en.wikipedia.org/wiki/Graphics_p
 
 We could keep talking in depth for another 10000 words, but alas, this post is already too long. However, if you'd like to check out more things that have been going on in the community in these two months, here’s a list of things you shouldn’t miss:
 
-* [Alyssa](https://rosenzweig.io/)'s work reverse engineering the M1 GPU ([part 1](https://rosenzweig.io/blog/asahi-gpu-part-1.html), [part 2](https://rosenzweig.io/blog/asahi-gpu-part-2.html))
+* [Alyssa](https://alyssarosenzweig.ca/)'s work reverse engineering the M1 GPU ([part 1](https://alyssarosenzweig.ca/blog/asahi-gpu-part-1.html), [part 2](https://alyssarosenzweig.ca/blog/asahi-gpu-part-2.html))
 * [Dougall](https://twitter.com/dougallj)'s [GPU ISA docs](https://dougallj.github.io/applegpu/docs.html), [CPU microarchitecture docs](https://dougallj.github.io/applecpu/firestorm.html), and [AMX instruction set docs](https://gist.github.com/dougallj/7a75a3be1ec69ca550e7c36dc75e0d6f)
 * [Iris](https://twitter.com/modwizcode)' work [bringing M1 support to QEMU](https://twitter.com/modwizcode/status/1360308258519605254)
 * Mark's work porting [U-Boot](https://github.com/kettenis/u-boot/commits/apple-m1) and [OpenBSD](https://marc.info/?l=openbsd-arm&m=161386122115249&w=2) to the M1. He even has PCIe support already!
