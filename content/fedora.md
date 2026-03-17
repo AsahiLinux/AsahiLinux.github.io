@@ -102,7 +102,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
             <img src="/img/devices/imac.svg">
             <p>iMac</p>
         </a>
-        <a class="device comingsoon">
+        <a href="#" id="dev6" class="device">
             <img src="/img/devices/mac_pro.svg">
             <p>Mac Pro</p>
         </a>
@@ -231,11 +231,33 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="unsup">Microphone</div>
             </div>
         </div></div>
+        <div id="info-dev6" class="device-info"><div>
+            <h3>Chips</h3>
+            <div class="features">
+                <div class="sup">M2 Ultra</div>
+            </div>
+            <h3>Features</h3>
+            <div class="features">
+                <div class="sup">Headset Jack</div>
+                <div class="unsup">Speaker</div>
+                <div class="sup">USB Type A (3.0)</div>
+                <div class="sup">USB Type C (3.0)</div>
+                <div class="sup">HDMI</div>
+                <div class="sup">AHCI/SATA</div>
+                <div class="sup">Internal PCIe*</div>
+                <div class="sup">Ethernet (10 Gbps)</div>
+                <div class="sup">Wi-Fi</div>
+                <div class="sup">Bluetooth</div>
+                <div class="unsup">USB-C Displays</div>
+                <div class="unsup">Thunderbolt / USB4</div>
+            </div>
+            <p>* GPU cards are not supported.</p>
+        </div></div>
     </div>
 </section>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    var devs = ["dev1", "dev2", "dev3", "dev4", "dev5"];
+    var devs = ["dev1", "dev2", "dev3", "dev4", "dev5", "dev6"];
     devs.forEach(function(dev) {
         document.getElementById(dev).onclick = function(e) {
             var el = Array.from(document.getElementsByClassName("dev-selected"));
