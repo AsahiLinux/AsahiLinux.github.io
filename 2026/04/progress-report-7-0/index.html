@@ -99,7 +99,7 @@ to be had:</p><ul>
 <li>The light sensor is doing stuff whenever the screen is on, so processing its
 output should be as efficient as possible</li><li>The light sensor should be able to be calibrated for maximum accuracy</li><li>There are multiple models of light sensor in use, and the OS should not
 have to care <em>too</em> much about that</li><li>The light sensor has to have a three letter acronym like every other piece
-of hardware on this platform (ALS)</li></ul><p>Naturally, this sounds like a job for the Always-On Processor[^1] (AOP)!</p><p>We&rsquo;ve had a working AOP+ALS driver set for a while thanks to chaos_princess,
+of hardware on this platform (ALS)</li></ul><p>Naturally, this sounds like a job for the Always-On Processor<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup> (AOP)!</p><p>We&rsquo;ve had a working AOP+ALS driver set for a while thanks to chaos_princess,
 however the raw data AOP reports back from ALS is rather inaccurate without
 calibration. That calibration is a binary blob that must be uploaded to the AOP
 at runtime. It is essentially firmware. Since we cannot redistribute Apple&rsquo;s
@@ -290,7 +290,11 @@ who have not already manually done so will be automatically transitioned to the
 upstream Mesa and virglrenderer packages provided by the upstream Fedora repositories.</p><h2 id=until-next-time>Until next time!</h2><p>As always, we would like to extend our gratitude to everyone who continues to support
 our work on <a href=https://opencollective.com/asahilinux>OpenCollective</a> and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>.
 We would also like to thank <a href=https://bunny.net>Bunny</a>, who have supported us with
-free CDN and hosting services since the project&rsquo;s first days.</p><p>[^1] We cannot stress enough just how misleading this name is; the Processor is <em>not</em> Always-On</p><div class=post-bottom>James Calligeros · <span class=publishdate>2026-04-26</span></div></div></div></section><footer id=footer>
+free CDN and hosting services since the project&rsquo;s first days.</p><div class=footnotes role=doc-endnotes>
+<hr>
+<ol>
+<li id=fn:1>
+<p>We cannot stress enough just how misleading this name is; the Processor is <em>not</em> Always-On&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div><div class=post-bottom>James Calligeros · <span class=publishdate>2026-04-26</span></div></div></div></section><footer id=footer>
 <div class=footer-menu>
 <div class=footer-logo>
 <a href=/>
