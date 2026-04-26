@@ -129,7 +129,7 @@ To enable ALS support (and to do firmware upgrades in the future), follow these 
 6. Log in with your macOS credentials, then do Command + Shift + T to
    open a terminal
 7. Invoke the Asahi Installer by running `curl https://alx.sh | sh`
-8. Choose the "Upgrade vendor firmware package" option when prompted
+8. Choose the "Rebuild vendor firmware package" option when prompted
 9. Quit the installer and reboot once this is done
 
 ## Solving the energy crisis
