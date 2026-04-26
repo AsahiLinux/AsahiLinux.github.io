@@ -379,4 +379,4 @@ our work on [OpenCollective](https://opencollective.com/asahilinux) and [GitHub 
 We would also like to thank [Bunny](https://bunny.net), who have supported us with
 free CDN and hosting services since the project's first days.
 
-[^1] We cannot stress enough just how misleading this name is; the Processor is _not_ Always-On
+[^1]: We cannot stress enough just how misleading this name is; the Processor is _not_ Always-On
