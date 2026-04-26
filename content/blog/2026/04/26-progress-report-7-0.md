@@ -275,7 +275,7 @@ communicate the voltage and current across the connected speaker back to the SoC
 over I<sup>2</sup>S. These values can then be used along with a set of documented
 characteristics of the connected speaker ([Thiele/Small Parameters](https://en.wikipedia.org/wiki/Thiele/Small_parameters))
 to work out the temperature of the voice coil at any given moment. On macOS, CoreAudio
-does this. On Linux, this is [speakersafetyd](https://github.com/AsahiLinux/speakersafety)'s
+does this. On Linux, this is [speakersafetyd](https://github.com/AsahiLinux/speakersafetyd)'s
 job. No other desktop-class platform does this. This is usually either not done at all,
 handled entirely in hardware, or mostly hidden from the OS by [Sound Open Firmware](https://sofproject.org/).
 
