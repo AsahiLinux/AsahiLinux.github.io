@@ -1,6 +1,6 @@
 ---
 title: Fedora Asahi Remix
-date:  "2026-03-18T10:00:00-04:00"
+date:  "2026-04-28T10:00:00-04:00"
 draft: false
 body_class: "landing fedora"
 layout: landing
@@ -21,11 +21,11 @@ layout: landing
 </section>
 <section class="topic">
 
-## <div>Fedora Linux 43 + Apple Silicon = Fedora Asahi Remix</div>
+## <div>Fedora Linux 44 + Apple Silicon = Fedora Asahi Remix</div>
 
-<img width="200" class="w-200" src="/img/far_landing/fedora_remix.png">Fedora Asahi Remix is the result of a close multi-year collaboration between the Asahi Linux project and the [Fedora Project](https://fedoraproject.org/). We've worked hard in order to bring you a fully integrated distro, cooperating closely to get improvements and bug fixes to users as quickly as possible. All of our Asahi platform-specific packages are in upstream Fedora and fully supported in Fedora Linux 43.
+<img width="200" class="w-200" src="/img/far_landing/fedora_remix.png">Fedora Asahi Remix is the result of a close multi-year collaboration between the Asahi Linux project and the [Fedora Project](https://fedoraproject.org/). We've worked hard in order to bring you a fully integrated distro, cooperating closely to get improvements and bug fixes to users as quickly as possible. All of our Asahi platform-specific packages are in upstream Fedora and fully supported in Fedora Linux 44.
 
-With Fedora's excellent 64-bit ARM support and mature development process, you can expect a solid and high-quality experience without any unwanted surprises. Fedora Asahi Remix is based on Fedora Linux 43, the latest Fedora Linux release with the newest software versions across the board. All M1 and M2 series MacBook, Mac Mini, Mac Pro, Mac Studio, and iMac devices are supported.
+With Fedora's excellent 64-bit ARM support and mature development process, you can expect a solid and high-quality experience without any unwanted surprises. Fedora Asahi Remix is based on Fedora Linux 44, the latest Fedora Linux release with the newest software versions across the board. All M1 and M2 series MacBook, Mac Mini, Mac Pro, Mac Studio, and iMac devices are supported.
 
 </section>
 <section class="topic">
@@ -36,9 +36,9 @@ With Fedora's excellent 64-bit ARM support and mature development process, you c
 
 Want to use Night Color to keep your screen from disrupting your sleep cycle? No worries, it just works. Tweak your trackpad settings for a more comfortable experience? Everything's right there in System Settings. Are things on screen too big or too small? Just adjust the display scale to your heart's content, even in 5% increments. We've worked with the KDE project to bring you bug fixes and improvements to improve platform support, and we've also built a custom Calamares-based initial setup wizard so you can be up and running in no time with minimal fuss.
 
-Fedora Linux 43 comes with [KDE Plasma 6.6](https://kde.org/announcements/plasma/6/6.6.0/), with the latest patches and improvements to provide *the* premier desktop experience.
+Fedora Linux 44 comes with [KDE Plasma 6.6](https://kde.org/announcements/plasma/6/6.6.0/), with the latest patches and improvements to provide *the* premier desktop experience.
 
-Rather use [GNOME](https://www.gnome.org/)? No worries, we've got you covered with [GNOME 49](https://release.gnome.org/49/). Or, if you prefer to roll your own desktop configuration or want to set up a headless server, our Minimal and Server images will let you set things up exactly the way you want to.
+Rather use [GNOME](https://www.gnome.org/)? No worries, we've got you covered with [GNOME 50](https://release.gnome.org/50/). Or, if you prefer to roll your own desktop configuration or want to set up a headless server, our Minimal and Server images will let you set things up exactly the way you want to.
 
 </section>
 <section class="topic">
