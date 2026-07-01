@@ -116,8 +116,9 @@ is rapid so watch this space!
 Most of the complicated hardware on this platform uses complicated firmware blobs. Most
 of this is based on RTKit, an RTOS-like firmware framework used by Apple to present a mostly
 standardised interface for the kernel to talk to the various bits of hardware. There are
-exceptions to this, however. Some blocks, like DCP and AOP, use RTKit as the basis for their
-firmware, but layer yet another set of abstractions called EPIC on top of it. Others still,
+exceptions to this, however. Some blocks, like DCP (Display CoProcessor) and
+AOP (Always-On Processor), use RTKit as the basis for their firmware, but layer
+yet another set of abstractions called EPIC on top of it. Others still,
 like the Broadcom WiFi/Bluetooth chipset, use third-party firmware that Apple has no direct
 control over. Then, there's the Apple Video Decoder (AVD).
 
