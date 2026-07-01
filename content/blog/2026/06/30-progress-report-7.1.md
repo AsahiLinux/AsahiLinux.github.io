@@ -199,7 +199,7 @@ handling of Apple's non-macOS boot mode and support for new power domain metadat
 in the Apple Device Tree.
 
 ## Thanks again!
-As always, we would like to thank our generous supporters on [GitHub Sponsors](https://github.com/sponsor/AsahiLinux)
+As always, we would like to thank our generous supporters on [GitHub Sponsors](https://github.com/sponsors/AsahiLinux)
 and [Open Collective](https://opencollective.com/asahilinux), without whom we would not be
 able to continue working on unfinished M1 and M2 features or work on M3, M4 and A18 Pro
 support while supporting our enthusiastic new contributors!
