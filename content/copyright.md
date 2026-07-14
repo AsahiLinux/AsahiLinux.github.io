@@ -49,7 +49,39 @@ Signed-off-by: Random J Developer <random@developer.example.org>
 
 This can be automated by simply using `git commit -s`.
 
-Real names are not required for authorship or sign-off info. We encourage people to use a name they are commonly known by (e.g. a name you commonly use to interact in similar spaces), as that helps establish trust.
+### Pseudonymous contributions
+
+Asahi Linux contributors are not required to use their real name publicly to
+interact with the community or sign off their commits if they do not feel
+comfortable doing so. However, given the sensitive nature of the project we
+do have some rules governing how pseudonymous contributors must interact
+with the project:
+
+- You must use a uniquely identifiable pseudonym. While we support and encourage
+  collaborative development, a single person must take ultimate responsibility
+  for any code developed collaboratively. Contributing as a collective
+  (e.g. `Signed-off-by: Example Club <noreply@club.example.com>`) is not permitted.
+- Your pseudonym should be established in the community. That is, you should use
+  a pseudonym you have already been using on social media, with other projects, etc.
+  `Signed-off-by: knownperson <knownperson@club.example.com>` is acceptable,
+  `Signed-off-by: xX_T3hSigmaH4xx0rz_Xx` is not.
+- You must not use a pseudonym for the purposes of hiding potential conflicts
+  of interest, evading compliance with any other Asahi Linux policy, or evading a
+  previous ban from the Asahi Linux project.
+
+The Board may, at its sole discretion, request that pseudonymous contributors
+disclose their identities to the Board. This may be due to concerns about code
+provenance, adherence to other Asahi Linux project policies, or if required by
+law. The identities of pseudonymous contributors will _never_ be shared publicly,
+unless required by law.
+
+The rules for GPU reverse engineering are stricter. It is impossible to avoid
+decompiling and studying Apple's binaries, and moreover Apple's optimising
+shader compiler can and will replace your shader code with copyrighted,
+optimised code. As such, it is essential that GPU contributors are trustworthy
+and we can account for the provenance of all contributions. We require that
+all GPU contributors be known to the Board by real name. Public-facing
+contributions may still be made pseudonymously.
 
 # Reverse engineering policy
 
@@ -122,3 +154,11 @@ Contributors doing binary reverse engineering are responsible for any legal cons
 ## Usage of unreleased materials
 
 Asahi Linux absolutely forbids the usage of any copyrighted materials not available to the public during reverse engineering. This includes any leaked software (in source or binary form), unreleased documentation, non-public releases (such as restricted betas), etc. Project contributors are expected to refrain from acquiring or using any such content. Only materials that are explicitly made available to the public at large may be used. This applies to materials from both Apple and any other third parties.
+
+The Asahi Linux project has been positively received by elements within Apple,
+and with ambivalence at worst by Apple's legal department. To ensure that this
+arrangement continues and to eliminate the risk of accidental copyright infringement,
+current or former employees of Apple are expressly forbidden from contributing
+to the project without the prior approval of the Board. Failure to disclose that
+you either were or are employed by Apple will result in an immediate and permanent
+ban from the project.
