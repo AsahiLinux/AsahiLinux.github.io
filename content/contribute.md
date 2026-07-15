@@ -8,7 +8,7 @@ draft: false
 
 Asahi Linux is an open source project, and it would not be possible without the support of the community. We encourage contributors of all skill sets and backgrounds!
 
-All contributors are expected to abide by our [Code of Conduct](/code-of-conduct) and our [Copyright and Reverse Engineering policy](/copyright).
+All contributors are expected to abide by our [Code of Conduct](/code-of-conduct), [Copyright and Reverse Engineering policy](/copyright) and our [Generative AI Policy](/slop).
 
 ## New to this kind of thing?
 
