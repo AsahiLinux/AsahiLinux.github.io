@@ -120,8 +120,9 @@ to go before we can start enabling Asahi Installer support for these machines, b
 is rapid so watch this space!</p><h2 id=were-writing-firmware-now>We&rsquo;re writing firmware now?</h2><p>Most of the complicated hardware on this platform uses complicated firmware blobs. Most
 of this is based on RTKit, an RTOS-like firmware framework used by Apple to present a mostly
 standardised interface for the kernel to talk to the various bits of hardware. There are
-exceptions to this, however. Some blocks, like DCP and AOP, use RTKit as the basis for their
-firmware, but layer yet another set of abstractions called EPIC on top of it. Others still,
+exceptions to this, however. Some blocks, like DCP (Display CoProcessor) and
+AOP (Always-On Processor), use RTKit as the basis for their firmware, but layer
+yet another set of abstractions called EPIC on top of it. Others still,
 like the Broadcom WiFi/Bluetooth chipset, use third-party firmware that Apple has no direct
 control over. Then, there&rsquo;s the Apple Video Decoder (AVD).</p><p>AVD is special. Its firmware is neither RTKit nor EPIC, it&rsquo;s a secret third thing. The
 hardware itself is essentially an ARM Cortex-M3 controlling a series of fixed-function hardware
