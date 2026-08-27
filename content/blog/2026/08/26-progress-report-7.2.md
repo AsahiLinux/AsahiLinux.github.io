@@ -222,11 +222,11 @@ All hope is not lost, however. VA-API is now near universal in desktop-class sof
 its adoption by both AMD and Intel for their video acceleration hardware. To prevent V4L2 Stateless
 hardware from being unusable with such software, Bootlin authored a VA-API to V4L2 Stateless
 translation layer. Sadly this has been abandoned for quite some time and no longer builds without
-patches, however sofus has forked it and gotten it into a working state for AVD. With this
-translation layer installed and an environment variable set for the login session, software
-implementing VA-API support is now able to use AVD to accelerate video decoding! This does not
-yet ship by default in Fedora Asahi Remix, and will not work with Firefox's video decoding sandbox,
-however we hope to have something shippable soon.
+patches. A [more recent effort by megi](https://xff.cz/git/libva-v4l2_request/) however does, which
+sofus has forked it and gotten it into a working state for AVD. With this translation layer installed and an environment variable set
+for the login session, software implementing VA-API support is now able to use AVD to accelerate
+video decoding! This does not yet ship by default in Fedora Asahi Remix, and will not work with
+Firefox's video decoding sandbox, however we hope to have something shippable soon.
 
 ## The road to direct scanout
 The traditional benefit of hardware-accelerated video decoding has been the reduction in CPU
