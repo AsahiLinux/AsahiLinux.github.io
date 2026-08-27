@@ -26,7 +26,7 @@ driver operates by setting WFI up in this mode, saving the core's state, then is
 
 Vendor-specific power management oddities like this are quite common. Thankfully for kernel maintainers, there
 is a standard way to deal with them: the Power State Coordination Interface. PSCI
-defines a standard iterface that allows an operating system to call into a defined set of
+defines a standard interface that allows an operating system to call into a defined set of
 CPU core power management functions implemented by system firmware, including to prepare
 them for sleep.
 
