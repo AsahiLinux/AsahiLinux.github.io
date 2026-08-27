@@ -85,7 +85,7 @@ This makes our life a little easier as m1n1 now has marginally less work to do, 
 means that we cannot fine tune low level CPU behaviour. This is an issue on M4 particularly, as
 calling WFI causes the core to lose its state and crash whatever was running on it.
 
-Yurkea noticed this while doing M4 bringup work, and added a kernel command line parameter
+Yureka noticed this while doing M4 bringup work, and added a kernel command line parameter
 to make idle loop behaviour configurable. The parameter allows us to tell the kernel how
 it should park cores in idle loops, including by doing a basic no-op loop. This prevents
 M4 machines from crashing during early kernel initialisation, before our cpuidle driver
@@ -117,7 +117,7 @@ blog posts, Apple (mostly) solved the IOMFB problem by putting it inside DCP's f
 behind an IOMMU. Nothing in macOS userspace nor in XNU can reach it, except via a defined
 set of IPC functions. Taking inspiration from this approach, PPL eventually morphed into
 SPTM. SPTM takes PPL and places it inside Apple's Guarded Execution Framework (GXF), a set
-of Exception Levels that run parallel to the standard ARM64 EL1 and EL2 (there is no GL0).
+of Exception Levels that run parallel to the standard ARM64 Exception Levels.
 GXF also comes with SPRR, a custom pagetable permissions system used when the CPU is running
 code in GL1 or GL2.
 
@@ -258,7 +258,7 @@ must be done in software.
 
 One might be inclined to ask why such "shared" framebuffers can't just be created
 with "raw" pixel data. Consider a 1920x1080 framebuffer containing raw 8-bit ARGB
-pixel data. That is just over 66 MiB of data. At 4K, this balloons to just under 214 MiB.
+pixel data. That is around 8 MiB of data. At 4K, this balloons to just under 32 MiB.
 Even without the added penalty of copies, reading and writing this much data at 30,
 60, 165, or even 240 frames per second is an _enormous_ strain on the memory bus and therefore
 an enormous power drain. Even if we somehow had an infinitely performant and efficient
