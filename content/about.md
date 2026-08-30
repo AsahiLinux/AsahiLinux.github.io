@@ -14,7 +14,7 @@ Asahi Linux is developed by a thriving community of free and open source softwar
 
 ## The name
 
-Asahi means "rising sun" in Japanese, and it is also the name of an apple cultivar. 旭りんご (*asahi ringo*) is what we know as the McIntosh Apple, the apple variety that gave the Mac its name.
+Asahi means "morning sun" in Japanese, and it is also the name of an apple cultivar. 旭りんご (*asahi ringo*) is what we know as the McIntosh Apple, the apple variety that gave the Mac its name.
 
 ## The logo
 
