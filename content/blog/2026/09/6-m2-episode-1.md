@@ -1,7 +1,7 @@
 +++
 date = "2026-09-06T10:30:00+10:00"
 draft = false
-title = "M2: Episode 1"
+title = "M2: Episode 1 (or, Asahi Linux on M3)"
 slug = "m2-episode-1"
 author = "James Calligeros"
 +++
