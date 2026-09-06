@@ -1,0 +1,80 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>M2: Episode 1 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="M2: Episode 1 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="M2: Episode 1 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/merch>Merch</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2026/09/m2-episode-1/>
+M2: Episode 1
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>M2: Episode 1</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2026/08/progress-report-7-2/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>It&rsquo;s been a while since we did a blog post outside of the progress reports, and today&rsquo;s as good
+an occasion for one as any; support for M3 series machines has now been merged into the installer.
+In other words, <strong>Asahi Linux now <em>officially</em> supports Macs with an M3 series SoC!</strong></p><p>Linux support for M3 series SoCs and the machines powered by them is now in a state where <em>almost</em>
+everything supported on the M1 and M2 series machines just works. This includes the webcam, internal
+microphones, USB (up to the hardware limit of USB 3 10 Gb/s), hardware
+accelerated video decoding <strong>including support for AV1</strong>, WiFi, Bluetooth, and much more! The only major
+exceptions remain full DCP support and the GPU, which we will have more news on in the
+<a href=https://indico.freedesktop.org/event/12/contributions/532/>coming months</a>. <strong>Do not expect
+performant or power-efficient 3D acceleration right now.</strong></p><p>Given that a lot of this work is fresh, support is gated behind the installer&rsquo;s Expert mode.
+Users who wish to give Asahi Linux a try on an M3 series machine can do so by running</p><div class=highlight><pre tabindex=0 style=color:#c9c9c9color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex;color:#c9c9c9><span style=color:#c9c9c9><span style=color:#c9c9c9>curl -L https://alx.sh/ </span><span style=color:#56b6c2>|</span><span style=color:#c9c9c9> </span><span style=color:#bc74c4;font-style:italic>EXPERT</span><span style=color:#bc74c4>=</span><span style=color:#56b6c2>1</span><span style=color:#c9c9c9> sh
+</span></span></span></code></pre></div><p>in a macOS terminal and following the prompts. Please remember to do a system upgrade (<code>dnf upgrade --refresh</code>)
+after you have finished installing. We are aiming to drop the Expert requirement
+in time for the release of the Fedora Linux 45 beta in a couple of weeks, barring any major
+regressions or other showstopping issues.</p><p>There are some known limitations to be aware of, however:</p><ul>
+<li>Sleep currently <strong>does not work</strong> due to limitations with the firmware-provided framebuffer.
+This will be addressed once full DCP support is wired up for M3.</li><li>Similarly, the lack of DCP support means that the HDMI port on equipped MacBooks is currently
+disabled.</li></ul><p>As always, we would like to thank our generous supporters on both <a href=https://opencollective.com/AsahiLinux>OpenCollective</a>
+and <a href=https://github.com/sponsors/AsahiLinux>GitHub Sponsors</a>. Support for M3 is the culmination
+of years of hard work from multiple people, many of whom have only been able to access M3 hardware
+because of your support.</p><p>We are looking forward to hearing all your feedback, and hope you enjoy using Asahi Linux
+on your M3 devices just as much as we have enjoyed bringing it to you. Stay tuned for
+more updates and happy computing!</p><div class=post-bottom>James Calligeros · <span class=publishdate>2026-09-06</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
