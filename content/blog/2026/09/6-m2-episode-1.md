@@ -33,6 +33,7 @@ There are some known limitations to be aware of, however:
   This will be addressed once full DCP support is wired up for M3.
 - Similarly, the lack of DCP support means that the HDMI port on equipped MacBooks is currently
   disabled.
+- Although MacBooks and iMacs are supported (M3, M3 Pro and M3 Max), the Mac Studio (M3 Ultra) is not yet supported.
 
 As always, we would like to thank our generous supporters on both [OpenCollective](https://opencollective.com/AsahiLinux)
 and [GitHub Sponsors](https://github.com/sponsors/AsahiLinux). Support for M3 is the culmination
