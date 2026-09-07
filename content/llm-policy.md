@@ -6,6 +6,7 @@ aliases:
   /slop
 ---
 
+# Generative AI (LLM) Policy
 Generative AI tools using large language models (LLMs) are widespread
 in software development today. While we acknowledge that these tools
 do have uses cases, LLMs engender harms to the pillars of Asahi Linux:
