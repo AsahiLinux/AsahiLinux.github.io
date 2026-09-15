@@ -19,9 +19,10 @@ exceptions remain full DCP support and the GPU, which we will have more news on 
 performant or power-efficient 3D acceleration right now.**
 
 Given that a lot of this work is fresh, support is gated behind the installer's Expert mode.
+(2026-09-15 Update: Expert mode is no longer required.)
 Users who wish to give Asahi Linux a try on an M3 series machine can do so by running
 ```sh
-curl -L https://alx.sh/ | EXPERT=1 sh
+curl -L https://alx.sh/ | sh
 ```
 in a macOS terminal and following the prompts. Please remember to do a system upgrade (`dnf upgrade --refresh`)
 after you have finished installing. We are aiming to drop the Expert requirement
