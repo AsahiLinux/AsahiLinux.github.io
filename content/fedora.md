@@ -113,6 +113,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
             <div class="features">
                 <div class="sup">M1</div>
                 <div class="sup">M2</div>
+                <div class="sup">M3</div>
             </div>
             <h3>Features</h3>
             <div class="features">
@@ -131,7 +132,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="unsup">Thunderbolt / USB4</div>
                 <div class="unsup">Touch ID</div>
             </div>
-            <p>* Available on M2 model only.</p>
+            <p>* Not available on M1 MacBook Air.</p>
         </div></div>
         <div id="info-dev2" class="device-info"><div>
             <h3>Chips</h3>
@@ -142,6 +143,9 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">M2</div>
                 <div class="sup">M2 Pro</div>
                 <div class="sup">M2 Max</div>
+                <div class="sup">M3</div>
+                <div class="sup">M3 Pro</div>
+                <div class="sup">M3 Max</div>
             </div>
             <h3>Features</h3>
             <div class="features">
@@ -173,6 +177,8 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">M1</div>
                 <div class="sup">M2</div>
                 <div class="sup">M2 Pro</div>
+                <div class="sup">M3</div>
+                <div class="sup">M3 Pro</div>
             </div>
             <h3>Features</h3>
             <div class="features">
@@ -195,6 +201,8 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">M1 Ultra</div>
                 <div class="sup">M2 Max</div>
                 <div class="sup">M2 Ultra</div>
+                <div class="sup">M3 Max</div>
+                <div class="unsup">M3 Ultra</div>
             </div>
             <h3>Features</h3>
             <div class="features">
@@ -215,6 +223,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
             <h3>Chips</h3>
             <div class="features">
                 <div class="sup">M1</div>
+                <div class="sup">M3</div>
             </div>
             <h3>Features</h3>
             <div class="features">
@@ -235,6 +244,7 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
             <h3>Chips</h3>
             <div class="features">
                 <div class="sup">M2 Ultra</div>
+                <div class="unsup">M3 Ultra</div>
             </div>
             <h3>Features</h3>
             <div class="features">
