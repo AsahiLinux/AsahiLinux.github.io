@@ -244,7 +244,6 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
             <h3>Chips</h3>
             <div class="features">
                 <div class="sup">M2 Ultra</div>
-                <div class="unsup">M3 Ultra</div>
             </div>
             <h3>Features</h3>
             <div class="features">
