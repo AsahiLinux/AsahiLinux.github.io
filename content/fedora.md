@@ -34,7 +34,7 @@ With Fedora's excellent 64-bit ARM support and mature development process, you c
 
 <img width="150" class="w-150" src="/img/far_landing/kde-logo-white-blue-rounded-source.svg">We are proud to offer [KDE Plasma](https://kde.org/plasma-desktop/) as our flagship desktop environment. With leading edge Wayland support and a highly customizable experience plus wide support for Apple hardware features, KDE Plasma is a joy to use on Apple Silicon.
 
-Want to use Night Color to keep your screen from disrupting your sleep cycle? No worries, it just works. Tweak your trackpad settings for a more comfortable experience? Everything's right there in System Settings. Are things on screen too big or too small? Just adjust the display scale to your heart's content, even in 5% increments. We've worked with the KDE project to bring you bug fixes and improvements to improve platform support, and we've also built a custom Calamares-based initial setup wizard so you can be up and running in no time with minimal fuss.
+Want to use Night Color to keep your screen from disrupting your sleep cycle? No worries, it just works. Tweak your trackpad settings for a more comfortable experience? Everything's right there in System Settings. Are things on screen too big or too small? Just adjust the display scale to your heart's content, even in 5% increments. We've worked with the KDE project to bring you bug fixes and improvements to improve platform support, and we've also built a custom Plasma Setup-based initial setup wizard so you can be up and running in no time with minimal fuss.
 
 Fedora Linux 44 comes with [KDE Plasma 6.6](https://kde.org/announcements/plasma/6/6.6.0/), with the latest patches and improvements to provide *the* premier desktop experience.
 
