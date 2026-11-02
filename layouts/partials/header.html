@@ -38,7 +38,19 @@
 <body class="{{ .Scratch.Get "body_class" }}">
     <header id="header">
         <div class="header-logo">
-            <a href="/"><img src="/img/AsahiLinux_logo.svg?{{ slicestr (readFile "static/img/AsahiLinux_logo.svg" | md5) 0 8 }}" class="logo" alt=""></a>
+            <a href="/">
+                <picture>
+                  <!-- User prefers light mode -->
+                  <source srcset="/img/AsahiLinux_logo.svg?{{ slicestr (readFile "static/img/AsahiLinux_logo.svg" | md5) 0 8 }}" 
+                    media="(prefers-color-scheme: light)" />
+                  <!-- User prefers dark mode -->
+                  <source srcset="/img/AsahiLinux_logo_darkbg.svg?{{ slicestr (readFile "static/img/AsahiLinux_logo_darkbg.svg" | md5) 0 8 }}"
+                    media="(prefers-color-scheme: dark)" />
+                  <!-- Fallback for no preference -->
+                  <img src="/img/AsahiLinux_logo.svg?{{ slicestr (readFile "static/img/AsahiLinux_logo.svg" | md5) 0 8 }}" 
+                    class="logo" alt="Asahi Linux Logo" />
+                </picture>
+            </a>
         </div>
         <div class="header-menu">
             <ul class="menu-container flex-container">
