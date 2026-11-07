@@ -177,8 +177,6 @@ With our in-house [Bankstown](https://github.com/chadmed/bankstown) bass boost t
                 <div class="sup">M1</div>
                 <div class="sup">M2</div>
                 <div class="sup">M2 Pro</div>
-                <div class="sup">M3</div>
-                <div class="sup">M3 Pro</div>
             </div>
             <h3>Features</h3>
             <div class="features">
