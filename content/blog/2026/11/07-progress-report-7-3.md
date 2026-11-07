@@ -27,7 +27,7 @@ SoC component and bodes well for a transition to upstream-first development some
 in the future. This is fantastic news, as the AVD driver and related Devicetree changes
 are around 13000 lines of code.
 
-Also making an appearance on the list this cycle are intial Devicetrees not only for M4 Pro
+Also making an appearance on the list this cycle are initial Devicetrees not only for M4 Pro
 and Max devices but also M5 thanks to Yureka's tireless efforts. As usual these initial
 Devicetrees are barebones and only sufficient to boot the SoC to a TTY, however work
 is progressing on further enablement. Watch this space!
@@ -76,7 +76,7 @@ GPU was a very significant departure from the models found on M1 and M2 SoCs. We
 quite some time ago that the M3 GPU was being reverse engineered by a new group of
 contributors, however not much has been said since.
 
-At XDC this year, [Alyssa Millburn](https://social.treehouse.systems/@noopwafel),
+At XDC this year, [Alyssa Millburn](https://teh.entar.net/@noopwafel),
 [Anna Maniscalco](https://social.treehouse.systems/@pac85) and [TellowKrinkle](https://social.treehouse.systems/@TellowKrinkle)
 gave a [talk](https://www.youtube.com/live/TPwe53kCJuM?t=2082) on their progress
 reverse engineering the M3 GPU. Work has progressed far enough for m1n1 to successfully
@@ -313,7 +313,7 @@ would become unviable. In 2002, WINE was relicenced under the LGPL to prevent fu
 proprietary forks from being created, and to encourage direct upstream contribution.
 
 When Asahi Linux was first started, it was with the intent that we develop a Free Software
-_ecosystem_ for the Apple Silicon platform. To facilitate and encourage the particiation
+_ecosystem_ for the Apple Silicon platform. To facilitate and encourage the participation
 of our friends at the BSDs and other Free Software operating systems, we endeavoured to
 licence as much of our code as possible under the permissive MIT licence.
 
