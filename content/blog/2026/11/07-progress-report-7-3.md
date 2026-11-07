@@ -78,7 +78,7 @@ contributors, however not much has been said since.
 
 At XDC this year, [Alyssa Millburn](https://social.treehouse.systems/@noopwafel),
 [Anna Maniscalco](https://social.treehouse.systems/@pac85) and [TellowKrinkle](https://social.treehouse.systems/@TellowKrinkle)
-gave a [talk](https://www.youtube.com/live/TPwe53kCJuM?t=2082) on their progress
+gave a [talk](https://www.youtube.com/watch?v=nkRMGFN8lNA) on their progress
 reverse engineering the M3 GPU. Work has progressed far enough for m1n1 to successfully
 initialise the GPU and for the team to draw a triangle! Fans of the "Think Different"
 sections of these progress reports will find the talk edifying; Apple have once again
