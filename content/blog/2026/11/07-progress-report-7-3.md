@@ -207,10 +207,10 @@ Not exactly an impressive demo, right? Well what about:
   <figcaption>Wolfenstein: The New Order (2014) running outside of muvm</figcaption>
 </figure>
 
-Wolfenstein: The New Order is one of the most well optimised native Vulkan
-titles ever released, and being 64-bit uses WINE's ARM64EC pathways to
-massively reduce the amount of work FEX has to do. Again, not exactly an
-impressive demo if we're judging based on technical difficulty.
+Wolfenstein: The New Order is an extremely well-optimised OpenGL title, and
+being 64-bit uses WINE's ARM64EC pathways to massively reduce the amount
+of work FEX has to do. Again, not exactly an impressive demo if we're
+judging based on technical difficulty.
 
 Let's find something else. Something... worse. Something 32-bit so that
 FEX and WINE have to work harder. Something that will exercise DXVK too.
