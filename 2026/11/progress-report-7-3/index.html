@@ -1,0 +1,271 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Progress Report: Linux 7.3 - Asahi Linux</title><link rel=stylesheet href=/css/main.css?d133f651>
+<link href=https://use.fontawesome.com/releases/v6.7.1/css/all.css rel=stylesheet>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link id=favicon rel=icon href=/img/AsahiLinux_logomark_32px.png>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Serif+JP:wght@200;500&family=Varela+Round&display=swap" rel=stylesheet>
+<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@AsahiLinux">
+<meta name=twitter:creator content="@AsahiLinux">
+<meta name=twitter:title content="Progress Report: Linux 7.3 - Asahi Linux">
+<meta name=twitter:description content="Porting Linux to Apple Silicon">
+<meta name=twitter:image content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta name=twitter:image:width content="256">
+<meta name=twitter:image:height content="256">
+<meta property="og:image" content="https://asahilinux.org/img/AsahiLinux_logomark_256px.png">
+<meta property="og:title" content="Progress Report: Linux 7.3 - Asahi Linux">
+<script>var kawaii=new URLSearchParams(window.location.search).get("kawaii")??localStorage.getItem("kawaii");kawaii=="true"?(document.documentElement.classList.add("kawaii"),localStorage.setItem("kawaii","true")):localStorage.removeItem("kawaii")</script>
+</head><body>
+<header id=header>
+<div class=header-logo>
+<a href=/><img src=/img/AsahiLinux_logo.svg?d619e737 class=logo alt></a>
+</div><div class=header-menu>
+<ul class="menu-container flex-container">
+<li><a href=/about>About</a></li><li><a href=/community>Community</a></li><li><a href=/contribute>Contribute</a></li><li><a href=/governance>Governance</a></li><li><a href=/docs>Documentation</a></li><li><a href=https://github.com/AsahiLinux>GitHub</a></li><li><a href=/blog>Blog</a></li><li><a href=/merch>Merch</a></li><li><a href=/support>Donate</a></li></ul></div></header><section id=post-section>
+<div class=post-wrapper>
+<div class=post>
+<div id=breadcrumbs>
+<a href=https://asahilinux.org/>
+<i class="fas fa-home"></i>
+</a>
+/
+<a href=https://asahilinux.org/blog/>
+Blog
+</a>
+/
+<a href=https://asahilinux.org/2026/11/progress-report-7-3/>
+Progress Report: Linux 7.3
+</a>
+</div><div class=blog-header>
+<h1 class=entry-title>Progress Report: Linux 7.3</h1><ul class=blog-nav>
+<li>
+<a href=https://asahilinux.org/2026/09/m2-episode-1/><i class="fas fa-arrow-left"></i>Previous</a>
+</li><li class=nav-spacer></li></ul></div><p>Well here we are again. Linux 7.3 is out and it&rsquo;s been an eventful few months, so
+let&rsquo;s get stuck in to another Asahi Linux progress report!</p><h2 id=upstreaming-continues>Upstreaming continues</h2><p>As always, upstreaming work continues to progress. Aside from the usual patches for
+low-level SoC blocks, two major drivers made it on to the list this cycle: macaudio
+and avd. Getting macaudio ready for submission has been a challenge. The audio subsystem
+on Apple Silicon devices is rather special, and required quite a number of core ALSA
+changes to properly support it. Apple also uses special variants of speaker and headset
+amplifiers that were already supported upstream, and these drivers also needed some
+pretty significant modifications. We have previously discussed a lot of this work at
+length, and we are finally in a position where we can submit the main driver for
+review. The driver and Devicetree changes represent a hefty chunk of our total patchset,
+about 3100 lines.</p><p>AVD is a whole different beast. The AVD driver has spent barely 3 months in our downstream
+tree and is already on the list. This is our shortest turnaround time yet for a major
+SoC component and bodes well for a transition to upstream-first development some time
+in the future. This is fantastic news, as the AVD driver and related Devicetree changes
+are around 13000 lines of code.</p><p>Also making an appearance on the list this cycle are intial Devicetrees not only for M4 Pro
+and Max devices but also M5 thanks to Yureka&rsquo;s tireless efforts. As usual these initial
+Devicetrees are barebones and only sufficient to boot the SoC to a TTY, however work
+is progressing on further enablement. Watch this space!</p><p>We have also begun shifting to an upstream-first approach where practical. Changes
+to the TI USB-PD and SPMI drivers required for new devices, as well as initial support
+for Thunderbolt, were all developed upstream-first. We are so thrilled to see
+our focus on upstreaming starting to pay off!</p><h2 id=m3-goes-ga>M3 goes GA</h2><p>Last time, we announced initial support for M3 series machines via the EXPERT flag on
+the Asahi installer. We are pleased to announce that we received almost no issues
+from early adopters, so M3 support is now generally available without the EXPERT flag!</p><p>We have also made a number of improvements to M3 support, most notably enabling DCP.
+On top of performance and battery life improvements, this also allows us to enable
+sleep on M3 series devices <em>and</em> make the area around the notch useable on the MacBooks!
+Keep an eye out for m1n1 and kernel updates in the coming days.</p><h2 id=crowded-house>Crowded House</h2><p>Last time, we teased support for virtualising SPTM-enabled versions of macOS in m1n1,
+which enables reverse engineering on M4 series machines. M5 presents a new challenge,
+as the versions of macOS which support it all require the use of Exclaves.</p><p>Exclaves are small applications running in an isolated environment controlled by the
+Secure Kernel. On M5 series SoCs and above, macOS uses them for sensitive tasks
+such as drawing the &ldquo;camera in use&rdquo; indicator to the screen. XNU communicates with
+the Secure Kernel and its Exclaves via SPTM, using yet another IPC protocol called
+Tightbeam. Much as with SPTM, XNU will panic if it cannot find the running Exclaves.
+This is all starting to look very similar in concept to Arm&rsquo;s own TrustZone feature.</p><p>While some Exclaves can be bypassed by changing some settings on the command line,
+we predict that this will not always be the case. As such, Sven started looking at how we
+could fit all of this in to m1n1. First line of investigation, try putting the
+Secure Kernel and Exclave userspace in another VM next to SPTM and macOS.</p><p><a href=https://social.treehouse.systems/@sven/117513645155935201>Oh, that worked</a>,
+and we&rsquo;re now up to spawning three VMs in EL1 under m1n1! Maybe we can start
+selling m1n1 to companies fleeing VMWare&mldr; With that, we can now virtualise
+and reverse engineer macOS on both M4 and M5 series machines.</p><h2 id=hello-triangles>Hello Triangle(s)!</h2><p>While M3 support is now mostly at feature parity with M1 and M2, the very obvious exception
+to this is the GPU. Apple&rsquo;s GPU team seems to follow a tick-tock model, and the M3&rsquo;s
+GPU was a very significant departure from the models found on M1 and M2 SoCs. We mentioned
+quite some time ago that the M3 GPU was being reverse engineered by a new group of
+contributors, however not much has been said since.</p><p>At XDC this year, <a href=https://social.treehouse.systems/@noopwafel>Alyssa Millburn</a>,
+<a href=https://social.treehouse.systems/@pac85>Anna Maniscalco</a> and <a href=https://social.treehouse.systems/@TellowKrinkle>TellowKrinkle</a>
+gave a <a href="https://www.youtube.com/live/TPwe53kCJuM?t=2082">talk</a> on their progress
+reverse engineering the M3 GPU. Work has progressed far enough for m1n1 to successfully
+initialise the GPU and for the team to draw a triangle! Fans of the &ldquo;Think Different&rdquo;
+sections of these progress reports will find the talk edifying; Apple have once again
+made a number of&mldr; interesting choices which will require significant engineering
+effort to integrate into upstream Mesa. It is well worth a watch if you&rsquo;re interested
+in more detail.</p><p>A huge thanks goes out to everyone who has made this work possible. More progress
+is on the way, so stay tuned.</p><h2 id=kept-you-waiting-huh>Kept you waiting, huh?</h2><p>All the way back in January of 2024, we made the <a href=https://asahilinux.org/2024/01/fedora-asahi-new/>mistake</a>
+of promising Thunderbolt support within the year. It&rsquo;s a mistake we won&rsquo;t quickly
+repeat. We&rsquo;ve said almost nothing about Thunderbolt in the two years since, which
+begs the question: where is it?</p><p><a href=https://lore.kernel.org/asahi/20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org/>It&rsquo;s on the mailing list!</a></p><p>Thunderbolt was originally developed by Apple and Intel, with Intel handling the
+design and fabrication of the hardware required. Since Intel made these controllers
+available to anyone who wanted them at a (mostly) reasonable price, no one else
+bothered to design their own. It is only very recently &mdash; largely coinciding with
+the transfer of the standard to the USB-IF &mdash; that companies like AMD have decided
+to roll their own controllers. Apple is of course no exception.</p><p>As part of their push for insourcing most silicon IP, Apple made the choice to
+design their own Thunderbolt controller before most others. Surprising no one, the
+controller is of course a Cortex-M3 running RTKit coupled with a bespoke
+Thunderbolt/USB4 router. There is one of these for each Thunderbolt-enabled USB-C port
+on all Apple Silicon Macs.</p><p>Since Intel supplies every other extant Thunderbolt controller on the market, the
+Linux kernel&rsquo;s Thunderbolt subsystem is effectively designed around them. It makes
+a number of assumptions about the hardware topology of the running machine, including
+hardware capabilities and access patterns for certain registers and regions of
+shared memory. Apple&rsquo;s controller breaks a lot of these assumptions. Great.</p><p>The Thunderbolt controller is also oddly coupled to PMGR. The reset line for each
+controller is asserted or deasserted by setting and clearing a set of bits in the
+middle of PMGR&rsquo;s MMIO range. No other hardware block works quite like this,
+and it took some time to realise that these seemingly random writes to PMGR were
+not just noise.</p><p>Luckily for us, Sven was up to the task of dealing with all this nonsense. It just
+took slightly longer than expected! While the patchset to enable Thunderbolt was
+sent upstream first (another massive win for us!), we have also pulled it into
+our downstream kernel and are now shipping it to users!</p><p>But there is a catch. Currently, only USB3, XDomain and Thunderbolt Networking are
+supported. You can plug in USB devices or connect two Thunderbolt computers together
+and make them ping each other, but that&rsquo;s about it. PCIe and DisplayPort tunnelling &mdash; required for
+most Thunderbolt docks &mdash; are not supported. Yet. Watch this space.</p><p>An enormous amount of gratitude is owed to Sven, who has stuck with this thankless
+chore for nearly 5 years in between all of his other incredible work.</p><h2 id=the-holy-grail-doctor-jones>&ldquo;The Holy Grail, Doctor Jones&rdquo;</h2><p>Playing retail PC games on Asahi Linux is a bit of a pain point, to say the least.
+The software stack required to enable this is incredibly complex. We need to translate
+x86/amd64 binaries to arm64, and do so fast enough for low-latency gaming. In most
+cases, we also need to deal with the Windows API. On top of that, almost all games
+bake in an assumed 4 KiB memory page size to enable certain performance optimisation.
+Over the past few years, most of these problems have been solved:</p><ul>
+<li>FEX has improved leaps and bounds. The performance and reliability of binary
+translation is hardly a consideration in most cases now;</li><li>WINE is also fantastic now. Support for ARM64EC is mature and reliable,
+meaning that FEX now only has to translate the game binaries rather than
+WINE&rsquo;s entire Windows API implementation; and</li><li>muvm allows us to spin up a thin VM with DRM Native Context to present
+a 4 KiB memory page size to x86/amd64 applications.</li></ul><p>When muvm was first developed, it was with the assumption that DRM Native Context
+would enable near-native GPU performance from inside the VM. Unfortunately, this
+assumption did not hold. The muvm performance penalty is quite significant for
+a number of reasons, about 20% depending on the workload. Engineering around
+the limitations inherent to using a VM also introduces issues; muvm cannot use
+Wayland, has slow I/O performance, and struggles with certain types of input devices.</p><p>This is one area where macOS has us completely licked. While the performance gap
+between FEX and Rosetta has narrowed, XNU allows userspace processes to map themselves
+at any page granularity, so all Rosetta needs to do is tell XNU to map 4 KiB pages
+for its child processes. Linux does not have this flexibility. All pages must be
+mapped at the same granularity as the kernel. While we did <a href=https://asahilinux.org/blog/2025/10/progress-report-6-17>tease</a>
+Windows games working outside of muvm last year, this relied on ugly hacks inside
+FEX which have since been removed in the interests of maintainability and translation
+correctness. Bummer. Even so, compatibility was hit-and-miss, with a lot of (mostly older)
+software still refusing to work. Double bummer.</p><p>Android is currently going through a transition from 4 KiB pages to 16 KiB pages for
+a variety of reasons. Google Play now requires apps to be built for 16 KiB systems,
+and any application updates which do not test successfully on such systems will not
+be approved for publication on the Play Store. What about applications which are
+no longer updated though? What about sideloaded enterprise slop apps?</p><p>Google engineers Kalesh Singh and Frederick Mayle gave a very interesting <a href=https://lpc.events/event/20/contributions/2630/>talk</a>
+at Linux Plumbers Conference this year about exactly this. Their solution is simple:
+just fix Linux so that userspace can map 4 KiB pages!</p><p>Their addition to the Android kernel is called P3S, or Per Process Page Size.
+On ARM64 systems, pagetable granularity is controlled by bits set in the Translation Control Registers (TCR).
+P3S works by tracking the granularity of each process&rsquo;s pagetables, and writing
+the appropriate bits to the TCR whenever a process with a different pagetable size
+is switched to. Because this is a single register write, and because this is
+a no-op for &ldquo;native&rdquo; page size processes, the performance penalty is effectively
+zero!</p><p>While this effort is primarily targeted at Android, the patchset mostly rebases
+cleanly on top of mainline Linux. What happens if we rebase it on top of our
+Asahi tree (and fix some bugs)? As it turns out:</p><figure>
+<a href=/img/blog/2026/11/swbf.png>
+<img src=/img/blog/2026/11/swbf.png alt="Star Wars Battlefront (2004) running outside of muvm, with WineD3D">
+</a>
+<figcaption>Star Wars Battlefront (2004) running outside of muvm, with WineD3D</figcaption></figure><p>Okay okay, Battlefront is a very simple Direct3D 9.0 game from 22 years ago.
+Not exactly an impressive demo, right? Well what about:</p><figure>
+<a href=/img/blog/2026/11/killnazis.png>
+<img src=/img/blog/2026/11/killnazis.png alt="Wolfenstein: The New Order (2014) running outside of muvm">
+</a>
+<figcaption>Wolfenstein: The New Order (2014) running outside of muvm</figcaption></figure><p>Wolfenstein: The New Order is one of the most well optimised native Vulkan
+titles ever released, and being 64-bit uses WINE&rsquo;s ARM64EC pathways to
+massively reduce the amount of work FEX has to do. Again, not exactly an
+impressive demo if we&rsquo;re judging based on technical difficulty.</p><p>Let&rsquo;s find something else. Something&mldr; worse. Something 32-bit so that
+FEX and WINE have to work harder. Something that will exercise DXVK too.
+Something that is so comically buggy and poorly optimised that it doesn&rsquo;t
+even work properly on real Windows machines, and relies on community patches
+and command line switches to start at all on modern computers:</p><figure>
+<a href=/img/blog/2026/11/letsgobowling.png>
+<img src=/img/blog/2026/11/letsgobowling.png alt="Grand Theft Auto IV (2008) running outside of muvm, with DXVK">
+</a>
+<figcaption>Grand Theft Auto IV (2008) running outside of muvm, with DXVK</figcaption></figure><p>That&rsquo;s more like it! But we can do <em>even worse</em>. We can even run&mldr;
+Bethesda games!</p><figure>
+<a href=/img/blog/2026/11/bugthesda.png>
+<img src=/img/blog/2026/11/bugthesda.png alt="Fallout: New Vegas (2010) running outside of muvm, with DXVK">
+</a>
+<figcaption>Fallout: New Vegas (2010) running outside of muvm, with DXVK</figcaption></figure><p>Performance is of course still patchy. Both Battlefront and Wolfenstein
+run essentially flawlessly, with the latter hitting 144+ FPS on an M2
+Max Mac Studio. GTA IV on the other hand is&mldr; not fantastic. Performance
+is still massively improved over using muvm, and eliminating the use of
+the VM in general should also eliminate a few classes of bugs. Debugging
+the GPU driver should also be much easier with this approach.</p><p>As always there is a catch, and unfortunately it&rsquo;s a big one.
+The current solution is hard-coded for 16 KiB hosts and 4 KiB processes
+on those hosts. This obviously satisfies Google&rsquo;s commercial requirements, but
+adding pagesize-specific kludges to the kernel&rsquo;s core memory management code
+is not appropriate upstream. We are unsure if Google intends to generalise
+this approach and upstream it, or if this is going to stay an Android-only patchset.
+As such, we do not want to ship this in our downstream tree and have folks
+become reliant on it when there is this level of uncertainty.</p><p>It also requires userspace integration. P3S works by checking the binary
+metadata for its sections&rsquo; page alignments. This works for Google&rsquo;s
+use case, as P3S is intended as a fallback mechanism for applications
+aligned to 4 KiB pages. Modern arm64 binaries are aligned to 64 KiB however,
+as this guarantees compatibility with systems of all native pagesizes. Thus,
+a shim is required to force P3S on. The shim triggers P3S, and any
+child processes will inherit its 4 KiB pagesize. It is not worth spending
+the effort on implementing this until we have some certainty around what
+Google intends to do with this patchset.</p><p>We have reached out to Google with some questions, and we hope to have more
+to say soon.</p><h2 id=mics-but-faster>Mics, but faster</h2><p>Our custom beamformer for the microphone array found in the MacBooks is written
+in Rust. Rust&rsquo;s scientific computing ecosystem is not as mature as C++&rsquo;s, which
+is a bit of a problem as beamforming requires realtime FFT and very heavy matrix
+operations to be done on buffers filled with audio samples. Mature scientific
+computing libraries have hand-optimised code, often using intrinsics tied to the
+target ISA. We were not doing this however, and relied on the compiler autovectorising
+code where it could to achieve our performance targets.</p><p>This fell apart when we eliminated the FFT-based analytic transform, replacing it
+with an implementation based on infinite impulse response (IIR) filters. This
+<em>should</em> be faster, however the compiler was failing to autovectorise the new
+implementation. <a href=https://github.com/linkmauve>Linkmauve</a> kindly stepped in and
+added SIMD-optimised code for both arm64 <em>and</em> amd64. This, coupled with other
+performance optimisations courtesy of <a href=https://github.com/let-def>Frédéric Bour</a>
+has resulted in Triforce becoming almost twice as fast, all while using less CPU
+time!</p><h2 id=keeping-up>Keeping up</h2><p>Fedora Linux 45 was released on 3 November, and we shipped
+<a href=https://fedoramagazine.org/fedora-asahi-remix-45-is-now-available/>Fedora Asahi Remix</a>
+on the same day. This is the first time we have been able to get a new version of Fedora
+Asahi Remix out on the same day as upstream!</p><h2 id=learning-from-history>Learning from history</h2><p>We take great pride in our work, and have always done <em>all</em> of our development in the open.
+We communicate with our users, our followers and our financial sponsors as transparently
+as is humanly possible. Our finances are in the open, our development branches are in the open,
+and we report our progress regularly and candidly in the open. Our IRC channels and Matrix rooms
+are safe spaces, open to anyone with even a passing interest in Asahi Linux or hacking on Apple
+Silicon.</p><p>We do all of this because we firmly believe in Free and Open Source Software, not just as a
+means to an end but as the end in and of itself. The modern digital world is only possible
+because of the Free Software movement, and it is more important now than it ever has been
+that we do all we can to protect the Free Software ecosystem and uphold the ideals upon
+which it is built.</p><p>It may surprise some to learn that WINE was originally made available under the MIT
+licence. The 90s and 2000s were a very different time in the Free Software ecosystem,
+and permissively licenced projects were viewed by tech companies as free real estate
+to pilfer and exploit. WINE was not immune to this, and many monetised proprietary
+forks of WINE were marketed and sold by various bad actors. The WINE development team
+grew increasingly concerned that these proprietary forks, while well within their rights
+to exist, would eventually cause so much fragmentation in the ecosystem that WINE itself
+would become unviable. In 2002, WINE was relicenced under the LGPL to prevent further
+proprietary forks from being created, and to encourage direct upstream contribution.</p><p>When Asahi Linux was first started, it was with the intent that we develop a Free Software
+<em>ecosystem</em> for the Apple Silicon platform. To facilitate and encourage the particiation
+of our friends at the BSDs and other Free Software operating systems, we endeavoured to
+licence as much of our code as possible under the permissive MIT licence.</p><p>Unfortunately, this is no longer viable. The malicious practices of the 90s and 2000s
+have reared their ugly heads once again, this time driven in large part by both the
+insatiable appetite of frontier AI labs for high-quality training data, and militant animosity
+toward the Free Software community.</p><p>Some time ago, we were made aware of multiple attempts to exploit our permissive licensing
+to hijack our work, with a direct view to replacing the project and aggressively monetising
+Linux on Apple Silicon. In some extreme cases, in-development feature code was being
+lifted straight out of our personal forks and published without attribution or lazily
+rewritten with LLM assistance to obfuscate its origin. The MIT licence explicitly allows
+this, and has no carveouts to protect against bad faith actors.</p><p>As such, we made the difficult decision to begin the process of transitioning all of
+our repositories to the GNU General Public License version 2 or later. Going forward
+all Asahi Linux code will be licenced under strong copyleft licences only. Those who
+do not learn from history are doomed to repeat it.</p><h2 id=until-next-time>Until next time!</h2><p>As always, we would like to sincerely thank our supporters on <a href=https://opencollective.com/asahilinux>OpenCollective</a>
+and <a href=https://github.com/sponsor/AsahiLinux>GitHub Sponsors</a>. It is only through
+your generous backing that we are able to dedicate the time and resources to continuing
+our work reverse engineering the platform and bringing to it a world-class, polished,
+and battle-tested Linux desktop experience. You mean the world to us.</p><div class=post-bottom>James Calligeros · <span class=publishdate>2026-11-07</span></div></div></div></section><footer id=footer>
+<div class=footer-menu>
+<div class=footer-logo>
+<a href=/>
+<img src=/img/AsahiLinux_logomark.svg class=logo alt="Asahi Linux logo">
+</a>
+<span class=license>Licensed under CC BY-SA 4.0</span>
+<span class=disclaimer>Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries. All other product names, logos, and brands are property of their respective owners.
+<span class=kawaii-disclaimer>Kawaii Asahi Linux logo by <a href=https://github.com/SAWARATSUKI/Logos>SAWARATSUKI</a> (see link for license).</span>
+</span>
+</div><div class=footer-links>
+<ul class=footer-services>
+<li><a href=https://social.treehouse.systems/@AsahiLinux><i class="fab fa-mastodon"></i></a></li><li><a href=https://bsky.app/profile/asahilinux.org><i class="fab fa-bluesky"></i></a></li><li><a href=https://www.linkedin.com/company/asahilinux/><i class="fab fa-linkedin"></i></a></li><li><a href=https://github.com/AsahiLinux><i class="fab fa-github"></i></a></li></ul><ul class=footer-menu-container>
+<li><a href=/about>About</a></li><li><a href=/code-of-conduct>Code of Conduct</a></li><li><a href=/copyright>Copyright policy</a></li></ul></div></div></footer></body></html>
