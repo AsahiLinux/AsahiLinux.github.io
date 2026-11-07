@@ -89,7 +89,7 @@ Yureka noticed this while doing M4 bringup work, and added a kernel command line
 to make idle loop behaviour configurable. The parameter allows us to tell the kernel how
 it should park cores in idle loops, including by doing a basic no-op loop. This prevents
 M4 machines from crashing during early kernel initialisation, before our cpuidle driver
-has been loaded. Once the driver takes over, it saves the the lost state before issuing WFI.
+has been loaded. Once the driver takes over, it saves the lost state before issuing WFI.
 The patches to enable this are already in linux-next.
 
 ## They won't stop Thinking Different
@@ -278,7 +278,7 @@ Apple hardware uses two main addressing and compression formats. AGX, named afte
 the GPU, and Interchange.
 While the AGX format is used exclusively inside AGX itself, the Interchange format is also
 supported by DCP and AVD. On macOS, this enables the direct scanout of framebuffers from
-both AVD and AGX, allowing Quartz (the macOS compositor) to opportunitically choose to
+both AVD and AGX, allowing Quartz (the macOS compositor) to opportunistically choose to
 do almost nothing in a lot of everyday scenarios. If video is playing and nothing else is
 happening, the GPU can shut off completely and all the compositor has to do is make sure DCP
 is displaying new frames as AVD generates them. If a game or application is in fullscreen,
