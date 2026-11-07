@@ -336,7 +336,7 @@ do not learn from history are doomed to repeat it.
 
 ## Until next time!
 As always, we would like to sincerely thank our supporters on [OpenCollective](https://opencollective.com/asahilinux)
-and [GitHub Sponsors](https://github.com/sponsor/AsahiLinux). It is only through
+and [GitHub Sponsors](https://github.com/sponsors/AsahiLinux). It is only through
 your generous backing that we are able to dedicate the time and resources to continuing
 our work reverse engineering the platform and bringing to it a world-class, polished,
 and battle-tested Linux desktop experience. You mean the world to us.
