@@ -76,7 +76,7 @@ GPU was a very significant departure from the models found on M1 and M2 SoCs. We
 quite some time ago that the M3 GPU was being reverse engineered by a new group of
 contributors, however not much has been said since.
 
-At XDC this year, [Alyssa Millburn](https://social.treehouse.systems/@noopwafel),
+At XDC this year, [Alyssa Millburn](https://teh.entar.net/@noopwafel),
 [Anna Maniscalco](https://social.treehouse.systems/@pac85) and [TellowKrinkle](https://social.treehouse.systems/@TellowKrinkle)
 gave a [talk](https://www.youtube.com/live/TPwe53kCJuM?t=2082) on their progress
 reverse engineering the M3 GPU. Work has progressed far enough for m1n1 to successfully
