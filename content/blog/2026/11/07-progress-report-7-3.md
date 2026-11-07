@@ -162,7 +162,7 @@ This is one area where macOS has us completely licked. While the performance gap
 between FEX and Rosetta has narrowed, XNU allows userspace processes to map themselves
 at any page granularity, so all Rosetta needs to do is tell XNU to map 4 KiB pages
 for its child processes. Linux does not have this flexibility. All pages must be
-mapped at the same granularity as the kernel. While we did [tease](https://asahilinux.org/blog/2025/10/progress-report-6-17)
+mapped at the same granularity as the kernel. While we did [tease](https://asahilinux.org/2025/10/progress-report-6-17)
 Windows games working outside of muvm last year, this relied on ugly hacks inside
 FEX which have since been removed in the interests of maintainability and translation
 correctness. Bummer. Even so, compatibility was hit-and-miss, with a lot of (mostly older)
