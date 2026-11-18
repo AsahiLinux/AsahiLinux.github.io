@@ -542,6 +542,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     color: #2C2C2C;
+    background-color: white;
 }
 
 body.landing h1 {
